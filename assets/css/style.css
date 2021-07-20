@@ -1,0 +1,247 @@
+#incorrectCredentials{
+  color: red;
+  display: none;
+}
+
+.password_visibility{
+  cursor: pointer;
+}
+
+.ma-img{
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bookmark{
+  color: #F1F1F1;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+}
+
+.bookmark-active{
+  color: #F6C143;
+  transition: all ease-in-out 0.5s;
+}
+
+.contact-container{
+  padding: 20px 5vw;
+  line-height: normal;
+}
+
+.contact-icon{
+  color: grey;
+}
+
+.btn-custom{
+  padding: 20px 15px;
+  width: 150px;
+  border: 1px solid #D7DBEC;
+  margin-right: 20px;
+  border-radius: 5px !important;
+  box-shadow: 1px 1px 1px 1px #EFF1F7;
+  font-weight: normal !important;
+  transition: all ease-in-out 0.5s;
+}
+
+.btn-custom:hover{
+  background-color: #151A61;
+  color: white !important;
+  transition: all ease-in-out 0.5s;
+}
+
+.btn-group > .active{
+  background-color: #151A61;
+  color: white !important;
+}
+
+.subcategories > li{
+  cursor: pointer;
+}
+
+.subcategories > .selected{
+  background-color: #151A61;
+  color: white !important;
+}
+
+.subcategories_container{
+  display: none;
+}
+
+.Hidden-Card{
+  display: none;
+}
+
+.company-options{
+  display: none;
+}
+
+#realstate-options-group{
+  display: none;
+}
+
+.select2-container .select2-selection--single {
+  height: auto !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: white !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #007bff !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+  border: 1px solid #CED4DA !important;
+}
+
+.select2-container--default .select2-selection--single {
+  border: 1px solid #CED4DA !important;
+}
+
+.ad-form label{
+  font-weight: normal !important;
+}
+
+
+/* AUTOCOMPLETE: */
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.searchButton{
+  position: relative;
+  left: -2px;
+  border-top-right-radius: 5px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-right-radius: 5px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.autocomplete-items {
+  position: absolute;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #343A40;
+  color: white;
+  opacity: 0.9;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.autocomplete-items div {
+  transition: all ease-in-out 0.1s;
+  padding: 10px;
+  opacity: 1;
+  z-index: 199;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #000;
+  font-weight: bold;
+  transition: all ease-in-out 0.1s;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all ease-in-out 0.1s;
+}
+
+.searchItems{
+  margin-bottom: 10px;
+}
+
+.searchedItem{
+  padding: 5px 10px;
+  font-size: 15px;
+  background-color: #151A61;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.searchClear{
+  margin-right: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.clickable-filter{
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+}
+
+.clickable-filter:hover{
+  background-color: #151A61;
+  color: white;
+  transition: all ease-in-out 0.5s;
+}
+
+.profile-user-img:hover{
+  cursor: pointer;
+  border-color: #007BFF;
+}
+
+.edit-profile-labels{
+  font-weight: normal !important;
+  font-size: 14px;
+}
+
+.hide {display:none!important }
+
+.pagination{
+  text-transform: capitalize;
+}
+
+.error-span{
+  color: red;
+  display: none;
+}
+
+.profile-advisor-category12{
+  position: relative !important;
+  left: 0 !important;
+  top: -30px !important;
+}
+
+.profile-picture-heading {
+    background: #FFF !important;
+}
+
+
+
+
+
+
+.product__slider-main {
+  margin-bottom: 15px;
+}
+.product__slider-main img {
+  margin: 0 auto;
+}
+.product__slider-thmb .slick-slide {
+	opacity: 0.5;
+    transition: all .3s ease;
+}
+
+.product__slider-thmb .slick-slide.slick-active, .product__slider-thmb .slick-slide:hover {
+	opacity: 1;
+}
+
+.product__slider-main, .product__slider-thmb {
+    display: none;
+}
