@@ -1,4 +1,7 @@
 <?php
+
+define('BASE_URL', 'http://localhost/UCapital/');
+
 //DB Configuration
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');

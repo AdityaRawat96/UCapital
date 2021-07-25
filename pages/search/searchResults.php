@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['email'])){
+  include '../../assets/php/connection.php';
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';

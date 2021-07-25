@@ -113,6 +113,45 @@ if(isset($_SESSION['email'])){
                     </div>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="edit-profile-labels">Job Role</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                      </div>
+                    </div>
+                    <div class="custom-file">
+                      <input type="text" class="form-control" name="role" id="role">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="edit-profile-labels">Company</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <span class="fas fa-building"></span>
+                      </div>
+                    </div>
+                    <div class="custom-file">
+                      <input type="text" class="form-control" name="company" id="company">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="edit-profile-labels">Website</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <span class="fas fa-globe"></span>
+                      </div>
+                    </div>
+                    <div class="custom-file">
+                      <input type="text" class="form-control" name="website" id="website">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div><br>
 
@@ -193,7 +232,6 @@ if(isset($_SESSION['email'])){
 
   var timestamp = '<?php echo time(); ?>';
   var folderName = 'Advisor/' + timestamp;
-  console.log(folderName);
   function addService(){
     var filerID = Math.floor(Date.now()) + "-service";
     var serviceCardDetail = '<div class="card card-info serviceDetailCard"><div class="card-header"><h3 class="card-title">Service Details</h3><div class="card-tools"> <button type="button" class="btn btn-tool" onclick="$(this).closest('+" '"+'.card '+"' "+').remove();"> <i class="fas fa-times"></i> </button></div></div><div class="card-body"><div class="row"><div class="col-12"><div class="form-group"> <label for="certificateType" class="edit-profile-labels">Service Title</label> <input type="text" class="form-control serviceTitle" name="serviceTitle"></div><div class="form-group"> <label class="edit-profile-labels">Image</label> <input type="text" id="'+filerID+'-list" class="attachmentList" hidden> <input id="'+filerID+'" type="file" name="files" class="serviceAttachments"><small class="error-span attachment-error">Please attach a picture</small></div></div></div></div></div>'
@@ -378,6 +416,9 @@ if(isset($_SESSION['email'])){
         interests: $('#interests').val(),
         email: $('#email').val(),
         phone: $('#phone').val(),
+        role: $('#role').val(),
+        company: $('#company').val(),
+        website: $('#website').val(),
         description: $('#description').val(),
         about: $('#about').val(),
         location: $('#pac-input').val(),

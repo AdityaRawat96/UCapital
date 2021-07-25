@@ -51,6 +51,10 @@ if(isset($_SESSION['email'])){
       if(mysqli_num_rows($result) > 0 ){
         while($row = mysqli_fetch_array($result)){
           $ma_action = $row['action'];
+          $attachments = [];
+          if($row['attachments'] != '' && $row['attachments'] != '[]' && $row['attachments'] != null){
+            $attachments = json_decode($row['attachments']);
+          }
           ?>
           <section class="content">
             <div class="container-fluid">
@@ -59,16 +63,59 @@ if(isset($_SESSION['email'])){
                   <div class="card p-3">
                     <div class="row">
                       <div class="col-md-4">
-
                         <div id="product__slider">
                           <div class="product__slider-main">
                             <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
+                            <?php
+                            if(!empty($attachments)){
+                              foreach ($attachments as $attachment){
+                                $attachment_ext = explode(".", $attachment);
+                                $attachment_ext = $attachment_ext[count($attachment_ext)-1];
+                                if($attachment_ext == "pdf"){
+                                  ?>
+                                  <div class="slide">
+                                    <div class="pdf_attachment">
+                                      <h3>PDF</h3>
+                                      <span><?=$attachment; ?></span><br>
+                                      <a href="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" class="atttachment_download">
+                                        <button type="button" class="btn btn-info">Download</button>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <?php
+                                }else{
+                                  ?>
+                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
+                                  <?php
+                                }
+                              }
+                            }
+                            ?>
                           </div>
                           <?php
-                          if($row['attachments'] != '' && $row['attachments'] != '[]' && $row['attachments'] != null){
+                          if(!empty($attachments)){
                             ?>
                             <div class="product__slider-thmb">
                               <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
+                              <?php
+                              foreach ($attachments as $attachment){
+                                $attachment_ext = explode(".", $attachment);
+                                $attachment_ext = $attachment_ext[count($attachment_ext)-1];
+                                if($attachment_ext == "pdf"){
+                                  ?>
+                                  <div class="slide">
+                                    <div class="pdf_attachment">
+                                      <h5>PDF</h5>
+                                    </div>
+                                  </div>
+                                  <?php
+                                }else{
+                                  ?>
+                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
+                                  <?php
+                                }
+                              }
+                              ?>
                             </div>
                             <?php
                           }
@@ -85,7 +132,7 @@ if(isset($_SESSION['email'])){
                       </div>
                       <div class="col-md-12"><br>
 
-                        <h5 class="Spefication-title"> Spefication </h5>
+                        <h5 class="Spefication-title"> Specification </h5>
 
                         <div class="table-responsive">
                           <table class="table table-striped table-bordered">
@@ -203,66 +250,34 @@ if(isset($_SESSION['email'])){
         lazyLoad: 'ondemand',
         asNavFor: '.product__slider-main',
         dots: false,
+        arrows: false,
         centerMode: false,
         focusOnSelect: true
       });
 
       //remove active class from all thumbnail slides
       $('.product__slider-thmb .slick-slide').removeClass('slick-active');
-
       //set active class to first thumbnail slides
       $('.product__slider-thmb .slick-slide').eq(0).addClass('slick-active');
 
       // On before slide change match active thumbnail to current slide
       $('.product__slider-main').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        var mySlideNumber = nextSlide;
-        $('.product__slider-thmb .slick-slide').removeClass('slick-active');
-        $('.product__slider-thmb .slick-slide').eq(mySlideNumber).addClass('slick-active');
+        if(nextSlide == 0){
+          $('.slick-track').css({"transform": "translate3d(0px, 0px, 0px)"});
+        }
       });
 
+      $('.product__slider-main').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+        $('.product__slider-thmb .slick-slide').removeClass('slick-active');
+        $('.product__slider-thmb .slick-slide').eq(currentSlide).addClass('slick-active');
+      });
 
-
-      var options = {
-        progressbarSelector    : '.bJS_progressbar'
-        , slideSelector        : '.bJS_slider'
-        , previewSlideSelector : '.bJS_previewSlider'
-        , progressInterval     : ''
-        // add your own progressbar animation function to sync it i.e. with a video
-        // function will be called if the current preview slider item (".b_previewItem") has the data-customprogressbar="true" property set
-        , onCustomProgressbar : function($slide, $progressbar) {}
-      }
-
-      // slick slider options
-      // see: https://kenwheeler.github.io/slick/
-      var sliderOptions = {
-        slidesToShow   : 1,
-        slidesToScroll : 1,
-        arrows         : false,
-        fade           : true,
-        autoplay       : true
-      }
-
-      // slick slider options
-      // see: https://kenwheeler.github.io/slick/
-      var previewSliderOptions = {
-        slidesToShow   : 3,
-        slidesToScroll : 1,
-        dots           : false,
-        focusOnSelect  : true,
-        centerMode     : true
-      }
     }
 
   });
-  </script>
+</script>
 
-  <style media="screen">
-  .slick-prev:before,
-  .slick-next:before {
-    color: yellow;
-  }
-  </style>
-  <?php
+<?php
 
 }else{
   ?>

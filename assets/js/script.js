@@ -240,6 +240,39 @@ function registrationFunction(){
   });
 }
 
+
+function advisorRegistrationFunction(){
+
+  $.ajax({
+    type: 'POST',
+    url: '../../assets/php/advisorRegister.php',
+    data: {
+      advisor_id: $("#advisor_id").val(),
+      first_name: $('#first_name').val(),
+      last_name: $('#last_name').val(),
+      email: $('#email').val(),
+      password: $('#password').val(),
+    },
+    success: function(response) {
+      console.log(response);
+      if ( response.trim() == "success" ){
+        $('.loader').fadeOut();
+        swal("Success!", "Registration Successful!", "success")
+        .then((value) => {
+          window.location.href='../../pages/auth/login.php';
+        });
+      }else if( response.trim() == "email" ){
+        $('#email').focus();
+        $('.loader').fadeOut();
+        swal("Error!", "Email ID already registered!", "error");
+      }else{
+        $('.loader').fadeOut();
+        swal("Error!", "An error occurred, please try again!", "error");
+      }
+    }
+  });
+}
+
 function bookmark(type, elem){
   elem.html('<div class="spinner-border"></div>');
   console.log(elem.data('id'))

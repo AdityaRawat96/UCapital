@@ -1,0 +1,248 @@
+.chat_container{
+  background-color: #FFFFFF;
+}
+
+.chat_sidebar{
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
+  border-right: 1px solid gray;
+  position: fixed;
+  height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+
+.chat_user_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.chat_user_info:hover{
+  background-color: #E5EDFF;
+}
+
+.chat_user_info.active{
+  background-color: #E5EDFF;
+}
+
+.chat_user_image_container{
+  min-width: 90px !important;
+}
+
+.chat_user_image{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.user_status{
+  position: relative;
+  top: 20px;
+  left: -20px;
+}
+
+.user_status_online{
+  color: #00B74A;
+}
+
+.user_status_offline{
+  color: gray;
+}
+
+.chat_user_name{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.chat_user_time{
+  margin-left: auto;
+  font-size: 12px;
+  color: gray;
+}
+
+.chat_text{
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.chat_content{
+  width: calc(100% - 400px);
+  position: relative;
+  left: 400px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 55px);
+}
+
+.chat_receiver_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 10px 20px 10px;
+  border-bottom: 1px solid gray;
+  height: 50px;
+  max-height: 50px;
+  min-height: 50px;
+}
+
+.chat_receiver_name{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.chat_receiver_status{
+  margin-left: auto;
+}
+
+.chat_actions{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+  margin-top: auto;
+  border-top: 1px solid gray;
+}
+
+.chatbox_send_message_button{
+  height: 30px;
+  width: 30px;
+}
+
+.loader_chat{
+  height: 40px;
+  width: 40px;
+  display: none;
+}
+
+.chatbox_chat_input {
+  margin: 0 10px;
+  width: 100%;
+  resize: none;
+  overflow-y: auto;
+  min-height: 30px;
+  max-height: 150px;
+  border: none;
+}
+
+.chat_body{
+  padding: 50px 10px;
+  max-height: calc(100% - 100px);
+  overflow-y: auto;
+}
+
+.chat_segment{
+  display: flex;
+  flex-direction: row;
+}
+
+.chat_user_image_min{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.chat_message_received{
+  position: relative;
+  top: -10px;
+  margin-left: 5px;
+  margin-right: 50px;
+}
+
+.chat_message_received span{
+  display: flow-root;
+  break-after: always;
+  background-color: #E6E8FC;
+  padding: 10px 20px;
+  border-radius: 0px 10px 10px 10px;
+  line-break: anywhere;
+}
+
+.chat_message_sent{
+  margin-left: auto;
+  text-align: right;
+}
+
+.chat_message_sent span{
+  display: flow-root;
+  break-after: always;
+  background-color: #C2DDFF;
+  padding: 10px 20px;
+  border-radius: 10px 0px 10px 10px;
+  line-break: anywhere;
+}
+
+
+.chatbox_chat_input::-webkit-scrollbar {
+  width: 8px;
+}
+.chatbox_chat_input::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+.chatbox_chat_input::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 8px;
+}
+.chatbox_chat_input::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 8px;
+}
+.chatbox_chat_input::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 8px;
+}
+
+
+.chat_sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.chat_sidebar::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+.chat_sidebar::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 8px;
+}
+.chat_sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 8px;
+}
+.chat_sidebar::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 8px;
+}
+
+
+.chat_body::-webkit-scrollbar {
+  width: 8px;
+}
+.chat_body::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+.chat_body::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 8px;
+}
+.chat_body::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 8px;
+}
+.chat_body::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 8px;
+}
+
+
+@media (min-width: 1000px) {
+
+}
+
+@media (max-width: 1000px) {
+
+}

@@ -51,7 +51,25 @@ if(isset($_SESSION['email'])){
                         </div>
                         <div class="col-md-3">
                           <div class="inner-advisor-btn-cont64">
-                            <a href="mailto:<?=$row['email']?>" target="_blank">
+                            <?php
+                            $user_id = $row['user_id'];
+                            $result_user= mysqli_query($con, " SELECT * FROM users WHERE id='$user_id'")
+                            or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+
+                            if(mysqli_num_rows($result_user) > 0 ){
+                              while($row_user = mysqli_fetch_array($result_user)){
+                                ?>
+                                <form action="../chat/index.php" method="post" style="display: inline-block;">
+                                  <input type="text" name="chat_recipient_id" value="<?=$row['user_id']?>" hidden>
+                                  <input type="text" name="chat_recipient_image" value="../../assets/uploads/Advisor/<?=$row['folder_name'].'/'.$row['profile_picture']; ?>" hidden>
+                                  <input type="text" name="chat_recipient_type" value="<?=$row_user['user_type']?>" hidden>
+                                  <button type="submit" name="button" class="our-back-btn commercialista-contact-btn">Chat</button>
+                                </form>
+                                <?php
+                              }
+                            }
+                            ?>
+                            <a href="mailto:<?=$row['email']?>" target="_blank" style="display: inline-block;">
                               <button type="submit" class="our-back-btn commercialista-contact-btn"> Contact here </button>
                             </a>
                           </div>

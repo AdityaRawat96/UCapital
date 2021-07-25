@@ -121,28 +121,33 @@ $advisor_primium='';
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="news.html" class="nav-link">
+              <a href="../news/index.php" class="nav-link">
                 <p> All </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p> World </p>
+              <a href="../news/index.php?index=Private Equity" class="nav-link">
+                <p> Private Equity </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p> Market </p>
+              <a href="../news/index.php?index=VC" class="nav-link">
+                <p> VC </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p> Politics </p>
+              <a href="../news/index.php?index=IPO" class="nav-link">
+                <p> IPO </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p> Business </p>
+              <a href="../news/index.php?index=M%26A" class="nav-link">
+                <p> M&A </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../news/index.php?index=RE" class="nav-link">
+                <p> RE </p>
               </a>
             </li>
           </ul>
