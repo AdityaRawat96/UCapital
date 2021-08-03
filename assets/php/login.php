@@ -24,6 +24,7 @@ if(mysqli_num_rows($result) > 0 ){
       }
 
       $_SESSION['id'] = $row['id'];
+      $_SESSION['user_type'] = $row['user_type'];
       $_SESSION['profile_picture'] = $row['profile_picture'];
       $_SESSION['email'] = $row['email'];
       $_SESSION['mobile'] = $row['mobile'];

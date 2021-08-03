@@ -36,8 +36,14 @@ $.widget.bridge('uibutton', $.ui.button)
 <!-- Sweet Alert -->
 <script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
+<script src="../../plugins/moment/moment.min.js"></script>
+<script src="../../plugins/Pusher/pusher.min.js"></script>
+
 <!-- Local javascript -->
-<script src="../../assets/js/script.js"></script>
+<script type="text/javascript" src="../../assets/js/script.js"></script>
+<?php
+include '../../assets/php/Pusher.php';
+ ?>
 
 </body>
 </html>

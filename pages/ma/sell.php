@@ -1,5 +1,11 @@
 <?php
 session_start();
+$offset = 0;
+$currentPage = 1;
+if(isset($_GET['offset'])){
+  $offset=$_GET['offset'];
+  $currentPage = ($offset/48) + 1;
+}
 if(isset($_SESSION['email'])){
   include '../elements/header.php';
   include '../elements/navbar.php';
@@ -55,83 +61,8 @@ if(isset($_SESSION['email'])){
           </div>
         </div>
 
-
-        <?php
-        include('../../assets/php/connection.php');
-
-        $ma_ids;
-        $user_id = $_SESSION['id'];
-        $result= mysqli_query($con, " SELECT ma_id FROM favorites WHERE user_id = '$user_id' ")
-        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-        if(mysqli_num_rows($result) > 0 ){
-          while($row = mysqli_fetch_array($result)){
-            if($row['ma_id'] == "" || $row['ma_id'] == null){
-              $ma_ids = array();
-            }else{
-              $ma_ids = json_decode($row['ma_id']);
-            }
-          }
-        }
-
-        $result= mysqli_query($con, " SELECT * FROM merger_acquisition WHERE action='Sell'")
-        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-
-        if(mysqli_num_rows($result) > 0 ){
-          while($row = mysqli_fetch_array($result)){
-
-            ?>
-            <div class="col-md-3 col-sm-5 inline-block ma_card  pagination-item"
-            data-type="<?=$row['type']; ?>"
-            data-category="<?=$row['category']; ?>"
-            data-realestate="<?=$row['realestate']; ?>"
-            data-value="<?=$row['value']; ?>"
-            data-industry="<?=strtolower(implode(',', array_map('strval', json_decode($row['industry'])))); ?>"
-            data-sector="<?=$row['sector'] ? strtolower(implode(',', array_map('strval', json_decode($row['sector'])))) : ""; ?>"
-            data-revenue="<?=$row['revenue']; ?>"
-            data-ebitda="<?=$row['ebitda']; ?>"
-            data-financialstatus="<?=$row['finance_status']; ?>"
-            data-foundationyear="<?=$row['foundation_year']; ?>"
-            data-location="<?=$row['location']; ?>"
-            >
-              <div class="card mb-4 cart-custom-redious our-shadow">
-                <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="image">
-                <span class="left-tag-card our-back"> <?=$row['type']; ?> </span>
-                <span class="right-tag-batch">
-                  <span class="bookmark bookmark-ma <?php if(in_array($row['id'], $ma_ids)){echo 'bookmark-active';} ?>" data-id="<?=$row['id']?>">
-                    <i class="fas fa-bookmark fa-2x"></i>
-                  </span>
-                </span>
-                <div class="d-flex flex-column justify-content-end p-2">
-                  <h5 class="card-heading text-dark"> <?=$row['title']; ?> </h5>
-                  <p class="card-descripatoin pb-1 pt-1"> <?=$row['description']; ?> </p>
-                  <div class="listing">
-                    <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="<?=$row['location']; ?>">
-                      <span> <i class="fas fa-map-marker-alt"></i> <?=$row['location']; ?> </span>
-                    </a>
-                    <a class="our-color listing-card-tag1">
-                      <span><i class="fas fa-dollar-sign"></i> <?=$row['value']; ?> </span>
-                    </a>
-                    <?php
-                    $industries = json_decode($row['industry']);
-                    sort($industries);
-                     ?>
-                    <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="<?=$industries[0]; ?>">
-                      <span><i class="fas fa-chart-pie"></i>
-                        <?=$industries[0]; ?>
-                      </span>
-                    </a>
-                    <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="<?=$row['category']; ?>">
-                      <span><i class="fas fa-chart-line"></i> <?=$row['category']; ?> </span>
-                    </a>
-                    <a href="ma-detail.php?ma=<?=$row['id']; ?>" class="contact-here-sectin564"> Contact here  <i class="fas fa-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <?php
-          }
-        }
-        ?>
+        <div class="row itemsList">
+        </div>
 
         <div class="row">
           <center>
@@ -154,11 +85,23 @@ if(isset($_SESSION['email'])){
   <script type="text/javascript" src="../../assets/js/autocomplete.js"></script>
   <script type="text/javascript" src="../../plugins/pagination/pagination.min.js"></script>
   <script type="text/javascript">
+  var obj = [];
+  var itemType = "ma";
+  var offset = parseInt('<?=$offset?>');
+  var currentPage = parseInt('<?=$currentPage?>');
+
   autocomplete(document.getElementById("searchIndicators"), searchableElements);
   $(document).ready(function(){
-    $('.paginationList').rpmPagination({
-      domElement: '.pagination-item',
-      limit: 48,
+    $.ajax({
+      type: 'POST',
+      url: '../../assets/php/getMA.php',
+      data: {
+        action: "Sell"
+      },
+      success: function(data) {
+        obj = jQuery.parseJSON(data);
+        showResults();
+      }
     });
   })
   </script>

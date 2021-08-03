@@ -42,10 +42,10 @@ if(isset($_SESSION['email'])){
         <div class="news_category">
           <a href="index.php?index="><span class="news_category_tabs active">All</span></a>
           <a href="index.php?index=Private Equity"><span class="news_category_tabs">Private Equity</span></a>
-          <a href="index.php?index=VC"><span class="news_category_tabs">VC</span></a>
+          <a href="index.php?index=Venture Capital"><span class="news_category_tabs">Venture Capital</span></a>
           <a href="index.php?index=IPO"><span class="news_category_tabs">IPO</span></a>
           <a href="index.php?index=M%26A"><span class="news_category_tabs">M&A</span></a>
-          <a href="index.php?index=RE"><span class="news_category_tabs">RE</span></a>
+          <a href="index.php?index=Real Estate"><span class="news_category_tabs">Real Estate</span></a>
         </div><hr>
 
         <div class="content_">
@@ -55,7 +55,10 @@ if(isset($_SESSION['email'])){
               <h3 class="feed_title"></h3><br>
               <small class="feed_timestamp"></small><br>
               <div class="feed_description">
-              </div>
+              </div><br>
+              <a href="#" class="readmoreLink" target="_blank">
+                <button type="button" name="button" class="our-back-btn commercialista-contact-btn">Read More</button>
+              </a>
             </div>
           </div><br><br>
           <div class="row">
@@ -94,11 +97,12 @@ include '../elements/footer.php';
 <script type="text/javascript">
 
 if('<?=$pageIndex; ?>' != ""){
+  console.log('<?=$pageIndex; ?>')
   var feed_tabs = document.getElementsByClassName("news_category_tabs");
   for(tabs in feed_tabs){
     if(feed_tabs[tabs].innerHTML != undefined){
       feed_tabs[tabs].classList.remove("active");
-      if(feed_tabs[tabs].innerHTML == '<?=$pageIndex; ?>'){
+      if(feed_tabs[tabs].innerHTML.replace("&amp;", "&") == '<?=$pageIndex; ?>'){
         feed_tabs[tabs].classList.add("active");
       }
     }
@@ -162,6 +166,7 @@ function GetFeeds(){
             name: Query.name,
             category: Query.category,
             country: Query.country,
+            link: el.find("link").text() ? el.find("link").text() : "",
             timestamp: content_timestamp,
             img_type: img_type,
             is_insight: is_insight
@@ -197,6 +202,11 @@ function showNews(feeddata){
         $(".feed_title").html(newsfeed.title);
         $(".feed_description").html(newsfeed.description);
         $(".feed_timestamp").html(newsfeed.pubDate);
+        if(newsfeed.link != ""){
+          $(".readmoreLink").attr("href", newsfeed.link);
+        }else{
+          $(".readmoreLink").remove();
+        }
       }else{
         if(newsfeed.img_type == 2){
           $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')

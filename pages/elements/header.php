@@ -1,3 +1,22 @@
+<?php
+include '../../assets/php/connection.php';
+if(isset($_SESSION['id'])){
+  $user_id = $_SESSION['id'];
+  if($_SESSION['user_type'] == 0){
+    $session_user_chat_name = $_SESSION['first_name'] . " (Super Admin)";
+  }else if($_SESSION['user_type'] == 1){
+    $session_user_chat_name = $_SESSION['first_name'] . " (Support)";
+  }else if($_SESSION['user_type'] == 2){
+    $session_user_chat_name = $_SESSION['first_name'] . " (Advisor)";
+  }else if($_SESSION['user_type'] == 3){
+    $session_user_chat_name = $_SESSION['first_name'];
+  }
+
+  $sender_user_type = $_SESSION['user_type'];
+}else{
+  $user_id = -1;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -27,7 +27,7 @@ if(isset($_SESSION['email'])){
       <div class="container-fluid">
         <div class="card p-3"><br>
           <div class="row">
-            <div class="col-md-2 col-sm-12">
+            <div class="col-md-2 col-sm-12 post_ad_sidenav">
               <ul class="listing-add-post1 nav nav-pills asset-options">
                 <li> <a href="#"> What </a> </li>
                 <li> <a href="#"> Type </a> </li>
@@ -47,7 +47,7 @@ if(isset($_SESSION['email'])){
             </div>
             <div class="col-md-10 col-sm-12">
               <form class="ad-form" action="index.html" method="post">
-                <span>What do you want to do?</span><br><br>
+                <span>Complete the fields to publish the ad</span><br><br>
                 <div class="input-group btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-custom">
                     <input type="radio" name="action" autocomplete="off" value="Buy"> Buy
@@ -135,11 +135,15 @@ if(isset($_SESSION['email'])){
                   <div class="input-group">
                     <label>Industry </label>
                     <select class="select2" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+                      <option value="3D Printing">3D Printing</option>
                       <option value="Accessories">Accessories</option>
                       <option value="Accounting">Accounting</option>
+                      <option value="AdTech">AdTech</option>
+                      <option value="Advanced Manufacturing">Advanced Manufacturing</option>
                       <option value="Aerospace and Defense">Aerospace and Defense</option>
                       <option value="Agricultural Chemicals">Agricultural Chemicals</option>
                       <option value="Agriculture">Agriculture</option>
+                      <option value="AgTech">AgTech</option>
                       <option value="Air">Air</option>
                       <option value="Alternative Energy Equipment">Alternative Energy Equipment</option>
                       <option value="Aluminum Mining">Aluminum Mining</option>
@@ -149,13 +153,20 @@ if(isset($_SESSION['email'])){
                       <option value="Application Software">Application Software</option>
                       <option value="Application Specific Semiconductors">Application Specific Semiconductors</option>
                       <option value="Aquaculture">Aquaculture</option>
+                      <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
                       <option value="Asset Management">Asset Management</option>
+                      <option value="AudioTech">AudioTech</option>
                       <option value="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</option>
                       <option value="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</option>
+                      <option value="Augmented Reality">Augmented Reality</option>
                       <option value="Automation/Workflow Software">Automation/Workflow Software</option>
-                      <option value="Automotive">Automotive</option>
                       <option value="Automotive Insurance">Automotive Insurance</option>
+                      <option value="Automotive">Automotive</option>
+                      <option value="Autonomous cars">Autonomous cars</option>
+                      <option value="B2B Payments">B2B Payments</option>
+                      <option value="Beauty">Beauty</option>
                       <option value="Beverages">Beverages</option>
+                      <option value="Big Data">Big Data</option>
                       <option value="Biotechnology">Biotechnology</option>
                       <option value="BPO/Outsource Services">BPO/Outsource Services</option>
                       <option value="Broadcasting">Broadcasting</option>
@@ -166,12 +177,16 @@ if(isset($_SESSION['email'])){
                       <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
                       <option value="Business/Productivity Software">Business/Productivity Software</option>
                       <option value="Cable Service Providers">Cable Service Providers</option>
+                      <option value="Cannabis">Cannabis</option>
                       <option value="Capital Markets/Institutions">Capital Markets/Institutions</option>
+                      <option value="Car-Sharing">Car-Sharing</option>
                       <option value="Casinos and Gaming">Casinos and Gaming</option>
                       <option value="Catalog Retail">Catalog Retail</option>
                       <option value="Chemicals and Gases">Chemicals and Gases</option>
+                      <option value="CleanTech">CleanTech</option>
                       <option value="Clinics/Outpatient Services">Clinics/Outpatient Services</option>
                       <option value="Clothing">Clothing</option>
+                      <option value="CloudTech & DevOps">CloudTech & DevOps</option>
                       <option value="Coal and Consumable Fuels Equipment">Coal and Consumable Fuels Equipment</option>
                       <option value="Coal Mining">Coal Mining</option>
                       <option value="Commercial Banks">Commercial Banks</option>
@@ -187,6 +202,7 @@ if(isset($_SESSION['email'])){
                       <option value="Connectivity Products">Connectivity Products</option>
                       <option value="Construction (Non-Wood)">Construction (Non-Wood)</option>
                       <option value="Construction and Engineering">Construction and Engineering</option>
+                      <option value="Construction Technology">Construction Technology</option>
                       <option value="Consulting Services (B2B)">Consulting Services (B2B)</option>
                       <option value="Consumer Durables">Consumer Durables</option>
                       <option value="Consumer Finance">Consumer Finance</option>
@@ -194,17 +210,22 @@ if(isset($_SESSION['email'])){
                       <option value="Consumer Products and Services (B2C)">Consumer Products and Services (B2C)</option>
                       <option value="Containers and Packaging">Containers and Packaging</option>
                       <option value="Cruise Lines">Cruise Lines</option>
+                      <option value="Cryptocurrency/Blockchain">Cryptocurrency/Blockchain</option>
                       <option value="Cultivation">Cultivation</option>
+                      <option value="Cybersecurity">Cybersecurity</option>
                       <option value="Database Software">Database Software</option>
                       <option value="Decision/Risk Analysis">Decision/Risk Analysis</option>
                       <option value="Department Stores">Department Stores</option>
                       <option value="Diagnostic Equipment">Diagnostic Equipment</option>
+                      <option value="Digital Health">Digital Health</option>
                       <option value="Discovery Tools (Healthcare)">Discovery Tools (Healthcare)</option>
                       <option value="Distributors (Healthcare)">Distributors (Healthcare)</option>
-                      <option value="Distributors/Wholesale">Distributors/Wholesale</option>
                       <option value="Distributors/Wholesale (B2C)">Distributors/Wholesale (B2C)</option>
+                      <option value="Distributors/Wholesale">Distributors/Wholesale</option>
                       <option value="Drug Delivery">Drug Delivery</option>
                       <option value="Drug Discovery">Drug Discovery</option>
+                      <option value="E-Commerce">E-Commerce</option>
+                      <option value="EdTech">EdTech</option>
                       <option value="Education and Training Services (B2B)">Education and Training Services (B2B)</option>
                       <option value="Educational and Training Services (B2C)">Educational and Training Services (B2C)</option>
                       <option value="Educational Software">Educational Software</option>
@@ -214,7 +235,6 @@ if(isset($_SESSION['email'])){
                       <option value="Electronic Components">Electronic Components</option>
                       <option value="Electronic Equipment and Instruments">Electronic Equipment and Instruments</option>
                       <option value="Electronics (B2C)">Electronics (B2C)</option>
-                      <option value="Energy">Energy</option>
                       <option value="Energy Equipment">Energy Equipment</option>
                       <option value="Energy Exploration">Energy Exploration</option>
                       <option value="Energy Infrastructure">Energy Infrastructure</option>
@@ -225,27 +245,35 @@ if(isset($_SESSION['email'])){
                       <option value="Energy Storage">Energy Storage</option>
                       <option value="Energy Traders and Brokers">Energy Traders and Brokers</option>
                       <option value="Energy Transportation">Energy Transportation</option>
+                      <option value="Energy">Energy</option>
                       <option value="Enterprise Systems (Healthcare)">Enterprise Systems (Healthcare)</option>
                       <option value="Entertainment Software">Entertainment Software</option>
                       <option value="Environmental Services (B2B)">Environmental Services (B2B)</option>
+                      <option value="Ephemeral Content">Ephemeral Content</option>
+                      <option value="eSports">eSports</option>
                       <option value="Exploration">Exploration</option>
+                      <option value="FemTech">FemTech</option>
                       <option value="Fiberoptic Equipment">Fiberoptic Equipment</option>
                       <option value="Financial Services">Financial Services</option>
                       <option value="Financial Software">Financial Software</option>
+                      <option value="FinTech">FinTech</option>
                       <option value="Food Products">Food Products</option>
+                      <option value="FoodTech">FoodTech</option>
                       <option value="Footwear">Footwear</option>
-                      <option value="Forestry">Forestry</option>
                       <option value="Forestry Development/Harvesting">Forestry Development/Harvesting</option>
                       <option value="Forestry Processing">Forestry Processing</option>
+                      <option value="Forestry">Forestry</option>
+                      <option value="Gaming">Gaming</option>
                       <option value="Gas Utilities">Gas Utilities</option>
                       <option value="General Merchandise Stores">General Merchandise Stores</option>
                       <option value="General Purpose Semiconductors">General Purpose Semiconductors</option>
                       <option value="Gold Mining">Gold Mining</option>
                       <option value="Government">Government</option>
-                      <option value="Healthcare">Healthcare</option>
                       <option value="Healthcare Devices and Supplies">Healthcare Devices and Supplies</option>
                       <option value="Healthcare Services">Healthcare Services</option>
                       <option value="Healthcare Technology Systems">Healthcare Technology Systems</option>
+                      <option value="Healthcare">Healthcare</option>
+                      <option value="HealthTech">HealthTech</option>
                       <option value="Holding Companies">Holding Companies</option>
                       <option value="Home Furnishings">Home Furnishings</option>
                       <option value="Horticulture">Horticulture</option>
@@ -254,15 +282,20 @@ if(isset($_SESSION['email'])){
                       <option value="Hotels and Resorts">Hotels and Resorts</option>
                       <option value="Household Appliances">Household Appliances</option>
                       <option value="Household Products">Household Products</option>
+                      <option value="HR Tech">HR Tech</option>
                       <option value="Human Capital Services">Human Capital Services</option>
+                      <option value="Impact Investing">Impact Investing</option>
                       <option value="Industrial Chemicals">Industrial Chemicals</option>
                       <option value="Industrial Supplies and Parts">Industrial Supplies and Parts</option>
+                      <option value="Industrials">Industrials</option>
                       <option value="Information Services (B2C)">Information Services (B2C)</option>
                       <option value="Information Technology">Information Technology</option>
                       <option value="Infrastructure">Infrastructure</option>
-                      <option value="Insurance">Insurance</option>
                       <option value="Insurance Brokers">Insurance Brokers</option>
+                      <option value="Insurance">Insurance</option>
+                      <option value="InsurTech">InsurTech</option>
                       <option value="International Banks">International Banks</option>
+                      <option value="Internet of Things">Internet of Things</option>
                       <option value="Internet Retail">Internet Retail</option>
                       <option value="Internet Service Providers">Internet Service Providers</option>
                       <option value="Internet Software">Internet Software</option>
@@ -275,31 +308,43 @@ if(isset($_SESSION['email'])){
                       <option value="Legal Services (B2C)">Legal Services (B2C)</option>
                       <option value="Leisure Facilities">Leisure Facilities</option>
                       <option value="Life and Health Insurance">Life and Health Insurance</option>
+                      <option value="Life Sciences">Life Sciences</option>
                       <option value="Logistics">Logistics</option>
+                      <option value="LOHAS & Wellness">LOHAS & Wellness</option>
                       <option value="Luxury Goods">Luxury Goods</option>
                       <option value="Machinery (B2B)">Machinery (B2B)</option>
                       <option value="Managed Care">Managed Care</option>
+                      <option value="Manufacturing">Manufacturing</option>
                       <option value="Marine">Marine</option>
+                      <option value="Marketing Tech">Marketing Tech</option>
                       <option value="Materials and Resources">Materials and Resources</option>
-                      <option value="Media">Media</option>
                       <option value="Media and Information Services (B2B)">Media and Information Services (B2B)</option>
+                      <option value="Media">Media</option>
                       <option value="Medical Records Systems">Medical Records Systems</option>
                       <option value="Medical Supplies">Medical Supplies</option>
                       <option value="Metal Containers and Packaging">Metal Containers and Packaging</option>
                       <option value="Metals">Metals</option>
+                      <option value="Micro-Mobility">Micro-Mobility</option>
                       <option value="Minerals and Mining">Minerals and Mining</option>
+                      <option value="Mobile Commerce">Mobile Commerce</option>
+                      <option value="Mobile">Mobile</option>
+                      <option value="Mobility Tech">Mobility Tech</option>
                       <option value="Monitoring Equipment">Monitoring Equipment</option>
+                      <option value="Mortgage Tech">Mortgage Tech</option>
                       <option value="Movies">Movies</option>
                       <option value="Multi-line Chemicals">Multi-line Chemicals</option>
                       <option value="Multi-line Insurance">Multi-line Insurance</option>
                       <option value="Multi-line Mining">Multi-line Mining</option>
                       <option value="Multimedia and Design Software">Multimedia and Design Software</option>
                       <option value="Music and Entertainment">Music and Entertainment</option>
+                      <option value="Nanotechnology">Nanotechnology</option>
                       <option value="National Banks">National Banks</option>
                       <option value="Network Management Software">Network Management Software</option>
                       <option value="Office Electronics">Office Electronics</option>
                       <option value="Office Services (B2B)">Office Services (B2B)</option>
+                      <option value="Oil & Gas">Oil & Gas</option>
                       <option value="Oil and Gas Equipment">Oil and Gas Equipment</option>
+                      <option value="Oncology">Oncology</option>
                       <option value="Operating Systems Software">Operating Systems Software</option>
                       <option value="Other Agriculture">Other Agriculture</option>
                       <option value="Other Apparel">Other Apparel</option>
@@ -315,15 +360,15 @@ if(isset($_SESSION['email'])){
                       <option value="Other Consumer Products and Services">Other Consumer Products and Services</option>
                       <option value="Other Containers and Packaging">Other Containers and Packaging</option>
                       <option value="Other Devices and Supplies">Other Devices and Supplies</option>
-                      <option value="Other Energy">Other Energy</option>
                       <option value="Other Energy Services">Other Energy Services</option>
+                      <option value="Other Energy">Other Energy</option>
                       <option value="Other Equipment">Other Equipment</option>
                       <option value="Other Financial Services">Other Financial Services</option>
                       <option value="Other Forestry">Other Forestry</option>
                       <option value="Other Hardware">Other Hardware</option>
-                      <option value="Other Healthcare">Other Healthcare</option>
                       <option value="Other Healthcare Services">Other Healthcare Services</option>
                       <option value="Other Healthcare Technology Systems">Other Healthcare Technology Systems</option>
+                      <option value="Other Healthcare">Other Healthcare</option>
                       <option value="Other Information Technology">Other Information Technology</option>
                       <option value="Other Insurance">Other Insurance</option>
                       <option value="Other IT Services">Other IT Services</option>
@@ -344,8 +389,9 @@ if(isset($_SESSION['email'])){
                       <option value="Paper/Soft Products">Paper/Soft Products</option>
                       <option value="Parts and Peripherals">Parts and Peripherals</option>
                       <option value="Personal Products">Personal Products</option>
-                      <option value="Pharmaceuticals">Pharmaceuticals</option>
+                      <option value="Pet Technology">Pet Technology</option>
                       <option value="Pharmaceuticals and Biotechnology">Pharmaceuticals and Biotechnology</option>
+                      <option value="Pharmaceuticals">Pharmaceuticals</option>
                       <option value="Plastic Containers and Packaging">Plastic Containers and Packaging</option>
                       <option value="Practice Management (Healthcare)">Practice Management (Healthcare)</option>
                       <option value="Precious Metals and Minerals Mining">Precious Metals and Minerals Mining</option>
@@ -359,24 +405,31 @@ if(isset($_SESSION['email'])){
                       <option value="Raw Materials (Non-Wood)">Raw Materials (Non-Wood)</option>
                       <option value="Real Estate Investment Trusts (REITs)">Real Estate Investment Trusts (REITs)</option>
                       <option value="Real Estate Services (B2C)">Real Estate Services (B2C)</option>
+                      <option value="Real Estate Technology">Real Estate Technology</option>
                       <option value="Recreational Goods">Recreational Goods</option>
                       <option value="Regional Banks">Regional Banks</option>
                       <option value="Re-Insurance">Re-Insurance</option>
-                      <option value="Restaurants">Restaurants</option>
+                      <option value="Restaurant Technology">Restaurant Technology</option>
                       <option value="Restaurants and Bars">Restaurants and Bars</option>
+                      <option value="Restaurants">Restaurants</option>
                       <option value="Retail">Retail</option>
+                      <option value="Ridesharing">Ridesharing</option>
                       <option value="Road">Road</option>
+                      <option value="Robotics and Drones">Robotics and Drones</option>
+                      <option value="SaaS">SaaS</option>
                       <option value="Security Services (B2B)">Security Services (B2B)</option>
                       <option value="Semiconductors">Semiconductors</option>
                       <option value="Services (Non-Financial)">Services (Non-Financial)</option>
                       <option value="Social Content">Social Content</option>
                       <option value="Social/Platform Software">Social/Platform Software</option>
-                      <option value="Software">Software</option>
                       <option value="Software Development Applications">Software Development Applications</option>
+                      <option value="Software">Software</option>
+                      <option value="Space Technology">Space Technology</option>
                       <option value="Specialized Finance">Specialized Finance</option>
                       <option value="Specialty Chemicals">Specialty Chemicals</option>
                       <option value="Specialty Retail">Specialty Retail</option>
                       <option value="Storage (IT)">Storage (IT)</option>
+                      <option value="Supply Chain Tech">Supply Chain Tech</option>
                       <option value="Surgical Devices">Surgical Devices</option>
                       <option value="Synthetic Textiles">Synthetic Textiles</option>
                       <option value="Systems and Information Management">Systems and Information Management</option>
@@ -384,10 +437,13 @@ if(isset($_SESSION['email'])){
                       <option value="Textiles">Textiles</option>
                       <option value="Therapeutic Devices">Therapeutic Devices</option>
                       <option value="Thrifts and Mortgage Finance">Thrifts and Mortgage Finance</option>
+                      <option value="TMT">TMT</option>
                       <option value="Transportation">Transportation</option>
                       <option value="Utilities">Utilities</option>
                       <option value="Vertical Market Software">Vertical Market Software</option>
+                      <option value="Virtual Reality">Virtual Reality</option>
                       <option value="Water Utilities">Water Utilities</option>
+                      <option value="Wearables & Quantified Self">Wearables & Quantified Self</option>
                       <option value="Wireless Communications Equipment">Wireless Communications Equipment</option>
                       <option value="Wireless Service Providers">Wireless Service Providers</option>
                     </select>
@@ -804,7 +860,7 @@ if(isset($_SESSION['email'])){
       $("#"+filerID).filer({
         limit: 1,
         maxSize: 5,
-        extensions: ["jpg", "png", "gif"],
+        extensions: ["jpg", "jpeg", "png", "gif"],
         changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
         showThumbs: true,
         theme: "dragdropbox",

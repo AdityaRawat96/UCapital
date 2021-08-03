@@ -20,8 +20,8 @@ if(mysqli_num_rows($result) > 0 ){
     }
   }
 }else{
-  $sql = "INSERT INTO users (first_name, last_name, email, password)
-  VALUES ('$first_name', '$last_name', '$email', '$password')";
+  $sql = "INSERT INTO users (user_type, first_name, last_name, email, password)
+  VALUES (3, '$first_name', '$last_name', '$email', '$password')";
 
   if ($con->query($sql)){
     $response = "success";

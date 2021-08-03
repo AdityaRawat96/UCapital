@@ -18,6 +18,14 @@ define('EMAIL_NAME', 'Ucapital');
 //Google-Map API
 define('MAP_API', 'AIzaSyAXtg6dVLr7xRZNCB2JZ-BrxNR8Mq0-HR4');
 
+//Pusher Configuration
+define('PUSHER_APP_ID', '1239880');
+define('PUSHER_APP_KEY', '994a4a55e0cd6dbaf6e1');
+define('PUSHER_APP_SECRET', 'aa457f9ce111d33fa5f9');
+define('PUSHER_APP_CLUSTER', 'ap2');
+define('PUSHER_APP_CHANNEL', 'UCapital-channel');
+define('PUSHER_APP_EVENT', 'chat-event');
+
 
 $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME)
 or die("Unable to connect to the database server!");

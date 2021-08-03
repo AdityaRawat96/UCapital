@@ -19,13 +19,14 @@ if(isset($_COOKIE["uCapitalEmail"]) && isset($_COOKIE["uCapitalPassword"])){
         $validCredentials = true;
         session_start();
         $_SESSION['id'] = $row['id'];
+        $_SESSION['user_type'] = $row['user_type'];
         $_SESSION['profile_picture'] = $row['profile_picture'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['mobile'] = $row['mobile'];
         $_SESSION['first_name'] = $row['first_name'];
         $_SESSION['last_name'] = $row['last_name'];
         ?>
-        <script>window.open('pages/dashboard/','_self')</script>
+        <script>window.open('pages/news/','_self')</script>
         <?php
 
         break;

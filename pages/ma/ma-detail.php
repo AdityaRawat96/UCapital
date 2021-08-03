@@ -28,7 +28,6 @@ if(isset($_SESSION['email'])){
 
     if(isset($_GET['ma'])){
 
-      include('../../assets/php/connection.php');
       $ma_id = $_GET['ma'];
 
       $ma_ids;
@@ -65,7 +64,7 @@ if(isset($_SESSION['email'])){
                       <div class="col-md-4">
                         <div id="product__slider">
                           <div class="product__slider-main">
-                            <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
+                            <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
                             <?php
                             if(!empty($attachments)){
                               foreach ($attachments as $attachment){
@@ -77,7 +76,7 @@ if(isset($_SESSION['email'])){
                                     <div class="pdf_attachment">
                                       <h3>PDF</h3>
                                       <span><?=$attachment; ?></span><br>
-                                      <a href="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" class="atttachment_download">
+                                      <a href="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.$attachment; ?>" class="atttachment_download">
                                         <button type="button" class="btn btn-info">Download</button>
                                       </a>
                                     </div>
@@ -85,7 +84,7 @@ if(isset($_SESSION['email'])){
                                   <?php
                                 }else{
                                   ?>
-                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
+                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
                                   <?php
                                 }
                               }
@@ -96,7 +95,7 @@ if(isset($_SESSION['email'])){
                           if(!empty($attachments)){
                             ?>
                             <div class="product__slider-thmb">
-                              <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
+                              <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="ma image"></div>
                               <?php
                               foreach ($attachments as $attachment){
                                 $attachment_ext = explode(".", $attachment);
@@ -111,7 +110,7 @@ if(isset($_SESSION['email'])){
                                   <?php
                                 }else{
                                   ?>
-                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
+                                  <div class="slide"><img class="card-img-top img-responsive" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.$attachment; ?>" alt="ma image"></div>
                                   <?php
                                 }
                               }

@@ -28,7 +28,6 @@ if(isset($_SESSION['email'])){
         <div class="row">
           <?php
           if(isset($_GET['advisor'])){
-            include('../../assets/php/connection.php');
             $advisor_id = $_GET['advisor'];
             $result= mysqli_query($con, " SELECT * FROM advisors WHERE id='$advisor_id'")
             or die('An error occurred! Unable to process this request. '. mysqli_error($con));
@@ -40,7 +39,7 @@ if(isset($_SESSION['email'])){
                   <div class="card advisor-details-cate-l-02">
                     <div class="card-header">
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 advisor_profile_pic_section">
                           <img src="../../assets/uploads/Advisor/<?=$row['folder_name'].'/'.$row['profile_picture']; ?>" alt="1" class="profile-advisor-inner-category12">
                         </div>
                         <div class="col-md-6">
@@ -79,53 +78,61 @@ if(isset($_SESSION['email'])){
                     <div class="card-body">
                       <div class="row">
 
-                        <div class="col-md-12">
+                        <div class="col-md-12"><br>
                           <div class="advisor-details-founded">
-                            <p class="descr-found-inv-s"> DESCRIPTION </p>
-                            <p class="p-desc10"> <?=$row['description']?> </p>
-                          </div>
+                            <h4><b> DESCRIPTION </b></h4><hr>
+                            <p class="p-desc10" style="white-space: pre-line;"> <?=$row['description']?> </p>
+                          </div><br><br>
                         </div>
 
-                        <div class="col-md-12">
-                          <div class="advisor-details-founded">
-                            <p class="descr-found-inv-s"> Services </p>
-                            <div class="row">
 
-                              <?php
+                        <?php
+                        $services = json_decode($row['services']);
+                        if(count($services) > 0){
+                          ?>
+                          <div class="col-md-12">
+                            <div class="advisor-details-founded">
+                              <h4><b> SERVICES </b></h4><hr>
+                              <div class="row">
 
-                              $services = json_decode($row['services']);
-                              foreach ($services as $service){
-                                ?>
-                                <div class="col-md-3">
-                                  <div class="category-advisor-services-in654">
-                                    <img src="../../assets/uploads/Advisor/<?=$row['folder_name'].'/'.$service->image[0]; ?>" alt="s" class="advisor-societaria987">
-                                    <div class="hide-content-bottom-advisor56">
-                                      <h5><?=$service->title; ?></h5>
+                                <?php
+
+                                foreach ($services as $service){
+                                  ?>
+                                  <div class="col-md-3" style="margin-bottom: 20px;">
+                                    <div class="category-advisor-services-in654">
+                                      <img src="../../assets/uploads/Advisor/<?=$row['folder_name'].'/'.$service->image[0]; ?>" alt="s" class="advisor-societaria987">
+                                      <div class="hide-content-bottom-advisor56">
+                                        <h5><?=$service->title; ?></h5>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <?php
-                              }
-                              ?>
+                                  <?php
+                                }
+                                ?>
 
-                            </div>
+                              </div>
+                            </div><br><br>
                           </div>
+                          <?php
+                        }
+                        ?>
+
+
+                        <div class="col-md-12">
+                          <div class="advisor-details-founded">
+                            <h4><b> ABOUT US </b></h4><hr>
+                            <p class="p-desc10" style="white-space: pre-line;"> <?=$row['about']?></p>
+                          </div><br><br>
                         </div>
 
                         <div class="col-md-12">
                           <div class="advisor-details-founded">
-                            <p class="descr-found-inv-s"> ABOUT US </p>
-                            <p class="p-desc10"> <?=$row['about']?></p>
-                          </div>
-                        </div>
-
-                        <div class="col-md-12">
-                          <div class="advisor-details-founded">
-                            <p class="descr-found-inv-s"> VISIT US </p>
+                            <h4><b> VISIT US </b></h4><hr>
                             <div class="row">
 
                               <div class="col-md-6">
-                                <div id="map_canvas" ></div>
+                                <div id="map_canvas" ></div><br><br>
                               </div>
 
                               <div class="col-md-6">

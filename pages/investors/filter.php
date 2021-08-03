@@ -27,33 +27,6 @@
           <div class="col-md-9">
             <div class="tab-content pl-3">
               <div class="tab-pane active" id="PrimaryInvestor">
-                <div class="form-group mt-1 mb-4">
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="pebuyout" value="PE/Buyout" id="pebuyout_container">
-                    <label class="form-check-label"> PE/Buyout </label>
-                  </div>
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="venturecapital" value="Venture Capital" id="venturecapital_container">
-                    <label class="form-check-label"> Venture Capital </label>
-                  </div>
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="assetmanager" value="Asset Manager" id="assetmanager_container">
-                    <label class="form-check-label"> Asset Manager </label>
-                  </div>
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="realestate" value="Real Estate" id="realestate_container">
-                    <label class="form-check-label"> Real Estate </label>
-                  </div>
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="corporation" value="Corporation" id="corporation_container">
-                    <label class="form-check-label"> Corporation </label>
-                  </div>
-                  <div class="form-check1">
-                    <input type="checkbox" class="form-check-input primary_investor_checkbox" data-category="other" value="Other" id="other_container">
-                    <label class="form-check-label"> Other </label>
-                  </div>
-                </div>
-
                 <div class="form-group mt-1 mb-4 subcategories_container" id="pebuyout">
                   <label class="font-name"> PE/Buyout Types: </label>
                   <ul class="engery654 subcategories">
@@ -140,13 +113,25 @@
 
 
               <div class="tab-pane" id="Preferredindustry">
+                <div class="input-group">
+                  <input type="text" class="form-control filter_search_query" placeholder="Search..">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" onclick="searchFilter($(this));">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div><br>
                 <div class="form-group mt-1 mb-4" id="PreferredindustryType">
                   <ul class="engery654 subcategories">
+                    <li class="searchable" data-search="3D Printing">3D Printing</li>
                     <li class="searchable" data-search="Accessories">Accessories</li>
                     <li class="searchable" data-search="Accounting">Accounting</li>
+                    <li class="searchable" data-search="AdTech">AdTech</li>
+                    <li class="searchable" data-search="Advanced Manufacturing">Advanced Manufacturing</li>
                     <li class="searchable" data-search="Aerospace and Defense">Aerospace and Defense</li>
                     <li class="searchable" data-search="Agricultural Chemicals">Agricultural Chemicals</li>
                     <li class="searchable" data-search="Agriculture">Agriculture</li>
+                    <li class="searchable" data-search="AgTech">AgTech</li>
                     <li class="searchable" data-search="Air">Air</li>
                     <li class="searchable" data-search="Alternative Energy Equipment">Alternative Energy Equipment</li>
                     <li class="searchable" data-search="Aluminum Mining">Aluminum Mining</li>
@@ -156,13 +141,20 @@
                     <li class="searchable" data-search="Application Software">Application Software</li>
                     <li class="searchable" data-search="Application Specific Semiconductors">Application Specific Semiconductors</li>
                     <li class="searchable" data-search="Aquaculture">Aquaculture</li>
+                    <li class="searchable" data-search="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</li>
                     <li class="searchable" data-search="Asset Management">Asset Management</li>
+                    <li class="searchable" data-search="AudioTech">AudioTech</li>
                     <li class="searchable" data-search="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</li>
                     <li class="searchable" data-search="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</li>
+                    <li class="searchable" data-search="Augmented Reality">Augmented Reality</li>
                     <li class="searchable" data-search="Automation/Workflow Software">Automation/Workflow Software</li>
-                    <li class="searchable" data-search="Automotive">Automotive</li>
                     <li class="searchable" data-search="Automotive Insurance">Automotive Insurance</li>
+                    <li class="searchable" data-search="Automotive">Automotive</li>
+                    <li class="searchable" data-search="Autonomous cars">Autonomous cars</li>
+                    <li class="searchable" data-search="B2B Payments">B2B Payments</li>
+                    <li class="searchable" data-search="Beauty">Beauty</li>
                     <li class="searchable" data-search="Beverages">Beverages</li>
+                    <li class="searchable" data-search="Big Data">Big Data</li>
                     <li class="searchable" data-search="Biotechnology">Biotechnology</li>
                     <li class="searchable" data-search="BPO/Outsource Services">BPO/Outsource Services</li>
                     <li class="searchable" data-search="Broadcasting">Broadcasting</li>
@@ -173,12 +165,16 @@
                     <li class="searchable" data-search="Business Products and Services (B2B)">Business Products and Services (B2B)</li>
                     <li class="searchable" data-search="Business/Productivity Software">Business/Productivity Software</li>
                     <li class="searchable" data-search="Cable Service Providers">Cable Service Providers</li>
+                    <li class="searchable" data-search="Cannabis">Cannabis</li>
                     <li class="searchable" data-search="Capital Markets/Institutions">Capital Markets/Institutions</li>
+                    <li class="searchable" data-search="Car-Sharing">Car-Sharing</li>
                     <li class="searchable" data-search="Casinos and Gaming">Casinos and Gaming</li>
                     <li class="searchable" data-search="Catalog Retail">Catalog Retail</li>
                     <li class="searchable" data-search="Chemicals and Gases">Chemicals and Gases</li>
+                    <li class="searchable" data-search="CleanTech">CleanTech</li>
                     <li class="searchable" data-search="Clinics/Outpatient Services">Clinics/Outpatient Services</li>
                     <li class="searchable" data-search="Clothing">Clothing</li>
+                    <li class="searchable" data-search="CloudTech & DevOps">CloudTech & DevOps</li>
                     <li class="searchable" data-search="Coal and Consumable Fuels Equipment">Coal and Consumable Fuels Equipment</li>
                     <li class="searchable" data-search="Coal Mining">Coal Mining</li>
                     <li class="searchable" data-search="Commercial Banks">Commercial Banks</li>
@@ -194,6 +190,7 @@
                     <li class="searchable" data-search="Connectivity Products">Connectivity Products</li>
                     <li class="searchable" data-search="Construction (Non-Wood)">Construction (Non-Wood)</li>
                     <li class="searchable" data-search="Construction and Engineering">Construction and Engineering</li>
+                    <li class="searchable" data-search="Construction Technology">Construction Technology</li>
                     <li class="searchable" data-search="Consulting Services (B2B)">Consulting Services (B2B)</li>
                     <li class="searchable" data-search="Consumer Durables">Consumer Durables</li>
                     <li class="searchable" data-search="Consumer Finance">Consumer Finance</li>
@@ -201,17 +198,22 @@
                     <li class="searchable" data-search="Consumer Products and Services (B2C)">Consumer Products and Services (B2C)</li>
                     <li class="searchable" data-search="Containers and Packaging">Containers and Packaging</li>
                     <li class="searchable" data-search="Cruise Lines">Cruise Lines</li>
+                    <li class="searchable" data-search="Cryptocurrency/Blockchain">Cryptocurrency/Blockchain</li>
                     <li class="searchable" data-search="Cultivation">Cultivation</li>
+                    <li class="searchable" data-search="Cybersecurity">Cybersecurity</li>
                     <li class="searchable" data-search="Database Software">Database Software</li>
                     <li class="searchable" data-search="Decision/Risk Analysis">Decision/Risk Analysis</li>
                     <li class="searchable" data-search="Department Stores">Department Stores</li>
                     <li class="searchable" data-search="Diagnostic Equipment">Diagnostic Equipment</li>
+                    <li class="searchable" data-search="Digital Health">Digital Health</li>
                     <li class="searchable" data-search="Discovery Tools (Healthcare)">Discovery Tools (Healthcare)</li>
                     <li class="searchable" data-search="Distributors (Healthcare)">Distributors (Healthcare)</li>
-                    <li class="searchable" data-search="Distributors/Wholesale">Distributors/Wholesale</li>
                     <li class="searchable" data-search="Distributors/Wholesale (B2C)">Distributors/Wholesale (B2C)</li>
+                    <li class="searchable" data-search="Distributors/Wholesale">Distributors/Wholesale</li>
                     <li class="searchable" data-search="Drug Delivery">Drug Delivery</li>
                     <li class="searchable" data-search="Drug Discovery">Drug Discovery</li>
+                    <li class="searchable" data-search="E-Commerce">E-Commerce</li>
+                    <li class="searchable" data-search="EdTech">EdTech</li>
                     <li class="searchable" data-search="Education and Training Services (B2B)">Education and Training Services (B2B)</li>
                     <li class="searchable" data-search="Educational and Training Services (B2C)">Educational and Training Services (B2C)</li>
                     <li class="searchable" data-search="Educational Software">Educational Software</li>
@@ -221,7 +223,6 @@
                     <li class="searchable" data-search="Electronic Components">Electronic Components</li>
                     <li class="searchable" data-search="Electronic Equipment and Instruments">Electronic Equipment and Instruments</li>
                     <li class="searchable" data-search="Electronics (B2C)">Electronics (B2C)</li>
-                    <li class="searchable" data-search="Energy">Energy</li>
                     <li class="searchable" data-search="Energy Equipment">Energy Equipment</li>
                     <li class="searchable" data-search="Energy Exploration">Energy Exploration</li>
                     <li class="searchable" data-search="Energy Infrastructure">Energy Infrastructure</li>
@@ -232,27 +233,35 @@
                     <li class="searchable" data-search="Energy Storage">Energy Storage</li>
                     <li class="searchable" data-search="Energy Traders and Brokers">Energy Traders and Brokers</li>
                     <li class="searchable" data-search="Energy Transportation">Energy Transportation</li>
+                    <li class="searchable" data-search="Energy">Energy</li>
                     <li class="searchable" data-search="Enterprise Systems (Healthcare)">Enterprise Systems (Healthcare)</li>
                     <li class="searchable" data-search="Entertainment Software">Entertainment Software</li>
                     <li class="searchable" data-search="Environmental Services (B2B)">Environmental Services (B2B)</li>
+                    <li class="searchable" data-search="Ephemeral Content">Ephemeral Content</li>
+                    <li class="searchable" data-search="eSports">eSports</li>
                     <li class="searchable" data-search="Exploration">Exploration</li>
+                    <li class="searchable" data-search="FemTech">FemTech</li>
                     <li class="searchable" data-search="Fiberoptic Equipment">Fiberoptic Equipment</li>
                     <li class="searchable" data-search="Financial Services">Financial Services</li>
                     <li class="searchable" data-search="Financial Software">Financial Software</li>
+                    <li class="searchable" data-search="FinTech">FinTech</li>
                     <li class="searchable" data-search="Food Products">Food Products</li>
+                    <li class="searchable" data-search="FoodTech">FoodTech</li>
                     <li class="searchable" data-search="Footwear">Footwear</li>
-                    <li class="searchable" data-search="Forestry">Forestry</li>
                     <li class="searchable" data-search="Forestry Development/Harvesting">Forestry Development/Harvesting</li>
                     <li class="searchable" data-search="Forestry Processing">Forestry Processing</li>
+                    <li class="searchable" data-search="Forestry">Forestry</li>
+                    <li class="searchable" data-search="Gaming">Gaming</li>
                     <li class="searchable" data-search="Gas Utilities">Gas Utilities</li>
                     <li class="searchable" data-search="General Merchandise Stores">General Merchandise Stores</li>
                     <li class="searchable" data-search="General Purpose Semiconductors">General Purpose Semiconductors</li>
                     <li class="searchable" data-search="Gold Mining">Gold Mining</li>
                     <li class="searchable" data-search="Government">Government</li>
-                    <li class="searchable" data-search="Healthcare">Healthcare</li>
                     <li class="searchable" data-search="Healthcare Devices and Supplies">Healthcare Devices and Supplies</li>
                     <li class="searchable" data-search="Healthcare Services">Healthcare Services</li>
                     <li class="searchable" data-search="Healthcare Technology Systems">Healthcare Technology Systems</li>
+                    <li class="searchable" data-search="Healthcare">Healthcare</li>
+                    <li class="searchable" data-search="HealthTech">HealthTech</li>
                     <li class="searchable" data-search="Holding Companies">Holding Companies</li>
                     <li class="searchable" data-search="Home Furnishings">Home Furnishings</li>
                     <li class="searchable" data-search="Horticulture">Horticulture</li>
@@ -261,15 +270,20 @@
                     <li class="searchable" data-search="Hotels and Resorts">Hotels and Resorts</li>
                     <li class="searchable" data-search="Household Appliances">Household Appliances</li>
                     <li class="searchable" data-search="Household Products">Household Products</li>
+                    <li class="searchable" data-search="HR Tech">HR Tech</li>
                     <li class="searchable" data-search="Human Capital Services">Human Capital Services</li>
+                    <li class="searchable" data-search="Impact Investing">Impact Investing</li>
                     <li class="searchable" data-search="Industrial Chemicals">Industrial Chemicals</li>
                     <li class="searchable" data-search="Industrial Supplies and Parts">Industrial Supplies and Parts</li>
+                    <li class="searchable" data-search="Industrials">Industrials</li>
                     <li class="searchable" data-search="Information Services (B2C)">Information Services (B2C)</li>
                     <li class="searchable" data-search="Information Technology">Information Technology</li>
                     <li class="searchable" data-search="Infrastructure">Infrastructure</li>
-                    <li class="searchable" data-search="Insurance">Insurance</li>
                     <li class="searchable" data-search="Insurance Brokers">Insurance Brokers</li>
+                    <li class="searchable" data-search="Insurance">Insurance</li>
+                    <li class="searchable" data-search="InsurTech">InsurTech</li>
                     <li class="searchable" data-search="International Banks">International Banks</li>
+                    <li class="searchable" data-search="Internet of Things">Internet of Things</li>
                     <li class="searchable" data-search="Internet Retail">Internet Retail</li>
                     <li class="searchable" data-search="Internet Service Providers">Internet Service Providers</li>
                     <li class="searchable" data-search="Internet Software">Internet Software</li>
@@ -282,31 +296,43 @@
                     <li class="searchable" data-search="Legal Services (B2C)">Legal Services (B2C)</li>
                     <li class="searchable" data-search="Leisure Facilities">Leisure Facilities</li>
                     <li class="searchable" data-search="Life and Health Insurance">Life and Health Insurance</li>
+                    <li class="searchable" data-search="Life Sciences">Life Sciences</li>
                     <li class="searchable" data-search="Logistics">Logistics</li>
+                    <li class="searchable" data-search="LOHAS & Wellness">LOHAS & Wellness</li>
                     <li class="searchable" data-search="Luxury Goods">Luxury Goods</li>
                     <li class="searchable" data-search="Machinery (B2B)">Machinery (B2B)</li>
                     <li class="searchable" data-search="Managed Care">Managed Care</li>
+                    <li class="searchable" data-search="Manufacturing">Manufacturing</li>
                     <li class="searchable" data-search="Marine">Marine</li>
+                    <li class="searchable" data-search="Marketing Tech">Marketing Tech</li>
                     <li class="searchable" data-search="Materials and Resources">Materials and Resources</li>
-                    <li class="searchable" data-search="Media">Media</li>
                     <li class="searchable" data-search="Media and Information Services (B2B)">Media and Information Services (B2B)</li>
+                    <li class="searchable" data-search="Media">Media</li>
                     <li class="searchable" data-search="Medical Records Systems">Medical Records Systems</li>
                     <li class="searchable" data-search="Medical Supplies">Medical Supplies</li>
                     <li class="searchable" data-search="Metal Containers and Packaging">Metal Containers and Packaging</li>
                     <li class="searchable" data-search="Metals">Metals</li>
+                    <li class="searchable" data-search="Micro-Mobility">Micro-Mobility</li>
                     <li class="searchable" data-search="Minerals and Mining">Minerals and Mining</li>
+                    <li class="searchable" data-search="Mobile Commerce">Mobile Commerce</li>
+                    <li class="searchable" data-search="Mobile">Mobile</li>
+                    <li class="searchable" data-search="Mobility Tech">Mobility Tech</li>
                     <li class="searchable" data-search="Monitoring Equipment">Monitoring Equipment</li>
+                    <li class="searchable" data-search="Mortgage Tech">Mortgage Tech</li>
                     <li class="searchable" data-search="Movies">Movies</li>
                     <li class="searchable" data-search="Multi-line Chemicals">Multi-line Chemicals</li>
                     <li class="searchable" data-search="Multi-line Insurance">Multi-line Insurance</li>
                     <li class="searchable" data-search="Multi-line Mining">Multi-line Mining</li>
                     <li class="searchable" data-search="Multimedia and Design Software">Multimedia and Design Software</li>
                     <li class="searchable" data-search="Music and Entertainment">Music and Entertainment</li>
+                    <li class="searchable" data-search="Nanotechnology">Nanotechnology</li>
                     <li class="searchable" data-search="National Banks">National Banks</li>
                     <li class="searchable" data-search="Network Management Software">Network Management Software</li>
                     <li class="searchable" data-search="Office Electronics">Office Electronics</li>
                     <li class="searchable" data-search="Office Services (B2B)">Office Services (B2B)</li>
+                    <li class="searchable" data-search="Oil & Gas">Oil & Gas</li>
                     <li class="searchable" data-search="Oil and Gas Equipment">Oil and Gas Equipment</li>
+                    <li class="searchable" data-search="Oncology">Oncology</li>
                     <li class="searchable" data-search="Operating Systems Software">Operating Systems Software</li>
                     <li class="searchable" data-search="Other Agriculture">Other Agriculture</li>
                     <li class="searchable" data-search="Other Apparel">Other Apparel</li>
@@ -322,15 +348,15 @@
                     <li class="searchable" data-search="Other Consumer Products and Services">Other Consumer Products and Services</li>
                     <li class="searchable" data-search="Other Containers and Packaging">Other Containers and Packaging</li>
                     <li class="searchable" data-search="Other Devices and Supplies">Other Devices and Supplies</li>
-                    <li class="searchable" data-search="Other Energy">Other Energy</li>
                     <li class="searchable" data-search="Other Energy Services">Other Energy Services</li>
+                    <li class="searchable" data-search="Other Energy">Other Energy</li>
                     <li class="searchable" data-search="Other Equipment">Other Equipment</li>
                     <li class="searchable" data-search="Other Financial Services">Other Financial Services</li>
                     <li class="searchable" data-search="Other Forestry">Other Forestry</li>
                     <li class="searchable" data-search="Other Hardware">Other Hardware</li>
-                    <li class="searchable" data-search="Other Healthcare">Other Healthcare</li>
                     <li class="searchable" data-search="Other Healthcare Services">Other Healthcare Services</li>
                     <li class="searchable" data-search="Other Healthcare Technology Systems">Other Healthcare Technology Systems</li>
+                    <li class="searchable" data-search="Other Healthcare">Other Healthcare</li>
                     <li class="searchable" data-search="Other Information Technology">Other Information Technology</li>
                     <li class="searchable" data-search="Other Insurance">Other Insurance</li>
                     <li class="searchable" data-search="Other IT Services">Other IT Services</li>
@@ -351,8 +377,9 @@
                     <li class="searchable" data-search="Paper/Soft Products">Paper/Soft Products</li>
                     <li class="searchable" data-search="Parts and Peripherals">Parts and Peripherals</li>
                     <li class="searchable" data-search="Personal Products">Personal Products</li>
-                    <li class="searchable" data-search="Pharmaceuticals">Pharmaceuticals</li>
+                    <li class="searchable" data-search="Pet Technology">Pet Technology</li>
                     <li class="searchable" data-search="Pharmaceuticals and Biotechnology">Pharmaceuticals and Biotechnology</li>
+                    <li class="searchable" data-search="Pharmaceuticals">Pharmaceuticals</li>
                     <li class="searchable" data-search="Plastic Containers and Packaging">Plastic Containers and Packaging</li>
                     <li class="searchable" data-search="Practice Management (Healthcare)">Practice Management (Healthcare)</li>
                     <li class="searchable" data-search="Precious Metals and Minerals Mining">Precious Metals and Minerals Mining</li>
@@ -366,24 +393,31 @@
                     <li class="searchable" data-search="Raw Materials (Non-Wood)">Raw Materials (Non-Wood)</li>
                     <li class="searchable" data-search="Real Estate Investment Trusts (REITs)">Real Estate Investment Trusts (REITs)</li>
                     <li class="searchable" data-search="Real Estate Services (B2C)">Real Estate Services (B2C)</li>
+                    <li class="searchable" data-search="Real Estate Technology">Real Estate Technology</li>
                     <li class="searchable" data-search="Recreational Goods">Recreational Goods</li>
                     <li class="searchable" data-search="Regional Banks">Regional Banks</li>
                     <li class="searchable" data-search="Re-Insurance">Re-Insurance</li>
-                    <li class="searchable" data-search="Restaurants">Restaurants</li>
+                    <li class="searchable" data-search="Restaurant Technology">Restaurant Technology</li>
                     <li class="searchable" data-search="Restaurants and Bars">Restaurants and Bars</li>
+                    <li class="searchable" data-search="Restaurants">Restaurants</li>
                     <li class="searchable" data-search="Retail">Retail</li>
+                    <li class="searchable" data-search="Ridesharing">Ridesharing</li>
                     <li class="searchable" data-search="Road">Road</li>
+                    <li class="searchable" data-search="Robotics and Drones">Robotics and Drones</li>
+                    <li class="searchable" data-search="SaaS">SaaS</li>
                     <li class="searchable" data-search="Security Services (B2B)">Security Services (B2B)</li>
                     <li class="searchable" data-search="Semiconductors">Semiconductors</li>
                     <li class="searchable" data-search="Services (Non-Financial)">Services (Non-Financial)</li>
                     <li class="searchable" data-search="Social Content">Social Content</li>
                     <li class="searchable" data-search="Social/Platform Software">Social/Platform Software</li>
-                    <li class="searchable" data-search="Software">Software</li>
                     <li class="searchable" data-search="Software Development Applications">Software Development Applications</li>
+                    <li class="searchable" data-search="Software">Software</li>
+                    <li class="searchable" data-search="Space Technology">Space Technology</li>
                     <li class="searchable" data-search="Specialized Finance">Specialized Finance</li>
                     <li class="searchable" data-search="Specialty Chemicals">Specialty Chemicals</li>
                     <li class="searchable" data-search="Specialty Retail">Specialty Retail</li>
                     <li class="searchable" data-search="Storage (IT)">Storage (IT)</li>
+                    <li class="searchable" data-search="Supply Chain Tech">Supply Chain Tech</li>
                     <li class="searchable" data-search="Surgical Devices">Surgical Devices</li>
                     <li class="searchable" data-search="Synthetic Textiles">Synthetic Textiles</li>
                     <li class="searchable" data-search="Systems and Information Management">Systems and Information Management</li>
@@ -391,12 +425,16 @@
                     <li class="searchable" data-search="Textiles">Textiles</li>
                     <li class="searchable" data-search="Therapeutic Devices">Therapeutic Devices</li>
                     <li class="searchable" data-search="Thrifts and Mortgage Finance">Thrifts and Mortgage Finance</li>
+                    <li class="searchable" data-search="TMT">TMT</li>
                     <li class="searchable" data-search="Transportation">Transportation</li>
                     <li class="searchable" data-search="Utilities">Utilities</li>
                     <li class="searchable" data-search="Vertical Market Software">Vertical Market Software</li>
+                    <li class="searchable" data-search="Virtual Reality">Virtual Reality</li>
                     <li class="searchable" data-search="Water Utilities">Water Utilities</li>
+                    <li class="searchable" data-search="Wearables & Quantified Self">Wearables & Quantified Self</li>
                     <li class="searchable" data-search="Wireless Communications Equipment">Wireless Communications Equipment</li>
                     <li class="searchable" data-search="Wireless Service Providers">Wireless Service Providers</li>
+
                   </ul>
                 </div>
               </div>
@@ -427,6 +465,14 @@
 
 
               <div class="tab-pane" id="Where">
+                <div class="input-group">
+                  <input type="text" class="form-control filter_search_query" placeholder="Search..">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" onclick="searchFilter($(this));">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div><br>
                 <div class="form-group mt-1 mb-4" id="whereType">
                   <ul class="engery654 subcategories">
                     <li class="searchable" data-search="Afghanistan">Afghanistan</li>

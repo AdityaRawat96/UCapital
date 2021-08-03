@@ -13,6 +13,7 @@ if(isset($_POST["image"]))
   $data = base64_decode($image_array_2[1]);
   $imageName = $user_id . '.png';
   $imageLocation = "../profiles/".$imageName;
+  $imageLocationAdvisor = "../../../profiles/".$imageName;
   file_put_contents($imageLocation, $data);
 
   include_once 'connection.php';
@@ -20,6 +21,12 @@ if(isset($_POST["image"]))
   $sql = "UPDATE users SET profile_picture='$imageName' WHERE id = '$user_id'";
 
   if ($con->query($sql)){
+
+    if($_SESSION['user_type'] == 2){
+      $sqlAdvisor = "UPDATE advisors SET profile_picture='$imageLocationAdvisor' WHERE user_id = '$user_id'";
+      $con->query($sqlAdvisor);
+    }
+
     $_SESSION['profile_picture'] = $imageName;
     $responseObject = (object) array();
     $responseObject->status = "success";

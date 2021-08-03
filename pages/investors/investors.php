@@ -42,71 +42,18 @@
         </div>
       </div>
 
+      <div class="row itemsList">
+      </div>
+
       <div class="row">
+        <center>
+          <ul class="pagination paginationList">
+          </ul>
+        </center>
+      </div>
 
-        <?php
-        include('../../assets/php/connection.php');
-
-        $investor_ids;
-        $user_id = $_SESSION['id'];
-        $result= mysqli_query($con, " SELECT investor_id FROM favorites WHERE user_id = '$user_id'  ")
-        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-        if(mysqli_num_rows($result) > 0 ){
-          while($row = mysqli_fetch_array($result)){
-            if($row['investor_id'] == "" || $row['investor_id'] == null){
-              $investor_ids = array();
-            }else{
-              $investor_ids = json_decode($row['investor_id']);
-            }
-          }
-        }
-
-        $result= mysqli_query($con, " SELECT * FROM investors limit 150")
-        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-
-        if(mysqli_num_rows($result) > 0 ){
-          while($row = mysqli_fetch_array($result)){
-
-            ?>
-            <div class="col-md-3 col-sm-6 investor_card pagination-item"
-            data-primaryinvestortype="<?=strtolower($row['Primary_Investor_Type'])?>"
-            data-aum="<?=$row['AUM']?>"
-            data-totalinvestments="<?=$row['Total_Investments']?>"
-            data-preferredindustry="<?=strtolower($row['Preferred_Industry'])?>"
-            data-preferredinvestmentamount="<?=$row['Preferred_Investment_Amount']?>"
-            data-where="<?=strtolower($row['HQ_Country'])?>"
-            >
-            <a href="investor-detail.php?investor=<?=$row['id']?>" class="card investor-category-l-4">
-              <div class="card-header">
-                <span class="right-investor-batch">
-                  <span class="bookmark bookmark-investor <?php if(in_array($row['id'], $investor_ids)){echo 'bookmark-active';} ?>" data-id="<?=$row['id']?>">
-                    <i class="fas fa-bookmark fa-2x"></i>
-                  </span>
-                </span>
-                <img src="../../dist/img/investor/1.png" alt="1" class="investor-images-set">
-              </div>
-              <div class="card-body">
-                <h6 class="card-title-heading-set"><?=$row['Investor_Name']?></h6>
-                <p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i><?=$row['HQ_Location']?></p>
-              </div>
-            </a>
-          </div>
-          <?php
-        }
-      }
-      ?>
-
-    </div>
-
-    <div class="row">
-      <center>
-        <ul class="pagination paginationList">
-        </ul>
-      </center>
-    </div>
-
-  </div><!-- container-fluid -->
-</section>
-<!-- content -->
+    </div><!-- container-fluid -->
+  </section>
+  <!-- content -->
 </div>
 <!-- content-wrapper -->

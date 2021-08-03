@@ -2,6 +2,12 @@ var tempItemList = [];
 
 $(document).ready(function(){
 
+  if ($(window).width() < 768) {
+    $(".input-serach").attr("placeholder", "Search")
+  }else{
+    $(".input-serach").attr("placeholder", "Search for Investors Sector Deal")
+  }
+
   //Sidebar-navigation
   $("."+location.href.split("pages")[1].split("/")[1]+"-nav").addClass("menu-open");
   $("."+location.href.split("pages")[1].split("/")[1]+"-nav").addClass("menu-is-opening");
@@ -45,15 +51,6 @@ $(document).ready(function(){
       $(this).removeClass('selected')
     }else{
       $(this).addClass('selected')
-    }
-  });
-
-  $(".primary_investor_checkbox").on('click', function(){
-    var category = $(this).data('category');
-    if($(this).prop('checked')){
-      $("#"+category).fadeIn();
-    }else{
-      $("#"+category).fadeOut();
     }
   });
 
@@ -144,11 +141,14 @@ function uploadAd(){
   formData.image = $("#adImage-list").val();
   formData.attachments = $("#adAttachments-list").val();
 
+  console.log(formData)
+
   $.ajax({
     type: 'POST',
     url: '../../assets/php/ad_post.php',
     data: formData,
     success: function(response) {
+      console.log(response)
       if ( response.trim() == "success" ){
         swal("Success!", "Post added!", "success")
         .then((value) => {
@@ -180,7 +180,7 @@ function loginFunction(){
     },
     success: function(response) {
       if ( response.trim() == "success" ){
-        window.location.href='../../pages/dashboard/';
+        window.location.href='../../pages/news/';
       }else {
         $("#incorrectCredentials").fadeIn();
         $('.loader').fadeOut();
@@ -239,7 +239,6 @@ function registrationFunction(){
     }
   });
 }
-
 
 function advisorRegistrationFunction(){
 
@@ -508,7 +507,7 @@ function applyFilter(){
 
         if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8 && cond9 && cond10){
           var elementData = "";
-          elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/mergeracquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
+          elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
           if(obj[i].favorite){
             elementData += ' bookmark-active';
           }
@@ -537,23 +536,8 @@ function applyFilter(){
     var totalInvestments = "";
     var preferredInvestmentAmount = "";
 
-    $('.primary_investor_checkbox').each(function () {
-      var primary_investor_sub =[];
-      var primary_investor_sub_temp =[];
-      if($(this).prop('checked')){
-        $('#' + $(this).data('category') + ' .primary_investor_sub').each(function () {
-          primary_investor_sub_temp.push($(this).html().trim().toLowerCase())
-          if($(this).hasClass('selected')){
-            primary_investor_sub.push($(this).html().trim().toLowerCase())
-          }
-        });
-        if(primary_investor_sub.length === 0){
-          primary_investor_type.push(this.value.trim().toLowerCase())
-          primary_investor_type = $.merge(primary_investor_type, primary_investor_sub_temp);
-        }else{
-          primary_investor_type = $.merge(primary_investor_type, primary_investor_sub);
-        }
-      }
+    $('.primary_investor_sub.selected').each(function () {
+      primary_investor_type.push($(this).html().trim().toLowerCase());
     });
 
     $('#PreferredindustryType li').each(function(){
@@ -623,7 +607,8 @@ function applyFilter(){
           }
         }
         if(preferredindustrytype_filter && cond1){
-          var industries = obj[i].preferredindustry.trim().split(",");
+          var ind_temp = obj[i].preferredindustry.trim() + "," + obj[i].Preferred_Verticals.trim();
+          var industries = ind_temp.split(",");
           if(!industries.some(item => preferrerd_industry_type.includes(item))){
             cond2 = false;
           }
@@ -697,6 +682,12 @@ function addToSearch(){
       $(".searchItems").append('<span class="searchedItem" data-query="'+searchQuery+'"><span class="searchClear" onclick="clearSearch('+"'"+searchQuery+"'"+')">X</span><span class="searchText">'+searchQuery+'</span></span>');
     }
   })
+
+  if($(".searchItems").find(".searchedItem").length > 0){
+      $(".our-trans-btn").fadeIn();
+  }else{
+      $(".our-trans-btn").fadeOut();
+  }
 }
 
 
@@ -733,17 +724,13 @@ function clearSearch(remove_query){
 
 
 function clearFilters(){
+  $(".our-trans-btn").fadeOut();
   $("#searchText").html("");
   $("#searchIndicators").val("");
   $("#searchIndicators").fadeIn(1);
   $(".searchedItem").fadeOut(1);
   $('.searchable').each(function () {
     $(this).removeClass("selected");
-  });
-  $(".primary_investor_checkbox").each(function(){
-    if($(this).prop("checked")){
-      $(this).click();
-    }
   });
   refreshFilters();
   showResults();
@@ -797,11 +784,11 @@ function showResults(){
     for(var i = offset; i < (offset+48); i++){
       if(obj[i]){
         var elementData = "";
-        elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/mergeracquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
+        elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
         if(obj[i].favorite){
           elementData += ' bookmark-active';
         }
-        elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> '+obj[i].title+'</h5><p class="card-descripatoin pb-1 pt-1"> '+obj[i].description+'</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].location+'"> <span> <i class="fas fa-map-marker-alt"></i> '+obj[i].location+' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> '+obj[i].value+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].industry_visible+'"> <span><i class="fas fa-chart-pie"></i> '+obj[i].industry_visible+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].category+'"> <span><i class="fas fa-chart-line"></i>'+obj[i].category+'</span> </a> <a href="ma-detail.php?ma='+obj[i].id+'" class="contact-here-sectin564"> More Info. <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
+        elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> '+obj[i].title+'</h5><p class="card-descripatoin pb-1 pt-1"> '+obj[i].description+'</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].location+'"> <span> <i class="fas fa-map-marker-alt"></i> '+obj[i].location+' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> '+obj[i].value+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].industry_visible+'"> <span><i class="fas fa-chart-pie"></i> '+obj[i].industry_visible+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].category+'"> <span><i class="fas fa-chart-line"></i>'+obj[i].category+'</span> </a> <a href="ma-detail.php?ma='+obj[i].id+'" class="contact-here-sectin564"> More Info <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
         $(".itemsList").append(elementData);
       }
     }
@@ -813,7 +800,7 @@ function showResults(){
         if(obj[i].favorite){
           elementData += ' bookmark-active';
         }
-        elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><center> <img src="../../assets/uploads/Advisor/'+obj[i].folder_name+'/'+obj[i].profile_picture+'" alt="1" class="profile-advisor-category12"></center></div><div class="card-body"><p class="studio-commercialista"> '+obj[i].studio_name+'</p><hr><p class="studio-commercialista-second"> <i class="far fa-star"></i> '+obj[i].interests+'</p> <a href="advisor-detail.php?advisor='+obj[i].id+'" class="advisor-category-contact-34"> More Info. > </a></div></div></div>';
+        elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><center> <img src="../../assets/uploads/Advisor/'+obj[i].folder_name+'/'+obj[i].profile_picture+'" alt="1" class="profile-advisor-category12"></center></div><div class="card-body"><p class="studio-commercialista"> '+obj[i].studio_name+'</p><hr><p class="studio-commercialista-second"> <i class="far fa-star"></i> '+obj[i].interests+'</p> <a href="advisor-detail.php?advisor='+obj[i].id+'" class="advisor-category-contact-34"> More Info > </a></div></div></div>';
         $(".itemsList").append(elementData);
       }
     }
@@ -827,4 +814,29 @@ function showResults(){
     link: 'index.php',
     refresh: true,
   });
+}
+
+$(document).ready(function(){
+  $(".filter_search_query").on("keyup", function(){
+    if($(this).val().length > 2){
+      $(this).siblings(".input-group-btn").find(".btn").trigger("click");
+    }else{
+      $(this).siblings(".input-group-btn").find(".btn").parent().parent().parent().find(".searchable").each(function(){
+        $(this).removeClass("hide_search");
+      });
+    }
+  })
+})
+
+function searchFilter(elem){
+
+  $(".searchable").removeClass("hide_search");
+  var filter_search_query = elem.parent().parent().find(".filter_search_query").val().toLocaleLowerCase()
+  if(filter_search_query != ""){
+    elem.parent().parent().parent().find(".searchable").each(function(){
+      if($(this).html().toLocaleLowerCase().indexOf(filter_search_query) == -1){
+        $(this).addClass("hide_search");
+      }
+    });
+  }
 }

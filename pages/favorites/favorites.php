@@ -39,7 +39,6 @@
                 <div class="row">
 
                   <?php
-                  include('../../assets/php/connection.php');
 
                   $ma_ids;
                   $user_id = $_SESSION['id'];
@@ -67,7 +66,7 @@
                         ?>
                         <div class="col-md-3 col-sm-5 inline-block ma-card-<?=$row['id']?>">
                           <div class="card mb-4 cart-custom-redious our-shadow">
-                            <img class="card-img-top ma-img" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="image">
+                            <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="image">
                             <span class="left-tag-card our-back"> <?=$row['type']; ?> </span>
                             <span class="right-tag-batch">
                               <span class="bookmark bookmark-ma bookmark-active favorite-bookmark" data-id="<?=$row['id']?>" data-type="ma">
@@ -147,7 +146,7 @@
                                   <i class="fas fa-bookmark fa-2x"></i>
                                 </span>
                               </span>
-                              <img src="../../dist/img/investor/1.png" alt="1" class="investor-images-set">
+                              <img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set">
                             </div>
                             <div class="card-body">
                               <h6 class="card-title-heading-set"><?=$row['Investor_Name']?></h6>

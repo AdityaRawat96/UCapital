@@ -4,7 +4,6 @@ if(isset($_SESSION['email'])){
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-  include '../../assets/php/connection.php';
   ?>
 
   <!-- Content Wrapper. Contains page content -->

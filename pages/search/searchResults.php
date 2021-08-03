@@ -1,7 +1,6 @@
 <?php
 session_start();
 if(isset($_SESSION['email'])){
-  include '../../assets/php/connection.php';
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
@@ -47,7 +46,6 @@ if(isset($_SESSION['email'])){
                     <div class="row">
 
                       <?php
-                     // include('../../assets/php/connection.php');
 
                       $investor_ids;
                       $ma_ids;
