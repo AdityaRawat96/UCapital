@@ -106,7 +106,7 @@
       <span>Default Currency</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control default_currency default_currency_buy" name="company_type">
+      <select class="form-control default_currency re_default_currency_buy" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>

@@ -33,7 +33,7 @@
       <span>Subject of deal</span></span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control deal_subject" name="deal_subject">
+      <select class="form-control deal_subject re_deal_subject" name="deal_subject">
         <option value="" selected disabled>Choose the subject</span></option>
         <option value="totality selling">Totality Selling</option>
         <option value="looking for co-investors">looking for Co-Investors</option>
@@ -46,7 +46,7 @@
       <span>Status of the asset</span></span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control asset_status" name="asset_status">
+      <select class="form-control asset_status re_asset_status" name="asset_status">
         <option value="" selected disabled>Choose the status</span></option>
         <option value="existing property">Existing property</option>
         <option value="under construction ">Under construction </option>
@@ -59,7 +59,7 @@
       <span>Condition of the asset</span></span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control asset_status" name="asset_status">
+      <select class="form-control asset_status re_condition_status" name="asset_status">
         <option value="" selected disabled>Choose the condition</span></option>
         <option value="New property">new property</option>
         <option value="To renovate">to renovate</option>
@@ -72,7 +72,7 @@
       <span>Year of construction</span></span>
     </div>
     <div class="col-md-2 col-sm-12 input-container">
-      <input type="number" name="construction_year" class="form-control" placeholder="Type a year">
+      <input type="number" name="construction_year" class="form-control re_construction_year" placeholder="Type a year">
     </div>
   </div>
   <div class="row">
@@ -82,7 +82,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Type a value">
+          <input type="number" class="form-control re_surface_area" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">sqm</span>
@@ -97,15 +97,12 @@
     <div class="col-md-9 col-sm-12 input-container">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
-          <select class="form-control hq_country" name="hq_country">
+          <select class="form-control hq_country re_hq_country" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city" name="hq_city">
+          <select class="form-control hq_city re_hq_city" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
         </div>
       </div>
     </div>
@@ -115,7 +112,7 @@
       <span>Default Currency</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control default_currency" name="company_type">
+      <select class="form-control default_currency re_default_currency" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
@@ -136,7 +133,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="asset_value" class="deal-radio">
+            <input type="radio" name="asset_value" value="undisclosed" class="deal-radio re_asset_value">
           </span>
         </div>
         <div class="custom-file">
@@ -146,11 +143,11 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="asset_value" class="deal-radio">
+            <input type="radio" name="asset_value" class="deal-radio re_asset_value">
           </span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Type a value">
+          <input type="number" class="form-control re_asset_value_val" value="fixed" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
@@ -159,17 +156,17 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="asset_value" class="deal-radio">
+            <input type="radio" name="asset_value" value="range" class="deal-radio re_asset_value">
           </span>
         </div>
         <div class="custom-file">
-          <select class="form-control" name="asset_value_range">
+          <select class="form-control re_asset_value_sel" name="asset_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="">from 0 to 500k</option>
-            <option value="">from 500k to 1 million</option>
-            <option value="">from 1 to 10 million</option>
-            <option value="">from 10 to 50 million</option>
-            <option value="">over 50 million</option>
+            <option value="0|500000">from 0 to 500k</option>
+            <option value="500000|1000000">from 500k to 1 million</option>
+            <option value="1000000|10000000">from 1 to 10 million</option>
+            <option value="10000000|50000000">from 10 to 50 million</option>
+            <option value="50000000">over 50 million</option>
           </select>
         </div>
       </div>
@@ -184,7 +181,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="investment_required" class="deal-radio">
+            <input type="radio" name="investment_required" value="undisclosed" class="deal-radio re_investment_type">
           </span>
         </div>
         <div class="custom-file">
@@ -194,11 +191,11 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="investment_required" class="deal-radio">
+            <input type="radio" name="investment_required" value="fixed" class="deal-radio re_investment_type">
           </span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Type a value">
+          <input type="number" class="form-control re_investment_val" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
@@ -207,17 +204,17 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="investment_required" class="deal-radio">
+            <input type="radio" name="investment_required" value="range" class="deal-radio re_investment_type">
           </span>
         </div>
         <div class="custom-file">
-          <select class="form-control" name="investment_required_range">
+          <select class="form-control re_investment_val_sel" name="investment_required_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="">from 0 to 500k</option>
-            <option value="">from 500k to 1 million</option>
-            <option value="">from 1 to 10 million</option>
-            <option value="">from 10 to 50 million</option>
-            <option value="">over 50 million</option>
+            <option value="0|500000">from 0 to 500k</option>
+            <option value="500000|1000000">from 500k to 1 million</option>
+            <option value="1000000|10000000">from 1 to 10 million</option>
+            <option value="10000000|50000000">from 10 to 50 million</option>
+            <option value="50000000">over 50 million</option>
           </select>
         </div>
       </div>
@@ -230,7 +227,7 @@
     <div class="col-md-9 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Insert a value">
+          <input type="number" class="form-control re_yearly_return" placeholder="Insert a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -243,7 +240,7 @@
       <span>Vendor Type</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control">
+      <select class="form-control re_vendor_type">
         <option value="" selected disabled>Choose one</option>
         <option value="private owner">Private owner</option>
         <option value="company">Company</option>
@@ -258,7 +255,7 @@
       <span>General Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="general_description" rows="3" class="form-control" placeholder="Type a description"></textarea>
+      <textarea name="general_description" rows="3" class="form-control re_general_description" placeholder="Type a description"></textarea>
     </div>
   </div>
   <div class="row">
@@ -266,7 +263,7 @@
       <span>Key Elements</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="key_elements" rows="3" class="form-control" placeholder="Co-Investor, Institutional Investor, Individual, Corporation..."></textarea>
+      <textarea name="key_elements" rows="3" class="form-control re_key_elements" placeholder="Co-Investor, Institutional Investor, Individual, Corporation..."></textarea>
     </div>
   </div>
 

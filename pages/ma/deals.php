@@ -558,7 +558,22 @@ if (isset($_SESSION['email'])) {
 
         }
       } else if (deal_type == "sell") {
+        var offer = $(".offer:checked").val();
+        if (offer == "asset") {
+          var asset_type = $(".asset_type").val();
+          if (asset_type === "Real Estate") {
+            insertData = getSellRealEstateData();
+            insertData["asset_type"] = asset_type;
+            insertData["offer"] = offer;
+            insertData["deal_type"] = deal_type;
+          } else if (asset_type === "NPE") {
+            insertData = getBuyNPEData();
+          } else if (asset_type === "Credit") {
+            insertData = getBuyCreditData();
+          }
+        } else if (offer == "company") {
 
+        }
       }
 
       console.log(insertData);
@@ -578,16 +593,16 @@ if (isset($_SESSION['email'])) {
 
     function getBuyRealEstateData() {
       response = {};
-      response['re_type_buy'] = $(".re_type_buy").val();
-      response['re_type_category_buy'] = $(".re_type_category_buy").val();
-      response['re_deal_subject_buy'] = $(".re_deal_subject_buy").val();
-      response['re_asset_status_buy'] = $(".re_asset_status_buy").val();
-      response['re_condition_status_buy'] = $(".re_condition_status_buy").val();
-      response['re_surface_area_buy'] = $(".re_surface_area_buy").val();
-      response['re_hq_country_buy'] = $(".re_hq_country_buy").val();
-      response['re_hq_city_buy'] = $(".re_hq_city_buy").val();
-      response['default_currency_buy'] = $(".default_currency_buy").val();
-      response['re_asset_value_buy'] = $(".re_asset_value_buy:checked").val();
+      response['re_type'] = $(".re_type_buy").val();
+      response['re_type_category'] = $(".re_type_category_buy").val();
+      response['re_deal_subject'] = $(".re_deal_subject_buy").val();
+      response['re_asset_status'] = $(".re_asset_status_buy").val();
+      response['re_condition_status'] = $(".re_condition_status_buy").val();
+      response['re_surface_area'] = $(".re_surface_area_buy").val();
+      response['re_hq_country'] = $(".re_hq_country_buy").val();
+      response['re_hq_city'] = $(".re_hq_city_buy").val();
+      response['default_currency'] = $(".re_default_currency_buy").val();
+      response['re_asset_value'] = $(".re_asset_value_buy:checked").val();
       if ($(".re_asset_value_buy:checked").val() === "undisclosed") {
         console.log("undisclosed")
       } else if ($(".re_asset_value_buy:checked").val() === "fixed") {
@@ -602,15 +617,79 @@ if (isset($_SESSION['email'])) {
         console.log($(".re_asset_value_sel_buy").val());
         if (index === -1) {
           response['re_asset_value_min'] = assetVal;
-          response['re_asset_value_max'] = assetVal;
+          response['re_asset_value_max'] = null;
         } else {
           response['re_asset_value_min'] = assetVal.substring(0, index);
           response['re_asset_value_max'] = assetVal.substring(index + 1);
         }
       }
-      response['re_who_i_am_buy'] = $(".re_who_i_am_buy").val();
-      response['re_aum_buy'] = $(".re_aum_buy").val();
-      response['re_general_description_buy'] = $(".re_general_description_buy").val();
+      response['re_who_i_am'] = $(".re_who_i_am_buy").val();
+      response['re_aum'] = $(".re_aum_buy").val();
+      response['re_general_description'] = $(".re_general_description_buy").val();
+      return response;
+    }
+
+
+    function getSellRealEstateData() {
+      response = {};
+      response['re_type'] = $(".re_type").val();
+      response['re_type_category'] = $(".re_type_category").val();
+      response['re_deal_subject'] = $(".re_deal_subject").val();
+      response['re_asset_status'] = $(".re_asset_status").val();
+      response['re_condition_status'] = $(".re_condition_status").val();
+      response['re_construction_year'] = $(".re_construction_year").val();
+      response['re_surface_area'] = $(".re_surface_area").val();
+      response['re_hq_country'] = $(".re_hq_country").val();
+      response['re_hq_city'] = $(".re_hq_city").val();
+      response['default_currency'] = $(".re_default_currency").val();
+      response['re_asset_value'] = $(".re_asset_value:checked").val();
+      if ($(".re_asset_value:checked").val() === "undisclosed") {
+        console.log("undisclosed")
+      } else if ($(".re_asset_value:checked").val() === "fixed") {
+        console.log("fixed");
+        console.log($(".re_asset_value_val").val());
+        response['re_asset_value_min'] = $(".re_asset_value_val").val();
+        response['re_asset_value_max'] = $(".re_asset_value_val").val();
+      } else if ($(".re_asset_value:checked").val() === "range") {
+        assetVal = $(".re_asset_value_sel").val();
+        index = assetVal.lastIndexOf("|");
+        console.log("range");
+        console.log($(".re_asset_value_sel").val());
+        if (index === -1) {
+          response['re_asset_value_min'] = assetVal;
+          response['re_asset_value_max'] = null;
+        } else {
+          response['re_asset_value_min'] = assetVal.substring(0, index);
+          response['re_asset_value_max'] = assetVal.substring(index + 1);
+        }
+      }
+      response['re_investment_type'] = $(".re_investment_type").val();
+      if ($(".re_investment_type:checked").val() === "undisclosed") {
+        console.log("undisclosed")
+      } else if ($(".re_investment_type:checked").val() === "fixed") {
+        console.log("fixed");
+        console.log($(".re_investment_type").val());
+        response['re_investment_val'] = $(".re_investment_val").val();
+        response['re_investment_value_min'] = $(".re_investment_val").val();
+        response['re_investment_value_max'] = $(".re_investment_val").val();
+      } else if ($(".re_investment_type:checked").val() === "range") {
+        investVal = $(".re_investment_val_sel").val();
+        index = investVal.lastIndexOf("|");
+        console.log("range");
+        console.log($(".re_investment_val_sel").val());
+        if (index === -1) {
+          response['re_investment_value_min'] = investVal;
+          response['re_investment_value_max'] = null;
+        } else {
+          response['re_investment_value_min'] = investVal.substring(0, index);
+          response['re_investment_value_max'] = investVal.substring(index + 1);
+        }
+      }
+      response['re_yearly_return'] = $(".re_yearly_return").val();
+      response['re_vendor_type'] = $(".re_vendor_type").val();
+      response['re_key_elements'] = $(".re_key_elements").val();
+      response['re_image'] = $(".jFiler-item-title").val();
+      response['re_general_description'] = $(".re_general_description").val();
       return response;
     }
   </script>
