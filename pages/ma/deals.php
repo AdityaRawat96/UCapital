@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(isset($_SESSION['email'])){
+if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-  ?>
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -65,7 +65,7 @@ if(isset($_SESSION['email'])){
               <span>Type of company</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-              <select class="form-control offer_type_selector" name="company_type">
+              <select class="form-control offer_type_selector company_type" name="company_type">
                 <option value="" selected disabled>Choose type of company</option>
                 <option value="Business Company">Business Company</option>
                 <option value="Start Up">Start Up</option>
@@ -79,7 +79,7 @@ if(isset($_SESSION['email'])){
               <span>Type of asset</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-              <select class="form-control offer_type_selector" name="asset_type">
+              <select class="form-control offer_type_selector asset_type" name="asset_type">
                 <option value="" selected disabled>Choose type of asset</option>
                 <option value="Real Estate">Business Real Estate</option>
                 <option value="NPE">NPE</option>
@@ -112,41 +112,40 @@ if(isset($_SESSION['email'])){
           <div class="col-md-3 col-sm-12">
           </div>
           <div class="col-md-9 col-sm-12">
-            <button type="submit" name="button" class="btn btn-success">Save and post your deal</button>
+            <button type="submit" name="button" id="insertDeal" class="btn btn-success">Save and post your deal</button>
           </div>
         </div>
 
         <br><br><br><br><br><br>
 
         <!-- container-fluid -->
-      </section>
-      <!-- content -->
-    </div>
-    <!-- content-wrapper -->
+    </section>
+    <!-- content -->
+  </div>
+  <!-- content-wrapper -->
 
 
-    <?php
-    include '../elements/footer.php';
-    ?>
-    <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-    <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <?php
+  include '../elements/footer.php';
+  ?>
+  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-    <!-- jquery-validation -->
-    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
-    <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 
-    <script type="text/javascript">
-
+  <script type="text/javascript">
     var folderTimestamp = '<?php echo time(); ?>';
     var folderName = 'MergerAcquisition/' + folderTimestamp;
 
 
-    $(document).ready(function(){
+    $(document).ready(function() {
       $('.ad-form').validate({
-        submitHandler: function () {
+        submitHandler: function() {
           checkPicture();
         },
         rules: {
@@ -202,14 +201,14 @@ if(isset($_SESSION['email'])){
           },
         },
         errorElement: 'span',
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
           error.addClass('invalid-feedback');
           element.closest('.input-group').append(error);
         },
-        highlight: function (element, errorClass, validClass) {
+        highlight: function(element, errorClass, validClass) {
           $(element).addClass('is-invalid');
         },
-        unhighlight: function (element, errorClass, validClass) {
+        unhighlight: function(element, errorClass, validClass) {
           $(element).removeClass('is-invalid');
         }
       });
@@ -222,10 +221,10 @@ if(isset($_SESSION['email'])){
 
 
 
-    function initFiler(filerID){
+    function initFiler(filerID) {
 
       var uploadedFiles = [];
-      $("#"+filerID).filer({
+      $("#" + filerID).filer({
         limit: 1,
         maxSize: 5,
         extensions: ["jpg", "jpeg", "png", "gif"],
@@ -311,21 +310,21 @@ if(isset($_SESSION['email'])){
           type: 'POST',
           enctype: 'multipart/form-data',
           synchron: true,
-          beforeSend: function(){},
-          success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id){
+          beforeSend: function() {},
+          success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
             var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-            new_file_name = JSON.parse(data),
-            filerKit = inputEl.prop("jFiler");
+              new_file_name = JSON.parse(data),
+              filerKit = inputEl.prop("jFiler");
             filerKit.files_list[id].name = new_file_name;
             uploadedFiles.push(new_file_name);
-            $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
-            itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function(){
+            $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+            itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
               $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
             });
           },
-          error: function(el){
+          error: function(el) {
             var parent = el.find(".jFiler-jProgressBar").parent();
-            el.find(".jFiler-jProgressBar").fadeOut("slow", function(){
+            el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
               $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
             });
           },
@@ -344,14 +343,16 @@ if(isset($_SESSION['email'])){
         beforeSelect: null,
         onSelect: null,
         afterShow: null,
-        onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+        onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
           var filerKit = inputEl.prop("jFiler"),
-          file_name = filerKit.files_list[id].name;
+            file_name = filerKit.files_list[id].name;
           uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
             return value != file_name;
           });
-          $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
-          $.post('../../plugins/filer/php/ajax_remove_file.php?folderName='+folderName, {file: file_name});
+          $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+          $.post('../../plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
+            file: file_name
+          });
         },
         onEmpty: null,
         options: null,
@@ -359,7 +360,7 @@ if(isset($_SESSION['email'])){
           alert: function(text) {
             return alert(text);
           },
-          confirm: function (text, callback) {
+          confirm: function(text, callback) {
             confirm(text) ? callback() : null;
           }
         },
@@ -379,14 +380,13 @@ if(isset($_SESSION['email'])){
       });
 
     }
+  </script>
 
-    </script>
 
-
-    <!-- company_sell -->
-    <script type="text/javascript">
+  <!-- company_sell -->
+  <script type="text/javascript">
     var country_data;
-    $(document).ready(function(){
+    $(document).ready(function() {
       $.ajax({
         type: 'POST',
         url: "../../assets/php/getCountries.php",
@@ -410,11 +410,11 @@ if(isset($_SESSION['email'])){
         }
       });
 
-      $("body").on("change", ".hq_country", function(){
+      $("body").on("change", ".hq_country", function() {
         loadCities($(this));
       });
 
-      $(".add-location").on('click', function(){
+      $(".add-location").on('click', function() {
         $(this).parent().parent().append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> </div>');
         $.each(country_data, function(index, element) {
           $('.hq_country').last().append($('<option>', {
@@ -424,31 +424,32 @@ if(isset($_SESSION['email'])){
         });
       });
 
-      $(".default_currency").on("change", function(){
-        $(".span-currency-icon").html($(this).val());
+      $(".default_currency").on("change", function() {
+        $(".span-currency-icon").html($(this).find('option:selected').data('value'));
       });
 
-      $(".industry").each(function () {
+      $(".industry").each(function() {
         $(this).select2({
           maximumSelectionLength: 5,
-          formatSelectionTooBig: function (limit) {
+          formatSelectionTooBig: function(limit) {
             return 'Only 5 selections are allowed!';
           }
         });
       });
 
-      $(".area_of_activity").each(function(){
+      $(".area_of_activity").each(function() {
         $(this).select2();
       });
 
     });
-    function loadCities(elem){
+
+    function loadCities(elem) {
       $.ajax({
         type: 'POST',
         url: "../../assets/php/getCities.php",
         dataType: 'json',
         data: {
-          country_id : elem.val()
+          country_id: elem.val()
         },
         success: function(data) {
           var city_selector = elem.siblings('.hq_city');
@@ -470,13 +471,12 @@ if(isset($_SESSION['email'])){
     }
 
     initFiler('adImage');
-    </script>
+  </script>
 
-
-    <!-- Real Estate Sell -->
-    <script type="text/javascript">
-    $(".re_type").change(function(){
-      if($(this).find("option:selected").data("categories")){
+  <!-- Real Estate Sell -->
+  <script type="text/javascript">
+    $(".re_type").change(function() {
+      if ($(this).find("option:selected").data("categories")) {
         $(".re_type_category").html("");
         $(".re_type_category").append($('<option>', {
           value: "",
@@ -493,28 +493,28 @@ if(isset($_SESSION['email'])){
         }
         $(".dynamic_category").html($(this).val());
         $(".re_type_category_container").fadeIn();
-      }else{
+      } else {
         $(".re_type_category_container").fadeOut();
       }
     })
-    </script>
+  </script>
 
 
-    <!-- NPE Sell -->
-    <script type="text/javascript">
-    $(".product_type").change(function(){
-      if($(this).find("option:selected").val() == "Secured"){
+  <!-- NPE Sell -->
+  <script type="text/javascript">
+    $(".product_type").change(function() {
+      if ($(this).find("option:selected").val() == "Secured") {
         $(".collateral_type_container").fadeIn();
-      }else{
+      } else {
         $(".collateral_type_container").fadeOut();
       }
     })
-    </script>
+  </script>
 
-    <!-- Credits Sell -->
-    <script type="text/javascript">
-    $(".borrower_type").change(function(){
-      if($(this).find("option:selected").data("categories")){
+  <!-- Credits Sell -->
+  <script type="text/javascript">
+    $(".borrower_type").change(function() {
+      if ($(this).find("option:selected").data("categories")) {
         $(".borrower_type_category").html("");
         $(".borrower_type_category").append($('<option>', {
           value: "",
@@ -531,15 +531,95 @@ if(isset($_SESSION['email'])){
         }
         $(".dynamic_category_borrower").html($(this).val());
         $(".borrower_type_category_container").fadeIn();
-      }else{
+      } else {
         $(".borrower_type_category_container").fadeOut();
       }
     })
-    </script>
-    <?php
-  }else{
-    ?>
-    <script>window.open('../../','_self')</script>
-    <?php
-  }
-  ?>
+  </script>
+  <script>
+    $("#insertDeal").click(function() {
+      insertData = {};
+      var deal_type = $(".deal_type:checked").val();
+      if (deal_type == "buy") {
+        var offer = $(".offer:checked").val();
+        if (offer == "asset") {
+          var asset_type = $(".asset_type").val();
+          if (asset_type === "Real Estate") {
+            insertData = getBuyRealEstateData();
+            insertData["asset_type"] = asset_type;
+            insertData["offer"] = offer;
+            insertData["deal_type"] = deal_type;
+          } else if (asset_type === "NPE") {
+            insertData = getBuyNPEData();
+          } else if (asset_type === "Credit") {
+            insertData = getBuyCreditData();
+          }
+        } else if (offer == "company") {
+
+        }
+      } else if (deal_type == "sell") {
+
+      }
+
+      console.log(insertData);
+
+      $.ajax({
+        type: 'POST',
+        url: '../../assets/php/insertDeal.php',
+        data: {
+          dealData: insertData
+        },
+        success: function(data) {
+          console.log(data);
+        }
+      });
+
+    });
+
+    function getBuyRealEstateData() {
+      response = {};
+      response['re_type_buy'] = $(".re_type_buy").val();
+      response['re_type_category_buy'] = $(".re_type_category_buy").val();
+      response['re_deal_subject_buy'] = $(".re_deal_subject_buy").val();
+      response['re_asset_status_buy'] = $(".re_asset_status_buy").val();
+      response['re_condition_status_buy'] = $(".re_condition_status_buy").val();
+      response['re_surface_area_buy'] = $(".re_surface_area_buy").val();
+      response['re_hq_country_buy'] = $(".re_hq_country_buy").val();
+      response['re_hq_city_buy'] = $(".re_hq_city_buy").val();
+      response['default_currency_buy'] = $(".default_currency_buy").val();
+      response['re_asset_value_buy'] = $(".re_asset_value_buy:checked").val();
+      if ($(".re_asset_value_buy:checked").val() === "undisclosed") {
+        console.log("undisclosed")
+      } else if ($(".re_asset_value_buy:checked").val() === "fixed") {
+        console.log("fixed");
+        console.log($(".re_asset_value_val_buy").val());
+        response['re_asset_value_min'] = $(".re_asset_value_val_buy").val();
+        response['re_asset_value_max'] = $(".re_asset_value_val_buy").val();
+      } else if ($(".re_asset_value_buy:checked").val() === "range") {
+        assetVal = $(".re_asset_value_sel_buy").val();
+        index = assetVal.lastIndexOf("|");
+        console.log("range");
+        console.log($(".re_asset_value_sel_buy").val());
+        if (index === -1) {
+          response['re_asset_value_min'] = assetVal;
+          response['re_asset_value_max'] = assetVal;
+        } else {
+          response['re_asset_value_min'] = assetVal.substring(0, index);
+          response['re_asset_value_max'] = assetVal.substring(index + 1);
+        }
+      }
+      response['re_who_i_am_buy'] = $(".re_who_i_am_buy").val();
+      response['re_aum_buy'] = $(".re_aum_buy").val();
+      response['re_general_description_buy'] = $(".re_general_description_buy").val();
+      return response;
+    }
+  </script>
+<?php
+} else {
+?>
+  <script>
+    window.open('../../', '_self')
+  </script>
+<?php
+}
+?>

@@ -52,14 +52,14 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container">
       <select class="form-control default_currency" name="company_type">
-        <option value="€" selected>Euro</option>
-        <option value="$">Dollar</option>
-        <option value="C$">Canadian Dollar</option>
-        <option value="£">Pound</option>
-        <option value="A">Australian Dollar</option>
-        <option value="¥">Yen</option>
-        <option value="SEK">Swedish Krona</option>
-        <option value="DKK">Danish Krona</option>
+        <option data-value="€" selected value='Euro'>Euro</option>
+        <option data-value="$" value='Dollar'>Dollar</option>
+        <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
+        <option data-value="£" value='Pound'>Pound</option>
+        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="¥" value='Yen'>Yen</option>
+        <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
+        <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
       </select>
     </div>
   </div>
@@ -591,158 +591,158 @@
           <select class="form-control" name="investment_required_range">
             <option value="" selected disabled>Select a range</option>
             <option value="<1 million">&#60; 1 million</option>
-              <option value="1<revenue<10 milion">1 &#60; revenue &#60; 10 milion</option>
-                <option value="10<revenue<50 million">10 &#60; revenue &#60; 50 million</option>
-                  <option value=">50 milion">	&#62; 50 milion</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Actual Ebitda Margin</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Insert a value from -100 to 100">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Revenue</span>
-            <span class="deal-subhead">(Y1Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 1st year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text span-currency-icon">€</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Ebitda</span>
-            <span class="deal-subhead">(Y1Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 1st year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Revenue</span>
-            <span class="deal-subhead">(Y2Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text span-currency-icon">€</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Ebitda</span>
-            <span class="deal-subhead">(Y2Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Revenue</span>
-            <span class="deal-subhead">(Y3Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text span-currency-icon">€</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Forcast Ebitda</span>
-            <span class="deal-subhead">(Y3Y)</span>
-          </div>
-          <div class="col-md-4 col-sm-12 input-container">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>General Description</span>
-          </div>
-          <div class="col-md-9 col-sm-12 input-container">
-            <textarea name="general_description" rows="3" class="form-control" placeholder="Who you are, What are you looking for..."></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Key Elements</span>
-          </div>
-          <div class="col-md-9 col-sm-12 input-container">
-            <textarea name="key_elements" rows="3" class="form-control" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-sm-12 deal-heading">
-            <span>Image</span>
-            <span class="deal-subhead">(Max 5MB)</span>
-          </div>
-          <div class="col-md-9 col-sm-12 input-container">
-            <div class="input-group">
-              <input type="text" id="adImage-list" hidden value="">
-              <input type="file" name="files[]" class="adImage" id="adImage" multiple="false" >
-            </div>
-          </div>
+            <option value="1<revenue<10 milion">1 &#60; revenue &#60; 10 milion</option>
+            <option value="10<revenue<50 million">10 &#60; revenue &#60; 50 million</option>
+            <option value=">50 milion"> &#62; 50 milion</option>
+          </select>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Actual Ebitda Margin</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Insert a value from -100 to 100">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Revenue</span>
+      <span class="deal-subhead">(Y1Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Ebitda</span>
+      <span class="deal-subhead">(Y1Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Revenue</span>
+      <span class="deal-subhead">(Y2Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Ebitda</span>
+      <span class="deal-subhead">(Y2Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Revenue</span>
+      <span class="deal-subhead">(Y3Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Forcast Ebitda</span>
+      <span class="deal-subhead">(Y3Y)</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>General Description</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container">
+      <textarea name="general_description" rows="3" class="form-control" placeholder="Who you are, What are you looking for..."></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Key Elements</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container">
+      <textarea name="key_elements" rows="3" class="form-control" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Image</span>
+      <span class="deal-subhead">(Max 5MB)</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container">
+      <div class="input-group">
+        <input type="text" id="adImage-list" hidden value="">
+        <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
+      </div>
+    </div>
+  </div>
+</div>

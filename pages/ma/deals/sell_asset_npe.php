@@ -76,14 +76,14 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container">
       <select class="form-control default_currency" name="company_type">
-        <option value="€" selected>Euro</option>
-        <option value="$">Dollar</option>
-        <option value="C$">Canadian Dollar</option>
-        <option value="£">Pound</option>
-        <option value="A">Australian Dollar</option>
-        <option value="¥">Yen</option>
-        <option value="SEK">Swedish Krona</option>
-        <option value="DKK">Danish Krona</option>
+        <option data-value="€" selected value='Euro'>Euro</option>
+        <option data-value="$" value='Dollar'>Dollar</option>
+        <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
+        <option data-value="£" value='Pound'>Pound</option>
+        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="¥" value='Yen'>Yen</option>
+        <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
+        <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
       </select>
     </div>
   </div>
