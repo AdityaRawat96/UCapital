@@ -6,11 +6,8 @@ if(isset($_SESSION['email'])){
   include '../elements/sidebar.php';
 
   $pageIndex = "";
-  if(isset($_GET['category']) && isset($_GET['feedurl']) && isset($_GET['posttitle'])){
-    $category = $_GET['category'];
-    $pageIndex = $category;
-    $feedurl = $_GET['feedurl'];
-    $posttitle = $_GET['posttitle'];
+  if(isset($_GET['id'])){
+    $feed_id = $_GET['id'];
 
     ?>
 
@@ -96,6 +93,8 @@ include '../elements/footer.php';
 
 <script type="text/javascript">
 
+var feed_id = '<?=$feed_id; ?>';
+
 if('<?=$pageIndex; ?>' != ""){
   console.log('<?=$pageIndex; ?>')
   var feed_tabs = document.getElementsByClassName("news_category_tabs");
@@ -110,113 +109,73 @@ if('<?=$pageIndex; ?>' != ""){
 
 }
 
-
-var d = new Date();
-d.setMonth(d.getMonth() - 1);
-d.setHours(0, 0, 0, 0);
-var timestamp_1m = d/1000|0;
-
-var feeddata = [];
-
 GetFeeds();
 
+function urlExists(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      callback(xhr.status < 400);
+    }
+  };
+  xhr.open('HEAD', url);
+  xhr.send();
+}
+
 function GetFeeds(){
-  var urls = [
-    {name:'',category:'<?=$category; ?>',country:'',link:'<?=$feedurl; ?>',},
-  ];
-
-
-
-  var counter = 0;
-  var sizej = urls.length;
-
-  urls.forEach(function(Query){
-
-    $.get(Query.link, function (data) {
-      $(data).find("item").each(function () {
-        var el = $(this);
-
-        var content_image = el.find("image").find("url").text();
-        var content_description = el.find("description").text();
-        var is_insight = false;
-        var img_type = 1;
-        if(!content_image){
-          content_image = content_description.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/);
-          img_type = 2;
-          if(!content_image){
-            content_image = "";
-            img_type = 0;
-          }
-        }
-        content_description = content_description.replace(/<img[^>]*>/,"");
-        if(content_description.length > 5000){
-          is_insight = true;
-        }
-
-        var pubDate = el.find("pubDate").text();
-        var content_timestamp = new Date(pubDate).getTime() / 1000;
-
-        if(content_timestamp > timestamp_1m){
-          var content = {
-            title: el.find("title").text(),
-            description: content_description,
-            image: content_image,
-            pubDate: pubDate,
-            url: Query.link,
-            name: Query.name,
-            category: Query.category,
-            country: Query.country,
-            link: el.find("link").text() ? el.find("link").text() : "",
-            timestamp: content_timestamp,
-            img_type: img_type,
-            is_insight: is_insight
-          }
-          feeddata.push(content);
-        }
-      });
-
-      showNews(feeddata)
-    }).fail(function() {
-      console.log("ERROR!!")
-    });
-
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getFeed.php",
+    data: {
+      feed_id: feed_id
+    },
+    success: function(data) {
+      obj = jQuery.parseJSON(data);
+      showNews(obj)
+    }
   });
 }
 
 function showNews(feeddata){
-  var carousel_counter = 0;
-  var insight_counter = 0;
-  feeddata.sort(function(a, b) {
-    return parseFloat(b.timestamp) - parseFloat(a.timestamp);
-  });
-    feeddata.forEach(function(newsfeed){
-      if('<?=$posttitle; ?>' == newsfeed.title){
-        if(newsfeed.img_type == 2){
-          $(".feed_head_image").attr("src", newsfeed.image[1]);
-        }else if(newsfeed.img_type == 1){
-          $(".feed_head_image").attr("src", newsfeed.image);
-        }else{
-          $(".feed_head_image").attr("src", "../../dist/img/news.png");
-        }
 
-        $(".feed_title").html(newsfeed.title);
-        $(".feed_description").html(newsfeed.description);
-        $(".feed_timestamp").html(newsfeed.pubDate);
-        if(newsfeed.link != ""){
-          $(".readmoreLink").attr("href", newsfeed.link);
-        }else{
-          $(".readmoreLink").remove();
-        }
+  feeddata.forEach(function(newsfeed){
+    if(newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)){
+      newsfeed.image = newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)[1];
+    }
+    if(newsfeed.id == feed_id){
+      if(newsfeed.img_type == 2){
+        $(".feed_head_image").attr("src", newsfeed.image);
+      }else if(newsfeed.img_type == 1){
+        $(".feed_head_image").attr("src", newsfeed.image);
       }else{
-        if(newsfeed.img_type == 2){
-          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
-        }else if(newsfeed.img_type == 1){
-          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
-        }else{
-          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="../../dist/img/news.png" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
-        }
+        $(".feed_head_image").attr("src", "../../dist/img/news.png");
       }
-    });
+
+      $(".feed_title").html(newsfeed.title);
+      $(".feed_description").html(newsfeed.description);
+      $(".feed_timestamp").html(newsfeed.pubDate);
+      if(newsfeed.url){
+        urlExists(newsfeed.url, function(exists) {
+          if(exists){
+            $(".readmoreLink").attr("href", newsfeed.url);
+          }else{
+            $(".readmoreLink").remove();
+          }
+        });
+      }else{
+        $(".readmoreLink").remove();
+      }
+    }else{
+
+      if(newsfeed.img_type == 2){
+        $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+      }else if(newsfeed.img_type == 1){
+        $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+      }else{
+        $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="../../dist/img/news.png" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+      }
+    }
+  });
 
   $('.paginationList').rpmPagination({
     domElement: '.pagination-item',

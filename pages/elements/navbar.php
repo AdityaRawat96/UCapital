@@ -58,7 +58,11 @@
     <img class="profile-picture-heading"
     src="
     <?php if($_SESSION['profile_picture'] != "" && $_SESSION['profile_picture'] != null){
-      echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+      if(filter_var($_SESSION['profile_picture'], FILTER_VALIDATE_URL)){
+        echo trim($_SESSION['profile_picture']);
+      }else{
+        echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+      }
     }else{
       echo '../../dist/img/avatar0.png';
     } ?>
@@ -75,7 +79,11 @@
         <img class="img-circle elevation-2 profile-picture-heading"
         src="
         <?php if($_SESSION['profile_picture'] != "" && $_SESSION['profile_picture'] != null){
-          echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+          if(filter_var($_SESSION['profile_picture'], FILTER_VALIDATE_URL)){
+            echo trim($_SESSION['profile_picture']);
+          }else{
+            echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+          }
         }else{
           echo '../../dist/img/avatar0.png';
         } ?>

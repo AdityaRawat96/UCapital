@@ -1,6 +1,38 @@
 var tempItemList = [];
 
+function load_section(button_val){
+  var section_name = $(".deal_type:checked").val();
+  var offer_type = $(".offer:checked").val();
+  if(section_name != undefined){
+    $(".offer_section").fadeIn();
+  }
+  $(".hidden_deal_container").fadeOut();
+  $("."+$(".offer:checked").val()+"_type_section").fadeIn();
+}
+
 $(document).ready(function(){
+
+  $(".offer_type_selector").change(function(){
+    var section_string = $(".deal_type:checked").val() +"_"+ $(".offer:checked").val() +"_"+ $(this).val();
+    section_string = section_string.replace(" ", "_");
+    section_string = section_string.toLowerCase();
+    $(".hidden_deal_container_main").fadeOut();
+    $("."+section_string).fadeIn();
+  });
+
+  $(".btn-deal-custom").on('click', function(){
+    $(this).find('.deal-radio').prop('checked', true);
+    $('.btn-deal-custom').removeClass("selected");
+    $('.btn-deal-custom input[type="radio"]:checked').parents('.btn-deal-custom').addClass("selected");
+    load_section($(this).find('.offer').val());
+
+    var section_string = $(".deal_type:checked").val() +"_"+ $(".offer:checked").val() +"_"+ $(".offer_type_selector").val();
+    section_string = section_string.replace(" ", "_");
+    section_string = section_string.toLowerCase();
+    $(".hidden_deal_container_main").fadeOut();
+    $("."+section_string).fadeIn();
+    console.log(section_string)
+  });
 
   if ($(window).width() < 768) {
     $(".input-serach").attr("placeholder", "Search")
@@ -162,6 +194,30 @@ function uploadAd(){
 
 }
 
+function verificationFunction(){
+  $.ajax({
+    type: 'POST',
+    url: '../../../assets/php/verify.php',
+    data: {
+      user_id: $("#user_id").val(),
+      mobile: $('#phone').val(),
+      country: $('#country').find('option:selected').text(),
+      city: $('#city').val(),
+      operator: $('#operator').val(),
+    },
+    success: function(response) {
+      console.log(response);
+      if ( response.trim() == "success" ){
+        $('.loader').fadeOut();
+        window.location.href='../../../pages/news/index.php';
+      }else{
+        $('.loader').fadeOut();
+        swal("Error!", "An error occurred, please try again!", "error");
+      }
+    }
+  });
+}
+
 
 function loginFunction(){
   var remember="";
@@ -179,8 +235,15 @@ function loginFunction(){
       remember: remember
     },
     success: function(response) {
+      console.log(response)
       if ( response.trim() == "success" ){
         window.location.href='../../pages/news/';
+      }else if(response.trim() == "unverified"){
+        $("#unverifiedAccount").fadeIn();
+        $('.loader').fadeOut();
+        $('#password').focus();
+      }else if(response.trim() == "registration"){
+        window.location.href='../../pages/auth/verify/registration.php';
       }else {
         $("#incorrectCredentials").fadeIn();
         $('.loader').fadeOut();
@@ -224,10 +287,7 @@ function registrationFunction(){
       console.log(response);
       if ( response.trim() == "success" ){
         $('.loader').fadeOut();
-        swal("Success!", "Registration Successful!", "success")
-        .then((value) => {
-          window.location.href='../../pages/auth/login.php';
-        });
+        window.location.href='../../pages/auth/registration_success.php';
       }else if( response.trim() == "email" ){
         $('#email').focus();
         $('.loader').fadeOut();
@@ -684,9 +744,9 @@ function addToSearch(){
   })
 
   if($(".searchItems").find(".searchedItem").length > 0){
-      $(".our-trans-btn").fadeIn();
+    $(".our-trans-btn").fadeIn();
   }else{
-      $(".our-trans-btn").fadeOut();
+    $(".our-trans-btn").fadeOut();
   }
 }
 

@@ -74,22 +74,40 @@ if(isset($_SESSION['email'])){
             </div>
           </div>
         </div><br><br>
+
         <div class="row">
-          <div class="col-12">
-            <h3>Latest News</h3><br>
+          <div class="col-md-8 col-sm-12 news_container">
+            <div class="row">
+              <div class="col-12">
+                <h3>Latest News</h3><br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="latest_news_container row col-12">
+
+              </div>
+            </div><br><br>
+            <div class="row">
+              <center>
+                <ul class="pagination paginationList">
+                </ul>
+              </center>
+            </div><br><br>
+          </div>
+          <div class="col-md-4 col-sm-12 tweets_container">
+            <div class="row">
+              <div class="col-12">
+                <h3>Latest Tweets</h3><br>
+              </div>
+              <div class="col-12">
+                <div class="row related_tweet_container">
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="latest_news_container row col-12">
 
-          </div>
-        </div><br><br>
-        <div class="row">
-          <center>
-            <ul class="pagination paginationList">
-            </ul>
-          </center>
-        </div><br><br>
       </div>
 
     </div><!-- container-fluid -->
@@ -102,6 +120,89 @@ if(isset($_SESSION['email'])){
 
 include '../elements/footer.php';
 ?>
+
+<style media="screen">
+
+.avator {
+  border-radius:100px;
+  width:48px;
+  margin-right: 15px;
+}
+
+.tweet-wrap {
+  width:100%;
+  background: #fff;
+  margin: 5px 0px;
+  border-radius:3px;
+  padding: 30px;
+  border-bottom: 1px solid #e6ecf0;
+  border-top: 1px solid #e6ecf0;
+}
+
+.tweet-header {
+  display: flex;
+  align-items:flex-start;
+  font-size:14px;
+}
+.tweet-header-info {
+  font-weight:bold;
+}
+.tweet-header-info span {
+  color:#657786;
+  font-weight:normal;
+  margin-left: 5px;
+}
+.tweet-header-info p {
+  font-weight:normal;
+  margin-top: 5px;
+
+}
+.tweet-img-wrap {
+  padding-left: 60px;
+}
+
+.tweet-info-counts {
+  display: flex;
+  margin-left: 60px;
+  margin-top: 10px;
+}
+.tweet-info-counts div {
+  display: flex;
+  margin-right: 20px;
+}
+.tweet-info-counts div svg {
+  color:#657786;
+  margin: 0px;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+.related_tweet_container a{
+  text-decoration: none;
+  color: black;
+}
+@media screen and (max-width:430px){
+  .tweet-header {
+    flex-direction:column;
+  }
+  .tweet-header img {
+    margin-bottom: 20px;
+  }
+  .tweet-header-info p {
+    margin-bottom: 30px;
+  }
+  .tweet-img-wrap {
+    padding-left: 0;
+  }
+  .tweet-info-counts {
+    display: flex;
+    margin-left: 0;
+  }
+  .tweet-info-counts div {
+    margin-right: 10px;
+  }
+}
+</style>
 <script type="text/javascript" src="../../plugins/pagination/pagination.min.js"></script>
 
 <script type="text/javascript">
@@ -117,6 +218,47 @@ if('<?=$pageIndex; ?>' != ""){
     }
   }
 
+  var tweet_query = ('<?=$pageIndex; ?>').replaceAll(" ", "");
+  if(tweet_query == "M&A"){
+    tweet_query = "mergerandacquisition"
+  }
+
+  $.ajax({
+    type: 'GET',
+    url: '../../assets/php/getTweets.php',
+    data: {
+      search_query : tweet_query,
+    },
+    success: function(response) {
+      if(response != null && response != "failed"){
+        var obj = JSON.parse(response)
+        var tweet_users = obj.includes.users;
+        var tweets = obj.data;
+
+        for(tweet in tweets){
+          for(users in tweet_users){
+            if(tweet_users[users].id == tweets[tweet].author_id){
+              var tweet_public_metrics = tweets[tweet].public_metrics;
+              var tweet_timestamp = tweets[tweet].created_at;
+              var profile_image_url = tweet_users[users].profile_image_url ? tweet_users[users].profile_image_url : "../../dist/img/avatar0.png"
+
+              $(".related_tweet_container").append('<div class="col-sm-12"><a href="https://twitter.com/'+tweet_users[users].username+'/status/'+tweets[tweet].id+'" target="_blank"><div class="tweet-wrap"> <div class="tweet-header"> <img src="'+profile_image_url+'" alt="" class="avator"> <div class="tweet-header-info"> '+tweet_users[users].name+' <span>@'+tweet_users[users].username+'</span><span>. '+tweet_timestamp+' </span> <p>'+tweets[tweet].text+'</p></div></div><div class="tweet-img-wrap"> </div><div class="tweet-info-counts"> <div class="comments"> <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg> <div class="comment-count">'+tweet_public_metrics.reply_count+'</div></div><div class="retweets"> <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg> <div class="retweet-count">'+tweet_public_metrics.retweet_count+'</div></div><div class="likes"> <svg class="feather feather-heart sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> <div class="likes-count"> '+tweet_public_metrics.like_count+' </div></div></div></div></a></div>');
+
+              break;
+            }
+          }
+
+        }
+      }
+    }
+  });
+  $(".tweets_container").removeClass("containerHidden");
+  $(".news_container").removeClass("col-md-12");
+  $(".news_container").addClass("col-md-8");
+}else{
+  $(".tweets_container").addClass("containerHidden");
+  $(".news_container").removeClass("col-md-8");
+  $(".news_container").addClass("col-md-12");
 }
 
 
@@ -130,375 +272,15 @@ var feeddata = [];
 GetFeeds();
 
 function GetFeeds(){
-  var urls = [
-    {
-      name: 'PE Hub',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://www.pehub.com/feed/',
-    },
-    {
-      name: 'Private Equity International',
-      category: 'Private equity',
-      country: 'US',
-      link: 'https://www.privateequityinternational.com/feed/',
-    },
-    {
-      name: 'Unquote',
-      category: 'Private Equity',
-      country: 'EU',
-      link: 'https://www.unquote.com/feeds/rss',
-    },
-    {
-      name: 'AltAssets Private Equity',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://www.altassets.net/feed',
-    },
-    {
-      name: 'Private Equity News',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://www.penews.com/rss/?x=1',
-    },
-    {
-      name: 'Private Equity Professional ',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://peprofessional.com/feed/',
-    },
-    {
-      name: 'The New York Times',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://www.nytimes.com/svc/collections/v1/publish/http://www.nytimes.com/topic/subject/private-equity/rss.xml',
-    },
-    {
-      name: 'The Guardian',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://www.theguardian.com/business/privateequity/rss',
-      logo: 'guardian.png'
-    },
-    {
-      name: 'TechCrunch',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://techcrunch.com/tag/private-equity/feed/?guccounter=1&guce_referrer=aHR0cHM6Ly9ibG9nLmZlZWRzcG90LmNvbS8&guce_referrer_sig=AQAAAAhcfEL9xG4_5oNO9VhFsSiJNLXvXc2YJhdN0ts-H7Noew7c0_7PRrNGbti026ASwD1yD0uFOu0DugZ8_eA144eHcrpuygC30hFHieFbK_oH1RAOg3-TNJNYhGKDqaFjZFNT9nHJnOqAvKuwGDE85gB32y4HX5BWEPQVCENbbQMu',
-    },
-    {
-      name: 'Private Equity Insights',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://pe-insights.com/feed/',
-    },
-    {
-      name: 'Private Equity Wire',
-      category: 'Private Equity',
-      country: 'UK',
-      link: 'https://www.privateequitywire.co.uk/dailynews.xml',
-    },
-    {
-      name: 'Private Equity Info',
-      category: 'Private Equity',
-      country: 'US',
-      link: 'https://blog.privateequityinfo.com/index.php/feed/',
-    },
-    {
-      name: 'Invest Europe',
-      category: 'Private Equity',
-      country: 'EU',
-      link: 'https://www.investeurope.eu/rss',
-    },
-    {
-      name: 'Entreprenerur',
-      category: 'Venture Capital',
-      country: 'Europe',
-      link: 'https://www.entrepreneur.com/topic/venture-capital.rss',
-    },
-    {
-      name: 'NVCA',
-      category: 'Venture Capital',
-      country: 'US',
-      link: 'https://nvca.org/feed/',
-    },
-    {
-      name: 'Growth Business',
-      category: 'Venture Capital',
-      country: 'UK',
-      link: 'https://www.growthbusiness.co.uk/funding/venture-capital/feed/',
-    },
-    {
-      name: 'Playfair Capital',
-      category: 'Venture Capital',
-      country: 'UK',
-      link: 'https://medium.com/feed/playfair-capital-blog',
-    },
-    {
-      name: 'Venture Capital Journal',
-      category: 'Venture Capital',
-      country: 'US',
-      link: 'https://www.venturecapitaljournal.com/feed/',
-    },
-    {
-      name: 'Sifted',
-      category: 'Venture Capital',
-      country: 'Europe',
-      link: 'https://sifted.eu/feed/?post_type=article',
-    },
-    {
-      name: 'Money Control',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://www.moneycontrol.com/rss/iponews.xml',
-    },
-    {
-      name: 'Seeking Alpha',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://seekingalpha.com/tag/ipo-analysis.xml',
-    },
-    {
-      name: 'The Economic Times',
-      category: 'IPO',
-      country: 'India',
-      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/rssfeeds/14655708.cms',
-    },
-    {
-      name: 'Kalkine Media',
-      category: 'IPO',
-      country: 'Australia',
-      link: 'https://kalkinemedia.com/au/news/feed',
-    },
-    {
-      name: 'RTTNews ',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://www.rttnews.com/RSS/IPO.xml',
-    },
-    {
-      name: 'ClickIPO',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://clickipo.com/blog/feed/',
-    },
-    {
-      name: 'CNBC',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://www.cnbc.com/id/10000666/device/rss',
-    },
-    {
-      name: 'IPO Central',
-      category: 'IPO',
-      country: 'US',
-      link: 'https://ipocentral.in/feed/',
-    },
-    {
-      name: 'invezz',
-      category: 'IPO',
-      country: 'Italia',
-      link: 'https://invezz.com/it/notizie/azioni/ipo/feed/',
-    },
-    {
-      name: 'IPO Group',
-      category: 'IPO',
-      country: 'USA',
-      link: 'http://www.ipoguru.in/feed/',
-    },
-    {
-      name: 'Entrepreneur',
-      category: 'IPO',
-      country: 'USA',
-      link: 'https://www.entrepreneur.com/topic/ipo.rss',
-    },
-    {
-      name: 'Nasdaq',
-      category: 'IPO',
-      country: 'USA',
-      link: 'https://www.nasdaq.com/feed/rssoutbound?category=IPOs',
-    },
-    {
-      name: 'Reuters',
-      category: 'M&A',
-      country: 'UKNWN',
-      link: 'https://www.reutersagency.com/feed/?best-topics=deals&post_type=best',
-    },
-    {
-      name: 'The New York Times',
-      category: 'M&A',
-      country: 'US',
-      link: 'https://www.nytimes.com/svc/collections/v1/publish/http://www.nytimes.com/topic/subject/mergers-acquisitions-and-divestitures/rss.xml',
-    },
-    {
-      name: 'The Guardian',
-      category: 'M&A',
-      country: 'UK',
-      link: 'https://www.theguardian.com/business/mergers-and-acquisitions/rss',
-    },
-    {
-      name: 'Deal Room',
-      category: 'M&A',
-      country: 'US',
-      link: 'https://dealroom.net/blog/rss.xml',
-    },
-    {
-      name: 'PRWeb',
-      category: 'M&A',
-      country: 'UKNWN',
-      link: 'https://www.prweb.com/rss.htm',
-    },
-    {
-      name: 'The Economic Times',
-      category: 'Real Estate',
-      country: 'India',
-      link: 'https://economictimes.indiatimes.com/wealth/real-estate/rssfeeds/48997582.cms',
-    },
-    {
-      name: 'The New york times',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://rss.nytimes.com/services/xml/rss/nyt/RealEstate.xml',
-    },
-    {
-      name: 'Zillow Porchlight RSS Feed',
-      category: 'Real Estate',
-      country: 'UKNWN',
-      link: 'https://www.zillow.com/blog/feed/',
-    },
-    {
-      name: 'Redfine',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.redfin.com/blog/feed/',
-    },
-    {
-      name: 'Realestate.com.au',
-      category: 'Real Estate',
-      country: 'Australia',
-      link: 'https://www.realestate.com.au/news/feed/',
-    },
-    {
-      name: 'The New York Times',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/realestate/rss.xml',
-    },
-    {
-      name: 'CNBC',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.cnbc.com/id/10000115/device/rss',
-    },
-    {
-      name: 'Forbes',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.forbes.com/real-estate/feed/',
-    },
-    {
-      name: 'Los Angeles Times',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.latimes.com/business/realestate/rss2.0.xml',
-    },
-    {
-      name: 'Europe Real Estate',
-      category: 'Real Estate',
-      country: 'EU',
-      link: 'https://europe-re.com/rss-feed/news/',
-    },
-    {
-      name: 'Huffinton post',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.huffpost.com/topic/real-estate/feed',
-    },
-    {
-      name: 'Zillow Porchlight RSS Feed',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.zillow.com/blog/feed/',
-    },
-    {
-      name: 'Trulia\'s blog',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.trulia.com/blog/feed/',
-    },
-    {
-      name: 'Property Week',
-      category: 'Real Estate',
-      country: 'UK',
-      link: 'https://www.propertyweek.com/8871.rss',
-    },
-    {
-      name: 'Realtor',
-      category: 'Real Estate',
-      country: 'US',
-      link: 'https://www.realtor.com/news/feed/',
-    },
-  ];
-
-  var counter = 0;
-  var sizej = urls.length;
-
-  urls.forEach(function(Query){
-
-    $.get(Query.link, function (data) {
-      $(data).find("item").each(function () {
-        var el = $(this);
-
-        var content_image = el.find("image").find("url").text();
-        var content_description = el.find("description").text();
-        var is_insight = false;
-        var img_type = 1;
-        if(!content_image){
-          content_image = content_description.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/);
-          img_type = 2;
-          if(!content_image){
-            content_image = Query.logo ? ("../../assets/images/news/" + Query.logo) : "../../dist/img/news.png";
-            img_type = 0;
-          }
-        }
-        content_description = content_description.replace(/<img[^>]*>/,"");
-        if(content_description.length > 5000){
-          is_insight = true;
-        }
-
-        var pubDate = el.find("pubDate").text();
-        var content_timestamp = new Date(pubDate).getTime() / 1000;
-
-        if(content_timestamp > timestamp_1m){
-          var content = {
-            title: el.find("title").text(),
-            description: content_description,
-            image: content_image,
-            pubDate: pubDate,
-            url: Query.link,
-            name: Query.name,
-            category: Query.category,
-            country: Query.country,
-            timestamp: content_timestamp,
-            img_type: img_type,
-            is_insight: is_insight
-          }
-          feeddata.push(content);
-        }
-      });
-
-      counter++;
-      if(counter == sizej-1){
-        showNews(feeddata)
-      }
-    }).fail(function() {
-      counter++;
-      if(counter == sizej-1){
-        showNews(feeddata)
-      }
-    });
-
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getNewsFeed.php",
+    success: function(data) {
+      obj = jQuery.parseJSON(data);
+      showNews(obj)
+    }
   });
+
 }
 
 function showNews(feeddata){
@@ -509,24 +291,27 @@ function showNews(feeddata){
   });
   if('<?=$pageIndex; ?>' == ""){
     feeddata.forEach(function(newsfeed){
-      if(newsfeed.is_insight){
+      if(newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)){
+        newsfeed.image = newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)[1];
+      }
+      if(newsfeed.is_insight == 1){
         insight_counter++;
         if(newsfeed.img_type == 2){
-          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
         }else if(newsfeed.img_type == 1){
-          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
         }else{
-          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="../../dist/img/news.png" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+          $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="../../dist/img/news.png" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
         }
       }else{
         if(newsfeed.img_type == 2){
-          $(".carousel-inner").append('<div class="carousel-item" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="feed image" class="img-fluid"><div class="carousel-caption"><h3>'+newsfeed.title+'</h3></div></div>')
+          $(".carousel-inner").append('<div class="carousel-item" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="feed image" class="img-fluid"><div class="carousel-caption"><h3>'+newsfeed.title+'</h3></div></div>')
           $(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+carousel_counter+'"></li>');
           carousel_counter++;
         }else if(newsfeed.img_type == 1){
-          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
         }else{
-          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+          $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
         }
       }
 
@@ -534,24 +319,24 @@ function showNews(feeddata){
   }else{
     feeddata.forEach(function(newsfeed){
       if('<?=$pageIndex; ?>' == newsfeed.category){
-        if(newsfeed.is_insight){
+        if(newsfeed.is_insight == 1){
           insight_counter++;
           if(newsfeed.img_type == 2){
-            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
           }else if(newsfeed.img_type == 1){
-            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
           }else{
-            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+newsfeed.pubDate+'</small></div>');
+            $(".insight_news_container").append('<div class="col-md-6 col-sm-12 insight_news_feed" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid"><span class="insight_news_feed_text">'+newsfeed.title+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small></div>');
           }
         }else{
           if(newsfeed.img_type == 2){
-            $(".carousel-inner").append('<div class="carousel-item" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image[1]+'" alt="feed image" class="img-fluid"><div class="carousel-caption"><h3>'+newsfeed.title+'</h3></div></div>')
+            $(".carousel-inner").append('<div class="carousel-item" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="feed image" class="img-fluid"><div class="carousel-caption"><h3>'+newsfeed.title+'</h3></div></div>')
             $(".carousel-indicators").append('<li data-target="#myCarousel" data-slide-to="'+carousel_counter+'"></li>');
             carousel_counter++;
           }else if(newsfeed.img_type == 1){
-            $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+            $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
           }else{
-            $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?category='+encodeURIComponent(newsfeed.category)+'&feedurl='+encodeURIComponent(newsfeed.url)+'&posttitle='+encodeURIComponent(newsfeed.title)+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+newsfeed.pubDate+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+            $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
           }
         }
       }

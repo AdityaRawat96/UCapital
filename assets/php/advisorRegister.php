@@ -32,8 +32,8 @@ if(mysqli_num_rows($result) > 0 ){
         copy('../uploads/Advisor/'.$rowAdvisor['folder_name'].'/'.$advisor_profile_picture, '../profiles/'.$advisor_profile_picture);
       }
 
-      $sql = "INSERT INTO users (user_type, first_name, last_name, email, password, profile_picture)
-      VALUES (2, '$first_name', '$last_name', '$email', '$password', '$advisor_profile_picture')";
+      $sql = "INSERT INTO users (verified, user_type, first_name, last_name, email, password, profile_picture)
+      VALUES ('1', 2, '$first_name', '$last_name', '$email', '$password', '$advisor_profile_picture')";
 
       if ($con->query($sql)){
 

@@ -39,6 +39,7 @@ if(isset($_SESSION['email'])){
                   <li> <a href="#MaFavorites" data-toggle="tab" class="active"> M&As </a> </li>
                   <li> <a href="#InvestorsFavorites" data-toggle="tab"> Investors </a> </li>
                   <li> <a href="#ADVISORSFavorites" data-toggle="tab"> Advisors </a> </li>
+                  <li> <a href="#newsSection" data-toggle="tab"> News </a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -214,25 +215,128 @@ if(isset($_SESSION['email'])){
                       ?>
                     </div>
                   </div>
+
+
+                  <div class="tab-pane" id="newsSection"><br>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-12">
+                            <h3>Latest News</h3><br>
+                          </div>
+                        </div>
+
+                        <div class="row news_loader_search">
+                          <div class="col-12">
+                            <center>
+                              <div>
+                                <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                                <path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                                  <animateTransform
+                                  attributeName="transform"
+                                  attributeType="XML"
+                                  type="rotate"
+                                  dur="1s"
+                                  from="0 50 50"
+                                  to="360 50 50"
+                                  repeatCount="indefinite" />
+                                </path>
+                              </svg>
+                            </div>
+                          </center>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="latest_news_container row col-12">
+
+                        </div>
+                      </div><br><br>
+                      <div class="row">
+                        <center>
+                          <ul class="pagination paginationList">
+                          </ul>
+                        </center>
+                      </div><br><br>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-        </div><!-- container-fluid -->
-      </section>
-      <!-- content -->
-    </div>
-    <!-- content-wrapper -->
+      </div><!-- container-fluid -->
+    </section>
+    <!-- content -->
+  </div>
+  <!-- content-wrapper -->
 
-    <?php
+  <?php
+}
+include '../elements/footer.php';
+?>
+<script type="text/javascript" src="../../plugins/pagination/pagination.min.js"></script>
+
+<script type="text/javascript">
+
+var search_query = '<?=$search_query ?>';
+
+$(document).ready(function(){
+  $(".input-serach").val(search_query);
+})
+
+GetFeeds();
+
+function GetFeeds(){
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getNewsFeed.php",
+    data: {
+      search_query: search_query
+    },
+    success: function(data) {
+      obj = jQuery.parseJSON(data);
+      showNews(obj)
+    }
+  });
+}
+
+function showNews(feeddata){
+  feeddata.sort(function(a, b) {
+    return parseFloat(b.timestamp) - parseFloat(a.timestamp);
+  });
+
+
+  if(feeddata.length > 0){
+    feeddata.forEach(function(newsfeed){
+      if(newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)){
+        newsfeed.image = newsfeed.image.match(/<img[^>]+src="?([^"\s]+)"?\s*\/>/)[1];
+      }
+      if(newsfeed.img_type == 1){
+        $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'../news/news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'" alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+      }else{
+        $(".latest_news_container").append('<div class="pagination-item latest_news_feed col-md-6 col-sm-12" onclick="feed_detail('+"'"+'../news/news.php?id='+newsfeed.id+"'"+')"><img src="'+newsfeed.image+'"  alt="" class="img-fluid latest_news_feed_image"><div class="latest_news_feed_content"><span class="news_feed_category">'+newsfeed.category+'</span><br><small>'+new Date(newsfeed.feed_timestamp*100)+'</small><br><span class="latest_news_text">'+newsfeed.title+'</span></div></div>')
+      }
+    });
+  }else{
+    $("#newsSection").html('<div class="row"><center><h4>No results found!</h4></center></div>')
   }
-  include '../elements/footer.php';
-  ?>
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $(".input-serach").val('<?=$search_query ?>');
-  })
+
+  $('.paginationList').rpmPagination({
+    domElement: '.pagination-item',
+    limit: 10,
+  });
+  $(".news_loader_search").fadeOut();
+
+}
+
+function feed_detail(feedurl){
+  location.href = feedurl;
+}
+
+
 </script>
 <?php
 }else{

@@ -38,7 +38,11 @@ if(isset($_SESSION['email'])){
                   <img class="profile-user-img profile-img-image74 rounded-circle"
                   src="
                   <?php if($_SESSION['profile_picture'] != "" && $_SESSION['profile_picture'] != null){
-                    echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+                    if(filter_var($_SESSION['profile_picture'], FILTER_VALIDATE_URL)){
+                      echo trim($_SESSION['profile_picture']);
+                    }else{
+                      echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+                    }
                   }else{
                     echo '../../dist/img/avatar0.png';
                   } ?>
@@ -106,6 +110,22 @@ if(isset($_SESSION['email'])){
                 <div class="col-md-7">
                   <p class="name-pro987987"> TIPOLOGIA PROFILO </p>
                   <p class="name-main-heading"> <?=$_SESSION['first_name']." ".$_SESSION['last_name'] ?> </p>
+                  <?php
+
+                      if($_SESSION['user_type'] == 2){
+                        $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
+                        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+                        if(mysqli_num_rows($result) > 0 ){
+                          while($row = mysqli_fetch_array($result)){
+                            ?>
+                            <p class="contact-details-email-number"> <i class="fas fa-user"></i> <?=$row['role']?> </p>
+                            <p class="contact-details-email-number"> <i class="fas fa-building"></i> <?=$row['company']?> </p>
+                            <p class="contact-details-email-number"> <i class="fas fa-globe"></i> <?=$row['website']?> </p>
+                            <?php
+                          }
+                        }
+                      }
+                      ?>
                   <p class="contact-details-email-number"> <i class="far fa-envelope"></i> <?=$_SESSION['email']?> </p>
                   <p class="contact-details-email-number"> <i class="fas fa-phone-alt"></i> <?=$_SESSION['mobile']?> </p>
                 </div>

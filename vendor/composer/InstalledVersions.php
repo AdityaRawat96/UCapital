@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8eb35b2cecd0b17568007ac00e13a4432e24dd6f',
+    'reference' => '72bf1158524b6723100d87f6d3df94c12d913f1d',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,25 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8eb35b2cecd0b17568007ac00e13a4432e24dd6f',
+      'reference' => '72bf1158524b6723100d87f6d3df94c12d913f1d',
+    ),
+    'abraham/twitteroauth' => 
+    array (
+      'pretty_version' => '3.1.0',
+      'version' => '3.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '51a502cde3c4f414ea0f98827afbeca1f19dfe2d',
+    ),
+    'composer/ca-bundle' => 
+    array (
+      'pretty_version' => '1.2.10',
+      'version' => '1.2.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9fdb22c2e97a614657716178093cd1da90a64aa8',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -70,6 +88,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '1dc8d9cba3897165e16d12bb13d813afb1eb3fe7',
+    ),
+    'hybridauth/hybridauth' => 
+    array (
+      'pretty_version' => '3.7.1',
+      'version' => '3.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0ec1b8cb8b230aae739422c5e42bc5733b3a7316',
     ),
     'paragonie/random_compat' => 
     array (

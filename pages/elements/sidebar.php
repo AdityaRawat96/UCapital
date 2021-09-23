@@ -132,7 +132,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="../ma/post_ad.php" class="nav-link post-sub-nav">
+              <a href="../ma/deals.php" class="nav-link post-sub-nav">
                 <p> Post AD LITE </p>
               </a>
             </li>
@@ -150,9 +150,7 @@
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-
         </li>
-
 
       </ul>
     </nav>

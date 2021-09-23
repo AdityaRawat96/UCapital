@@ -23,13 +23,17 @@
 
         <div class="col-md-12">
           <div class="card profile-picture-page4">
-            <div class="row">
+            <div style="width: 100%; display: flex; flex-direction: columns; flex-wrap: wrap;">
 
-              <div class="col-md-3">
+              <div>
                 <img class="profile-img-image74 rounded-circle"
                 src="
                 <?php if($_SESSION['profile_picture'] != "" && $_SESSION['profile_picture'] != null){
-                  echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+                  if(filter_var($_SESSION['profile_picture'], FILTER_VALIDATE_URL)){
+                    echo trim($_SESSION['profile_picture']);
+                  }else{
+                    echo '../../assets/profiles/'.$_SESSION['profile_picture'].'?'.time();
+                  }
                 }else{
                   echo '../../dist/img/avatar0.png';
                 } ?>
@@ -37,16 +41,45 @@
                 alt="User profile picture">
               </div>
 
-              <div class="col-md-7">
-                <p class="name-pro987987"> TIPOLOGIA PROFILO </p>
-                <p class="name-main-heading"> <?=$_SESSION['first_name']." ".$_SESSION['last_name'] ?> </p>
+              <div style="margin-left: 5vw; flex: 1;">
+                <?php
+                if($_SESSION['user_type'] == 0){
+                  $user_type = "Super-Admin";
+                }else if($_SESSION['user_type'] == 1){
+                  $user_type = "Admin";
+                }else if($_SESSION['user_type'] == 2){
+                  $user_type = "Advisor";
+                }else if($_SESSION['user_type'] == 3){
+                  $user_type = "User";
+                }
+                ?>
+                <div>
+                  <span class="bg-danger today-timeline-aea" style="border-radius: 5px; padding: 5px;"> <?=$user_type; ?> </span>
+                </div><br>
+                <h3><b> <?=$_SESSION['first_name']." ".$_SESSION['last_name'] ?> </b></h3>
+                <?php
+
+                if($_SESSION['user_type'] == 2){
+                  $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
+                  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+                  if(mysqli_num_rows($result) > 0 ){
+                    while($row = mysqli_fetch_array($result)){
+                      ?>
+                      <p class="contact-details-email-number"> <i class="fas fa-user"></i> <?=$row['role']?> </p>
+                      <p class="contact-details-email-number"> <i class="fas fa-building"></i> <?=$row['company']?> </p>
+                      <p class="contact-details-email-number"> <i class="fas fa-globe"></i> <?=$row['website']?> </p>
+                      <?php
+                    }
+                  }
+                }
+                ?>
                 <p class="contact-details-email-number"> <i class="far fa-envelope"></i> <?=$_SESSION['email']?> </p>
                 <p class="contact-details-email-number"> <i class="fas fa-phone-alt"></i> <?=$_SESSION['mobile']?> </p>
               </div>
 
-              <div class="col-md-2">
+              <div>
                 <div class="float-sm-right">
-                  <a href="edit-profile.php" class="eidt-profile-btn our-border-btn"> <i class="fas fa-pencil-alt"></i> Edit Profile </a>
+                  <a href="edit-profile.php" class="eidt-profile-btn our-border-btn" style="margin-top: 0px;"> <i class="fas fa-pencil-alt"></i> Edit Profile </a>
                 </div>
               </div>
 
