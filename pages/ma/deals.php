@@ -548,7 +548,7 @@ if (isset($_SESSION['email'])) {
             insertData = getBuyRealEstateData();
           } else if (asset_type === "NPE") {
             insertData = getBuyNPEData();
-          } else if (asset_type === "Credit") {
+          } else if (asset_type === "Credits") {
             insertData = getBuyCreditData();
           }
         } else if (offer == "company") {
@@ -562,8 +562,8 @@ if (isset($_SESSION['email'])) {
             insertData = getSellRealEstateData();
           } else if (asset_type === "NPE") {
             insertData = getSellNPEData();
-          } else if (asset_type === "Credit") {
-            insertData = getBuyCreditData();
+          } else if (asset_type === "Credits") {
+            insertData = getSellCreditData();
           }
         } else if (offer == "company") {
 
@@ -743,6 +743,33 @@ if (isset($_SESSION['email'])) {
       response['npe_judicialized'] = $(".npe_judicialized").val();
       response['npe_borrower_details'] = $(".npe_borrower_details").val();
       response['npe_ratio'] = $(".npe_ratio").val();
+      return response;
+    }
+
+    function getSellCreditData() {
+      response = {};
+      response['credit_default_currency'] = $(".credit_default_currency").val();
+      response['credit_borrower_type'] = $(".credit_borrower_type").val();
+      response['credit_borrower_type_category'] = $(".credit_borrower_type_category").val();
+      response['credit_type'] = $(".credit_type").val();
+      response['credit_typology'] = $(".credit_typology").val();
+      response['credit_maturity'] = $(".credit_maturity").val();
+      response['credit_product_type'] = $(".credit_product_type").val();
+      response['credit_collateral_type'] = $(".credit_collateral_type").val();
+      response['credit_hq_country'] = $(".credit_hq_country").val();
+      response['credit_hq_city'] = $(".credit_hq_city").val();
+      response['credit_state'] = $(".credit_state").val();
+      response['credit_post_code'] = $(".credit_post_code").val();
+      response['credit_lien_position'] = $(".credit_lien_position").val();
+      response['credit_description'] = $(".credit_description").val();
+      response['credit_original_amount'] = $(".credit_original_amount").val();
+      response['credit_asking_price'] = $(".credit_asking_price").val();
+      response['credit_market_value'] = $(".credit_market_value").val();
+      response['credit_judicialized'] = $(".credit_judicialized").val();
+      response['credit_borrower_details'] = $(".credit_borrower_details").val();
+      response['credit_ratio_ob'] = $(".credit_ratio_ob").val();
+      response['credit_rate'] = $(".credit_rate").val();
+      response['credit_discounted_ratio'] = $(".credit_discounted_ratio").val();
       return response;
     }
   </script>
