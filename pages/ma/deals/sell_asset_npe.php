@@ -18,7 +18,7 @@
       <span>Loan/Product type</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control product_type" name="product_type">
+      <select class="form-control product_type npe_product_type" name="product_type">
         <option value="" selected disabled>Choose type of Loan/Product</option>
         <option value="NPL">NPL</option>
         <option value="Secured">Secured</option>
@@ -32,7 +32,7 @@
         <span>Collateral</span>
       </div>
       <div class="col-md-9 col-sm-12 input-container">
-        <select class="form-control collateral_type" name="collateral_type">
+        <select class="form-control collateral_type npe_collateral_type" name="collateral_type">
           <option value="" selected disabled>Choose type of Collateral</option>
           <option value="Real Estate">Real Estate</option>
           <option value="Cash">Cash</option>
@@ -50,14 +50,14 @@
     <div class="col-md-9 col-sm-12 input-container">
       <div class="row location_holder">
         <div class="col-md-12 col-sm-12 location_container">
-          <select class="form-control hq_country" name="hq_country">
+          <select class="form-control hq_country npe_hq_country" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city" name="hq_city">
+          <select class="form-control hq_city npe_hq_city" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
-          <input type="text" name="state" value="" class="form-control" placeholder="Enter State">
-          <input type="number" name="post_code" value="" class="form-control" placeholder="Enter Zip/Postal code">
+          <input type="text" name="state" value="" class="form-control npe_state" placeholder="Enter State">
+          <input type="number" name="post_code" value="" class="form-control npe_post_code" placeholder="Enter Zip/Postal code">
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
       <span>Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="description" rows="3" class="form-control" placeholder="Type a description"></textarea>
+      <textarea name="description" rows="3" class="form-control npe_description" placeholder="Type a description"></textarea>
     </div>
   </div>
   <div class="row">
@@ -75,7 +75,7 @@
       <span>Default Currency</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control default_currency" name="company_type">
+      <select class="form-control default_currency npe_default_currency" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
@@ -92,7 +92,7 @@
       <span>Original Amount</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="original_amount" value="" class="form-control" placeholder="Enter a value">
+      <input type="number" name="original_amount" value="" class="form-control npe_original_amount" placeholder="Enter a value">
     </div>
   </div>
   <div class="row">
@@ -100,7 +100,7 @@
       <span>Asking Price</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="asking_price" value="" class="form-control" placeholder="Enter a value">
+      <input type="number" name="asking_price" value="" class="form-control npe_asking_price" placeholder="Enter a value">
     </div>
   </div>
   <div class="row">
@@ -108,7 +108,7 @@
       <span>Market Value</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="market_value" value="" class="form-control" placeholder="Enter a value">
+      <input type="number" name="market_value" value="" class="form-control npe_market_value" placeholder="Enter a value">
     </div>
   </div>
   <div class="row">
@@ -116,7 +116,7 @@
       <span>Lien Position</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control lien_position" name="lien_position">
+      <select class="form-control lien_position npe_lien_position" name="lien_position">
         <option value="" selected disabled>Choose lien position</option>
         <option value="1st">1st</option>
         <option value="2nd">2nd</option>
@@ -129,7 +129,7 @@
       <span>Judicialized</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control judicialized" name="judicialized">
+      <select class="form-control judicialized npe_judicialized" name="judicialized">
         <option value="" selected disabled>Choose an option</option>
         <option value="1">Yes</option>
         <option value="0">No</option>
@@ -141,7 +141,7 @@
       <span>Borrower Details</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="borrower_details" rows="3" class="form-control" placeholder="Type borrower details"></textarea>
+      <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details" placeholder="Type borrower details"></textarea>
     </div>
   </div>
   <div class="row">
@@ -149,7 +149,7 @@
       <span>Ratio</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control ratio" name="ratio">
+      <select class="form-control ratio npe_ratio" name="ratio">
         <option value="" selected disabled>Choose an option</option>
         <option value="OB">OB</option>
         <option value="Rate">Rate</option>

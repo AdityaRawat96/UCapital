@@ -546,9 +546,6 @@ if (isset($_SESSION['email'])) {
           var asset_type = $(".asset_type").val();
           if (asset_type === "Real Estate") {
             insertData = getBuyRealEstateData();
-            insertData["asset_type"] = asset_type;
-            insertData["offer"] = offer;
-            insertData["deal_type"] = deal_type;
           } else if (asset_type === "NPE") {
             insertData = getBuyNPEData();
           } else if (asset_type === "Credit") {
@@ -563,11 +560,8 @@ if (isset($_SESSION['email'])) {
           var asset_type = $(".asset_type").val();
           if (asset_type === "Real Estate") {
             insertData = getSellRealEstateData();
-            insertData["asset_type"] = asset_type;
-            insertData["offer"] = offer;
-            insertData["deal_type"] = deal_type;
           } else if (asset_type === "NPE") {
-            insertData = getBuyNPEData();
+            insertData = getSellNPEData();
           } else if (asset_type === "Credit") {
             insertData = getBuyCreditData();
           }
@@ -575,6 +569,10 @@ if (isset($_SESSION['email'])) {
 
         }
       }
+
+      insertData["asset_type"] = asset_type;
+      insertData["offer"] = offer;
+      insertData["deal_type"] = deal_type;
 
       console.log(insertData);
 
@@ -626,6 +624,40 @@ if (isset($_SESSION['email'])) {
       response['re_who_i_am'] = $(".re_who_i_am_buy").val();
       response['re_aum'] = $(".re_aum_buy").val();
       response['re_general_description'] = $(".re_general_description_buy").val();
+      return response;
+    }
+
+    function getBuyNPEData() {
+      response = {};
+      response['npe_type'] = $(".npe_type_buy").val();
+      response['npe_product_type'] = $(".npe_product_type_buy").val();
+      response['npe_hq_country'] = $(".npe_hq_country_buy").val();
+      response['npe_hq_city'] = $(".npe_hq_city_buy").val();
+      response['npe_state'] = $(".npe_state_buy").val();
+      response['npe_post_code'] = $(".npe_post_code_buy").val();
+      response['npe_description'] = $(".npe_description_buy").val();
+      response['npe_default_currency'] = $(".npe_default_currency_buy").val();
+      response['npe_value'] = $(".npe_value_buy").val();
+      if ($(".npe_value_buy:checked").val() === "undisclosed") {} else if ($(".npe_value_buy:checked").val() === "fixed") {
+        response['npe_value_min'] = $(".npe_value_val_buy").val();
+        response['npe_value_max'] = $(".npe_value_val_buy").val();
+      } else if ($(".npe_value_buy:checked").val() === "range") {
+        assetVal = $(".npe_value_sel_buy").val();
+        index = assetVal.lastIndexOf("|");
+        if (index === -1) {
+          response['npe_value_min'] = assetVal;
+          response['npe_value_max'] = null;
+        } else {
+          response['npe_value_min'] = assetVal.substring(0, index);
+          response['npe_value_max'] = assetVal.substring(index + 1);
+        }
+      }
+      response['npe_lien_position'] = $(".npe_lien_position_buy").val();
+      response['npe_judicialized'] = $(".npe_judicialized_buy").val();
+      response['npe_borrower_details'] = $(".npe_borrower_details_buy").val();
+      response['npe_who_i_am'] = $(".npe_who_i_am").val();
+      response['npe_aum'] = $(".npe_aum_buy").val();
+      response['npe_ratio'] = $(".npe_ratio_buy").val();
       return response;
     }
 
@@ -690,6 +722,27 @@ if (isset($_SESSION['email'])) {
       response['re_key_elements'] = $(".re_key_elements").val();
       response['re_image'] = $(".jFiler-item-title").val();
       response['re_general_description'] = $(".re_general_description").val();
+      return response;
+    }
+
+    function getSellNPEData() {
+      response = {};
+      response['npe_type'] = $(".npe_type").val();
+      response['npe_product_type'] = $(".npe_product_type").val();
+      response['npe_collateral_type'] = $(".npe_collateral_type").val();
+      response['npe_hq_country'] = $(".npe_hq_country").val();
+      response['npe_hq_city'] = $(".npe_hq_city").val();
+      response['npe_state'] = $(".npe_state").val();
+      response['npe_post_code'] = $(".npe_post_code").val();
+      response['npe_description'] = $(".npe_description").val();
+      response['npe_default_currency'] = $(".npe_default_currency").val();
+      response['npe_original_amount'] = $(".npe_original_amount").val();
+      response['npe_asking_price'] = $(".npe_asking_price").val();
+      response['npe_market_value'] = $(".npe_market_value").val();
+      response['npe_lien_position'] = $(".npe_lien_position").val();
+      response['npe_judicialized'] = $(".npe_judicialized").val();
+      response['npe_borrower_details'] = $(".npe_borrower_details").val();
+      response['npe_ratio'] = $(".npe_ratio").val();
       return response;
     }
   </script>
