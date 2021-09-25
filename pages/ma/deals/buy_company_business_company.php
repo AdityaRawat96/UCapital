@@ -3,13 +3,14 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>
     </div>
+
     <div class="col-md-9 col-sm-12 input-container">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
-          <select class="form-control hq_country" name="hq_country">
+          <select class="form-control hq_country bc_hq_country_buy" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city" name="hq_city">
+          <select class="form-control hq_city bc_hq_city_buy" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
         </div>
@@ -24,7 +25,7 @@
       <span>Sector</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control">
+      <select class="form-control bc_sector_sel_buy">
         <option value="" selected disabled>Choose Sector</option>
         <option value="Information Technology">Information Technology</option>
         <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -42,7 +43,7 @@
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="industry" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+      <select class="industry bc_industry_sel_buy" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
         <option value="Accounting">Accounting</option>
@@ -362,7 +363,7 @@
       <span>Default Currency</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control default_currency" name="company_type">
+      <select class="form-control default_currency bc_default_currency_buy" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
@@ -383,7 +384,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="preferred_revenue" class="deal-radio">
+            <input type="radio" value="undisclosed" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
           </span>
         </div>
         <div class="custom-file">
@@ -393,11 +394,11 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="preferred_revenue" class="deal-radio">
+            <input type="radio" value="fixed" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
           </span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Type a value">
+          <input type="number" class="form-control bc_actual_revenue_val_buy" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
@@ -406,16 +407,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="preferred_revenue" class="deal-radio">
+            <input type="radio" value="range" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
           </span>
         </div>
         <div class="custom-file">
-          <select class="form-control" name="preferred_revenue_range">
+          <select class="form-control bc_actual_revenue_sel_buy" name="preferred_revenue_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="">&#60; 1 million</option>
-            <option value="">1 &#60; revenue &#60; 10 million</option>
-            <option value="">10 &#60; revenue &#60; 50 million</option>
-            <option value="">&#62; 50 million</option>
+            <option value="0|1000000">&#60; 1 million</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+            <option value="50000000|100000000"> &#62; 50 milion</option>
           </select>
         </div>
       </div>
@@ -428,7 +429,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Insert a value from -100 to 100">
+          <input type="number" class="form-control bc_ebidta_margin_buy" placeholder="Insert a value from -100 to 100">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -447,7 +448,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 1st year">
+          <input type="number" class="form-control bc_for_rev_1_buy" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -463,7 +464,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 1st year">
+          <input type="number" class="form-control bc_for_ebd_1_buy" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -480,7 +481,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
+          <input type="number" class="form-control bc_for_rev_2_buy" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -496,7 +497,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 2nd year">
+          <input type="number" class="form-control bc_for_ebd_2_buy" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -513,7 +514,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
+          <input type="number" class="form-control bc_for_rev_3_buy" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -529,7 +530,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Enter a value for 3rd year">
+          <input type="number" class="form-control bc_for_ebd_3_buy" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -537,16 +538,17 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Investment Size</span>
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" value=""> Less than 500k<br>
-      <input type="checkbox" name="investment_size" value=""> From 500k to 1 mln<br>
-      <input type="checkbox" name="investment_size" value=""> From 1 mln to 10 mln<br>
-      <input type="checkbox" name="investment_size" value=""> More than 10 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|50000"> Less than 500k<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="50000|1000000"> From 500k to 1 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="10000000|20000000"> More than 10 mln<br>
     </div>
   </div>
   <div class="row">
@@ -554,7 +556,7 @@
       <span>Who I am</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control default_currency" name="who_i_am">
+      <select class="form-control default_currency bc_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
         <option value="Individual">Individual</option>
         <option value="Corporation">Corporation</option>
@@ -569,7 +571,7 @@
       <span>AUM</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="aum" value="" class="form-control" placeholder="Enter a value">
+      <input type="number" name="aum" value="" class="form-control bc_aum" placeholder="Enter a value">
     </div>
   </div>
   <div class="row">
@@ -577,7 +579,7 @@
       <span>Number of Investments</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="number_of_investments" value="" class="form-control" placeholder="Enter a value">
+      <input type="number" name="number_of_investments" value="" class="form-control bc_number_of_investments" placeholder="Enter a value">
     </div>
   </div>
   <div class="row">
@@ -586,10 +588,10 @@
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" value=""> Less than 1 mln<br>
-      <input type="checkbox" name="investment_size" value=""> From 1 to 10 mln<br>
-      <input type="checkbox" name="investment_size" value=""> From 10 mln to 50 mln<br>
-      <input type="checkbox" name="investment_size" value=""> More than 50 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_amount_buy" value="50000000|100000000"> More than 50 mln<br>
     </div>
   </div>
   <div class="row">
@@ -597,7 +599,7 @@
       <span>What I want to do</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control what_i_want" name="what_i_want">
+      <select class="form-control what_i_want bc_what_i_want_buy" name="what_i_want">
         <option value="" selected disabled>Select an option</option>
         <option value="Buy majority">Buy majority</option>
         <option value="Buy totality">Buy totality</option>
@@ -614,7 +616,7 @@
       <span>General Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="general_description" rows="3" class="form-control" placeholder="Type a description"></textarea>
+      <textarea name="general_description" rows="3" class="form-control bc_description_buy" placeholder="Type a description"></textarea>
     </div>
   </div>
   <div class="row">
@@ -622,7 +624,7 @@
       <span>What are we looking for</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="looking_for" rows="3" class="form-control" placeholder="Type a description"></textarea>
+      <textarea name="looking_for" rows="3" class="form-control bc_looking_for" placeholder="Type a description"></textarea>
     </div>
   </div>
 
@@ -632,7 +634,7 @@
       <span class="deal-subhead">(Max 5MB)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <div class="input-group">
+      <div class="input-group bc_image_buy">
         <input type="text" id="adImage-list" hidden value="">
         <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
       </div>

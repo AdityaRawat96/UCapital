@@ -2,10 +2,8 @@
 session_start();
 include('../../assets/php/connection.php');
 
-// var_dump($_POST['dealData']);
-
 $data = $_POST['dealData'];
-
+// var_dump($_POST['dealData']);
 $asset_type = array_key_exists('asset_type', $data) ? $data['asset_type'] : "";
 if ($asset_type == "Real Estate") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
@@ -97,7 +95,54 @@ if ($asset_type == "Real Estate") {
   } else {
     $sql = "INSERT INTO `credit` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `CREDIT_TYPE`, `BORROWER`, `BORROWER_SUBCAT`, `CURRENCY`, `TYPOLOGY`, `MATURITY`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL_CODE`, `LIEN_POSITION`, `DESCRIPTION`, `ORIGINAL_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `JUDICIALIZED`, `BORROWER_DETAILS`, `RATIO_OB`, `RATE`, `DISCOUNTED_RATIO`, `WHO_I_AM`, `AUM`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$credit_type', '$credit_borrower_type', '$credit_borrower_type_category', '$credit_default_currency', '$credit_typology', '$credit_maturity', '$credit_product_type', '$credit_collateral_type', '$credit_hq_country', '$credit_hq_city', '$credit_state', '$credit_post_code', '$credit_lien_position', '$credit_description', $credit_original_amount, $credit_asking_price, $credit_market_value, '$credit_judicialized', '$credit_borrower_details', $credit_ratio_ob, $credit_rate, $credit_discounted_ratio, '$credit_who_i_am', $credit_aum)";
   }
+} else if ($asset_type == "Business Company" || $asset_type == "Start Up") {
+  $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
+  $offer = array_key_exists('offer', $data) ? $data['offer'] : "";
+  $country = array_key_exists('hq_country', $data) ? $data['hq_country'] : "";
+  $city = array_key_exists('hq_city', $data) ? $data['hq_city'] : "";
+  $sector = array_key_exists('sector_sel', $data) ? $data['sector_sel'] : "";
+  $industry = array_key_exists('industry_sel', $data) ? $data['industry_sel'] : "";
+  $startup_type = array_key_exists('startup_type', $data) ? $data['startup_type'] : "";
+  $foundation_year = (array_key_exists('foundation_year', $data) && $data['foundation_year'] != "") ? $data['foundation_year'] : 0;
+  $default_currency = array_key_exists('default_currency', $data) ? $data['default_currency'] : "";
+  $company_value_type = array_key_exists('company_value_type', $data) ? $data['company_value_type'] : "";
+  $company_value_min = (array_key_exists('company_value_min', $data) && $data['company_value_min'] != "") ? $data['company_value_min'] : 0;
+  $company_value_max = (array_key_exists('company_value_max', $data) && $data['company_value_max'] != "") ? $data['company_value_max'] : 0;
+  $actual_revenue_type = array_key_exists('actual_revenue_type', $data) ? $data['actual_revenue_type'] : "";
+  $actual_revenue_min = (array_key_exists('actual_revenue_min', $data) && $data['actual_revenue_min'] != "") ? $data['actual_revenue_min'] : 0;
+  $actual_revenue_max = (array_key_exists('actual_revenue_max', $data) && $data['actual_revenue_max'] != "") ? $data['actual_revenue_max'] : 0;
+  $investment_required_value = array_key_exists('investment_required_value', $data) ? $data['investment_required_value'] : "";
+  $investment_required_min = (array_key_exists('investment_required_min', $data) && $data['investment_required_min'] != "") ? $data['investment_required_min'] : 0;
+  $investment_required_max = (array_key_exists('investment_required_max', $data) && $data['investment_required_max'] != "") ? $data['investment_required_max'] : 0;
+  $company_business = array_key_exists('company_business', $data) ? $data['company_business'] : "";
+  $area_of_activity = array_key_exists('area_of_activity', $data) ? $data['area_of_activity'] : "";
+  $scalability = array_key_exists('scalability', $data) ? $data['scalability'] : "";
+  $scalability_area = array_key_exists('scalability_area', $data) ? $data['scalability_area'] : "";
+  $market_share = (array_key_exists('market_share', $data) && $data['market_share'] != "") ? $data['market_share'] : 0;
+  $number_of_employees_min = (array_key_exists('number_of_employees_min', $data) && $data['number_of_employees_min'] != "") ? $data['number_of_employees_min'] : 0;
+  $number_of_employees_max = (array_key_exists('number_of_employees_max', $data) && $data['number_of_employees_max'] != "") ? $data['number_of_employees_max'] : 0;
+  $ebidta_margin = (array_key_exists('ebidta_margin', $data) && $data['ebidta_margin'] != "") ? $data['ebidta_margin'] : 0;
+  $for_rev_1 = (array_key_exists('for_rev_1', $data) && $data['for_rev_1'] != "") ? $data['for_rev_1'] : 0;
+  $for_ebd_1 = (array_key_exists('for_ebd_1', $data) && $data['for_ebd_1'] != "") ? $data['for_ebd_1'] : 0;
+  $for_rev_2 = (array_key_exists('for_rev_2', $data) && $data['for_rev_2'] != "") ? $data['for_rev_2'] : 0;
+  $for_ebd_2 = (array_key_exists('for_ebd_2', $data) && $data['for_ebd_2'] != "") ? $data['for_ebd_2'] : 0;
+  $for_rev_3 = (array_key_exists('for_rev_3', $data) && $data['for_rev_3'] != "") ? $data['for_rev_3'] : 0;
+  $for_ebd_3 = (array_key_exists('for_ebd_3', $data) && $data['for_ebd_3'] != "") ? $data['for_ebd_3'] : 0;
+  $aum = (array_key_exists('aum', $data) && $data['aum'] != "") ? $data['aum'] : 0;
+  $key_elements = array_key_exists('key_elements', $data) ? $data['key_elements'] : "";
+  $number_of_investments = (array_key_exists('number_of_investments', $data) && $data['number_of_investments'] != "") ? $data['number_of_investments'] : 0;
+  $preferred_investment_amount_min = (array_key_exists('preferred_investment_amount_min', $data) && $data['preferred_investment_amount_min'] != "") ? $data['preferred_investment_amount_min'] : 0;
+  $preferred_investment_amount_max = (array_key_exists('preferred_investment_amount_max', $data) && $data['preferred_investment_amount_max'] != "") ? $data['preferred_investment_amount_max'] : 0;
+  $who_i_am = array_key_exists('who_i_am', $data) ? $data['who_i_am'] : "";
+  $looking_for = array_key_exists('looking_for', $data) ? $data['looking_for'] : "";
+  $what_i_want = array_key_exists('what_i_want', $data) ? $data['what_i_want'] : "";
+  $description = array_key_exists('description', $data) ? $data['description'] : "";
+  $image = array_key_exists('image', $data) ? $data['image'] : "";
+  $userId = $_SESSION['id'];
+  $sql = "INSERT INTO `business_company` (`USER_ID`, `DEAL`, `OFFER`, `COMPANY_TYPE`, `SUB_COMPANY_TYPE`, `COUNTRY`, `CITY`, `FOUNDATION_YEAR`, `CURRENCY`, `COMPANY_VAL_TYPE`, `COMPANY_VAL_MIN`, `COMPANY_VAL_MAX`, `INVESTMENT_REQ_TYPE`, `INVESTMENT_REQ_MIN`, `INVESTMENT_REQ_MAX`, `SECTOR`, `INDUSTRY`, `COMPANY_BUSINESS`, `AREA_OF_ACTIVITY`, `SCALABILITY`, `SCALABILITY_AREA`, `MARKET_SHARE`, `NUM_OF_EMPLOYEE_MIN`, `NUM_OF_EMPLOYEE_MAX`, `ACTUAL_REVENUE_TYPE`, `ACTUTAL_REVENUE_MIN`, `ACTUAL_REVENUE_MAX`, `EBIDTA_MARGIN`, `FORECAST_REVENUE_Y1`, `FORECAST_REVENUE_Y2`, `FORECAST_REVENUE_Y3`,`FORECAST_EBITDA_Y1`, `FORECAST_EBITDA_Y2`, `FORECAST_EBITDA_Y3`, `NUM_OF_INVESTMENT`, `PREF_INVESTMENT_MIN`, `PREF_INVESTMENT_MAX`, `WHO_I_AM`, `LOOKING_FOR`, `WANT_TO_DO`, `AUM`, `DESCRIPTION`, `KEY_ELEMENTS`, `IMAGE`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$startup_type', '$country', '$city', $foundation_year, '$default_currency', '$company_value_type', $company_value_min, $company_value_max, '$investment_required_value', $investment_required_min, $investment_required_max, '$sector', '$industry', '$company_business', '$area_of_activity', '$scalability', '$scalability_area', $market_share, $number_of_employees_min, $number_of_employees_max, '$actual_revenue_type', $actual_revenue_min, $actual_revenue_max, $ebidta_margin, $for_rev_1, $for_rev_2, $for_rev_3, $for_ebd_1, $for_ebd_2, $for_ebd_3, $number_of_investments, $preferred_investment_amount_min, $preferred_investment_amount_max, '$who_i_am', '$looking_for', '$what_i_want', '$aum', '$description', '$key_elements', '$image')";
+} else if ($asset_type == "Startup") {
 }
+
 
 if (!empty($sql)) {
   print_r($sql);

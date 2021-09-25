@@ -415,7 +415,12 @@ if (isset($_SESSION['email'])) {
       });
 
       $(".add-location").on('click', function() {
-        $(this).parent().parent().append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> </div>');
+        var deal_type = $(".deal_type:checked").val();
+        if (deal_type == "sell") {
+          $(this).parent().parent().append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> </div>');
+        } else {
+          $(this).parent().parent().append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> </div>');
+        }
         $.each(country_data, function(index, element) {
           $('.hq_country').last().append($('<option>', {
             value: element.id,
@@ -552,7 +557,13 @@ if (isset($_SESSION['email'])) {
             insertData = getBuyCreditData();
           }
         } else if (offer == "company") {
-
+          console.log("company");
+          var asset_type = $(".company_type").val();
+          if (asset_type == "Business Company") {
+            insertData = getBuyBusinessCompanyData();
+          } else {
+            insertData = getBuyStartUpData();
+          }
         }
       } else if (deal_type == "sell") {
         var offer = $(".offer:checked").val();
@@ -566,7 +577,12 @@ if (isset($_SESSION['email'])) {
             insertData = getSellCreditData();
           }
         } else if (offer == "company") {
-
+          var asset_type = $(".company_type").val();
+          if (asset_type == "Business Company") {
+            insertData = getSellBusinessCompanyData();
+          } else {
+            insertData = getSellStartUpData();
+          }
         }
       }
 
@@ -611,15 +627,8 @@ if (isset($_SESSION['email'])) {
       } else if ($(".re_asset_value_buy:checked").val() === "range") {
         assetVal = $(".re_asset_value_sel_buy").val();
         index = assetVal.lastIndexOf("|");
-        console.log("range");
-        console.log($(".re_asset_value_sel_buy").val());
-        if (index === -1) {
-          response['re_asset_value_min'] = assetVal;
-          response['re_asset_value_max'] = null;
-        } else {
-          response['re_asset_value_min'] = assetVal.substring(0, index);
-          response['re_asset_value_max'] = assetVal.substring(index + 1);
-        }
+        response['re_asset_value_min'] = assetVal.substring(0, index);
+        response['re_asset_value_max'] = assetVal.substring(index + 1);
       }
       response['re_who_i_am'] = $(".re_who_i_am_buy").val();
       response['re_aum'] = $(".re_aum_buy").val();
@@ -644,13 +653,8 @@ if (isset($_SESSION['email'])) {
       } else if ($(".npe_value_buy:checked").val() === "range") {
         assetVal = $(".npe_value_sel_buy").val();
         index = assetVal.lastIndexOf("|");
-        if (index === -1) {
-          response['npe_value_min'] = assetVal;
-          response['npe_value_max'] = null;
-        } else {
-          response['npe_value_min'] = assetVal.substring(0, index);
-          response['npe_value_max'] = assetVal.substring(index + 1);
-        }
+        response['npe_value_min'] = assetVal.substring(0, index);
+        response['npe_value_max'] = assetVal.substring(index + 1);
       }
       response['npe_lien_position'] = $(".npe_lien_position_buy").val();
       response['npe_judicialized'] = $(".npe_judicialized_buy").val();
@@ -675,47 +679,25 @@ if (isset($_SESSION['email'])) {
       response['re_hq_city'] = $(".re_hq_city").val();
       response['default_currency'] = $(".re_default_currency").val();
       response['re_asset_value'] = $(".re_asset_value:checked").val();
-      if ($(".re_asset_value:checked").val() === "undisclosed") {
-        console.log("undisclosed")
-      } else if ($(".re_asset_value:checked").val() === "fixed") {
-        console.log("fixed");
-        console.log($(".re_asset_value_val").val());
+      if ($(".re_asset_value:checked").val() === "undisclosed") {} else if ($(".re_asset_value:checked").val() === "fixed") {
         response['re_asset_value_min'] = $(".re_asset_value_val").val();
         response['re_asset_value_max'] = $(".re_asset_value_val").val();
       } else if ($(".re_asset_value:checked").val() === "range") {
         assetVal = $(".re_asset_value_sel").val();
         index = assetVal.lastIndexOf("|");
-        console.log("range");
-        console.log($(".re_asset_value_sel").val());
-        if (index === -1) {
-          response['re_asset_value_min'] = assetVal;
-          response['re_asset_value_max'] = null;
-        } else {
-          response['re_asset_value_min'] = assetVal.substring(0, index);
-          response['re_asset_value_max'] = assetVal.substring(index + 1);
-        }
+        response['re_asset_value_min'] = assetVal.substring(0, index);
+        response['re_asset_value_max'] = assetVal.substring(index + 1);
       }
       response['re_investment_type'] = $(".re_investment_type").val();
-      if ($(".re_investment_type:checked").val() === "undisclosed") {
-        console.log("undisclosed")
-      } else if ($(".re_investment_type:checked").val() === "fixed") {
-        console.log("fixed");
-        console.log($(".re_investment_type").val());
+      if ($(".re_investment_type:checked").val() === "undisclosed") {} else if ($(".re_investment_type:checked").val() === "fixed") {
         response['re_investment_val'] = $(".re_investment_val").val();
         response['re_investment_value_min'] = $(".re_investment_val").val();
         response['re_investment_value_max'] = $(".re_investment_val").val();
       } else if ($(".re_investment_type:checked").val() === "range") {
         investVal = $(".re_investment_val_sel").val();
         index = investVal.lastIndexOf("|");
-        console.log("range");
-        console.log($(".re_investment_val_sel").val());
-        if (index === -1) {
-          response['re_investment_value_min'] = investVal;
-          response['re_investment_value_max'] = null;
-        } else {
-          response['re_investment_value_min'] = investVal.substring(0, index);
-          response['re_investment_value_max'] = investVal.substring(index + 1);
-        }
+        response['re_investment_value_min'] = investVal.substring(0, index);
+        response['re_investment_value_max'] = investVal.substring(index + 1);
       }
       response['re_yearly_return'] = $(".re_yearly_return").val();
       response['re_vendor_type'] = $(".re_vendor_type").val();
@@ -748,8 +730,7 @@ if (isset($_SESSION['email'])) {
 
     function getSellCreditData() {
       response = {};
-      response['credit_default_currency'] = $(".credit_default_currency").val();
-      response['credit_borrower_type'] = $(".credit_borrower_type").val();
+
       response['credit_borrower_type_category'] = $(".credit_borrower_type_category").val();
       response['credit_type'] = $(".credit_type").val();
       response['credit_typology'] = $(".credit_typology").val();
@@ -771,6 +752,248 @@ if (isset($_SESSION['email'])) {
       response['credit_rate'] = $(".credit_rate").val();
       response['credit_discounted_ratio'] = $(".credit_discounted_ratio").val();
       return response;
+    }
+
+    function getBuyBusinessCompanyData() {
+      response = {};
+      response['hq_country'] = $(".bc_hq_country_buy").val();
+      response['hq_city'] = $(".bc_hq_city_buy").val();
+      response['sector_sel'] = $(".bc_sector_sel_buy").val();
+
+      var isIndustrySetted = false;
+      var industry = '';
+      $(".bc_industry_sel_buy").each(function() {
+        isIndustrySetted = true;
+        industry += $(this).val() + "|";
+      });
+      if (true)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+      response['default_currency'] = $(".bc_default_currency_buy").val();
+
+      response['actual_revenue_type'] = $(".bc_actual_revenue_type_buy:checked").val();
+      if ($(".bc_actual_revenue_type_buy:checked").val() === "undisclosed") {} else if ($(".bc_actual_revenue_type_buy:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".bc_actual_revenue_val_buy").val();
+        response['actual_revenue_max'] = $(".bc_actual_revenue_val_buy").val();
+      } else if ($(".bc_actual_revenue_type_buy:checked").val() === "range") {
+        assetVal = $(".bc_actual_revenue_sel_buy").val();
+        index = assetVal.lastIndexOf("|");
+        response['actual_revenue_min'] = assetVal.substring(0, index);
+        response['actual_revenue_max'] = assetVal.substring(index + 1);
+      }
+
+      response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
+      response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
+      response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
+      response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
+      response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
+      response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
+      response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
+      response['who_i_am'] = $(".bc_who_i_am").val();
+      response['aum'] = $(".bc_aum").val();
+      response['number_of_investments'] = $(".bc_number_of_investments").val();
+      response['what_i_want'] = $(".bc_what_i_want_buy").val();
+      response['description'] = $(".bc_description_buy").val();
+      response['looking_for'] = $(".bc_looking_for").val();
+      response['image'] = $(".bc_image_buy").val();
+      var min = 1000000000;
+      var max = -1;
+      var flag = false;
+      $('.bc_investment_amount_buy:checked').each(function() {
+        flag = true;
+        assetVal = $(this).val();
+        index = assetVal.lastIndexOf("|");
+        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
+        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      });
+      if (flag) {
+        response['preferred_investment_amount_min'] = min;
+        response['preferred_investment_amount_max'] = max;
+      }
+      var min = 1000000000;
+      var max = -1;
+      flag = false;
+      $('.bc_investment_required_value_buy:checked').each(function() {
+        flag = true;
+        assetVal = $(this).val();
+        index = assetVal.lastIndexOf("|");
+
+        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
+        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      });
+      if (flag) {
+        response['investment_required_min'] = min;
+        response['investment_required_max'] = max;
+      }
+      return response;
+    }
+
+    function getBuyStartUpData() {
+      response = {};
+      response['hq_country'] = $(".su_hq_country_buy").val();
+      response['hq_city'] = $(".su_hq_city_buy").val();
+      response['sector_sel'] = $(".su_sector_buy").val();
+      response['startup_type'] = $(".su_startup_type_buy").val();
+
+
+      var isIndustrySetted = false;
+      var industry = '';
+      $(".su_industry_buy").each(function() {
+        isIndustrySetted = true;
+        industry += $(this).val() + "|";
+      });
+      if (true)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+      response['default_currency'] = $(".su_default_currency_buy").val();
+
+      response['actual_revenue_type'] = $(".su_preferred_revenue_buy:checked").val();
+      if ($(".su_preferred_revenue_buy:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue_buy:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".su_preferred_revenue_val_buy").val();
+        response['actual_revenue_max'] = $(".su_preferred_revenue_val_buy").val();
+      } else if ($(".su_preferred_revenue_buy:checked").val() === "range") {
+        assetVal = $(".su_preferred_revenue_sel_buy").val();
+        index = assetVal.lastIndexOf("|");
+        response['actual_revenue_min'] = assetVal.substring(0, index);
+        response['actual_revenue_max'] = assetVal.substring(index + 1);
+      }
+
+      response['ebidta_margin'] = $(".su_ebidta_margin_buy").val();
+      response['for_rev_1'] = $(".su_for_rev_1_buy").val();
+      response['for_ebd_1'] = $(".su_for_ebd_1_buy").val();
+      response['for_rev_2'] = $(".su_for_rev_2_buy").val();
+      response['for_ebd_2'] = $(".su_for_ebd_2_buy").val();
+      response['for_rev_3'] = $(".su_for_rev_3_buy").val();
+      response['for_ebd_3'] = $(".su_for_ebd_3_buy").val();
+      response['who_i_am'] = $(".su_who_i_am_buy").val();
+      response['aum'] = $(".su_aum").val();
+      response['number_of_investments'] = $(".su_number_of_investments").val();
+      response['what_i_want'] = $(".su_what_i_want").val();
+      response['description'] = $(".su_description_buy").val();
+      response['looking_for'] = $(".su_looking_for").val();
+      response['image'] = $(".su_image_buy").val();
+      var min = 1000000000;
+      var max = -1;
+      var flag = false;
+      $('.su_preferred_investment_amount:checked').each(function() {
+        flag = true;
+        assetVal = $(this).val();
+        index = assetVal.lastIndexOf("|");
+        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
+        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      });
+      if (flag) {
+        response['preferred_investment_amount_min'] = min;
+        response['preferred_investment_amount_max'] = max;
+      }
+      var min = 1000000000;
+      var max = -1;
+      flag = false;
+      $('.su_investment_required_value_buy:checked').each(function() {
+        flag = true;
+        assetVal = $(this).val();
+        index = assetVal.lastIndexOf("|");
+
+        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
+        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      });
+      if (flag) {
+        response['investment_required_min'] = min;
+        response['investment_required_max'] = max;
+      }
+      return response;
+
+    }
+
+    function getSellBusinessCompanyData() {
+      response = {};
+      response['hq_country'] = $(".bc_hq_country").val();
+      response['hq_city'] = $(".bc_hq_city").val();
+      response['company_type'] = $(".bc_company_type").val();
+      response['foundation_year'] = $(".bc_foundation_year").val();
+      response['default_currency'] = $(".bc_default_currency").val();
+
+      response['company_value_type'] = $(".bc_company_value:checked").val();
+      if ($(".bc_company_value:checked").val() === "undisclosed") {} else if ($(".bc_company_value:checked").val() === "fixed") {
+        response['company_value_min'] = $(".bc_company_value_val").val();
+        response['company_value_max'] = $(".bc_company_value_val").val();
+      } else if ($(".bc_company_value:checked").val() === "range") {
+        assetVal = $(".bc_company_value_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['company_value_min'] = assetVal.substring(0, index);
+        response['company_value_max'] = assetVal.substring(index + 1);
+      }
+
+      response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
+      if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
+        response['investment_required_min'] = $(".bc_investment_required_value_val").val();
+        response['investment_required_max'] = $(".bc_investment_required_value_val").val();
+      } else if ($(".bc_investment_required_value:checked").val() === "range") {
+        assetVal = $(".bc_investment_required_value_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['investment_required_min'] = assetVal.substring(0, index);
+        response['investment_required_max'] = assetVal.substring(index + 1);
+      }
+
+      response['sector_sel'] = $(".bc_sector_sel").val();
+
+      var isIndustrySetted = false;
+      var industry = '';
+      $(".bc_industry_sel").each(function() {
+        isIndustrySetted = true;
+        industry += $(this).val() + "|";
+      });
+      if (isIndustrySetted)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+      response['company_business'] = $(".bc_company_business").val();
+      var isAreaSetted = false;
+      var areaOfActivity = '';
+      $(".bc_area_of_activity").each(function() {
+        isAreaSetted = true;
+        areaOfActivity += $(this).val() + "|";
+      });
+      if (isAreaSetted)
+        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+
+      response['scalability'] = $(".bc_scalability").val();
+      response['scalability_area'] = $(".bc_scalability_area").val();
+      response['market_share'] = $(".bc_market_share").val();
+      console.log($(".bc_number_of_employees:checked").val());
+      if (null != $(".bc_number_of_employees:checked").val()) {
+        var numOfEmp = $(".bc_number_of_employees:checked").val();
+        index = numOfEmp.lastIndexOf("|");
+        response['number_of_employees_min'] = numOfEmp.substring(0, index);
+        response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+      }
+
+      response['actual_revenue_type'] = $(".bc_actual_revenue_type:checked").val();
+      if ($(".bc_actual_revenue_type:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".bc_actual_revenue_val").val();
+        response['actual_revenue_max'] = $(".bc_actual_revenue_val").val();
+      } else if ($(".bc_actual_revenue_type:checked").val() === "range") {
+        assetVal = $(".bc_actual_revenue_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['actual_revenue_min'] = assetVal.substring(0, index);
+        response['actual_revenue_max'] = assetVal.substring(index + 1);
+      }
+      response['ebidta_margin'] = $(".bc_ebidta_margin").val();
+      response['for_rev_1'] = $(".bc_for_rev_1").val();
+      response['for_ebd_1'] = $(".bc_for_ebd_1").val();
+      response['for_rev_2'] = $(".bc_for_rev_2").val();
+      response['for_ebd_2'] = $(".bc_for_ebd_2").val();
+      response['for_rev_3'] = $(".bc_for_rev_3").val();
+      response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+
+      response['description'] = $(".bc_description").val();
+      response['key_elements'] = $(".bc_key_elements").val();
+      response['image'] = $(".bc_image_buy").val();
+      return response;
+
+    }
+
+    function getSellStartUpData() {
+
     }
   </script>
 <?php
