@@ -646,7 +646,7 @@ if (isset($_SESSION['email'])) {
       response['npe_post_code'] = $(".npe_post_code_buy").val();
       response['npe_description'] = $(".npe_description_buy").val();
       response['npe_default_currency'] = $(".npe_default_currency_buy").val();
-      response['npe_value'] = $(".npe_value_buy").val();
+      response['npe_value'] = $(".npe_value_buy:checked").val();
       if ($(".npe_value_buy:checked").val() === "undisclosed") {} else if ($(".npe_value_buy:checked").val() === "fixed") {
         response['npe_value_min'] = $(".npe_value_val_buy").val();
         response['npe_value_max'] = $(".npe_value_val_buy").val();
@@ -688,9 +688,8 @@ if (isset($_SESSION['email'])) {
         response['re_asset_value_min'] = assetVal.substring(0, index);
         response['re_asset_value_max'] = assetVal.substring(index + 1);
       }
-      response['re_investment_type'] = $(".re_investment_type").val();
+      response['re_investment_type'] = $(".re_investment_type:checked").val();
       if ($(".re_investment_type:checked").val() === "undisclosed") {} else if ($(".re_investment_type:checked").val() === "fixed") {
-        response['re_investment_val'] = $(".re_investment_val").val();
         response['re_investment_value_min'] = $(".re_investment_val").val();
         response['re_investment_value_max'] = $(".re_investment_val").val();
       } else if ($(".re_investment_type:checked").val() === "range") {
@@ -730,7 +729,7 @@ if (isset($_SESSION['email'])) {
 
     function getSellCreditData() {
       response = {};
-
+      response['credit_borrower_type'] = $(".credit_borrower_type").val();
       response['credit_borrower_type_category'] = $(".credit_borrower_type_category").val();
       response['credit_type'] = $(".credit_type").val();
       response['credit_typology'] = $(".credit_typology").val();
@@ -743,6 +742,7 @@ if (isset($_SESSION['email'])) {
       response['credit_post_code'] = $(".credit_post_code").val();
       response['credit_lien_position'] = $(".credit_lien_position").val();
       response['credit_description'] = $(".credit_description").val();
+      response['credit_default_currency'] = $(".credit_default_currency").val();
       response['credit_original_amount'] = $(".credit_original_amount").val();
       response['credit_asking_price'] = $(".credit_asking_price").val();
       response['credit_market_value'] = $(".credit_market_value").val();

@@ -78,7 +78,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="asset_value" value="any" class="deal-radio npe_value_buy">
+            <input type="radio" name="asset_value" value="undisclosed" class="deal-radio npe_value_buy">
           </span>
         </div>
         <div class="custom-file">

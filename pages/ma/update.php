@@ -28,7 +28,37 @@
 </body>
 <script>
     function updateDetail(id, asset, offer, deal) {
-        window.open("./update_buy_assets_real_estate.php");
+        console.log(asset);
+        if (deal == "buy") {
+            if (asset == "Real Estate") {
+                url = "./update_buy_assets_real_estate.php";
+            } else if (asset == "NPE") {
+                url = "./update_buy_assets_npe.php";
+            } else if (asset == "Credits") {
+                url = "./update_buy_assets_credits.php";
+            } else if (asset == "Business Company") {
+                url = "./update_buy_company_business.php";
+            } else if (asset == "Start Up") {
+                url = "./update_buy_company_startup.php";
+            }
+        } else {
+            if (asset == "Real Estate") {
+                url = "./update_sell_assets_real_estate.php";
+            } else if (asset == "NPE") {
+                url = "./update_sell_assets_npe.php";
+            } else if (asset == "Credits") {
+                console.log("Credits");
+                url = "./update_sell_assets_credits.php";
+            } else if (asset == "Business Company") {
+                url = "./update_sell_company_business.php";
+            } else if (asset == "Start Up") {
+                url = "./update_sell_company_startup.php";
+            }
+        }
+        let p = new URLSearchParams();
+        p.set("id", id);
+        url += "?" + p.toString();
+        window.open(url);
     }
 
     function fetchData() {

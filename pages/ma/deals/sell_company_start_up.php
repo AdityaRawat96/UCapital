@@ -58,7 +58,7 @@
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <select class="industry" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+      <select class="industry" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="su_industry">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
         <option value="Accounting">Accounting</option>
