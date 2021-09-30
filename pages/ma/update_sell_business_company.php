@@ -12,19 +12,18 @@ if (isset($_SESSION['email'])) {
         $row = mysqli_fetch_array($result);
     }
 ?>
-    <div class="buy_company_business_company">
+    <div class="sell_company_business_company">
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Location</span>
+                <span>HQ Location</span>
             </div>
-
             <div class="col-md-9 col-sm-12 input-container">
                 <div class="row location_holder">
                     <div class="col-md-8 col-sm-12 location_container">
-                        <select class="form-control hq_country bc_hq_country_buy" name="hq_country" id="country">
+                        <select class="form-control hq_country bc_hq_country" name="hq_country" id="country">
                             <option value="" selected disabled>Choose a country</option>
                         </select>
-                        <select class="form-control hq_city bc_hq_city_buy" name="hq_city" id="city">
+                        <select class="form-control hq_city bc_hq_city" name="hq_city" id="city">
                             <option value="" selected disabled>Choose a city</option>
                         </select>
                     </div>
@@ -36,10 +35,150 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Subject</span>
+            </div>
+            <div class="col-md-9 col-sm-12 input-container">
+                <select class="form-control bc_company_type" name="company_type" id="company_type">
+                    <option value="" selected disabled>Choose the subject</option>
+                    <option value="Fundraising">Fundraising</option>
+                    <option value="Sell minority">Sell minority</option>
+                    <option value="Sell majority">Sell majority</option>
+                    <option value="Sell totality">Sell totality</option>
+                    <option value="IPO">IPO</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="Joint venture">Joint venture</option>
+                    <option value="Debt Raising">Debt Raising</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Foundation year</span>
+            </div>
+            <div class="col-md-4 col-sm-12 input-container">
+                <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Default Currency</span>
+            </div>
+            <div class="col-md-4 col-sm-12 input-container">
+                <select class="form-control default_currency bc_default_currency" name="company_type" id="currency">
+                    <option data-value="€" selected value='Euro'>Euro</option>
+                    <option data-value="$" value='Dollar'>Dollar</option>
+                    <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
+                    <option data-value="£" value='Pound'>Pound</option>
+                    <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+                    <option data-value="¥" value='Yen'>Yen</option>
+                    <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
+                    <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Company value</span>
+                <span class="deal-subhead">(Choose one)</span>
+            </div>
+            <div class="col-md-4 col-sm-12 input-container">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="company_value" value="undisclosed" class="deal-radio bc_company_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="company_value" value="fixed" class="deal-radio bc_company_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="number" class="form-control bc_company_value_val" id="company_value_val" placeholder="Type a value">
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="company_value" value="range" class="deal-radio bc_company_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
+                            <option value="" selected disabled>Select a range</option>
+                            <option value="0|500000">from 0 to 500k</option>
+                            <option value="500000|1000000">from 500k to 1 million</option>
+                            <option value="1000000|10000000">from 1 to 10 million</option>
+                            <option value="10000000|50000000">from 10 to 50 million</option>
+                            <option value="50000000|100000000">over 50 million</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Investment Required</span>
+                <span class="deal-subhead">(Choose one)</span>
+            </div>
+            <div class="col-md-4 col-sm-12 input-container">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="investment_required" value="undisclosed" class="deal-radio bc_investment_required_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="investment_required" value="fixed" class="deal-radio bc_investment_required_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="number" class="form-control bc_investment_required_value_val" id="investment_required_value" placeholder="Type a value">
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <input type="radio" name="investment_required" value="range" class="deal-radio bc_investment_required_value">
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
+                            <option value="" selected disabled>Select a range</option>
+                            <option value="0|500000">from 0 to 500k</option>
+                            <option value="500000|1000000">from 500k to 1 million</option>
+                            <option value="1000000|10000000">from 1 to 10 million</option>
+                            <option value="10000000|50000000">from 10 to 50 million</option>
+                            <option value="50000000">over 50 million</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
                 <span>Sector</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <select class="form-control bc_sector_sel_buy" id="sector">
+                <select class="form-control bc_sector_sel" id="sector">
                     <option value="" selected disabled>Choose Sector</option>
                     <option value="Information Technology">Information Technology</option>
                     <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -57,7 +196,7 @@ if (isset($_SESSION['email'])) {
                 <span class="deal-subhead">(Multiple choice max 5)</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <select class="industry bc_industry_sel_buy" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="bc_industry">
+                <select class="industry bc_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
                     <option value="3D Printing">3D Printing</option>
                     <option value="Accessories">Accessories</option>
                     <option value="Accounting">Accounting</option>
@@ -374,45 +513,83 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Default Currency</span>
+                <span>Company Business</span>
             </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <select class="form-control default_currency bc_default_currency_buy" id="currency" name="company_type">
-                    <option data-value="€" selected value='Euro'>Euro</option>
-                    <option data-value="$" value='Dollar'>Dollar</option>
-                    <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
-                    <option data-value="£" value='Pound'>Pound</option>
-                    <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
-                    <option data-value="¥" value='Yen'>Yen</option>
-                    <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
-                    <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
+            <div class="col-md-9 col-sm-12 input-container">
+                <textarea name="company_business" rows="3" id="company_business" class="form-control bc_company_business" placeholder="Business description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Area of activity</span>
+                <span class="deal-subhead">(Unlimited Choices)</span>
+            </div>
+            <div class="col-md-9 col-sm-12 input-container">
+                <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="area_of_activity">
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Revenue</span>
-                <span class="deal-subhead">(Choose one)</span>
+                <span>Scalability</span>
+            </div>
+            <div class="col-md-9 col-sm-12 input-container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                            <input type="radio" name="scalability" value="Yes" class="deal-radio bc_scalability"> Yes
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <select class="form-control scalability_area bc_scalability_area" name="scalability_area" id="scalability_area">
+                            <option value="" selected disabled>Which area</option>
+                            <option value="Global">Global</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                            <input type="radio" name="scalability" value="No" class="deal-radio bc_scalability"> No
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <div class="input-group input-group-nomargin">
+                            <div class="custom-file">
+                                <input type="number" class="form-control bc_market_share" placeholder="Enter market share" id="market_share">
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Number of employees</span>
+            </div>
+            <div class="col-md-9 col-sm-12 input-containera">
+                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
+                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
+                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
+                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|10000"> More than 1000<br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 deal-heading">
+                <span>Actual Revenue</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <input type="radio" value="undisclosed" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
+                            <input type="radio" name="actual_revenue_required" value="fixed" class="deal-radio bc_actual_revenue_type">
                         </span>
                     </div>
                     <div class="custom-file">
-                        <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" value="fixed" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="number" class="form-control bc_actual_revenue_val_buy" id="preferred_revenue_val" placeholder="Type a value">
+                        <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
@@ -421,11 +598,11 @@ if (isset($_SESSION['email'])) {
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <input type="radio" value="range" name="preferred_revenue" class="deal-radio bc_actual_revenue_type_buy">
+                            <input type="radio" name="actual_revenue_required" value="range" class="deal-radio bc_actual_revenue_type">
                         </span>
                     </div>
                     <div class="custom-file">
-                        <select class="form-control bc_actual_revenue_sel_buy" id="preferred_revenue_sel" name="preferred_revenue_range">
+                        <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
                             <option value="" selected disabled>Select a range</option>
                             <option value="0|1000000">&#60; 1 million</option>
                             <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
@@ -438,12 +615,12 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Ebitda Margin</span>
+                <span>Actual Ebitda Margin</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_ebidta_margin_buy" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
+                        <input type="number" class="form-control bc_ebidta_margin" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
@@ -456,13 +633,13 @@ if (isset($_SESSION['email'])) {
 
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Revenue</span>
+                <span>Forcast Revenue</span>
                 <span class="deal-subhead">(Y1Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_1_buy" id="rev_y1y" placeholder="Enter a value for 1st year">
+                        <input type="number" class="form-control bc_for_rev_1" id="rev_y1y" placeholder="Enter a value for 1st year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text span-currency-icon">€</span>
@@ -472,13 +649,13 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Ebitda</span>
+                <span>Forcast Ebitda</span>
                 <span class="deal-subhead">(Y1Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_1_buy" id="ebd_y1y" placeholder="Enter a value for 1st year">
+                        <input type="number" class="form-control bc_for_ebd_1" id="ebd_y1y" placeholder="Enter a value for 1st year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
@@ -489,13 +666,13 @@ if (isset($_SESSION['email'])) {
 
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Revenue</span>
+                <span>Forcast Revenue</span>
                 <span class="deal-subhead">(Y2Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_2_buy" id="rev_y2y" placeholder="Enter a value for 2nd year">
+                        <input type="number" class="form-control bc_for_rev_2" id="rev_y2y" placeholder="Enter a value for 2nd year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text span-currency-icon">€</span>
@@ -505,13 +682,13 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Ebitda</span>
+                <span>Forcast Ebitda</span>
                 <span class="deal-subhead">(Y2Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_2_buy" id="ebd_y2y" placeholder="Enter a value for 2nd year">
+                        <input type="number" class="form-control bc_for_ebd_2" id="ebd_y2y" placeholder="Enter a value for 2nd year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
@@ -522,13 +699,13 @@ if (isset($_SESSION['email'])) {
 
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Revenue</span>
+                <span>Forcast Revenue</span>
                 <span class="deal-subhead">(Y3Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_3_buy" id="rev_y3y" placeholder="Enter a value for 3rd year">
+                        <input type="number" class="form-control bc_for_rev_3" id="rev_y3y" placeholder="Enter a value for 3rd year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text span-currency-icon">€</span>
@@ -538,90 +715,18 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Forcast Ebitda</span>
+                <span>Forcast Ebitda</span>
                 <span class="deal-subhead">(Y3Y)</span>
             </div>
             <div class="col-md-4 col-sm-12 input-container">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_3_buy" id="ebd_y3y" placeholder="Enter a value for 3rd year">
+                        <input type="number" class="form-control bc_for_ebd_3" id="ebd_y3y" placeholder="Enter a value for 3rd year">
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Investment Size</span>
-                <span class="deal-subhead">(Multiple Choice)</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|50000"> Less than 500k<br>
-                <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="50000|1000000"> From 500k to 1 mln<br>
-                <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
-                <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="10000000|20000000"> More than 10 mln<br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Who I am</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="form-control default_currency bc_who_i_am" name="who_i_am" id="who_i_am">
-                    <option value="" selected disabled>Select an option</option>
-                    <option value="Individual">Individual</option>
-                    <option value="Corporation">Corporation</option>
-                    <option value="PE Fund">PE Fund</option>
-                    <option value="VC Fund">VC Fund</option>
-                    <option value="Asset Management">Asset Management</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>AUM</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <input type="number" id="aum" name="aum" value="" class="form-control bc_aum" placeholder="Enter a value">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Number of Investments</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <input type="number" name="number_of_investments" id="number_of_investments" value="" class="form-control bc_number_of_investments" placeholder="Enter a value">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Preferred Investment Amount</span>
-                <span class="deal-subhead">(Multiple Choice)</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
-                <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
-                <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
-                <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="50000000|100000000"> More than 50 mln<br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>What I want to do</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="form-control what_i_want bc_what_i_want_buy" name="what_i_want" id="what_i_want">
-                    <option value="" selected disabled>Select an option</option>
-                    <option value="Buy majority">Buy majority</option>
-                    <option value="Buy totality">Buy totality</option>
-                    <option value="Partnership">Partnership</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="Joint venture">Joint venture</option>
-                    <option value="Lending">Lending</option>
-                </select>
             </div>
         </div>
 
@@ -630,15 +735,15 @@ if (isset($_SESSION['email'])) {
                 <span>General Description</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <textarea name="general_description" id="description" rows="3" class="form-control bc_description_buy" placeholder="Type a description"></textarea>
+                <textarea name="general_description" id="description" rows="3" class="form-control bc_description" placeholder="Who you are, What are you looking for..."></textarea>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 deal-heading">
-                <span>What are we looking for</span>
+                <span>Key Elements</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <textarea name="looking_for" id="looking_for" rows="3" class="form-control bc_looking_for" placeholder="Type a description"></textarea>
+                <textarea name="key_elements" id="keyElements" rows="3" class="form-control bc_key_elements" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
             </div>
         </div>
 
@@ -648,13 +753,14 @@ if (isset($_SESSION['email'])) {
                 <span class="deal-subhead">(Max 5MB)</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <div class="input-group bc_image_buy">
+                <div class="input-group bc_image">
                     <input type="text" id="adImage-list" hidden value="">
                     <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
                 </div>
             </div>
         </div>
     </div>
+
     <input type="button" class="btn btn-success" value="Update" onclick="update()" style="width: 60%; margin-left: 20%;" />
 
     <?php
@@ -747,9 +853,20 @@ if (isset($_SESSION['email'])) {
         });
     }
 
+
+
+
+
+
+    // scalability
+
+
+
     function setValues() {
         document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
         document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
+        document.getElementById("company_type").value = "<?= $row["COMPANY_TYPE"] ?>";
+        document.getElementById("foundation_year").value = "<?= $row["FOUNDATION_YEAR"] ?>";
         document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
         document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
         document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
@@ -757,35 +874,34 @@ if (isset($_SESSION['email'])) {
         document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
         document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
         document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
-        document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
-        document.getElementById("aum").value = "<?= $row["AUM"] ?>";
-        document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
         document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
-        document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
-        document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
-        $("input[name=preferred_revenue][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
+        document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
+        document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
+
+        $("input[name=company_value][value=<?= $row["ASSET_VAL_TYPE"] ?>]").attr('checked', 'checked');
+        if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
+            document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
+        } else if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "range") {
+            document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
+        }
+
+        $("input[name=investment_required][value=<?= $row["INVESTMENT_REQ_TYPE"] ?>]").attr('checked', 'checked');
+        if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "fixed") {
+            document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_REQ_MIN"] ?>";
+        } else if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "range") {
+            document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_REQ_MIN"] . '|' . $row["INVESTMENT_REQ_MAX"] ?>";
+        }
+
+        $("input[name=bc_actual_revenue_type][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
         if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
-            document.getElementById("preferred_revenue_val").value = "<?= $row["ACTUTAL_REVENUE_MIN"] ?>";
+            document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
         } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
-            document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUTAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
-        }
-        var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
-        var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
-
-        var investmentSizeArr = investmentSize.split(",");
-        var investmentAmountArr = investmentAmount.split(",");
-
-        for (var i = 0; i < investmentSizeArr.length; i++) {
-            $('input[name="investment_size"][value="' + investmentSizeArr[i].toString() + '"]').prop("checked", true);
-        }
-
-        for (var i = 0; i < investmentAmountArr.length; i++) {
-            $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
+            document.getElementById("actual_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
         }
 
         var values = "<?= $row["INDUSTRY"] ?>";
         $.each(values.split(","), function(i, e) {
-            $("#bc_industry option[value='" + e + "']").prop("selected", true);
+            $("#industry option[value='" + e + "']").prop("selected", true);
         });
 
     }

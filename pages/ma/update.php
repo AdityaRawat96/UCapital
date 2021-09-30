@@ -37,9 +37,9 @@
             } else if (asset == "Credits") {
                 url = "./update_buy_assets_credits.php";
             } else if (asset == "Business Company") {
-                url = "./update_buy_company_business.php";
+                url = "./update_buy_business_company.php";
             } else if (asset == "Start Up") {
-                url = "./update_buy_company_startup.php";
+                url = "./update_buy_start_up.php";
             }
         } else {
             if (asset == "Real Estate") {
@@ -50,9 +50,9 @@
                 console.log("Credits");
                 url = "./update_sell_assets_credits.php";
             } else if (asset == "Business Company") {
-                url = "./update_sell_company_business.php";
+                url = "./update_sell_business_company.php";
             } else if (asset == "Start Up") {
-                url = "./update_sell_company_startup.php";
+                url = "./update_sell_start_up.php";
             }
         }
         let p = new URLSearchParams();
