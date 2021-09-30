@@ -796,35 +796,23 @@ if (isset($_SESSION['email'])) {
       response['description'] = $(".bc_description_buy").val();
       response['looking_for'] = $(".bc_looking_for").val();
       response['image'] = $(".bc_image_buy").val();
-      var min = 1000000000;
-      var max = -1;
-      var flag = false;
-      $('.bc_investment_amount_buy:checked').each(function() {
-        flag = true;
-        assetVal = $(this).val();
-        index = assetVal.lastIndexOf("|");
-        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
-        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
-      });
-      if (flag) {
-        response['preferred_investment_amount_min'] = min;
-        response['preferred_investment_amount_max'] = max;
-      }
-      var min = 1000000000;
-      var max = -1;
-      flag = false;
-      $('.bc_investment_required_value_buy:checked').each(function() {
-        flag = true;
-        assetVal = $(this).val();
-        index = assetVal.lastIndexOf("|");
 
-        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
-        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      var investmentAmount = "";
+      var investmentSize = "";
+      $(".bc_investment_required_value_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentSize += $(this).val() + ",";
+        }
       });
-      if (flag) {
-        response['investment_required_min'] = min;
-        response['investment_required_max'] = max;
-      }
+      $(".bc_investment_amount_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
+      response['investment_size'] = investmentSize;
+      response['investment_amount'] = investmentAmount;
       return response;
     }
 
@@ -872,35 +860,23 @@ if (isset($_SESSION['email'])) {
       response['description'] = $(".su_description_buy").val();
       response['looking_for'] = $(".su_looking_for").val();
       response['image'] = $(".su_image_buy").val();
-      var min = 1000000000;
-      var max = -1;
-      var flag = false;
-      $('.su_preferred_investment_amount:checked').each(function() {
-        flag = true;
-        assetVal = $(this).val();
-        index = assetVal.lastIndexOf("|");
-        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
-        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
-      });
-      if (flag) {
-        response['preferred_investment_amount_min'] = min;
-        response['preferred_investment_amount_max'] = max;
-      }
-      var min = 1000000000;
-      var max = -1;
-      flag = false;
-      $('.su_investment_required_value_buy:checked').each(function() {
-        flag = true;
-        assetVal = $(this).val();
-        index = assetVal.lastIndexOf("|");
 
-        min = parseInt(assetVal.substring(0, index)) < min ? parseInt(assetVal.substring(0, index)) : min;
-        max = parseInt(assetVal.substring(index + 1)) > max ? parseInt(assetVal.substring(index + 1)) : max;
+      var investmentAmount = "";
+      var investmentSize = "";
+      $(".su_investment_required_value_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentSize += $(this).val() + ",";
+        }
       });
-      if (flag) {
-        response['investment_required_min'] = min;
-        response['investment_required_max'] = max;
-      }
+      $(".su_preferred_investment_amount").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
+      response['investment_size'] = investmentSize;
+      response['investment_amount'] = investmentAmount;
       return response;
 
     }

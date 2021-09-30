@@ -593,7 +593,7 @@
             <option value="0|1000000">&#60; 1 million</option>
             <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
             <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000"> &#62; 50 milion</option>
+            <option value="50000000|100000000"> &#62; 50 milion</option>
           </select>
         </div>
       </div>
