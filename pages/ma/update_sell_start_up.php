@@ -798,6 +798,7 @@ if (isset($_SESSION['email'])) {
 
         var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
         var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
+        console.log(investmentAmount);
 
         var investmentSizeArr = investmentSize.split(",");
         var investmentAmountArr = investmentAmount.split(",");

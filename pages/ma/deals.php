@@ -969,6 +969,67 @@ if (isset($_SESSION['email'])) {
     }
 
     function getSellStartUpData() {
+      response = {};
+      response['hq_country'] = $(".su_hq_country").val();
+      response['hq_city'] = $(".su_hq_city").val();
+      response['sector_sel'] = $(".su_sector").val();
+      response['startup_type'] = $(".su_startup_type").val();
+
+
+      var isIndustrySetted = false;
+      var industry = '';
+      $(".su_industry").each(function() {
+        isIndustrySetted = true;
+        industry += $(this).val() + "|";
+      });
+      if (true)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+      response['default_currency'] = $(".su_default_currency").val();
+
+      response['actual_revenue_type'] = $(".su_preferred_revenue:checked").val();
+      if ($(".su_preferred_revenue:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".su_preferred_revenue_val").val();
+        response['actual_revenue_max'] = $(".su_preferred_revenue_val").val();
+      } else if ($(".su_preferred_revenue:checked").val() === "range") {
+        assetVal = $(".su_preferred_revenue_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['actual_revenue_min'] = assetVal.substring(0, index);
+        response['actual_revenue_max'] = assetVal.substring(index + 1);
+      }
+
+      response['ebidta_margin'] = $(".su_ebidta_margin").val();
+      response['for_rev_1'] = $(".su_for_rev_1").val();
+      response['for_ebd_1'] = $(".su_for_ebd_1").val();
+      response['for_rev_2'] = $(".su_for_rev_2").val();
+      response['for_ebd_2'] = $(".su_for_ebd_2").val();
+      response['for_rev_3'] = $(".su_for_rev_3").val();
+      response['for_ebd_3'] = $(".su_for_ebd_3").val();
+      response['who_i_am'] = $(".su_who_i_am").val();
+      response['aum'] = $(".su_aum").val();
+      response['number_of_investments'] = $(".su_number_of_investments").val();
+      response['what_i_want'] = $(".su_what_i_want").val();
+      response['description'] = $(".su_description").val();
+      response['looking_for'] = $(".su_looking_for").val();
+      response['image'] = $(".su_image").val();
+
+      var investmentAmount = "";
+      var investmentSize = "";
+      $(".su_investment_required_value").each(function() {
+        if ($(this).prop("checked")) {
+          investmentSize += $(this).val() + ",";
+        }
+      });
+      $(".su_preferred_investment_amount").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
+      response['investment_size'] = investmentSize;
+      response['investment_amount'] = investmentAmount;
+      return response;
 
     }
   </script>

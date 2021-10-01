@@ -2,7 +2,7 @@
 session_start();
 include('../../assets/php/connection.php');
 
-$sql = "SELECT ID, DEAL, OFFER, ASSET_TYPE FROM real_estate UNION SELECT ID, DEAL, OFFER, ASSET_TYPE FROM npe UNION SELECT ID, DEAL, OFFER, ASSET_TYPE FROM credit UNION SELECT ID, DEAL, OFFER, COMPANY_TYPE FROM business_company";
+$sql = "SELECT ID, DEAL, OFFER, ASSET_TYPE FROM real_estate UNION SELECT ID, DEAL, OFFER, ASSET_TYPE FROM npe UNION SELECT ID, DEAL, OFFER, ASSET_TYPE FROM credit UNION SELECT ID, DEAL, OFFER, ASSET_TYPE FROM business_company";
 
 
 $result = mysqli_query($con, $sql)

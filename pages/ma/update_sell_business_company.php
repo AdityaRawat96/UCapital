@@ -779,26 +779,6 @@ if (isset($_SESSION['email'])) {
 
 <script>
     function update() {
-        // bc_company_type
-        // bc_foundation_year
-        // bc_default_currency
-        // bc_company_business
-        // bc_area_of_activity
-        // bc_scalability
-        // bc_scalability_area
-        // bc_market_share
-        // bc_number_of_employees
-        // bc_actual_revenue_type
-        // bc_actual_revenue_val
-        // bc_actual_revenue_sel
-        // bc_description
-        // bc_key_elements
-        // bc_company_value
-        // bc_company_value_val
-        // bc_company_value_sel
-        // bc_investment_required_value
-        // bc_investment_required_value_val
-        // bc_investment_required_value_sel
         response = {};
         response['hq_country'] = $(".bc_hq_country").val();
         response['hq_city'] = $(".bc_hq_city").val();
