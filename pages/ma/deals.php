@@ -754,6 +754,35 @@ if (isset($_SESSION['email'])) {
       return response;
     }
 
+    function getBuyCreditData() {
+      response = {};
+      response['npe_type'] = $(".npec_type_buy").val();
+      response['npe_product_type'] = $(".npec_product_type_buy").val();
+      response['npe_hq_country'] = $(".npec_hq_country_buy").val();
+      response['npe_hq_city'] = $(".npec_hq_city_buy").val();
+      response['npe_state'] = $(".npec_state_buy").val();
+      response['npe_post_code'] = $(".npec_post_code_buy").val();
+      response['npe_description'] = $(".npec_description_buy").val();
+      response['npe_default_currency'] = $(".npec_default_currency_buy").val();
+      response['npe_value'] = $(".npec_value_buy:checked").val();
+      if ($(".npec_value_buy:checked").val() === "undisclosed") {} else if ($(".npec_value_buy:checked").val() === "fixed") {
+        response['npe_value_min'] = $(".npec_value_val_buy").val();
+        response['npe_value_max'] = $(".npec_value_val_buy").val();
+      } else if ($(".npec_value_buy:checked").val() === "range") {
+        assetVal = $(".npec_value_sel_buy").val();
+        index = assetVal.lastIndexOf("|");
+        response['npe_value_min'] = assetVal.substring(0, index);
+        response['npe_value_max'] = assetVal.substring(index + 1);
+      }
+      response['npe_lien_position'] = $(".npec_lien_position_buy").val();
+      response['npe_judicialized'] = $(".npec_judicialized_buy").val();
+      response['npe_borrower_details'] = $(".npec_borrower_details_buy").val();
+      response['npe_who_i_am'] = $(".npec_who_i_am").val();
+      response['npe_aum'] = $(".npec_aum_buy").val();
+      response['npe_ratio'] = $(".npec_ratio_buy").val();
+      return response;
+    }
+
     function getBuyBusinessCompanyData() {
       response = {};
       response['hq_country'] = $(".bc_hq_country_buy").val();
