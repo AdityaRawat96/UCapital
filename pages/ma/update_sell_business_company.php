@@ -525,7 +525,7 @@ if (isset($_SESSION['email'])) {
                 <span class="deal-subhead">(Unlimited Choices)</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="area_of_activity">
+                <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="activity_area">
                 </select>
             </div>
         </div>
@@ -779,66 +779,110 @@ if (isset($_SESSION['email'])) {
 
 <script>
     function update() {
+        // bc_company_type
+        // bc_foundation_year
+        // bc_default_currency
+        // bc_company_business
+        // bc_area_of_activity
+        // bc_scalability
+        // bc_scalability_area
+        // bc_market_share
+        // bc_number_of_employees
+        // bc_actual_revenue_type
+        // bc_actual_revenue_val
+        // bc_actual_revenue_sel
+        // bc_description
+        // bc_key_elements
+        // bc_company_value
+        // bc_company_value_val
+        // bc_company_value_sel
+        // bc_investment_required_value
+        // bc_investment_required_value_val
+        // bc_investment_required_value_sel
         response = {};
-        response['hq_country'] = $(".bc_hq_country_buy").val();
-        response['hq_city'] = $(".bc_hq_city_buy").val();
-        response['sector_sel'] = $(".bc_sector_sel_buy").val();
+        response['hq_country'] = $(".bc_hq_country").val();
+        response['hq_city'] = $(".bc_hq_city").val();
+        response['company_type'] = $(".bc_company_type").val();
+        response['foundation_year'] = $(".bc_foundation_year").val();
+        response['default_currency'] = $(".bc_default_currency").val();
+
+        response['company_value_type'] = $(".bc_company_value:checked").val();
+        if ($(".bc_company_value:checked").val() === "undisclosed") {} else if ($(".bc_company_value:checked").val() === "fixed") {
+            response['company_value_min'] = $(".bc_company_value_val").val();
+            response['company_value_max'] = $(".bc_company_value_val").val();
+        } else if ($(".bc_company_value:checked").val() === "range") {
+            assetVal = $(".bc_company_value_sel").val();
+            index = assetVal.lastIndexOf("|");
+            response['company_value_min'] = assetVal.substring(0, index);
+            response['company_value_max'] = assetVal.substring(index + 1);
+        }
+
+        response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
+        if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
+            response['investment_required_min'] = $(".bc_investment_required_value_val").val();
+            response['investment_required_max'] = $(".bc_investment_required_value_val").val();
+        } else if ($(".bc_investment_required_value:checked").val() === "range") {
+            assetVal = $(".bc_investment_required_value_sel").val();
+            index = assetVal.lastIndexOf("|");
+            response['investment_required_min'] = assetVal.substring(0, index);
+            response['investment_required_max'] = assetVal.substring(index + 1);
+        }
+
+        response['sector_sel'] = $(".bc_sector_sel").val();
 
         var isIndustrySetted = false;
         var industry = '';
-        $(".bc_industry_sel_buy").each(function() {
+        $(".bc_industry_sel").each(function() {
             isIndustrySetted = true;
             industry += $(this).val() + "|";
         });
-        if (true)
+        if (isIndustrySetted)
             response['industry_sel'] = industry.substring(0, industry.length - 1);
 
-        response['default_currency'] = $(".bc_default_currency_buy").val();
+        response['company_business'] = $(".bc_company_business").val();
+        var isAreaSetted = false;
+        var areaOfActivity = '';
+        $(".bc_area_of_activity").each(function() {
+            isAreaSetted = true;
+            areaOfActivity += $(this).val() + "|";
+        });
+        if (isAreaSetted)
+            response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-        response['actual_revenue_type'] = $(".bc_actual_revenue_type_buy:checked").val();
-        if ($(".bc_actual_revenue_type_buy:checked").val() === "undisclosed") {} else if ($(".bc_actual_revenue_type_buy:checked").val() === "fixed") {
-            response['actual_revenue_min'] = $(".bc_actual_revenue_val_buy").val();
-            response['actual_revenue_max'] = $(".bc_actual_revenue_val_buy").val();
-        } else if ($(".bc_actual_revenue_type_buy:checked").val() === "range") {
-            assetVal = $(".bc_actual_revenue_sel_buy").val();
+        response['scalability'] = $(".bc_scalability").val();
+        response['scalability_area'] = $(".bc_scalability_area").val();
+        response['market_share'] = $(".bc_market_share").val();
+        console.log($(".bc_number_of_employees:checked").val());
+        if (null != $(".bc_number_of_employees:checked").val()) {
+            var numOfEmp = $(".bc_number_of_employees:checked").val();
+            index = numOfEmp.lastIndexOf("|");
+            response['number_of_employees_min'] = numOfEmp.substring(0, index);
+            response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+        }
+
+        response['actual_revenue_type'] = $(".bc_actual_revenue_type:checked").val();
+        if ($(".bc_actual_revenue_type:checked").val() === "fixed") {
+            response['actual_revenue_min'] = $(".bc_actual_revenue_val").val();
+            response['actual_revenue_max'] = $(".bc_actual_revenue_val").val();
+        } else if ($(".bc_actual_revenue_type:checked").val() === "range") {
+            assetVal = $(".bc_actual_revenue_sel").val();
             index = assetVal.lastIndexOf("|");
             response['actual_revenue_min'] = assetVal.substring(0, index);
             response['actual_revenue_max'] = assetVal.substring(index + 1);
         }
+        response['ebidta_margin'] = $(".bc_ebidta_margin").val();
+        response['for_rev_1'] = $(".bc_for_rev_1").val();
+        response['for_ebd_1'] = $(".bc_for_ebd_1").val();
+        response['for_rev_2'] = $(".bc_for_rev_2").val();
+        response['for_ebd_2'] = $(".bc_for_ebd_2").val();
+        response['for_rev_3'] = $(".bc_for_rev_3").val();
+        response['for_ebd_3'] = $(".bc_for_ebd_3").val();
 
-        response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
-        response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
-        response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
-        response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
-        response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
-        response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
-        response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
-        response['who_i_am'] = $(".bc_who_i_am").val();
-        response['aum'] = $(".bc_aum").val();
-        response['number_of_investments'] = $(".bc_number_of_investments").val();
-        response['what_i_want'] = $(".bc_what_i_want_buy").val();
-        response['description'] = $(".bc_description_buy").val();
-        response['looking_for'] = $(".bc_looking_for").val();
+        response['description'] = $(".bc_description").val();
+        response['key_elements'] = $(".bc_key_elements").val();
         response['image'] = $(".bc_image_buy").val();
-
-        var investmentAmount = "";
-        var investmentSize = "";
-        $(".bc_investment_required_value_buy").each(function() {
-            if ($(this).prop("checked")) {
-                investmentSize += $(this).val() + ",";
-            }
-        });
-        $(".bc_investment_amount_buy").each(function() {
-            if ($(this).prop("checked")) {
-                investmentAmount += $(this).val() + ",";
-            }
-        });
-        investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
-        investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
-        response['investment_size'] = investmentSize;
-        response['investment_amount'] = investmentAmount;
+        response["asset_type"] = "BC";
         console.log(response);
-        response['asset_type'] = "BC";
 
         $.ajax({
             type: 'POST',
@@ -851,16 +895,9 @@ if (isset($_SESSION['email'])) {
                 console.log(data);
             }
         });
+
+
     }
-
-
-
-
-
-
-    // scalability
-
-
 
     function setValues() {
         document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
@@ -877,11 +914,13 @@ if (isset($_SESSION['email'])) {
         document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
         document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
         document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
+        $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
+        document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
 
-        $("input[name=company_value][value=<?= $row["ASSET_VAL_TYPE"] ?>]").attr('checked', 'checked');
+        $("input[name=company_value][value=<?= $row["COMPANY_VAL_TYPE"] ?>]").attr('checked', 'checked');
         if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
             document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
-        } else if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "range") {
+        } else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "range") {
             document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
         }
 
@@ -892,7 +931,7 @@ if (isset($_SESSION['email'])) {
             document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_REQ_MIN"] . '|' . $row["INVESTMENT_REQ_MAX"] ?>";
         }
 
-        $("input[name=bc_actual_revenue_type][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
+        $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
         if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
             document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
         } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
@@ -903,6 +942,9 @@ if (isset($_SESSION['email'])) {
         $.each(values.split(","), function(i, e) {
             $("#industry option[value='" + e + "']").prop("selected", true);
         });
+
+        $("input[name=number_of_employees][value='<?= $row["NUM_OF_EMPLOYEE_MIN"] . '|' . $row['NUM_OF_EMPLOYEE_MAX'] ?>']").attr('checked', 'checked');
+
 
     }
 </script>
@@ -932,6 +974,13 @@ if (isset($_SESSION['email'])) {
                     }));
                 });
                 document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
+                var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
+                $.each(values.split(","), function(i, e) {
+                    console.log("area of activity" + e);
+                    $("#activity_area option[value='" + e + "']").prop("selected", true);
+                });
+
+                document.getElementById("scalability_area").value = "<?= $row["SCALABILITY_AREA"] ?>";
             }
         });
         $.ajax({
