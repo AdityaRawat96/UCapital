@@ -20,6 +20,7 @@ if(isset($_SESSION['email'])){
   <script type="text/javascript" src="../../plugins/pagination/pagination.min.js"></script>
   <script type="text/javascript">
   var obj = [];
+  var preferred_verticals_array = [];
   var itemType = "investors";
   var offset = parseInt('<?=$offset?>');
   var currentPage = parseInt('<?=$currentPage?>');
@@ -31,6 +32,18 @@ if(isset($_SESSION['email'])){
       url: '../../assets/php/getInvestors.php',
       success: function(data) {
         obj = jQuery.parseJSON(data);
+        for(var i = 0; i < obj.length; i++) {
+          $(".investorNameSearch").append('<li class="searchable" data-search="'+obj[i].name+'">'+obj[i].name+'</li>');
+          if(obj[i].Preferred_Verticals){
+            obj[i].Preferred_Verticals.split(",").forEach(function(vertical){
+              vertical = vertical.trim();
+              if(!preferred_verticals_array.includes(vertical)){
+                $(".preferredVerticalsSearch").append('<li class="searchable" data-search="'+vertical+'">'+vertical+'</li>');
+                preferred_verticals_array.push(vertical);
+              }
+            });
+          }
+        }
         showResults();
       }
     });

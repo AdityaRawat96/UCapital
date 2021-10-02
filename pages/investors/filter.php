@@ -15,18 +15,50 @@
 
           <div class="col-md-3">
             <ul class="listing-add-post1 nav nav-pills">
-              <li> <a href="#PrimaryInvestor" data-toggle="tab" class="add-active active"> Primary Investor Type </a> </li>
+              <li> <a href="#investorName" data-toggle="tab" class="add-active active"> Name of the investor </a> </li>
+              <li> <a href="#PrimaryInvestor" data-toggle="tab"> Primary Investor Type </a> </li>
               <li> <a href="#AUM" data-toggle="tab"> A.U.M. </a> </li>
               <li> <a href="#Preferredindustry" data-toggle="tab"> Preferred industry </a> </li>
               <li> <a href="#TotalInvestments" data-toggle="tab"> Total Investments. </a> </li>
               <li> <a href="#PreferredInvestmentAmount" data-toggle="tab"> Preferred Investment Amount </a> </li>
+              <li> <a href="#PreferredVerticals" data-toggle="tab"> Preferred Verticals </a> </li>
               <li> <a href="#Where" data-toggle="tab"> Where </a> </li>
             </ul>
           </div>
 
           <div class="col-md-9">
             <div class="tab-content pl-3">
-              <div class="tab-pane active" id="PrimaryInvestor">
+              <div class="tab-pane active" id="investorName">
+                <div class="input-group">
+                  <input type="text" class="form-control filter_search_query" placeholder="Search..">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" onclick="searchFilter($(this));">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div><br>
+                <div class="form-group mt-1 mb-4" id="investorNameType">
+                  <ul class="engery654 subcategories investorNameSearch">
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="PreferredVerticals">
+                <div class="input-group">
+                  <input type="text" class="form-control filter_search_query" placeholder="Search..">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" onclick="searchFilter($(this));">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div><br>
+                <div class="form-group mt-1 mb-4" id="PreferredVerticalsType">
+                  <ul class="engery654 subcategories preferredVerticalsSearch">
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="PrimaryInvestor">
                 <div class="form-group mt-1 mb-4 subcategories_container" id="pebuyout">
                   <label class="font-name"> PE/Buyout Types: </label>
                   <ul class="engery654 subcategories">
