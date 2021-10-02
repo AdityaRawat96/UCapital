@@ -213,22 +213,25 @@
       </div>
 
       <script type="text/javascript">
-      function appyDealFilter(){
-        if($(".deal-radio:checked").val()){
-          $("."+$(".deal-radio:checked").val()+"_tabs a").each(function(){
-            console.log($(this).attr("href"))
-            $($(this).attr("href")).find(".selected").each(function(){
-              if($(this).data("search") == undefined){
-                return false;
-              }
-              console.log($(this).data("search"))
+        function appyDealFilter() {
+          if ($(".deal-radio:checked").val()) {
+            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+              console.log($(this).attr("href"))
+              $($(this).attr("href")).find(".selected").each(function() {
+                if ($(this).data("search") == undefined) {
+                  return false;
+                }
+                console.log($(this).data("search"))
+              });
+              $($(this).attr("href")).find("input:checked").each(function() {
+                if ($(this).val() == "All") {
+                  return false;
+                }
+                console.log($(this).val());
+              });
             });
-            $($(this).attr("href")).find("input:checked").each(function(){
-              console.log($(this).val())
-            });
-          });
+          }
         }
-      }
       </script>
 
     </div>
