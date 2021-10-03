@@ -320,7 +320,7 @@ if (isset($_SESSION['email'])) {
         response['re_condition_status'] = $(".re_condition_status").val();
         response['re_construction_year'] = $(".re_construction_year").val();
         response['re_surface_area'] = $(".re_surface_area").val();
-        response['re_hq_country'] = $(".re_hq_country").val();
+        response['re_hq_country'] = $(".re_hq_country option:selected").text();
         response['re_hq_city'] = $(".re_hq_city").val();
         response['default_currency'] = $(".re_default_currency").val();
         response['re_asset_value'] = $(".re_asset_value:checked").val();
@@ -438,7 +438,11 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
-                document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
+                $(".hq_country option").each(function() {
+                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
             }
         });
         $.ajax({

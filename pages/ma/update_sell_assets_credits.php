@@ -254,7 +254,7 @@ if (isset($_SESSION['email'])) {
         response['credit_maturity'] = $(".credit_maturity").val();
         response['credit_product_type'] = $(".credit_product_type").val();
         response['credit_collateral_type'] = $(".credit_collateral_type").val();
-        response['credit_hq_country'] = $(".credit_hq_country").val();
+        response['credit_hq_country'] = $(".credit_hq_country option:selected").text();
         response['credit_hq_city'] = $(".credit_hq_city").val();
         response['credit_state'] = $(".credit_state").val();
         response['credit_post_code'] = $(".credit_post_code").val();
@@ -359,7 +359,11 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
-                document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
+                $(".hq_country option").each(function() {
+                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
             }
         });
         $.ajax({

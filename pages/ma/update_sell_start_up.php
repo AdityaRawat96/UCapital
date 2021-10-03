@@ -689,7 +689,7 @@ if (isset($_SESSION['email'])) {
 <script>
     function update() {
         response = {};
-        response['hq_country'] = $(".su_hq_country_buy").val();
+        response['hq_country'] = $(".su_hq_country_buy option:selected").text();
         response['hq_city'] = $(".su_hq_city_buy").val();
         response['sector_sel'] = $(".su_sector_buy").val();
         response['startup_type'] = $(".su_startup_type_buy").val();
@@ -836,7 +836,11 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
-                document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
+                $(".hq_country option").each(function() {
+                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
             }
         });
         $.ajax({

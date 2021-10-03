@@ -592,16 +592,16 @@ if (isset($_SESSION['email'])) {
 
       console.log(insertData);
 
-      // $.ajax({
-      //   type: 'POST',
-      //   url: '../../assets/php/insertDeal.php',
-      //   data: {
-      //     dealData: insertData
-      //   },
-      //   success: function(data) {
-      //     console.log(data);
-      //   }
-      // });
+      $.ajax({
+        type: 'POST',
+        url: '../../assets/php/insertDeal.php',
+        data: {
+          dealData: insertData
+        },
+        success: function(data) {
+          console.log(data);
+        }
+      });
 
     });
 
@@ -954,15 +954,15 @@ if (isset($_SESSION['email'])) {
       response['company_business'] = $(".bc_company_business").val();
       var isAreaSetted = false;
       var areaOfActivity = '';
-      $(".bc_area_of_activity").each(function() {
+      $(".bc_area_of_activity option:checked").each(function() {
         isAreaSetted = true;
-        areaOfActivity += $(this).val() + "|";
+        areaOfActivity += $(this).text() + ",";
       });
       if (isAreaSetted)
         response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".bc_scalability").val();
-      response['scalability_area'] = $(".bc_scalability_area").val();
+      response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
       response['market_share'] = $(".bc_market_share").val();
       console.log($(".bc_number_of_employees:checked").val());
       if (null != $(".bc_number_of_employees:checked").val()) {

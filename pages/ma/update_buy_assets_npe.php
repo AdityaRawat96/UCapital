@@ -223,7 +223,7 @@ if (isset($_SESSION['email'])) {
         response = {};
         response['npe_type'] = $(".npe_type_buy").val();
         response['npe_product_type'] = $(".npe_product_type_buy").val();
-        response['npe_hq_country'] = $(".npe_hq_country_buy").val();
+        response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
         response['npe_hq_city'] = $(".npe_hq_city_buy").val();
         response['npe_state'] = $(".npe_state_buy").val();
         response['npe_post_code'] = $(".npe_post_code_buy").val();
@@ -308,7 +308,11 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
-                document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
+                $(".hq_country option").each(function() {
+                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
             }
         });
         $.ajax({

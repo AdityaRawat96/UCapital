@@ -780,7 +780,7 @@ if (isset($_SESSION['email'])) {
 <script>
     function update() {
         response = {};
-        response['hq_country'] = $(".bc_hq_country").val();
+        response['hq_country'] = $(".bc_hq_country option:selected").text();
         response['hq_city'] = $(".bc_hq_city").val();
         response['company_type'] = $(".bc_company_type").val();
         response['foundation_year'] = $(".bc_foundation_year").val();
@@ -953,38 +953,51 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
-                document.getElementById("country").value = "<?= $row['COUNTRY'] ?>";
-                var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
-                $.each(values.split(","), function(i, e) {
-                    console.log("area of activity" + e);
-                    $("#activity_area option[value='" + e + "']").prop("selected", true);
+                $(".hq_country option").each(function() {
+                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
                 });
 
-                document.getElementById("scalability_area").value = "<?= $row["SCALABILITY_AREA"] ?>";
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCities.php",
-            dataType: 'json',
-            data: {
-                country_id: <?= $row['COUNTRY'] ?>
-            },
-            success: function(data) {
-                $('.hq_city').html("");
-                $('.hq_city').append($('<option>', {
-                    value: "",
-                    text: "Choose a city",
-                    selected: true,
-                    disabled: true
-                }));
-                $.each(data, function(index, element) {
-                    $('.hq_city').append($('<option>', {
-                        value: element.city,
-                        text: element.city
-                    }));
+                var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
+                $.each(values.split(","), function(i, e) {
+                    $("#activity_area option").each(function() {
+                        if ($(this).text() == e) {
+                            $(this).attr('selected', 'selected');
+                        };
+                    });
                 });
-                document.getElementById("city").value = "<?= $row['CITY'] ?>";
+
+                $("#scalability_area option").each(function() {
+                    if ($(this).text() == "<?= $row["SCALABILITY_AREA"] ?>") {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: "../../assets/php/getCities.php",
+                    dataType: 'json',
+                    data: {
+                        country_id: $(".hq_country option:selected").val()
+                    },
+                    success: function(data) {
+                        $('.hq_city').html("");
+                        $('.hq_city').append($('<option>', {
+                            value: "",
+                            text: "Choose a city",
+                            selected: true,
+                            disabled: true
+                        }));
+                        $.each(data, function(index, element) {
+                            $('.hq_city').append($('<option>', {
+                                value: element.city,
+                                text: element.city
+                            }));
+                        });
+                        document.getElementById("city").value = "<?= $row['CITY'] ?>";
+                    }
+                });
             }
         });
 
