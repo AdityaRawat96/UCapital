@@ -763,12 +763,6 @@ if (isset($_SESSION['email'])) {
         document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
         document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
         document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
-        $("input[name=preferred_revenue][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
-        if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
-            document.getElementById("preferred_revenue_val").value = "<?= $row["ACTUTAL_REVENUE_MIN"] ?>";
-        } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
-            document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUTAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
-        }
         var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
         var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
 
@@ -787,6 +781,14 @@ if (isset($_SESSION['email'])) {
         $.each(values.split(","), function(i, e) {
             $("#bc_industry option[value='" + e + "']").prop("selected", true);
         });
+
+        $("input[name=preferred_revenue][value=<?= $row['ACTUAL_REVENUE_TYPE'] ?>]").attr('checked', 'checked');
+        if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
+            document.getElementById("preferred_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
+        } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
+            document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
+        }
+
 
     }
 </script>
@@ -820,30 +822,30 @@ if (isset($_SESSION['email'])) {
                         $(this).attr('selected', 'selected');
                     }
                 });
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCities.php",
-            dataType: 'json',
-            data: {
-                country_id: <?= $row['COUNTRY'] ?>
-            },
-            success: function(data) {
-                $('.hq_city').html("");
-                $('.hq_city').append($('<option>', {
-                    value: "",
-                    text: "Choose a city",
-                    selected: true,
-                    disabled: true
-                }));
-                $.each(data, function(index, element) {
-                    $('.hq_city').append($('<option>', {
-                        value: element.city,
-                        text: element.city
-                    }));
+                $.ajax({
+                    type: 'POST',
+                    url: "../../assets/php/getCities.php",
+                    dataType: 'json',
+                    data: {
+                        country_id: $(".hq_country option:selected").val()
+                    },
+                    success: function(data) {
+                        $('.hq_city').html("");
+                        $('.hq_city').append($('<option>', {
+                            value: "",
+                            text: "Choose a city",
+                            selected: true,
+                            disabled: true
+                        }));
+                        $.each(data, function(index, element) {
+                            $('.hq_city').append($('<option>', {
+                                value: element.city,
+                                text: element.city
+                            }));
+                        });
+                        document.getElementById("city").value = "<?= $row['CITY'] ?>";
+                    }
                 });
-                document.getElementById("city").value = "<?= $row['CITY'] ?>";
             }
         });
 

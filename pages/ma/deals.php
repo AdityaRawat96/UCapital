@@ -999,7 +999,7 @@ if (isset($_SESSION['email'])) {
 
     function getSellStartUpData() {
       response = {};
-      response['hq_country'] = $(".su_hq_country option:selected").val();
+      response['hq_country'] = $(".su_hq_country option:selected").text();
       response['hq_city'] = $(".su_hq_city").val();
       response['sector_sel'] = $(".su_sector").val();
       response['startup_type'] = $(".su_startup_type").val();
