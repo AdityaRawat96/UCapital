@@ -19,28 +19,30 @@
 
               <!--Company -->
               <div class="company_tabs hidden_tab_head">
-                <li> <a href="#Where" data-toggle="tab"> HQ Location </a> </li>
-                <li> <a href="#TechnologyOperation" data-toggle="tab"> Technology of operation </a> </li>
-                <li> <a href="#Sector" data-toggle="tab"> Sector </a> </li>
-                <li> <a href="#Industry" data-toggle="tab"> Industry </a> </li>
-                <li> <a href="#AreaOfActivity" data-toggle="tab"> Area of activity </a> </li>
-                <li> <a href="#Employees" data-toggle="tab"> Number of employees </a> </li>
-                <li> <a href="#Value" data-toggle="tab"> Value </a> </li>
-                <li> <a href="#InvestmentRequired" data-toggle="tab"> Investment Required </a> </li>
-                <li> <a href="#Revenue" data-toggle="tab"> Revenue </a> </li>
-                <li> <a href="#EbitdaMargin" data-toggle="tab"> Ebitda Margin </a> </li>
+                <li> <a href="#Where_company" data-toggle="tab"> Location </a> </li>
+                <li> <a href="#Sector_company" data-toggle="tab"> Preferred Sector </a> </li>
+                <li> <a href="#Industry_company" data-toggle="tab"> Preferred Industry </a> </li>
+                <li> <a href="#TechnologyOperation_company" data-toggle="tab"> Objective </a> </li>
+                <li> <a href="#InvestmentRequired_company" data-toggle="tab"> Investment Size </a> </li>
+                <li> <a href="#Revenue_company" data-toggle="tab"> Preferred Revenue </a> </li>
+                <li> <a href="#EbitdaMargin_company" data-toggle="tab"> Ebitda Margin </a> </li>
+                <li> <a href="#Publisher_company" data-toggle="tab"> Publisher </a> </li>
+                <li> <a href="#AUM_company" data-toggle="tab"> AUM </a> </li>
+                <li> <a href="#PreferredInvestmentAmount_company" data-toggle="tab"> Preferred Investment Amount </a> </li>
+                <li> <a href="#Investments_company" data-toggle="tab"> Investments </a> </li>
               </div>
 
               <!--Asset -->
               <div class="asset_tabs hidden_tab_head">
-                <li> <a href="#Where" data-toggle="tab"> HQ Location </a> </li>
-                <li> <a href="#Subject" data-toggle="tab"> Subject </a> </li>
-                <li> <a href="#Status" data-toggle="tab"> Status </a> </li>
-                <li> <a href="#TotalSurface" data-toggle="tab"> Total surface approx. </a> </li>
-                <li> <a href="#Value" data-toggle="tab"> Value </a> </li>
-                <li> <a href="#InvestmentRequired" data-toggle="tab"> Investment Required </a> </li>
-                <li> <a href="#YearlyReturn" data-toggle="tab"> Yearly Return </a> </li>
-                <li> <a href="#VendorType" data-toggle="tab"> Vendor Type </a> </li>
+                <li> <a href="#Where_asset" data-toggle="tab"> HQ Location </a> </li>
+                <li> <a href="#Subject_asset" data-toggle="tab"> Subject </a> </li>
+                <li> <a href="#Status_asset" data-toggle="tab"> Status </a> </li>
+                <li> <a href="#Condition_asset" data-toggle="tab"> Condition </a> </li>
+                <li> <a href="#TotalSurface_asset" data-toggle="tab"> Total surface approx. </a> </li>
+                <li> <a href="#Value_asset" data-toggle="tab"> Value </a> </li>
+                <li> <a href="#Publisher_asset" data-toggle="tab"> Publisher </a> </li>
+                <li> <a href="#AUM_asset" data-toggle="tab"> AUM </a> </li>
+                <li> <a href="#Investments_asset" data-toggle="tab"> Investments </a> </li>
               </div>
             </ul>
           </div>
@@ -67,9 +69,9 @@
                 <div class="asset_type_section hidden_deal_container">
                   <select class="form-control offer_type_selector asset_type" name="asset_type">
                     <option value="" selected disabled>Choose type of asset</option>
-                    <option value="Real Estate">Real Estate</option>
-                    <option value="NPE">NPE</option>
-                    <option value="Credits">Credits</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="npe">NPE</option>
+                    <option value="credits">Credits</option>
                   </select>
                 </div>
                 <br><br>
@@ -195,10 +197,10 @@
 
               <?php
 
+              include 'filters/buy_company_business.php';
               include 'filters/buy_asset_real_estate.php';
 
               ?>
-
 
             </div>
           </div>
@@ -209,8 +211,61 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="applyFilter()">Apply</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="appyDealFilter()">Apply</button>
       </div>
+
+      <script type="text/javascript">
+        function appyDealFilter() {
+          var filter_data = [];
+          if ($(".deal-radio:checked").val()) {
+            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+
+              var table_name = $($(this).attr("href")).data("column");
+
+              var table_data = [];
+              $($(this).attr("href")).find(".selected").each(function() {
+                if ($(this).data("search") == undefined) {
+                  return false;
+                }
+                table_data.push($(this).data("search"));
+                console.log($(this).data("search"))
+
+              });
+              $($(this).attr("href")).find("input:checked").each(function() {
+                if ($(this).val() == "All") {
+                  return false;
+                }
+                table_data.push($(this).val());
+
+              });
+
+              filter_data.push({
+                [table_name]: table_data
+              });
+            });
+            console.log(filter_data);
+          }
+          $.ajax({
+            type: 'POST',
+            url: '../../assets/php/getFilterData.php',
+            data: {
+              action: "buy",
+              filterData: filter_data,
+              deal: $(".offer").val(),
+              assetType: $(".asset_type").val(),
+              companyType: $(".company_type").val()
+            },
+            success: function(data) {
+              console.log("\n")
+              console.log(data);
+            },
+            error: function(request, status, error) {
+              console.log(error);
+              console.log(request.responseText);
+            }
+          });
+        }
+      </script>
 
     </div>
   </div>

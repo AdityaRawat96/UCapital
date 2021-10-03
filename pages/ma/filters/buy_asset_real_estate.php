@@ -1,4 +1,4 @@
-<div class="tab-pane" id="Where">
+<div class="tab-pane" id="Where_asset" data-column="location">
   <div class="input-group">
     <input type="text" class="form-control filter_search_query" placeholder="Search..">
     <div class="input-group-btn">
@@ -171,96 +171,104 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Subject">
+<div class="tab-pane" id="Subject_asset" data-column="subject">
   <h1>Subject</h1><br>
   <div class="row">
     <div class="col-md-12">
-      <input type="radio" name="subject" value="Totality Selling"><span class="category_checkbox_label">Totality Selling</span><br><br>
+      <input type="radio" name="subject" value="Totality Buying"><span class="category_checkbox_label">Totality Buying</span><br><br>
       <input type="radio" name="subject" value="Looking for Co-Investors"><span class="category_checkbox_label">Looking for Co-Investors</span><br><br>
-      <input type="radio" name="subject" value="Looking for Investors"><span class="category_checkbox_label">Looking for Investors</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="Status">
+<div class="tab-pane" id="Status_asset" data-column="status">
   <h1>Status</h1><br>
   <div class="row">
     <div class="col-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
       <input type="checkbox" value="Existing property"><span class="category_checkbox_label">Existing property</span><br><br>
       <input type="checkbox" value="Under Construction"><span class="category_checkbox_label">Under Construction</span><br><br>
-      <input type="checkbox" value="Project"><span class="category_checkbox_label">Project</span><br><br>
+      <input type="checkbox" value="Planned only"><span class="category_checkbox_label">Planned only</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="TotalSurface">
+<div class="tab-pane" id="Condition_asset" data-column="status">
+  <h1>Condition</h1><br>
+  <div class="row">
+    <div class="col-12">
+      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
+      <input type="checkbox" value="New property"><span class="category_checkbox_label">New property</span><br><br>
+      <input type="checkbox" value="To renovate"><span class="category_checkbox_label">To renovate</span><br><br>
+      <input type="checkbox" value="Good conditions"><span class="category_checkbox_label">Good conditions</span><br><br>
+    </div>
+  </div>
+</div>
+
+<div class="tab-pane" id="TotalSurface_asset" data-column="surface_area">
   <h1>Total surface approx.</h1><br>
   <div class="row">
     <div class="col-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Less than 100 sqm<"><span class="category_checkbox_label">Less than 100 sqm</span><br><br>
-      <input type="checkbox" value="From 100 to 300 sqm"><span class="category_checkbox_label">From 100 to 300 sqm</span><br><br>
-      <input type="checkbox" value="From 300 to 500 sqm"><span class="category_checkbox_label">From 300 to 500 sqm</span><br><br>
-      <input type="checkbox" value="More than 500 sqm"><span class="category_checkbox_label">More than 500 sqm</span><br><br>
+      <input type="checkbox" value="0|100"><span class="category_checkbox_label">Less than 100 sqm</span><br><br>
+      <input type="checkbox" value="100|300"><span class="category_checkbox_label">From 100 to 300 sqm</span><br><br>
+      <input type="checkbox" value="300|500"><span class="category_checkbox_label">From 300 to 500 sqm</span><br><br>
+      <input type="checkbox" value="500|100000000"><span class="category_checkbox_label">More than 500 sqm</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="Value">
+<div class="tab-pane" id="Value_asset" data-column="value">
   <h1>Value</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
-      <input type="checkbox" value="From 0 to 500k"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
-      <input type="checkbox" value="From 500k to 1 million"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
-      <input type="checkbox" value="From 1 to 10 million"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
-      <input type="checkbox" value="From 10 to 50 million"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
-      <input type="checkbox" value="From 50 to 250 million"><span class="category_checkbox_label">From 50 to 250 million</span><br><br>
-      <input type="checkbox" value="Over 250 million"><span class="category_checkbox_label">Over 250 million</span><br><br>
+      <input type="checkbox" value="Undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
+      <input type="checkbox" value="0|500000"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
+      <input type="checkbox" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
+      <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
+      <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
+      <input type="checkbox" value="50000000|100000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="InvestmentRequired">
-  <h1>Investment Required</h1><br>
-  <div class="row">
-    <div class="col-md-12">
-      <input type="radio" name="investment_required" value="Undisclosed"><span class="category_checkbox_label">Undisclosed</span><br><br>
-      <input type="radio" name="investment_required" value="From 0 to 500k"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
-      <input type="radio" name="investment_required" value="From 500k to 1 million"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
-      <input type="radio" name="investment_required" value="From 1 million to 10 million"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
-      <input type="radio" name="investment_required" value="From 10 million to 50 million"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
-      <input type="radio" name="investment_required" value="From 50 to 250 million"><span class="category_checkbox_label">From 50 to 250 million</span><br><br>
-      <input type="radio" name="investment_required" value="Over 250 million"><span class="category_checkbox_label">Over 250 million</span><br><br>
-    </div>
-  </div>
-</div>
-
-<div class="tab-pane" id="YearlyReturn">
-  <h1>Yearly Return</h1><br>
+<div class="tab-pane" id="Publisher_asset">
+  <h1>Publisher</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
-      <input type="checkbox" value="From 0% to 10%"><span class="category_checkbox_label">From 0% to 10%</span><br><br>
-      <input type="checkbox" value="From 10% to 20%"><span class="category_checkbox_label">From 10% to 20%</span><br><br>
-      <input type="checkbox" value="From 2% to 30%"><span class="category_checkbox_label">From 2% to 30%</span><br><br>
-      <input type="checkbox" value="Over 30%"><span class="category_checkbox_label">Over 30%</span><br><br>
+      <input type="checkbox" value="Individual"><span class="category_checkbox_label">Individual</span><br><br>
+      <input type="checkbox" value="Corporation"><span class="category_checkbox_label">Corporation</span><br><br>
+      <input type="checkbox" value="PE Fund"><span class="category_checkbox_label">PE Fund</span><br><br>
+      <input type="checkbox" value="VC Fund"><span class="category_checkbox_label">VC Fund</span><br><br>
+      <input type="checkbox" value="Asset Management"><span class="category_checkbox_label">Asset Management</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="VendorType">
-  <h1>Vendor Type</h1><br>
+<div class="tab-pane" id="AUM_asset">
+  <h1>AUM</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Private Owner"><span class="category_checkbox_label">Private Owner</span><br><br>
-      <input type="checkbox" value="Company"><span class="category_checkbox_label">Company</span><br><br>
-      <input type="checkbox" value="Investment Fund"><span class="category_checkbox_label">Investment Fund</span><br><br>
-      <input type="checkbox" value="Bank"><span class="category_checkbox_label">Bank</span><br><br>
+      <input type="checkbox" value="Less than 10 million"><span class="category_checkbox_label">Less than 10 million</span><br><br>
+      <input type="checkbox" value="From 10 million to 100 million"><span class="category_checkbox_label">From 10 million to 100 million</span><br><br>
+      <input type="checkbox" value="From 100 million to 500 million"><span class="category_checkbox_label">From 100 million to 500 million</span><br><br>
+      <input type="checkbox" value="Over 500 million"><span class="category_checkbox_label">Over 500 million</span><br><br>
+    </div>
+  </div>
+</div>
+
+<div class="tab-pane" id="Investments_asset">
+  <h1>Investments</h1><br>
+  <div class="row">
+    <div class="col-md-12">
+      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
+      <input type="checkbox" value="Less than 10 million"><span class="category_checkbox_label">Less than 10 million</span><br><br>
+      <input type="checkbox" value="From 10 million to 100 million"><span class="category_checkbox_label">From 10 million to 100 million</span><br><br>
+      <input type="checkbox" value="From 100 million to 500 million"><span class="category_checkbox_label">From 100 million to 500 million</span><br><br>
+      <input type="checkbox" value="Over 500 million"><span class="category_checkbox_label">Over 500 million</span><br><br>
     </div>
   </div>
 </div>

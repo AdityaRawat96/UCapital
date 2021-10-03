@@ -93,17 +93,17 @@ if (isset($_SESSION['email'])) {
 
     autocomplete(document.getElementById("searchIndicators"), searchableElements);
     $(document).ready(function() {
-      // $.ajax({
-      //   type: 'POST',
-      //   url: '../../assets/php/getMA.php',
-      //   data: {
-      //     action: "Buy"
-      //   },
-      //   success: function(data) {
-      //     obj = jQuery.parseJSON(data);
-      //     showResults();
-      //   }
-      // });
+      //   $.ajax({
+      //     type: 'POST',
+      //     url: '../../assets/php/getMA.php',
+      //     data: {
+      //       action: "Sell"
+      //     },
+      //     success: function(data) {
+      //       obj = jQuery.parseJSON(data);
+      //       showResults();
+      //     }
+      //   });
       $.ajax({
         type: 'POST',
         url: '../../assets/php/getMAData.php',
@@ -117,7 +117,7 @@ if (isset($_SESSION['email'])) {
           console.log(data);
         }
       });
-    })
+    });
   </script>
 <?php
 } else {
