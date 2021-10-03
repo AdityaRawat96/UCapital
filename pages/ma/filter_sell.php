@@ -213,25 +213,36 @@
       </div>
 
       <script type="text/javascript">
-        function appyDealFilter() {
-          if ($(".deal-radio:checked").val()) {
-            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
-              console.log($(this).attr("href"))
-              $($(this).attr("href")).find(".selected").each(function() {
-                if ($(this).data("search") == undefined) {
-                  return false;
-                }
-                console.log($(this).data("search"))
-              });
-              $($(this).attr("href")).find("input:checked").each(function() {
-                if ($(this).val() == "All") {
-                  return false;
-                }
-                console.log($(this).val());
-              });
+      function appyDealFilter() {
+        var filter_data = [];
+        if ($(".deal-radio:checked").val()) {
+          $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+
+            var table_name = $($(this).attr("href")).data("column");
+            console.log(table_name + "------------------");
+
+            var table_data = [];
+            $($(this).attr("href")).find(".selected").each(function() {
+              if ($(this).data("search") == undefined) {
+                //  table_data = [];
+                return false;
+              }
+              console.log($(this).data("search"))
+
             });
-          }
+            $($(this).attr("href")).find("input:checked").each(function() {
+              if ($(this).val() == "All") {
+                //    table_data = [];
+                return false;
+              }
+              console.log($(this).val());
+
+            });
+
+            //  filter_data.push({table_name: table_data});
+          });
         }
+      }
       </script>
 
     </div>

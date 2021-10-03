@@ -1,4 +1,4 @@
-<div class="tab-pane" id="Where_asset">
+<div class="tab-pane" id="Where_asset" data-column="location">
   <div class="input-group">
     <input type="text" class="form-control filter_search_query" placeholder="Search..">
     <div class="input-group-btn">
@@ -171,7 +171,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Subject_asset">
+<div class="tab-pane" id="Subject_asset" data-column="subject">
   <h1>Subject</h1><br>
   <div class="row">
     <div class="col-md-12">
@@ -182,7 +182,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Status_asset">
+<div class="tab-pane" id="Status_asset" data-column="status">
   <h1>Status</h1><br>
   <div class="row">
     <div class="col-12">
@@ -194,7 +194,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="TotalSurface_asset">
+<div class="tab-pane" id="TotalSurface_asset" data-column="surface_area">
   <h1>Total surface approx.</h1><br>
   <div class="row">
     <div class="col-12">
@@ -207,7 +207,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Value_asset">
+<div class="tab-pane" id="Value_asset" data-column="value">
   <h1>Value</h1><br>
   <div class="row">
     <div class="col-md-12">
@@ -223,7 +223,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="InvestmentRequired_asset">
+<div class="tab-pane" id="InvestmentRequired_asset"  data-column="investment_required">
   <h1>Investment Required</h1><br>
   <div class="row">
     <div class="col-md-12">
@@ -238,7 +238,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="YearlyReturn_asset">
+<div class="tab-pane" id="YearlyReturn_asset" data-column="yearly_return">
   <h1>Yearly Return</h1><br>
   <div class="row">
     <div class="col-md-12">
@@ -252,7 +252,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="VendorType_asset">
+<div class="tab-pane" id="VendorType_asset" data-column="vendor_type">
   <h1>Vendor Type</h1><br>
   <div class="row">
     <div class="col-md-12">
