@@ -50,7 +50,7 @@ foreach (array_keys($filterData) as $key) {
     }
 }
 
-print_r($sql);
+// print_r($sql);
 
 
 function addYearlyReturn($query, $arr)

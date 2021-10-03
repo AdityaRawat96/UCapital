@@ -592,16 +592,16 @@ if (isset($_SESSION['email'])) {
 
       console.log(insertData);
 
-      $.ajax({
-        type: 'POST',
-        url: '../../assets/php/insertDeal.php',
-        data: {
-          dealData: insertData
-        },
-        success: function(data) {
-          console.log(data);
-        }
-      });
+      // $.ajax({
+      //   type: 'POST',
+      //   url: '../../assets/php/insertDeal.php',
+      //   data: {
+      //     dealData: insertData
+      //   },
+      //   success: function(data) {
+      //     console.log(data);
+      //   }
+      // });
 
     });
 
@@ -613,7 +613,7 @@ if (isset($_SESSION['email'])) {
       response['re_asset_status'] = $(".re_asset_status_buy").val();
       response['re_condition_status'] = $(".re_condition_status_buy").val();
       response['re_surface_area'] = $(".re_surface_area_buy").val();
-      response['re_hq_country'] = $(".re_hq_country_buy").val();
+      response['re_hq_country'] = $(".re_hq_country_buy option:selected").text();
       response['re_hq_city'] = $(".re_hq_city_buy").val();
       response['default_currency'] = $(".re_default_currency_buy").val();
       response['re_asset_value'] = $(".re_asset_value_buy:checked").val();
@@ -640,7 +640,7 @@ if (isset($_SESSION['email'])) {
       response = {};
       response['npe_type'] = $(".npe_type_buy").val();
       response['npe_product_type'] = $(".npe_product_type_buy").val();
-      response['npe_hq_country'] = $(".npe_hq_country_buy").val();
+      response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
       response['npe_hq_city'] = $(".npe_hq_city_buy").val();
       response['npe_state'] = $(".npe_state_buy").val();
       response['npe_post_code'] = $(".npe_post_code_buy").val();
@@ -675,7 +675,7 @@ if (isset($_SESSION['email'])) {
       response['re_condition_status'] = $(".re_condition_status").val();
       response['re_construction_year'] = $(".re_construction_year").val();
       response['re_surface_area'] = $(".re_surface_area").val();
-      response['re_hq_country'] = $(".re_hq_country").val();
+      response['re_hq_country'] = $(".re_hq_country option:selected").text();
       response['re_hq_city'] = $(".re_hq_city").val();
       response['default_currency'] = $(".re_default_currency").val();
       response['re_asset_value'] = $(".re_asset_value:checked").val();
@@ -711,7 +711,7 @@ if (isset($_SESSION['email'])) {
       response['npe_type'] = $(".npe_type").val();
       response['npe_product_type'] = $(".npe_product_type").val();
       response['npe_collateral_type'] = $(".npe_collateral_type").val();
-      response['npe_hq_country'] = $(".npe_hq_country").val();
+      response['npe_hq_country'] = $(".npe_hq_country option:selected").text();
       response['npe_hq_city'] = $(".npe_hq_city").val();
       response['npe_state'] = $(".npe_state").val();
       response['npe_post_code'] = $(".npe_post_code").val();
@@ -736,7 +736,7 @@ if (isset($_SESSION['email'])) {
       response['credit_maturity'] = $(".credit_maturity").val();
       response['credit_product_type'] = $(".credit_product_type").val();
       response['credit_collateral_type'] = $(".credit_collateral_type").val();
-      response['credit_hq_country'] = $(".credit_hq_country").val();
+      response['credit_hq_country'] = $(".credit_hq_country option:selected").text();
       response['credit_hq_city'] = $(".credit_hq_city").val();
       response['credit_state'] = $(".credit_state").val();
       response['credit_post_code'] = $(".credit_post_code").val();
@@ -758,7 +758,7 @@ if (isset($_SESSION['email'])) {
       response = {};
       response['npe_type'] = $(".npec_type_buy").val();
       response['npe_product_type'] = $(".npec_product_type_buy").val();
-      response['npe_hq_country'] = $(".npec_hq_country_buy").val();
+      response['npe_hq_country'] = $(".npec_hq_country_buy option:selected").text();
       response['npe_hq_city'] = $(".npec_hq_city_buy").val();
       response['npe_state'] = $(".npec_state_buy").val();
       response['npe_post_code'] = $(".npec_post_code_buy").val();
@@ -785,7 +785,7 @@ if (isset($_SESSION['email'])) {
 
     function getBuyBusinessCompanyData() {
       response = {};
-      response['hq_country'] = $(".bc_hq_country_buy").val();
+      response['hq_country'] = $(".bc_hq_country_buy option:selected").text();
       response['hq_city'] = $(".bc_hq_city_buy").val();
       response['sector_sel'] = $(".bc_sector_sel_buy").val();
 
@@ -847,7 +847,7 @@ if (isset($_SESSION['email'])) {
 
     function getBuyStartUpData() {
       response = {};
-      response['hq_country'] = $(".su_hq_country_buy").val();
+      response['hq_country'] = $(".su_hq_country_buy option:selected").text();
       response['hq_city'] = $(".su_hq_city_buy").val();
       response['sector_sel'] = $(".su_sector_buy").val();
       response['startup_type'] = $(".su_startup_type_buy").val();
@@ -912,7 +912,7 @@ if (isset($_SESSION['email'])) {
 
     function getSellBusinessCompanyData() {
       response = {};
-      response['hq_country'] = $(".bc_hq_country").val();
+      response['hq_country'] = $(".bc_hq_country option:selected").text();
       response['hq_city'] = $(".bc_hq_city").val();
       response['company_type'] = $(".bc_company_type").val();
       response['foundation_year'] = $(".bc_foundation_year").val();
@@ -999,7 +999,7 @@ if (isset($_SESSION['email'])) {
 
     function getSellStartUpData() {
       response = {};
-      response['hq_country'] = $(".su_hq_country").val();
+      response['hq_country'] = $(".su_hq_country option:selected").val();
       response['hq_city'] = $(".su_hq_city").val();
       response['sector_sel'] = $(".su_sector").val();
       response['startup_type'] = $(".su_startup_type").val();
