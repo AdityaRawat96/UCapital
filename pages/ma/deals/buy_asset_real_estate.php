@@ -36,7 +36,7 @@
       <select class="form-control deal_subject re_deal_subject_buy" name="deal_subject">
         <option value="" selected disabled>Choose the subject</span></option>
         <option value="totality buying">Totality Buying</option>
-        <option value="looking for co-investors">looking for Co-Investors</option>
+        <option value="Looking for Co-Investors">looking for Co-Investors</option>
       </select>
     </div>
   </div>
@@ -48,7 +48,7 @@
       <select class="form-control asset_status re_asset_status_buy" name="asset_status">
         <option value="" selected disabled>Choose the status</span></option>
         <option value="Existing property">Existing property</option>
-        <option value="Under construction">Under construction</option>
+        <option value="Under Construction">Under Construction</option>
         <option value="Planned Only">Planned Only</option>
       </select>
     </div>

@@ -67,9 +67,9 @@
                 <div class="asset_type_section hidden_deal_container">
                   <select class="form-control offer_type_selector asset_type" name="asset_type">
                     <option value="" selected disabled>Choose type of asset</option>
-                    <option value="Real Estate">Real Estate</option>
-                    <option value="NPE">NPE</option>
-                    <option value="Credits">Credits</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="npe">NPE</option>
+                    <option value="credits">Credits</option>
                   </select>
                 </div>
                 <br><br>
@@ -213,36 +213,56 @@
       </div>
 
       <script type="text/javascript">
-      function appyDealFilter() {
-        var filter_data = [];
-        if ($(".deal-radio:checked").val()) {
-          $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+        function appyDealFilter() {
+          var filter_data = [];
+          if ($(".deal-radio:checked").val()) {
+            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
 
-            var table_name = $($(this).attr("href")).data("column");
-            console.log(table_name + "------------------");
+              var table_name = $($(this).attr("href")).data("column");
 
-            var table_data = [];
-            $($(this).attr("href")).find(".selected").each(function() {
-              if ($(this).data("search") == undefined) {
-                //  table_data = [];
-                return false;
-              }
-              console.log($(this).data("search"))
+              var table_data = [];
+              $($(this).attr("href")).find(".selected").each(function() {
+                if ($(this).data("search") == undefined) {
+                  return false;
+                }
+                table_data.push($(this).data("search"));
+                console.log($(this).data("search"))
 
+              });
+              $($(this).attr("href")).find("input:checked").each(function() {
+                if ($(this).val() == "All") {
+                  return false;
+                }
+                table_data.push($(this).val());
+
+              });
+
+              filter_data.push({
+                [table_name]: table_data
+              });
             });
-            $($(this).attr("href")).find("input:checked").each(function() {
-              if ($(this).val() == "All") {
-                //    table_data = [];
-                return false;
-              }
-              console.log($(this).val());
-
-            });
-
-            //  filter_data.push({table_name: table_data});
+            console.log(filter_data);
+          }
+          $.ajax({
+            type: 'POST',
+            url: '../../assets/php/getFilterData.php',
+            data: {
+              action: "sell",
+              filterData: filter_data,
+              deal: $(".offer").val(),
+              assetType: $(".asset_type").val(),
+              companyType: $(".company_type").val()
+            },
+            success: function(data) {
+              console.log("\n")
+              console.log(data);
+            },
+            error: function(request, status, error) {
+              console.log(error);
+              console.log(request.responseText);
+            }
           });
         }
-      }
       </script>
 
     </div>

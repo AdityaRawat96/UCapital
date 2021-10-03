@@ -49,9 +49,9 @@ if (isset($_SESSION['email'])) {
             <div class="col-md-9 col-sm-12 input-container">
                 <select class="form-control deal_subject re_deal_subject" name="deal_subject" id="deal_subject">
                     <option value="" selected disabled>Choose the subject</span></option>
-                    <option value="totality selling">Totality Selling</option>
-                    <option value="looking for co-investors">looking for Co-Investors</option>
-                    <option value="looking for investors">looking for Investors</option>
+                    <option value="Totality Selling">Totality Selling</option>
+                    <option value="Looking for Co-Investors">looking for Co-Investors</option>
+                    <option value="Looking for Investors">Looking for Investors</option>
                 </select>
             </div>
         </div>
@@ -62,8 +62,8 @@ if (isset($_SESSION['email'])) {
             <div class="col-md-9 col-sm-12 input-container">
                 <select class="form-control asset_status re_asset_status" name="asset_status" id="asset_status">
                     <option value="" selected disabled>Choose the status</span></option>
-                    <option value="existing property">Existing property</option>
-                    <option value="under construction ">Under construction </option>
+                    <option value="Existing property">Existing property</option>
+                    <option value="Under Construction ">Under Construction </option>
                     <option value="project">Project</option>
                 </select>
             </div>
