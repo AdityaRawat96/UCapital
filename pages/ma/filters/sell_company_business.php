@@ -1,4 +1,4 @@
-<div class="tab-pane" id="Where_company">
+<div class="tab-pane" id="Where_company" data-column="location">
   <div class="input-group">
     <input type="text" class="form-control filter_search_query" placeholder="Search..">
     <div class="input-group-btn">
@@ -171,7 +171,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="TechnologyOperation_company">
+<div class="tab-pane" id="TechnologyOperation_company" data-column="operation_technology">
   <h1>Technology of operation</h1><br>
   <div class="row">
     <div class="col-md-12">
@@ -189,7 +189,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Sector_company">
+<div class="tab-pane" id="Sector_company" data-column="sector">
   <h1>Sector</h1><br>
   <div class="row">
     <div class="col-12">
@@ -205,7 +205,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Industry_company">
+<div class="tab-pane" id="Industry_company" data-column="industry">
   <div class="input-group">
     <input type="text" class="form-control filter_search_query" placeholder="Search..">
     <div class="input-group-btn">
@@ -532,7 +532,7 @@
   </div>
 </div>
 
-<div class="tab-pane" id="AreaOfActivity_company">
+<div class="tab-pane" id="AreaOfActivity_company" data-column="area_of_activity">
   <div class="input-group">
     <input type="text" class="form-control filter_search_query" placeholder="Search..">
     <div class="input-group-btn">
@@ -705,73 +705,73 @@
   </div>
 </div>
 
-<div class="tab-pane" id="Employees_company">
+<div class="tab-pane" id="Employees_company" data-column="num_of_employee">
   <h1>Number of employees</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Less than 10"><span class="category_checkbox_label">Less than 10</span><br><br>
-      <input type="checkbox" value="From 10 to 50"><span class="category_checkbox_label">From 10 to 50</span><br><br>
-      <input type="checkbox" value="From 50 to 500"><span class="category_checkbox_label">From 50 to 500</span><br><br>
-      <input type="checkbox" value="Over 500"><span class="category_checkbox_label">Over 500</span><br><br>
+      <input type="checkbox" value="0|10"><span class="category_checkbox_label">Less than 10</span><br><br>
+      <input type="checkbox" value="10|50"><span class="category_checkbox_label">From 10 to 50</span><br><br>
+      <input type="checkbox" value="50|500"><span class="category_checkbox_label">From 50 to 500</span><br><br>
+      <input type="checkbox" value="500|1000000"><span class="category_checkbox_label">Over 500</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="Value_company">
+<div class="tab-pane" id="Value_company" data-column="value">
   <h1>Value</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
       <input type="checkbox" value="undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
-      <input type="checkbox" value="From 0 to 500k"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
-      <input type="checkbox" value="From 500k to 1 million"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
-      <input type="checkbox" value="From 1 to 10 million"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
-      <input type="checkbox" value="From 10 to 50 million"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
-      <input type="checkbox" value="Over 50 million"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="checkbox" value="0|500000"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
+      <input type="checkbox" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
+      <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
+      <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
+      <input type="checkbox" value="50000000|100000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="InvestmentRequired_company">
+<div class="tab-pane" id="InvestmentRequired_company" data-column="investment_required">
   <h1>Investment Required</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input type="radio" name="investment_required" value="Undisclosed"><span class="category_checkbox_label">Undisclosed</span><br><br>
-      <input type="radio" name="investment_required" value="From 0 to 500k"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
-      <input type="radio" name="investment_required" value="From 500k to 1 million"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
-      <input type="radio" name="investment_required" value="From 1 million to 10 million"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
-      <input type="radio" name="investment_required" value="From 10 million to 50 million"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
-      <input type="radio" name="investment_required" value="Over 50 million"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="radio" name="investment_required" value="0|500000"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
+      <input type="radio" name="investment_required" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
+      <input type="radio" name="investment_required" value="1000000|10000000"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
+      <input type="radio" name="investment_required" value="10000000|50000000"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
+      <input type="radio" name="investment_required" value="50000000|100000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="Revenue_company">
+<div class="tab-pane" id="Revenue_company" data-column="revenue">
   <h1>Revenue</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Less than 1 million"><span class="category_checkbox_label">Less than 1 million</span><br><br>
-      <input type="checkbox" value="From 1 million to 10 million"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
-      <input type="checkbox" value="From 10 million to 50 million"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
-      <input type="checkbox" value="Over 50 million"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="checkbox" value="0|1000000"><span class="category_checkbox_label">Less than 1 million</span><br><br>
+      <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
+      <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
+      <input type="checkbox" value="50000000|9999999999"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
 
-<div class="tab-pane" id="EbitdaMargin_company">
+<div class="tab-pane" id="EbitdaMargin_company" data-column="ebidta_margin">
   <h1>Ebitda Margin</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="From -100% to -50%"><span class="category_checkbox_label">From -100% to -50%</span><br><br>
-      <input type="checkbox" value="From -50% to -25%"><span class="category_checkbox_label">From -50% to -25%</span><br><br>
-      <input type="checkbox" value="From -25% to 0%"><span class="category_checkbox_label">From -25% to 0%</span><br><br>
-      <input type="checkbox" value="From 0% to 10%"><span class="category_checkbox_label">From 0% to 10%</span><br><br>
-      <input type="checkbox" value="From 10% to 20%"><span class="category_checkbox_label">From 10% to 20%</span><br><br>
-      <input type="checkbox" value="From 20% to 40%"><span class="category_checkbox_label">From 20% to 40%</span><br><br>
-      <input type="checkbox" value="Over 40%"><span class="category_checkbox_label">Over 40%</span><br><br>
+      <input type="checkbox" value="-100|-50"><span class="category_checkbox_label">From -100% to -50%</span><br><br>
+      <input type="checkbox" value="-50|-25"><span class="category_checkbox_label">From -50% to -25%</span><br><br>
+      <input type="checkbox" value="-25|0"><span class="category_checkbox_label">From -25% to 0%</span><br><br>
+      <input type="checkbox" value="0|10"><span class="category_checkbox_label">From 0% to 10%</span><br><br>
+      <input type="checkbox" value="10|20"><span class="category_checkbox_label">From 10% to 20%</span><br><br>
+      <input type="checkbox" value="20|40"><span class="category_checkbox_label">From 20% to 40%</span><br><br>
+      <input type="checkbox" value="40|100"><span class="category_checkbox_label">Over 40%</span><br><br>
     </div>
   </div>
 </div>

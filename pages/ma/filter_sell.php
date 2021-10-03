@@ -249,9 +249,8 @@
             data: {
               action: "sell",
               filterData: filter_data,
-              deal: $(".offer").val(),
-              assetType: $(".asset_type").val(),
-              companyType: $(".company_type").val()
+              deal: $(".offer:checked").val(),
+              assetType: $(".asset_type:checked").val()
             },
             success: function(data) {
               console.log("\n")

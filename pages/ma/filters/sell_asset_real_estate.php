@@ -240,7 +240,6 @@
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
       <input type="checkbox" value="0|10"><span class="category_checkbox_label">From 0% to 10%</span><br><br>
       <input type="checkbox" value="10|20"><span class="category_checkbox_label">From 10% to 20%</span><br><br>
       <input type="checkbox" value="20|30"><span class="category_checkbox_label">From 20% to 30%</span><br><br>

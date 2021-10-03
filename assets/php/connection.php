@@ -7,7 +7,7 @@ define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'ucapital');
-define('DB_PORT', '3306');
+define('DB_PORT', '3308');
 
 //Email Configuration
 define('EMAIL_HOST', 'mail.structalpha.com');
@@ -34,11 +34,11 @@ define('TWITTER_AUTH_BEARER', 'Bearer AAAAAAAAAAAAAAAAAAAAAKI5SgEAAAAAs9Wc2Jxk%2
 
 
 $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME)
-or die("Unable to connect to the database server!");
+  or die("Unable to connect to the database server!");
 $db = mysqli_select_db($con, DB_NAME)
-or die("Unable to connect to the database server!");
+  or die("Unable to connect to the database server!");
 
-$conPDO = new PDO ('mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_PERSISTENT => true));
+$conPDO = new PDO('mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_PERSISTENT => true));
 
 $feedLinks = '[
   {

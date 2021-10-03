@@ -904,11 +904,11 @@ if (isset($_SESSION['email'])) {
             document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
         }
 
-        $("input[name=investment_required][value=<?= $row["INVESTMENT_REQ_TYPE"] ?>]").attr('checked', 'checked');
-        if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "fixed") {
-            document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_REQ_MIN"] ?>";
-        } else if ("<?= $row["INVESTMENT_REQ_TYPE"] ?>" == "range") {
-            document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_REQ_MIN"] . '|' . $row["INVESTMENT_REQ_MAX"] ?>";
+        $("input[name=investment_required][value=<?= $row["INVESTMENT_TYPE"] ?>]").attr('checked', 'checked');
+        if ("<?= $row["INVESTMENT_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "fixed") {
+            document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_MIN"] ?>";
+        } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
+            document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
         }
 
         $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');

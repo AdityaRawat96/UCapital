@@ -9,7 +9,7 @@ $dealType = $_POST["deal"];
 if ($dealType == "asset") {
     $table = $_POST["assetType"];
 } else {
-    $table = "business_company";
+    $table = 'business_company';
 }
 
 $sql = "SELECT * FROM $table WHERE DEAL = '$action' ";
@@ -31,8 +31,11 @@ foreach (array_keys($filterData) as $key) {
         if ($elem == "status") {
             $sql = addStatus($sql, $filterData[$key]["status"]);
         }
-        if ($elem == "value") {
+        if ($elem == "value" && $dealType == "asset") {
             $sql = addValue($sql, $filterData[$key]["value"]);
+        }
+        if ($elem == "value" && $dealType != "asset") {
+            $sql = addCompanyValue($sql, $filterData[$key]["value"]);
         }
         if ($elem == "subject") {
             $sql = addSubject($sql, $filterData[$key]["subject"]);
@@ -40,9 +43,30 @@ foreach (array_keys($filterData) as $key) {
         if ($elem == "vendor_type") {
             $sql = addVendorType($sql, $filterData[$key]["vendor_type"]);
         }
-        // if ($elem == "location") {
-        //     $sql = addLocation($sql, $filterData[$key]["location"]);
-        // }
+        if ($elem == "location") {
+            $sql = addLocation($sql, $filterData[$key]["location"]);
+        }
+        if ($elem == "ebidta_margin") {
+            $sql = addEbidtaMargin($sql, $filterData[$key]["ebidta_margin"]);
+        }
+        if ($elem == "num_of_employee") {
+            $sql = addNumOfEmployee($sql, $filterData[$key]["num_of_employee"]);
+        }
+        if ($elem == "operation_technology") {
+            $sql = addOperationTechnology($sql, $filterData[$key]["operation_technology"]);
+        }
+        if ($elem == "industry") {
+            $sql = addIndustry($sql, $filterData[$key]["industry"]);
+        }
+        if ($elem == "area_of_activity") {
+            $sql = addAreaOfActivity($sql, $filterData[$key]["area_of_activity"]);
+        }
+        if ($elem == "revenue") {
+            $sql = addRevenue($sql, $filterData[$key]["revenue"]);
+        }
+        if ($elem == "sector") {
+            $sql = addSector($sql, $filterData[$key]["sector"]);
+        }
         $globCount++;
         if ($globCount < sizeof($filterData)) {
             $sql = $sql . " AND ";
@@ -50,7 +74,7 @@ foreach (array_keys($filterData) as $key) {
     }
 }
 
-// print_r($sql);
+print_r($sql);
 
 
 function addYearlyReturn($query, $arr)
@@ -97,6 +121,31 @@ function addInvestmentRequired($query, $arr)
     return $query;
 }
 
+function addRevenue($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        if (strtolower($value) == "undisclosed") {
+            $query = $query . "(";
+            $query = $query . " ACTUAL_REVENUE_TYPE='" . $value . "'";
+            $query = $query . ")";
+        } else {
+            $val = explode("|", $value);
+            $query = $query . "(";
+            $query = $query . " ACTUAL_REVENUE_MIN>=" . $val[0] . " AND ACTUAL_REVENUE_MAX<=" . $val[1];
+            $query = $query . ")";
+            $counter++;
+            if ($counter < sizeof($arr)) {
+                $query = $query . " OR ";
+            }
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
 function addTotalSurface($query, $arr)
 {
     $query = $query . "(";
@@ -105,6 +154,44 @@ function addTotalSurface($query, $arr)
         $val = explode("|", $value);
         $query = $query . "(";
         $query = $query . " TOTAL_SURFACE>=" . $val[0] . " AND TOTAL_SURFACE<=" . $val[1];
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
+function addNumOfEmployee($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $val = explode("|", $value);
+        $query = $query . "(";
+        $query = $query . " NUM_OF_EMPLOYEE_MIN>=" . $val[0] . " AND NUM_OF_EMPLOYEE_MAX<=" . $val[1];
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
+function addEbidtaMargin($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $val = explode("|", $value);
+        $query = $query . "(";
+        $query = $query . " EBIDTA_MARGIN>=" . $val[0] . " AND EBIDTA_MARGIN<=" . $val[1];
         $query = $query . ")";
         $counter++;
         if ($counter < sizeof($arr)) {
@@ -141,6 +228,31 @@ function addValue($query, $arr)
     return $query;
 }
 
+function addCompanyValue($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        if (strtolower($value) == "undisclosed") {
+            $query = $query . "(";
+            $query = $query . " COMPANY_VAL_TYPE='" . $value . "'";
+            $query = $query . ")";
+        } else {
+            $val = explode("|", $value);
+            $query = $query . "(";
+            $query = $query . " COMPANY_VAL_MIN>=" . $val[0] . " AND COMPANY_VAL_MAX<=" . $val[1];
+            $query = $query . ")";
+        }
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
 function addStatus($query, $arr)
 {
     $query = $query . "(";
@@ -159,6 +271,24 @@ function addStatus($query, $arr)
     return $query;
 }
 
+function addSector($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $query = $query . "(";
+        $query = $query . " SECTOR='" . $value . "'";
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
 function addSubject($query, $arr)
 {
     $query = $query . "(";
@@ -166,6 +296,24 @@ function addSubject($query, $arr)
     foreach ($arr as $value) {
         $query = $query . "(";
         $query = $query . " DEAL_SUBJECT='" . $value . "'";
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
+function addOperationTechnology($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $query = $query . "(";
+        $query = $query . " COMPANY_TYPE='" . $value . "'";
         $query = $query . ")";
         $counter++;
         if ($counter < sizeof($arr)) {
@@ -201,7 +349,43 @@ function addLocation($query, $arr)
     $counter = 0;
     foreach ($arr as $value) {
         $query = $query . "(";
-        $query = $query . " VENDOR_TYPE='" . $value . "'";
+        $query = $query . " FIND_IN_SET('" . $value . "',COUNTRY)";
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
+function addIndustry($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $query = $query . "(";
+        $query = $query . " FIND_IN_SET('" . $value . "',INDUSTRY)";
+        $query = $query . ")";
+        $counter++;
+        if ($counter < sizeof($arr)) {
+            $query = $query . " OR ";
+        }
+    }
+    $query = $query . ")";
+
+    return $query;
+}
+
+function addAreaOfActivity($query, $arr)
+{
+    $query = $query . "(";
+    $counter = 0;
+    foreach ($arr as $value) {
+        $query = $query . "(";
+        $query = $query . " FIND_IN_SET('" . $value . "',AREA_OF_ACTIVITY)";
         $query = $query . ")";
         $counter++;
         if ($counter < sizeof($arr)) {
