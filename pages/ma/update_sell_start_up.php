@@ -445,7 +445,7 @@ if (isset($_SESSION['email'])) {
                             <option value="0|1000000">&#60; 1 million</option>
                             <option value="1000000|10000000">1 &#60; revenue &#60; 10 million</option>
                             <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                            <option value="50000000|100000000">&#62; 50 million</option>
+                            <option value="50000000|1000000000">&#62; 50 million</option>
                         </select>
                     </div>
                 </div>
@@ -573,10 +573,10 @@ if (isset($_SESSION['email'])) {
                 <span class="deal-subhead">(Multiple Choice)</span>
             </div>
             <div class="col-md-9 col-sm-12 input-container">
-                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|50000"> Less than 500k<br>
-                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="50000|1000000"> From 500k to 1 mln<br>
+                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500k<br>
+                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500k to 1 mln<br>
                 <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
-                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|20000000"> More than 10 mln<br>
+                <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
             </div>
         </div>
         <div class="row">
@@ -619,7 +619,7 @@ if (isset($_SESSION['email'])) {
                 <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="0|1000000"> Less than 1 mln<br>
                 <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="1000000|10000000"> From 1 to 10 mln<br>
                 <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="10000000|50000000"> From 10 mln to 50 mln<br>
-                <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="50000000|100000000"> More than 50 mln<br>
+                <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="50000000|1000000000"> More than 50 mln<br>
             </div>
         </div>
         <div class="row">

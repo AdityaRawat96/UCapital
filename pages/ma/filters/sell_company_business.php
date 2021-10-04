@@ -713,7 +713,7 @@
       <input type="checkbox" value="0|10"><span class="category_checkbox_label">Less than 10</span><br><br>
       <input type="checkbox" value="10|50"><span class="category_checkbox_label">From 10 to 50</span><br><br>
       <input type="checkbox" value="50|500"><span class="category_checkbox_label">From 50 to 500</span><br><br>
-      <input type="checkbox" value="500|1000000"><span class="category_checkbox_label">Over 500</span><br><br>
+      <input type="checkbox" value="500|1000000000"><span class="category_checkbox_label">Over 500</span><br><br>
     </div>
   </div>
 </div>
@@ -728,7 +728,7 @@
       <input type="checkbox" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
       <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
       <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
-      <input type="checkbox" value="50000000|100000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="checkbox" value="50000000|1000000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
@@ -742,7 +742,7 @@
       <input type="radio" name="investment_required" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
       <input type="radio" name="investment_required" value="1000000|10000000"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
       <input type="radio" name="investment_required" value="10000000|50000000"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
-      <input type="radio" name="investment_required" value="50000000|100000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="radio" name="investment_required" value="50000000|1000000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>
@@ -755,7 +755,7 @@
       <input type="checkbox" value="0|1000000"><span class="category_checkbox_label">Less than 1 million</span><br><br>
       <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
       <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 million to 50 million</span><br><br>
-      <input type="checkbox" value="50000000|9999999999"><span class="category_checkbox_label">Over 50 million</span><br><br>
+      <input type="checkbox" value="50000000|1000000000"><span class="category_checkbox_label">Over 50 million</span><br><br>
     </div>
   </div>
 </div>

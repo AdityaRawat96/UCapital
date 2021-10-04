@@ -245,12 +245,12 @@
           }
           $.ajax({
             type: 'POST',
-            url: '../../assets/php/getFilterData.php',
+            url: '../../assets/php/getSellFilterData.php',
             data: {
               action: "sell",
               filterData: filter_data,
               deal: $(".offer:checked").val(),
-              assetType: $(".asset_type:checked").val()
+              assetType: $(".asset_type option:checked").val()
             },
             success: function(data) {
               console.log("\n")

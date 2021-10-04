@@ -29,7 +29,7 @@
                 <li> <a href="#Publisher_company" data-toggle="tab"> Publisher </a> </li>
                 <li> <a href="#AUM_company" data-toggle="tab"> AUM </a> </li>
                 <li> <a href="#PreferredInvestmentAmount_company" data-toggle="tab"> Preferred Investment Amount </a> </li>
-                <li> <a href="#Investments_company" data-toggle="tab"> Investments </a> </li>
+                <!-- <li> <a href="#Investments_company" data-toggle="tab"> Investments </a> </li> -->
               </div>
 
               <!--Asset -->
@@ -42,7 +42,7 @@
                 <li> <a href="#Value_asset" data-toggle="tab"> Value </a> </li>
                 <li> <a href="#Publisher_asset" data-toggle="tab"> Publisher </a> </li>
                 <li> <a href="#AUM_asset" data-toggle="tab"> AUM </a> </li>
-                <li> <a href="#Investments_asset" data-toggle="tab"> Investments </a> </li>
+                <!-- <li> <a href="#Investments_asset" data-toggle="tab"> Investments </a> </li> -->
               </div>
             </ul>
           </div>
@@ -247,13 +247,12 @@
           }
           $.ajax({
             type: 'POST',
-            url: '../../assets/php/getFilterData.php',
+            url: '../../assets/php/getBuyFilterData.php',
             data: {
               action: "buy",
               filterData: filter_data,
-              deal: $(".offer").val(),
-              assetType: $(".asset_type").val(),
-              companyType: $(".company_type").val()
+              deal: $(".offer:checked").val(),
+              assetType: $(".asset_type option:checked").val()
             },
             success: function(data) {
               console.log("\n")

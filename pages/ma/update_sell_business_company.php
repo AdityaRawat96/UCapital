@@ -119,7 +119,7 @@ if (isset($_SESSION['email'])) {
                             <option value="500000|1000000">from 500k to 1 million</option>
                             <option value="1000000|10000000">from 1 to 10 million</option>
                             <option value="10000000|50000000">from 10 to 50 million</option>
-                            <option value="50000000|100000000">over 50 million</option>
+                            <option value="50000000|1000000000">over 50 million</option>
                         </select>
                     </div>
                 </div>
@@ -167,7 +167,7 @@ if (isset($_SESSION['email'])) {
                             <option value="500000|1000000">from 500k to 1 million</option>
                             <option value="1000000|10000000">from 1 to 10 million</option>
                             <option value="10000000|50000000">from 10 to 50 million</option>
-                            <option value="50000000">over 50 million</option>
+                            <option value="50000000|1000000000">over 50 million</option>
                         </select>
                     </div>
                 </div>
@@ -574,7 +574,7 @@ if (isset($_SESSION['email'])) {
                 <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
                 <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
                 <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
-                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|10000"> More than 1000<br>
+                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
             </div>
         </div>
         <div class="row">
@@ -607,7 +607,7 @@ if (isset($_SESSION['email'])) {
                             <option value="0|1000000">&#60; 1 million</option>
                             <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
                             <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                            <option value="50000000|100000000"> &#62; 50 milion</option>
+                            <option value="50000000|1000000000"> &#62; 50 milion</option>
                         </select>
                     </div>
                 </div>
