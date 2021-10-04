@@ -274,8 +274,8 @@
     </div>
     <div class="col-md-9 col-sm-12 input-container">
       <div class="input-group">
-        <input type="text" id="adImage-list" hidden value="">
-        <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
+        <input type="text" id="sell_re_image-list" hidden value="">
+        <input type="file" name="files[]" class="adImage sell_re_image" multiple="false">
       </div>
     </div>
   </div>

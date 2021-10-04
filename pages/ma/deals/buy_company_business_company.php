@@ -634,9 +634,9 @@
       <span class="deal-subhead">(Max 5MB)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <div class="input-group bc_image_buy">
-        <input type="text" id="adImage-list" hidden value="">
-        <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
+      <div class="input-group">
+        <input type="text" id="buy_bc_image-list" hidden value="">
+        <input type="file" name="files[]" class="adImage buy_bc_image" multiple="false">
       </div>
     </div>
   </div>

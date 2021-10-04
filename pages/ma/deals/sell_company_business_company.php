@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>HQ Location</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
           <select class="form-control hq_country bc_hq_country" name="hq_country">
@@ -23,8 +23,8 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Subject</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control bc_company_type" name="company_type">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control bc_company_type" name="subject">
         <option value="" selected disabled>Choose the subject</option>
         <option value="Fundraising">Fundraising</option>
         <option value="Sell minority">Sell minority</option>
@@ -42,16 +42,16 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Foundation year</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
+    <div class="col-md-4 col-sm-12 input-container input-group">
+      <input type="number" name="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year from 1900 to current year">
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Default Currency</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
-      <select class="form-control default_currency bc_default_currency" name="company_type">
+    <div class="col-md-4 col-sm-12 input-container input-group">
+      <select class="form-control default_currency bc_default_currency" name="default_currency">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
@@ -68,7 +68,7 @@
       <span>Company value</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -86,7 +86,7 @@
           </span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control bc_company_value_val" placeholder="Type a value">
+          <input type="number" class="form-control bc_company_value_val" name="company_value_input" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
@@ -116,7 +116,7 @@
       <span>Investment Required</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -163,7 +163,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Sector</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control bc_sector_sel">
         <option value="" selected disabled>Choose Sector</option>
         <option value="Information Technology">Information Technology</option>
@@ -181,7 +181,7 @@
       <span>Industry</span>
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="industry bc_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry1">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
@@ -501,7 +501,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Company Business</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="company_business" rows="3" class="form-control bc_company_business" placeholder="Business description"></textarea>
     </div>
   </div>
@@ -510,7 +510,7 @@
       <span>Area of activity</span>
       <span class="deal-subhead">(Unlimited Choices)</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="area_of_activity">
       </select>
     </div>
@@ -519,7 +519,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Scalability</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row">
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
@@ -556,7 +556,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Number of employees</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-containera">
+    <div class="col-md-9 col-sm-12 input-container input-groupa">
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
@@ -567,7 +567,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Actual Revenue</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -603,7 +603,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Actual Ebitda Margin</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_ebidta_margin" placeholder="Insert a value from -100 to 100">
@@ -622,7 +622,7 @@
       <span>Forcast Revenue</span>
       <span class="deal-subhead">(Y1Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year">
@@ -638,7 +638,7 @@
       <span>Forcast Ebitda</span>
       <span class="deal-subhead">(Y1Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year">
@@ -655,7 +655,7 @@
       <span>Forcast Revenue</span>
       <span class="deal-subhead">(Y2Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_rev_2" placeholder="Enter a value for 2nd year">
@@ -671,7 +671,7 @@
       <span>Forcast Ebitda</span>
       <span class="deal-subhead">(Y2Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year">
@@ -688,7 +688,7 @@
       <span>Forcast Revenue</span>
       <span class="deal-subhead">(Y3Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_rev_3" placeholder="Enter a value for 3rd year">
@@ -704,7 +704,7 @@
       <span>Forcast Ebitda</span>
       <span class="deal-subhead">(Y3Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
           <input type="number" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year">
@@ -720,7 +720,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>General Description</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="general_description" rows="3" class="form-control bc_description" placeholder="Who you are, What are you looking for..."></textarea>
     </div>
   </div>
@@ -728,7 +728,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Key Elements</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="key_elements" rows="3" class="form-control bc_key_elements" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
     </div>
   </div>
@@ -738,10 +738,10 @@
       <span>Image</span>
       <span class="deal-subhead">(Max 5MB)</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <div class="input-group bc_image">
-        <input type="text" id="adImage-list" hidden value="">
-        <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <div class="input-group">
+        <input type="text" class="sell_bc_image-list" hidden value="">
+        <input type="file" name="files[]" class="adImage sell_bc_image" multiple="false">
       </div>
     </div>
   </div>

@@ -641,7 +641,6 @@
       <textarea name="looking_for" rows="3" class="form-control su_looking_for" placeholder="Type a description"></textarea>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Image</span>
@@ -649,8 +648,8 @@
     </div>
     <div class="col-md-9 col-sm-12 input-container">
       <div class="input-group">
-        <input type="text" id="adImage-list" hidden value="">
-        <input type="file" name="files[]" class="adImage su_image_buy" id="adImage" multiple="false">
+        <input type="text" id="buy_startup_image-list" hidden value="">
+        <input type="file" name="files[]" class="adImage buy_startup_image" multiple="false">
       </div>
     </div>
   </div>
