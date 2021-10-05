@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Type of Start up</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control startup_type su_startup_type" name="startup_type">
         <option value="" selected disabled>Choose type of Start up</option>
         <option value="Pre-seed Stage">Pre-seed Stage</option>
@@ -19,7 +19,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
           <select class="form-control hq_country su_hq_country" name="hq_country">
@@ -39,8 +39,8 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Sector</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control su_sector">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control su_sector" name="sector">
         <option value="" selected disabled>Choose Sector</option>
         <option value="Information Technology">Information Technology</option>
         <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -57,7 +57,7 @@
       <span>Industry</span>
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="industry su_industry" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry_sell">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
@@ -377,7 +377,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Default Currency</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control default_currency su_default_currency" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
@@ -395,7 +395,7 @@
       <span>Preferred Revenue</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -431,7 +431,7 @@
             <option value="0|1000000">&#60; 1 million</option>
             <option value="1000000|10000000">1 &#60; revenue &#60; 10 million</option>
             <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000|1000000000">&#62; 50 million</option>
+            <option value="50000000|100000000">&#62; 50 million</option>
           </select>
         </div>
       </div>
@@ -441,10 +441,10 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Preferred Ebitda Margin</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_ebidta_margin" placeholder="Insert a value from -100 to 100">
+          <input type="number" name="ebitda_margin" class="form-control su_ebidta_margin" placeholder="Insert a value from -100 to 100">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -463,7 +463,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_rev_1" placeholder="Enter a value for 1st year">
+          <input type="number" name="forcast_revenue_1" class="form-control su_for_rev_1" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -479,7 +479,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_ebd_1" placeholder="Enter a value for 1st year">
+          <input type="number" name="forcast_ebitda_1" class="form-control su_for_ebd_1" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -496,7 +496,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_rev_2" placeholder="Enter a value for 2nd year">
+          <input type="number" name="forcast_revenue_2" class="form-control su_for_rev_2" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -512,7 +512,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_ebd_2" placeholder="Enter a value for 2nd year">
+          <input type="number" name="forcast_ebitda_2" class="form-control su_for_ebd_2" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -529,7 +529,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_rev_3" placeholder="Enter a value for 3rd year">
+          <input type="number" name="forcast_revenue_3" class="form-control su_for_rev_3" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -545,7 +545,7 @@
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control su_for_ebd_3" placeholder="Enter a value for 3rd year">
+          <input type="number" name="forcast_ebitda_3" class="form-control su_for_ebd_3" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -559,17 +559,17 @@
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="0|500000"> Less than 500k<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="500000|1000000"> From 500k to 1 mln<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="0|50000"> Less than 500k<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="50000|1000000"> From 500k to 1 mln<br>
       <input type="checkbox" name="investment_size" class="su_investment_required_value" value="1000000|10000000"> From 1 mln to 10 mln<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="10000000|1000000000"> More than 10 mln<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value" value="10000000|20000000"> More than 10 mln<br>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Who I am</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container  input-group">
       <select class="form-control default_currency su_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
         <option value="Individual">Individual</option>
@@ -584,7 +584,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>AUM</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container  input-group">
       <input type="number" name="aum" value="" class="form-control su_aum" placeholder="Enter a value">
     </div>
   </div>
@@ -592,7 +592,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Number of Investments</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container  input-group">
       <input type="number" name="number_of_investments" value="" class="form-control su_number_of_investments" placeholder="Enter a value">
     </div>
   </div>
@@ -605,14 +605,14 @@
       <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="0|1000000"> Less than 1 mln<br>
       <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="1000000|10000000"> From 1 to 10 mln<br>
       <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="10000000|50000000"> From 10 mln to 50 mln<br>
-      <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="50000000|1000000000"> More than 50 mln<br>
+      <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="50000000|100000000"> More than 50 mln<br>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>What I want to do</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control what_i_want su_what_i_want" name="what_i_want">
         <option value="" selected disabled>Select an option</option>
         <option value="Buy majority">Buy majority</option>
@@ -629,7 +629,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>General Description</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="general_description" rows="3" class="form-control su_description" placeholder="Type a description"></textarea>
     </div>
   </div>
@@ -637,7 +637,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>What are we looking for</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="looking_for" rows="3" class="form-control su_looking_for" placeholder="Type a description"></textarea>
     </div>
   </div>

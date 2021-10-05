@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Type of NPE</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control npe_type npe_type_buy" name="npe_type">
         <option value="" selected disabled>Choose type of NPE</option>
         <option value="Past due">Past due</option>
@@ -17,7 +17,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Loan/Product type</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control product_type npe_product_type_buy" name="product_type">
         <option value="" selected disabled>Choose type of Loan/Product</option>
         <option value="Secured">Secured</option>
@@ -29,7 +29,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
         <div class="col-md-12 col-sm-12 location_container">
           <select class="form-control hq_country npe_hq_country_buy" name="hq_country">
@@ -48,15 +48,15 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Description</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <textarea name="description" rows="3" class="form-control npe_description_buy" placeholder="Type a description"></textarea>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <textarea name="general_description" rows="3" class="form-control npe_description_buy" placeholder="Type a description"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Default Currency</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control default_currency npe_default_currency_buy" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
@@ -74,7 +74,7 @@
       <span>Value</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -121,7 +121,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Lien Position</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container  input-group">
       <select class="form-control lien_position npe_lien_position_buy" name="lien_position">
         <option value="" selected disabled>Choose lien position</option>
         <option value="1st">1st</option>
@@ -134,7 +134,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Judicialized</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control judicialized npe_judicialized_buy" name="judicialized">
         <option value="" selected disabled>Choose an option</option>
         <option value="1">Yes</option>
@@ -146,7 +146,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Borrower Details</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details_buy" placeholder="Type borrower details"></textarea>
     </div>
   </div>
@@ -154,7 +154,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Ratio</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control ratio npe_ratio_buy" name="ratio">
         <option value="" selected disabled>Choose an option</option>
         <option value="OB">OB</option>
@@ -168,7 +168,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Who I am</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control default_currency npe_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
         <option value="Individual">Individual</option>
@@ -183,7 +183,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>AUM</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <input type="number" name="aum" value="" class="form-control npe_aum_buy" placeholder="Enter a value">
     </div>
   </div>

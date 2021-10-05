@@ -164,7 +164,7 @@
       <span>Sector</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control bc_sector_sel">
+      <select class="form-control bc_sector_sel" name="sector">
         <option value="" selected disabled>Choose Sector</option>
         <option value="Information Technology">Information Technology</option>
         <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -519,7 +519,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Scalability</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container input-group">
+    <div class="col-md-9 col-sm-12 input-container input-group-multiple-radio">
       <div class="row">
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
@@ -556,7 +556,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Number of employees</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container input-groupa">
+    <div class="col-md-9 col-sm-12 input-container">
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
@@ -567,7 +567,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Actual Revenue</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -606,7 +606,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_ebidta_margin" placeholder="Insert a value from -100 to 100">
+          <input type="number" name="ebitda_margin" class="form-control bc_ebidta_margin" placeholder="Insert a value from -100 to 100">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -625,7 +625,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year">
+          <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -641,7 +641,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year">
+          <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -658,7 +658,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_rev_2" placeholder="Enter a value for 2nd year">
+          <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -674,7 +674,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year">
+          <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -691,7 +691,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_rev_3" placeholder="Enter a value for 3rd year">
+          <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -707,7 +707,7 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year">
+          <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>

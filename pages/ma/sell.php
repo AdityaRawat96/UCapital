@@ -10,7 +10,7 @@ if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-?>
+  ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -62,6 +62,7 @@ if (isset($_SESSION['email'])) {
         </div>
 
         <div class="row itemsList">
+
         </div>
 
         <div class="row">
@@ -85,46 +86,40 @@ if (isset($_SESSION['email'])) {
   <script type="text/javascript" src="../../assets/js/autocomplete.js"></script>
   <script type="text/javascript" src="../../plugins/pagination/pagination.min.js"></script>
   <script type="text/javascript">
-    var obj = [];
-    var itemType = "ma";
-    var limit = 12;
-    var offset = parseInt('<?= $offset ?>');
-    var currentPage = parseInt('<?= $currentPage ?>');
+  var obj = [];
+  var itemType = "ma";
+  var limit = 12;
+  var offset = parseInt('<?= $offset ?>');
+  var currentPage = parseInt('<?= $currentPage ?>');
 
-    autocomplete(document.getElementById("searchIndicators"), searchableElements);
-    $(document).ready(function() {
-      //   $.ajax({
-      //     type: 'POST',
-      //     url: '../../assets/php/getMA.php',
-      //     data: {
-      //       action: "Sell"
-      //     },
-      //     success: function(data) {
-      //       obj = jQuery.parseJSON(data);
-      //       showResults();
-      //     }
-      //   });
-      $.ajax({
-        type: 'POST',
-        url: '../../assets/php/getMAData.php',
-        data: {
-          action: "sell",
-          limit: limit
-        },
-        success: function(data) {
-          // obj = jQuery.parseJSON(data);
-          // showResults();
-          console.log(data);
-        }
-      });
-    });
-  </script>
+  autocomplete(document.getElementById("searchIndicators"), searchableElements);
+  $(document).ready(function() {
+    $.ajax({
+      type: 'POST',
+      url: '../../assets/php/getMAData.php',
+      data: {
+        action: "sell",
+        limit: limit
+      },
+      success: function(data) {
+        console.log(data)
+        obj = jQuery.parseJSON(data);
+        console.log(obj);
+        for (var i = 0; i < obj.length; i++) {
+          var elementData = "";
+          elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> '+obj[i].COUNTRY+", "+obj[i].CITY+'</h5> <p class="card-descripatoin pb-1 pt-1"> '+obj[i].COUNTRY+'</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span><i class="fas fa-chart-line"></i>&nbsp; '+obj[i].INDUSTRY+'</span> <hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span> </div></div></div></a> </div>';
+        $(".itemsList").append(elementData);
+      }
+    }
+  });
+});
+</script>
 <?php
 } else {
-?>
+  ?>
   <script>
-    window.open('../../', '_self')
+  window.open('../../', '_self')
   </script>
-<?php
+  <?php
 }
 ?>

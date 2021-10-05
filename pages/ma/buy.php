@@ -62,6 +62,7 @@ if (isset($_SESSION['email'])) {
         </div>
 
         <div class="row itemsList">
+
         </div>
 
         <div class="row">
@@ -101,16 +102,12 @@ if (isset($_SESSION['email'])) {
         limit: limit
       },
       success: function(data) {
+        console.log(data)
         obj = jQuery.parseJSON(data);
         console.log(obj);
         for (var i = 0; i < obj.length; i++) {
           var elementData = "";
-          elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
-          /*
-          if(obj[i].favorite){
-          elementData += ' bookmark-active';
-        }  */
-        elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> '+obj[i].title+'</h5><p class="card-descripatoin pb-1 pt-1"> '+obj[i].description+'</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].location+'"> <span> <i class="fas fa-map-marker-alt"></i> '+obj[i].location+' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> '+obj[i].value+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].industry_visible+'"> <span><i class="fas fa-chart-pie"></i> '+obj[i].industry_visible+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].category+'"> <span><i class="fas fa-chart-line"></i>'+obj[i].category+'</span> </a> <a href="ma-detail.php?ma='+obj[i].id+'" class="contact-here-sectin564"> Contact here <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
+          elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> '+obj[i].COUNTRY+", "+obj[i].CITY+'</h5> <p class="card-descripatoin pb-1 pt-1"> '+obj[i].COUNTRY+'</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span><i class="fas fa-chart-line"></i> &nbsp; '+obj[i].INDUSTRY+'</span> <hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span> </div></div></div></a> </div>';
         $(".itemsList").append(elementData);
       }
     }

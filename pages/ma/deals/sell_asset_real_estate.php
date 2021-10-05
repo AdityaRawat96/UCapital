@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Type of Real Estate</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control re_type" name="re_type">
         <option value="" selected disabled>Choose type of Real Estate</option>
         <option value="Building">Building</option>
@@ -21,7 +21,7 @@
       <div class="col-md-3 col-sm-12 deal-heading">
         <span>Type of <span class="dynamic_category"></span></span>
       </div>
-      <div class="col-md-9 col-sm-12 input-container">
+      <div class="col-md-9 col-sm-12 input-container input-group">
         <select class="form-control re_type_category" name="re_type_category">
           <option value="" selected disabled>Choose type of <span class="dynamic_category"></span></option>
         </select>
@@ -32,8 +32,8 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Subject of deal</span></span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control deal_subject re_deal_subject" name="deal_subject">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control deal_subject re_deal_subject" name="subject">
         <option value="" selected disabled>Choose the subject</span></option>
         <option value="Totality Selling">Totality Selling</option>
         <option value="Looking for Co-Investors">looking for Co-Investors</option>
@@ -45,7 +45,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Status of the asset</span></span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control asset_status re_asset_status" name="asset_status">
         <option value="" selected disabled>Choose the status</span></option>
         <option value="Existing property">Existing property</option>
@@ -58,8 +58,8 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Condition of the asset</span></span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control asset_status re_condition_status" name="asset_status">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control asset_status re_condition_status" name="asset_condition">
         <option value="" selected disabled>Choose the condition</span></option>
         <option value="New property">new property</option>
         <option value="To renovate">to renovate</option>
@@ -71,7 +71,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Year of construction</span></span>
     </div>
-    <div class="col-md-2 col-sm-12 input-container">
+    <div class="col-md-2 col-sm-12 input-container input-group">
       <input type="number" name="construction_year" class="form-control re_construction_year" placeholder="Type a year">
     </div>
   </div>
@@ -79,10 +79,10 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Total surface approx.</span></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control re_surface_area" placeholder="Type a value">
+          <input type="number" name="total_surface_area" class="form-control re_surface_area" placeholder="Type a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">sqm</span>
@@ -94,7 +94,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
           <select class="form-control hq_country re_hq_country" name="hq_country">
@@ -111,7 +111,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Default Currency</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control default_currency re_default_currency" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
@@ -129,7 +129,7 @@
       <span>Asset value</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -177,7 +177,7 @@
       <span>Investment Required</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -227,7 +227,7 @@
     <div class="col-md-9 col-sm-12 input-container">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" class="form-control re_yearly_return" placeholder="Insert a value">
+          <input type="number" name="yearly_return" class="form-control re_yearly_return" placeholder="Insert a value">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -239,8 +239,8 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Vendor Type</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <select class="form-control re_vendor_type">
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control re_vendor_type" name="vendor_type">
         <option value="" selected disabled>Choose one</option>
         <option value="private owner">Private owner</option>
         <option value="company">Company</option>
@@ -254,7 +254,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>General Description</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="general_description" rows="3" class="form-control re_general_description" placeholder="Type a description"></textarea>
     </div>
   </div>
@@ -262,7 +262,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Key Elements</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="key_elements" rows="3" class="form-control re_key_elements" placeholder="Co-Investor, Institutional Investor, Individual, Corporation..."></textarea>
     </div>
   </div>
@@ -274,7 +274,7 @@
     </div>
     <div class="col-md-9 col-sm-12 input-container">
       <div class="input-group">
-        <input type="text" id="sell_re_image-list" hidden value="">
+        <input type="text" class="sell_re_image-list" hidden value="">
         <input type="file" name="files[]" class="adImage sell_re_image" multiple="false">
       </div>
     </div>
