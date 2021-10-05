@@ -57,24 +57,39 @@
                   <span class="bg-danger today-timeline-aea" style="border-radius: 5px; padding: 5px;"> <?=$user_type; ?> </span>
                 </div><br>
                 <h3><b> <?=$_SESSION['first_name']." ".$_SESSION['last_name'] ?> </b></h3>
-                <?php
-
-                if($_SESSION['user_type'] == 2){
-                  $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-                  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-                  if(mysqli_num_rows($result) > 0 ){
-                    while($row = mysqli_fetch_array($result)){
-                      ?>
-                      <p class="contact-details-email-number"> <i class="fas fa-user"></i> <?=$row['role']?> </p>
-                      <p class="contact-details-email-number"> <i class="fas fa-building"></i> <?=$row['company']?> </p>
-                      <p class="contact-details-email-number"> <i class="fas fa-globe"></i> <?=$row['website']?> </p>
-                      <?php
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <p class="contact-details-email-number"> <i class="far fa-envelope" style="color: #D7DBEC;"></i> <?=$_SESSION['email']?> </p>
+                    <p class="contact-details-email-number"> <i class="fas fa-phone-alt" style="color: #D7DBEC;"></i> <?=$_SESSION['mobile']?> </p>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <?php
+                    if($_SESSION['user_type'] == 2){
+                      $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
+                      or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+                      if(mysqli_num_rows($result) > 0 ){
+                        while($row = mysqli_fetch_array($result)){
+                          ?>
+                          <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?=$row['role'].", ".$row['company']; ?> </p>
+                          <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?=$row['website']?> </p>
+                          <?php
+                        }
+                      }
+                    }else{
+                      $result= mysqli_query($con, " SELECT *  FROM users WHERE id='$user_id'")
+                      or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+                      if(mysqli_num_rows($result) > 0 ){
+                        while($row = mysqli_fetch_array($result)){
+                          ?>
+                          <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?=$row['role'].", ".$row['company']; ?> </p>
+                          <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?=$row['website']?> </p>
+                          <?php
+                        }
+                      }
                     }
-                  }
-                }
-                ?>
-                <p class="contact-details-email-number"> <i class="far fa-envelope"></i> <?=$_SESSION['email']?> </p>
-                <p class="contact-details-email-number"> <i class="fas fa-phone-alt"></i> <?=$_SESSION['mobile']?> </p>
+                    ?>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -91,12 +106,13 @@
           <div class="card class-contact-info-settings">
 
             <ul class="listing-add-post1-profile nav nav-pills">
-              <li> <a href="#RecentActivity" data-toggle="tab" class="active"> Recent Activity </a> </li>
+              <li> <a href="#published_sell_deal" data-toggle="tab" class="active"> Published Sell deal </a> </li>
+                <li> <a href="#published_buy_deal" data-toggle="tab"> Published Buy deal </a> </li>
             </ul>
 
             <div class="tab-content">
 
-              <div class="tab-pane active" id="RecentActivity">
+              <div class="tab-pane active" id="published_sell_deal">
 
                 <div class="timeline timeline-inverse">
                   <!-- timeline time label -->
@@ -149,6 +165,11 @@
                   <!-- END timeline item -->
 
                 </div>
+
+              </div>
+              <div class="tab-pane" id="published_buy_deal">
+
+
 
               </div>
 

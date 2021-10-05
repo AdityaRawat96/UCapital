@@ -16,6 +16,11 @@ if($update == "profile"){
   $last_name = $_POST['last_name'];
   $email = $_POST['email'];
   $mobile = isset($_POST['mobile']) ? $_POST['mobile'] : "";
+  $role = isset($_POST['role']) ? $_POST['role'] : "";
+  $country = $_POST['country'];
+  $city = $_POST['city'];
+  $website = isset($_POST['website']) ? $_POST['website'] : "";
+  $company = isset($_POST['company']) ? $_POST['company'] : "";
 
   if($_SESSION['email'] != $_POST['email']){
     $result= mysqli_query($con, " SELECT * FROM users WHERE email = '$email'")
@@ -39,7 +44,12 @@ if($update == "profile"){
     first_name = '$first_name',
     last_name = '$last_name',
     email = '$email',
-    mobile = '$mobile'
+    mobile = '$mobile',
+    role = '$role',
+    country = '$country',
+    city = '$city',
+    website = '$website',
+    company = '$company'
     WHERE id = '$user_id'";
 
     if ($con->query($sql)){
