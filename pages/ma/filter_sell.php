@@ -253,8 +253,15 @@
               assetType: $(".asset_type option:checked").val()
             },
             success: function(data) {
-              console.log("\n")
-              console.log(data);
+              $(".itemsList").html("");
+              console.log(data)
+              obj = jQuery.parseJSON(data);
+              console.log(obj);
+              for (var i = 0; i < obj.length; i++) {
+                var elementData = "";
+                elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> '+obj[i].COUNTRY+", "+obj[i].CITY+'</h5> <p class="card-descripatoin pb-1 pt-1"> '+obj[i].COUNTRY+'</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span><i class="fas fa-chart-line"></i>&nbsp; '+obj[i].INDUSTRY+'</span> <hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span> </div></div></div></a> </div>';
+                $(".itemsList").append(elementData);
+              }
             },
             error: function(request, status, error) {
               console.log(error);

@@ -74,8 +74,6 @@ if ($table == 'business_company' || $table == 'real_estate') {
         }
     }
 
-    print_r($sql);
-
     $result = mysqli_query($con, $sql)
         or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
