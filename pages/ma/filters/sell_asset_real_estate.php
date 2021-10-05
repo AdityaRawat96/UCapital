@@ -202,7 +202,7 @@
       <input type="checkbox" value="0|100"><span class="category_checkbox_label">Less than 100 sqm</span><br><br>
       <input type="checkbox" value="100|300"><span class="category_checkbox_label">From 100 to 300 sqm</span><br><br>
       <input type="checkbox" value="300|500"><span class="category_checkbox_label">From 300 to 500 sqm</span><br><br>
-      <input type="checkbox" value="500|100000000"><span class="category_checkbox_label">More than 500 sqm</span><br><br>
+      <input type="checkbox" value="500|1000000000"><span class="category_checkbox_label">More than 500 sqm</span><br><br>
     </div>
   </div>
 </div>

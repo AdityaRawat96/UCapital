@@ -55,7 +55,7 @@ business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE
 FROM business_company where business_company.DEAL = '$action' LIMIT $limit)";
 $result = mysqli_query($con, $sql)
-or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
 if (mysqli_num_rows($result) > 0) {
   $response = array();
