@@ -4,7 +4,7 @@ if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-  ?>
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -118,28 +118,28 @@ if (isset($_SESSION['email'])) {
           <br><br><br><br><br><br>
 
           <!-- container-fluid -->
-        </section>
-        <!-- content -->
-      </form>
+    </section>
+    <!-- content -->
+    </form>
 
-    </div>
-    <!-- content-wrapper -->
+  </div>
+  <!-- content-wrapper -->
 
 
-    <?php
-    include '../elements/footer.php';
-    ?>
-    <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-    <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <?php
+  include '../elements/footer.php';
+  ?>
+  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-    <!-- jquery-validation -->
-    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
-    <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
     var folderTimestamp = '<?php echo time(); ?>';
     var folderName = 'MergerAcquisition/' + folderTimestamp;
 
@@ -195,19 +195,19 @@ if (isset($_SESSION['email'])) {
           ebitda_margin: {
             required: true
           },
-          forcast_revenue_1 : {
+          forcast_revenue_1: {
             required: true,
           },
           forcast_ebitda_1: {
             required: true
           },
-          forcast_revenue_2 : {
+          forcast_revenue_2: {
             required: true,
           },
           forcast_ebitda_2: {
             required: true
           },
-          forcast_revenue_3 : {
+          forcast_revenue_3: {
             required: true,
           },
           forcast_ebitda_3: {
@@ -219,103 +219,103 @@ if (isset($_SESSION['email'])) {
           key_elements: {
             required: true,
           },
-          investment_size:{
+          investment_size: {
             required: true,
           },
-          who_i_am:{
+          who_i_am: {
             required: true,
           },
-          aum:{
+          aum: {
             required: true,
           },
-          number_of_investments:{
+          number_of_investments: {
             required: true,
           },
-          investment_amount:{
+          investment_amount: {
             required: true,
           },
-          what_i_want:{
+          what_i_want: {
             required: true,
           },
-          looking_for:{
+          looking_for: {
             required: true,
           },
-          re_type:{
+          re_type: {
             required: true,
           },
-          re_type_category:{
+          re_type_category: {
             required: true,
           },
-          asset_status:{
+          asset_status: {
             required: true,
           },
-          asset_condition:{
+          asset_condition: {
             required: true,
           },
-          yearly_return:{
+          yearly_return: {
             required: true,
           },
-          construction_year:{
+          construction_year: {
             required: true,
           },
-          total_surface_area:{
+          total_surface_area: {
             required: true,
           },
-          vendor_type:{
+          vendor_type: {
             required: true,
           },
-          npe_type:{
+          npe_type: {
             required: true,
           },
-          product_type:{
+          product_type: {
             required: true,
           },
-          collateral_type:{
+          collateral_type: {
             required: true,
           },
-          original_amount:{
+          original_amount: {
             required: true,
           },
-          asking_price:{
+          asking_price: {
             required: true,
           },
-          market_value:{
+          market_value: {
             required: true,
           },
-          lien_position:{
+          lien_position: {
             required: true,
           },
-          judicialized:{
+          judicialized: {
             required: true,
           },
-          borrower_details:{
+          borrower_details: {
             required: true,
           },
-          ratio:{
+          ratio: {
             required: true,
           },
-          borrower_type:{
+          borrower_type: {
             required: true,
           },
-          borrower_type_category:{
+          borrower_type_category: {
             required: true,
           },
-          credit_type:{
+          credit_type: {
             required: true,
           },
-          typology:{
+          typology: {
             required: true,
           },
-          maturity:{
+          maturity: {
             required: true,
           },
-          ratio_ob:{
+          ratio_ob: {
             required: true,
           },
-          rate:{
+          rate: {
             required: true,
           },
-          discounted_ratio:{
+          discounted_ratio: {
             required: true,
           },
         },
@@ -334,21 +334,21 @@ if (isset($_SESSION['email'])) {
 
     });
 
-    function validateAdditionalFields(){
+    function validateAdditionalFields() {
       var all_validated = true;
-      $(".input-group-multiple-radio:visible").each(function(){
-        if($(this).find("input[type='radio']:checked").length == 0){
-          if($(this).find("small").length == 0){
+      $(".input-group-multiple-radio:visible").each(function() {
+        if ($(this).find("input[type='radio']:checked").length == 0) {
+          if ($(this).find("small").length == 0) {
             $(this).append("<small style='color: red'>Please select any one option</small>");
             all_validated = false;
           }
           $([document.documentElement, document.body]).animate({
             scrollTop: $(this).offset().top
           }, 0);
-        }else{
-          if($(this).find("small").length == 0){
+        } else {
+          if ($(this).find("small").length == 0) {
             var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
-            if(input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == ""){
+            if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
               $(this).append("<small style='color: red'>This field is required</small>");
               all_validated = false;
               $([document.documentElement, document.body]).animate({
@@ -358,7 +358,7 @@ if (isset($_SESSION['email'])) {
           }
         }
       });
-      if(all_validated){
+      if (all_validated) {
         insertDealData();
       }
     }
@@ -457,8 +457,8 @@ if (isset($_SESSION['email'])) {
           beforeSend: function() {},
           success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
             var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-            new_file_name = JSON.parse(data),
-            filerKit = inputEl.prop("jFiler");
+              new_file_name = JSON.parse(data),
+              filerKit = inputEl.prop("jFiler");
             filerKit.files_list[id].name = new_file_name;
             uploadedFiles.push(new_file_name);
             $("." + filerID + "-list").val(folderName + "/" + new_file_name)
@@ -489,7 +489,7 @@ if (isset($_SESSION['email'])) {
         afterShow: null,
         onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
           var filerKit = inputEl.prop("jFiler"),
-          file_name = filerKit.files_list[id].name;
+            file_name = filerKit.files_list[id].name;
           uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
             return value != file_name;
           });
@@ -524,11 +524,11 @@ if (isset($_SESSION['email'])) {
       });
 
     }
-    </script>
+  </script>
 
 
-    <!-- company_sell -->
-    <script type="text/javascript">
+  <!-- company_sell -->
+  <script type="text/javascript">
     var country_data;
     $(document).ready(function() {
       $.ajax({
@@ -558,7 +558,7 @@ if (isset($_SESSION['email'])) {
         loadCities($(this));
       });
 
-      $(".location_holder").on("click", ".btn-location-remove", function(){
+      $(".location_holder").on("click", ".btn-location-remove", function() {
         $(this).parent().remove();
       });
 
@@ -595,11 +595,11 @@ if (isset($_SESSION['email'])) {
         $(this).select2();
       });
 
-      $(".input-group-multiple-radio").on("click", "input", function(){
+      $(".input-group-multiple-radio").on("click", "input", function() {
         $(this).parent().parent().parent().parent().find("small").remove();
         $(this).parent().parent().find("input[type=radio]").prop("checked", true);
       });
-      $(".input-group-multiple-radio").on("click", "select", function(){
+      $(".input-group-multiple-radio").on("click", "select", function() {
         $(this).parent().parent().parent().parent().find("small").remove();
         $(this).parent().parent().find("input[type=radio]").prop("checked", true);
       });
@@ -637,10 +637,10 @@ if (isset($_SESSION['email'])) {
     initFiler('sell_re_image');
     initFiler('buy_bc_image');
     initFiler('buy_startup_image');
-    </script>
+  </script>
 
-    <!-- Real Estate Sell -->
-    <script type="text/javascript">
+  <!-- Real Estate Sell -->
+  <script type="text/javascript">
     $(".re_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".re_type_category").html("");
@@ -663,11 +663,11 @@ if (isset($_SESSION['email'])) {
         $(".re_type_category_container").fadeOut();
       }
     })
-    </script>
+  </script>
 
 
-    <!-- NPE Sell -->
-    <script type="text/javascript">
+  <!-- NPE Sell -->
+  <script type="text/javascript">
     $(".product_type").change(function() {
       if ($(this).find("option:selected").val() == "Secured") {
         $(".collateral_type_container").fadeIn();
@@ -675,10 +675,10 @@ if (isset($_SESSION['email'])) {
         $(".collateral_type_container").fadeOut();
       }
     })
-    </script>
+  </script>
 
-    <!-- Credits Sell -->
-    <script type="text/javascript">
+  <!-- Credits Sell -->
+  <script type="text/javascript">
     $(".borrower_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".borrower_type_category").html("");
@@ -701,8 +701,8 @@ if (isset($_SESSION['email'])) {
         $(".borrower_type_category_container").fadeOut();
       }
     })
-    </script>
-    <script>
+  </script>
+  <script>
     function insertDealData() {
       insertData = {};
       var deal_type = $(".deal_type:checked").val();
@@ -946,18 +946,33 @@ if (isset($_SESSION['email'])) {
 
     function getBuyBusinessCompanyData() {
       response = {};
-      response['hq_country'] = $(".bc_hq_country_buy option:selected").text();
-      response['hq_city'] = $(".bc_hq_city_buy").val();
-      response['sector_sel'] = $(".bc_sector_sel_buy").val();
+      var countryVal = "";
+      var cityVal = "";
+      var countrySetted = false;
+      var citySetted = false;
+      $(".bc_hq_country_buy").each(function() {
+        countrySetted = true;
+        countryVal += $(this).find("option:selected").text() + ",";
+      });
+      $(".bc_hq_city_buy").each(function() {
+        citySetted = true;
+        cityVal += $(this).find("option:selected").val() + ",";
+      });
 
+      if (countrySetted)
+        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      if (citySetted)
+        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
+      response['sector_sel'] = $(".bc_sector_sel_buy").val();
       var isIndustrySetted = false;
       var industry = '';
       $(".bc_industry_sel_buy").each(function() {
         isIndustrySetted = true;
         industry += $(this).val() + "|";
       });
-      if (true)
-      response['industry_sel'] = industry.substring(0, industry.length - 1);
+      if (isIndustrySetted)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".bc_default_currency_buy").val();
 
@@ -1008,10 +1023,25 @@ if (isset($_SESSION['email'])) {
 
     function getBuyStartUpData() {
       response = {};
-      response['hq_country'] = $(".su_hq_country_buy option:selected").text();
-      response['hq_city'] = $(".su_hq_city_buy").val();
       response['sector_sel'] = $(".su_sector_buy").val();
       response['startup_type'] = $(".su_startup_type_buy").val();
+      var countryVal = "";
+      var cityVal = "";
+      var countrySetted = false;
+      var citySetted = false;
+      $(".su_hq_country_buy").each(function() {
+        countrySetted = true;
+        countryVal += $(this).find("option:selected").text() + ",";
+      });
+      $(".su_hq_city_buy").each(function() {
+        citySetted = true;
+        cityVal += $(this).find("option:selected").val() + ",";
+      });
+
+      if (countrySetted)
+        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      if (citySetted)
+        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
 
       var isIndustrySetted = false;
@@ -1020,8 +1050,8 @@ if (isset($_SESSION['email'])) {
         isIndustrySetted = true;
         industry += $(this).val() + "|";
       });
-      if (true)
-      response['industry_sel'] = industry.substring(0, industry.length - 1);
+      if (isIndustrySetted)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".su_default_currency_buy").val();
 
@@ -1073,8 +1103,24 @@ if (isset($_SESSION['email'])) {
 
     function getSellBusinessCompanyData() {
       response = {};
-      response['hq_country'] = $(".bc_hq_country option:selected").text();
-      response['hq_city'] = $(".bc_hq_city").val();
+      var countryVal = "";
+      var cityVal = "";
+      var countrySetted = false;
+      var citySetted = false;
+      $(".bc_hq_country").each(function() {
+        countrySetted = true;
+        countryVal += $(this).find("option:selected").text() + ",";
+      });
+      $(".bc_hq_city").each(function() {
+        citySetted = true;
+        cityVal += $(this).find("option:selected").val() + ",";
+      });
+
+      if (countrySetted)
+        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      if (citySetted)
+        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
       response['company_type'] = $(".bc_company_type").val();
       response['foundation_year'] = $(".bc_foundation_year").val();
       response['default_currency'] = $(".bc_default_currency").val();
@@ -1110,7 +1156,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
-      response['industry_sel'] = industry.substring(0, industry.length - 1);
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['company_business'] = $(".bc_company_business").val();
       var isAreaSetted = false;
@@ -1120,7 +1166,7 @@ if (isset($_SESSION['email'])) {
         areaOfActivity += $(this).text() + ",";
       });
       if (isAreaSetted)
-      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".bc_scalability").val();
       response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
@@ -1160,8 +1206,23 @@ if (isset($_SESSION['email'])) {
 
     function getSellStartUpData() {
       response = {};
-      response['hq_country'] = $(".su_hq_country option:selected").text();
-      response['hq_city'] = $(".su_hq_city").val();
+      var countryVal = "";
+      var cityVal = "";
+      var countrySetted = false;
+      var citySetted = false;
+      $(".su_hq_country").each(function() {
+        countrySetted = true;
+        countryVal += $(this).find("option:selected").text() + ",";
+      });
+      $(".su_hq_city").each(function() {
+        citySetted = true;
+        cityVal += $(this).find("option:selected").val() + ",";
+      });
+      if (countrySetted)
+        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      if (citySetted)
+        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
       response['sector_sel'] = $(".su_sector").val();
       response['startup_type'] = $(".su_startup_type").val();
 
@@ -1172,8 +1233,8 @@ if (isset($_SESSION['email'])) {
         isIndustrySetted = true;
         industry += $(this).val() + "|";
       });
-      if (true)
-      response['industry_sel'] = industry.substring(0, industry.length - 1);
+      if (isIndustrySetted)
+        response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".su_default_currency").val();
 
@@ -1222,13 +1283,13 @@ if (isset($_SESSION['email'])) {
       return response;
 
     }
-    </script>
-    <?php
-  } else {
-    ?>
-    <script>
+  </script>
+<?php
+} else {
+?>
+  <script>
     window.open('../../', '_self')
-    </script>
-    <?php
-  }
-  ?>
+  </script>
+<?php
+}
+?>
