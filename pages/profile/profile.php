@@ -1,13 +1,64 @@
 <?php
-
-var_dump($user_id);
-$sql = "(SELECT real_estate.ID, real_estate.DEAL, NULL AS SECTOR, NULL AS INDUSTRY, real_estate.COUNTRY, real_estate.CITY, real_estate.OFFER, real_estate.IMAGE, real_estate.KEY_ELEMENTS, real_estate.ASSET_TYPE FROM real_estate where USER_ID = $user_id) UNION ALL( SELECT npe.ID, npe.DEAL, NULL AS SECTOR, NULL AS INDUSTRY, npe.COUNTRY, npe.CITY, npe.OFFER, NULL as IMAGE, NULL AS KEY_ELEMENTS, npe.ASSET_TYPE FROM npe where USER_ID = $user_id) UNION ALL( SELECT credit.ID, credit.DEAL, NULL AS SECTOR, NULL AS INDUSTRY, credit.COUNTRY, credit.CITY, credit.OFFER, NULL AS IMAGE, NULL AS KEY_ELEMENTS, credit.ASSET_TYPE FROM credit where USER_ID = $user_id) UNION ALL ( SELECT business_company.ID, business_company.DEAL, business_company.SECTOR, business_company.INDUSTRY, business_company.COUNTRY, business_company.CITY, business_company.OFFER, business_company.IMAGE, business_company.KEY_ELEMENTS, business_company.ASSET_TYPE FROM business_company where USER_ID = $user_id)";
+$published_buy_deal = array();
+$published_sell_deal = array();
+$sql = "(SELECT
+real_estate.ID,
+real_estate.DEAL,
+NULL AS SECTOR,
+NULL AS INDUSTRY,
+real_estate.COUNTRY,
+real_estate.CITY,
+real_estate.OFFER,
+real_estate.IMAGE,
+real_estate.KEY_ELEMENTS,
+real_estate.ASSET_TYPE
+FROM real_estate where USER_ID = $user_id)
+UNION ALL( SELECT
+npe.ID,
+npe.DEAL,
+NULL AS SECTOR,
+NULL AS INDUSTRY,
+npe.COUNTRY,
+npe.CITY,
+npe.OFFER,
+npe.IMAGE,
+NULL AS KEY_ELEMENTS,
+npe.ASSET_TYPE
+FROM npe where USER_ID = $user_id)
+UNION ALL( SELECT
+credit.ID,
+credit.DEAL,
+NULL AS SECTOR,
+NULL AS INDUSTRY,
+credit.COUNTRY,
+credit.CITY,
+credit.OFFER,
+credit.IMAGE,
+NULL AS KEY_ELEMENTS,
+credit.ASSET_TYPE
+FROM credit where USER_ID = $user_id)
+UNION ALL ( SELECT
+business_company.ID,
+business_company.DEAL,
+business_company.SECTOR,
+business_company.INDUSTRY,
+business_company.COUNTRY,
+business_company.CITY,
+business_company.OFFER,
+business_company.IMAGE,
+business_company.KEY_ELEMENTS,
+business_company.ASSET_TYPE
+FROM business_company where USER_ID = $user_id)";
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
-  $row = mysqli_fetch_array($result);
-  var_dump(json_encode($row));
+  while ($row = mysqli_fetch_array($result)) {
+    if($row["DEAL"] == "buy"){
+      array_push($published_buy_deal, $row);
+    }else{
+      array_push($published_sell_deal, $row);
+    }
+  }
 }
-
 
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -35,7 +86,7 @@ if (mysqli_num_rows($result) > 0) {
 
         <div class="col-md-12">
           <div class="card profile-picture-page4">
-            <div style="width: 100%; display: flex; flex-direction: columns; flex-wrap: wrap;">
+            <div style="width: 100%; display: flex; flex-wrap: wrap;">
 
               <div>
                 <img class="profile-img-image74 rounded-circle" src="
@@ -76,24 +127,24 @@ if (mysqli_num_rows($result) > 0) {
                     <?php
                     if ($_SESSION['user_type'] == 2) {
                       $result = mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                        <?php
+                          <?php
                         }
                       }
                     } else {
                       $result = mysqli_query($con, " SELECT *  FROM users WHERE id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                        ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                    <?php
+                          <?php
                         }
                       }
                     }
@@ -123,71 +174,84 @@ if (mysqli_num_rows($result) > 0) {
             <div class="tab-content">
 
               <div class="tab-pane active" id="published_sell_deal">
-
-                <div class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <div class="time-label">
-                    <span class="bg-danger today-timeline-aea">
-                      Today
-                    </span>
-                  </div>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="fas custom-fab654"> <img src="../../dist/img/new/m-a-hover.png" alt="1" style="width:14px"></i>
-                    <div class="timeline-item timeline-body-setting">
-                      <div class="timeline-body">
-                        <h5 class="timeline-title-set564"> Pubblicazione annuncio </h5>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                      </div>
+                <div class="row">
+                  <?php
+                  foreach ($published_sell_deal as $deal) {
+                    ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
+                      <a href="ma-detail.php?ma=<?=$deal['ID']; ?>">
+                        <div class="card mb-4 cart-custom-redious our-shadow">
+                          <img class="card-img-top ma-img" src="../../assets/uploads/<?=$deal['IMAGE']; ?>" alt="image">
+                          <span class="left-tag-card our-back"> <?=$deal['OFFER']; ?> </span>
+                          <span class="right-tag-batch">
+                            <span class="bookmark bookmark-ma" data-id="<?=$deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
+                          </span>
+                          <div class="d-flex flex-column justify-content-end p-2">
+                            <h5 class="card-heading text-dark"> <?=$deal['COUNTRY'].", ".$deal['CITY']; ?> </h5>
+                            <p class="card-descripatoin pb-1 pt-1"> <?=$deal['COUNTRY']; ?></p>
+                            <div class="listing">
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?=$deal['SECTOR']; ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?=$deal['INDUSTRY']; ?></span><hr>
+                              <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                  <button type="button" name="button" class="btn form-control our-back-btn">Edit</button>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                  <button type="button" name="button" class="btn form-control button-red-border">Delete Ad</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
                     </div>
-                  </div>
-                  <!-- END timeline item -->
-
-                  <!-- timeline item -->
-                  <div>
-                    <i class="fas custom-fab654"> <img src="../../dist/img/new/advisor-hover.png" class="icon-advisor-hover12" alt="1"></i>
-                    <div class="timeline-item timeline-body-setting">
-                      <div class="timeline-body">
-                        <h5 class="timeline-title-set564"> Richiesta di contatto </h5>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <div class="time-label">
-                    <span class="bg-danger today-timeline-aea">
-                      12 Gennaio 2021
-                    </span>
-                  </div>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="fas custom-fab654"> <img src="../../dist/img/new/advisor-hover.png" class="icon-advisor-hover12" alt="1"></i>
-                    <div class="timeline-item timeline-body-setting">
-                      <div class="timeline-body">
-                        <h5 class="timeline-title-set564"> Richiesta di contatto </h5>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-
+                    <?php
+                  }
+                  ?>
                 </div>
-
               </div>
               <div class="tab-pane" id="published_buy_deal">
-
-
-
+                <div class="row">
+                  <?php
+                  foreach ($published_buy_deal as $deal) {
+                    ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
+                      <a href="ma-detail.php?ma=<?=$deal['ID']; ?>">
+                        <div class="card mb-4 cart-custom-redious our-shadow">
+                          <img class="card-img-top ma-img" src="../../assets/uploads/<?=$deal['IMAGE']; ?>" alt="image">
+                          <span class="left-tag-card our-back"> <?=$deal['OFFER']; ?> </span>
+                          <span class="right-tag-batch">
+                            <span class="bookmark bookmark-ma" data-id="<?=$deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
+                          </span>
+                          <div class="d-flex flex-column justify-content-end p-2">
+                            <h5 class="card-heading text-dark"> <?=$deal['COUNTRY'].", ".$deal['CITY']; ?> </h5>
+                            <p class="card-descripatoin pb-1 pt-1"> <?=$deal['COUNTRY']; ?></p>
+                            <div class="listing">
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?=$deal['SECTOR']; ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?=$deal['INDUSTRY']; ?></span><hr>
+                              <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                  <button type="button" name="button" class="btn form-control our-back-btn">Edit</button>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                  <button type="button" name="button" class="btn form-control button-red-border">Delete Ad</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <?php
+                  }
+                  ?>
+                </div>
               </div>
-
             </div>
-
           </div>
         </div>
-
       </div>
 
     </div><!-- container-fluid -->
