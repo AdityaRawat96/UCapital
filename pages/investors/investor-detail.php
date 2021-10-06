@@ -87,137 +87,55 @@ if(isset($_SESSION['email'])){
                     <div class="card-body-investor-details2"><br><br>
                       <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                           <div class="investor-details-founded">
-                            <h4><b>DESCRIPTION</b></h4><hr>
+                            <h3>About</h3><hr>
                             <p class="p-desc10">
                               <?=$row['Descriptions']; ?>
-                            </p>
-                          </div>
-                        </div>
-
-                        <div class="col-md-6">
-                          <div class="card">
-                            <div class="card-body">
-                              <h4><b>PROFILE</b></h4><hr>
-                              <table class="table table-investor-pro6">
-                                <tr style="display: none;">
-                                  <th> 0</th>
-                                  <th> 0</th>
-                                </tr>
-                                <tr class="profile-investor-heading">
-                                  <td> Primary Investor Type </td>
-                                  <td> <?=$row['Primary_Investor_Type'] ? $row['Primary_Investor_Type'] : "-";  ?> </td>
-                                </tr>
-                                <tr class="profile-investor-heading">
-                                  <td> Other Investor Types </td>
-                                  <td> <?=$row['Other_Investor_Types'] ? $row['Other_Investor_Types'] : "-"; ?> </td>
-                                </tr>
-                                <tr class="profile-investor-heading">
-                                  <td> Preferred Investment Types </td>
-                                  <td> <?=$row['Preferred_Investment_Types'] ? $row['Preferred_Investment_Types'] : "-"; ?> </td>
-                                </tr>
-                                <tr class="profile-investor-heading">
-                                  <td> Investor Status </td>
-                                  <td> <?=$row['Investor_Status'] ? $row['Investor_Status'] : "-"; ?> </td>
-                                </tr>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <br><br>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ul class="investor-specificatin-sector9701 nav nav-pills">
-                            <li> <a href="#SECTOR" data-toggle="tab" class="active"> SECTOR </a> </li>
-                            <li> <a href="#INVESTMENT" data-toggle="tab"> INVESTMENT </a> </li>
-                            <li> <a href="#CONTACT" data-toggle="tab"> CONTACT </a> </li>
-                          </ul>
-
-                          <div class="tab-content tab-specification-profile-de101010">
-
-                            <div class="tab-pane active" id="SECTOR">
-
-                              <div class="table-responsive">
-                                <table class="table">
-                                  <thead style="display: none;">
-                                    <tr>
-                                      <th> 0 </th>
-                                      <th> 0</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody class="body-invent7897980-profile">
-                                    <tr class="odd">
-                                      <td> <b> PREFERRED INDUSTRY </b> </td>
-                                      <td> <?=$row['Preferred_Industry'] ? $row['Preferred_Industry'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="even">
-                                      <td> <b> PRIMARY VERTICALS </b> </td>
-                                      <td> <?=$row['Preferred_Verticals'] ? $row['Preferred_Verticals'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="odd">
-                                      <td> <b> ACTIVE PORTFOLIO </b> </td>
-                                      <td> <?=$row['Active_Portfolio'] ? $row['Active_Portfolio'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="even">
-                                      <td> <b> EXITS </b> </td>
-                                      <td> <?=$row['Exits'] ? $row['Exits'] : "-"; ?> </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-
-                            </div>
-
-                            <div class="tab-pane" id="INVESTMENT">
-                              <div class="table-responsive">
-                                <table class="table">
-                                  <thead style="display: none;">
-                                    <tr>
-                                      <th> 0 </th>
-                                      <th> 0</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody class="body-invent7897980-profile">
-                                    <tr class="odd">
-                                      <td> <b> INVESTMENTS </b> </td>
-                                      <td> <?=$row['Total_Investments'] ? $row['Total_Investments'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="even">
-                                      <td> <b> PREFERRED GEOGRAPHY </b> </td>
-                                      <td> <?=$row['Preferred_Geography'] ? $row['Preferred_Geography'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="odd">
-                                      <td> <b> PREFERRED INVESTMENT TYPE </b> </td>
-                                      <td> <?=$row['Preferred_Investment_Types'] ? $row['Preferred_Investment_Types'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="even">
-                                      <td> <b> OTHER STATED PREFERENCES </b> </td>
-                                      <td> <?=$row['Other_Stated_Preferences'] ? $row['Other_Stated_Preferences'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="odd">
-                                      <td> <b> PREFERRED INVESTMENT AMOUNT </b> </td>
-                                      <td> <?=$row['Preferred_Investment_Amount'] ? $row['Preferred_Investment_Amount'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="even">
-                                      <td> <b> PREFERRED INVESTMENT AMOUNT MIN </b> </td>
-                                      <td> <?=$row['Preferred_Investment_Amount_Min'] ? $row['Preferred_Investment_Amount_Min'] : "-"; ?> </td>
-                                    </tr>
-                                    <tr class="odd">
-                                      <td> <b> PREFERRED INVESTMENT AMOUNT MAX </b> </td>
-                                      <td> <?=$row['Preferred_Investment_Amount_Max'] ? $row['Preferred_Investment_Amount_Max'] : "-"; ?> </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                            <div class="tab-pane" id="CONTACT">
-                              <div class="row">
-                                <div class="col-md-6 col-sm-12 contact-container">
-                                  <h5 style="font-weight: bold; color: #151A61">HEADQUARTER</h5><br><br>
+                            </p><br><br>
+                            <h3><i class="fas fa-search-dollar"></i> &nbsp; Preferred Investment Type</h3><hr>
+                            <?php
+                            if($row['Preferred_Investment_Types'] != null && $row['Preferred_Investment_Types'] != ""){
+                              $Preferred_Investment_Type = explode(",", trim($row['Preferred_Investment_Types']));
+                              foreach ($Preferred_Investment_Type as $pi) {
+                                ?>
+                                <span class="blue-box-rounded"><?=$pi; ?></span>
+                                <?php
+                              }
+                            }
+                            ?>
+                            <br><br><br>
+                            <h3><i class="fas fa-industry"></i> &nbsp; Preferred Industry</h3><hr>
+                            <?php
+                            if($row['Preferred_Industry'] != null && $row['Preferred_Industry'] != ""){
+                              $Preferred_Industry = explode(",", trim($row['Preferred_Industry']));
+                              foreach ($Preferred_Industry as $pi) {
+                                ?>
+                                <span class="blue-box-rounded"><?=$pi; ?></span>
+                                <?php
+                              }
+                            }
+                            ?>
+                            <br><br><br>
+                            <h3><i class="fas fa-map-marker-alt"></i> &nbsp; Preferred Geography</h3><hr>
+                            <?php
+                            if($row['Preferred_Geography'] != null && $row['Preferred_Geography'] != ""){
+                              $Preferred_Geography = explode(",", trim($row['Preferred_Geography']));
+                              foreach ($Preferred_Geography as $pi) {
+                                ?>
+                                <span class="blue-box-rounded"><?=$pi; ?></span>
+                                <?php
+                              }
+                            }
+                            ?>
+                            <br><br><br>
+                            <h3><i class="fas fa-id-card"></i> &nbsp; Contact</h3><hr>
+                            <div class="row contact-table-container">
+                              <div class="col-md-6 col-sm-12" style="padding: 0px; border-right: 1px solid #D7DBEC;">
+                                <div class="header-contact-table">
+                                  HEADQUARTER
+                                </div><br>
+                                <div class="body-contact-table">
                                   <span>
                                     <span class="contact-icon">
                                       <i class="fas fa-map-marker-alt"></i> &nbsp;
@@ -237,16 +155,22 @@ if(isset($_SESSION['email'])){
                                     <span><?=$row['HQ_Phone'] ? $row['HQ_Phone'] : "-"; ?></span>
                                   </span>
                                 </div>
-                                <div class="col-md-6 col-sm-12 contact-container">
-                                  <h5 style="font-weight: bold; color: #151A61">PRIMARY CONTACT</h5><br><br>
+                              </div>
+                              <div class="col-md-6 col-sm-12" style="padding: 0px;">
+                                <div class="header-contact-table">
+                                  PRIMARY CONTACT
+                                </div><br>
+                                <div class="body-contact-table">
                                   <span>
                                     <span class="contact-icon">
                                       <i class="fas fa-user"></i> &nbsp;
                                     </span>
                                     <span><?=$row['Primary_Contact'] ? $row['Primary_Contact'] : "-"; ?></span>
-                                  </span><br>
+                                  </span><br><br>
                                   <span>
-                                    &nbsp; &nbsp; &nbsp;
+                                    <span class="contact-icon">
+                                      <i class="fas fa-briefcase"></i> &nbsp;
+                                    </span>
                                     <span><?=$row['Primary_Contact_Title'] ? $row['Primary_Contact_Title'] : "-"; ?></span>
                                   </span><br><br>
                                   <span>
@@ -263,6 +187,62 @@ if(isset($_SESSION['email'])){
                                   </span>
                                 </div>
                               </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="card">
+                            <div class="card-header" style="background-color: #151A61; color: white;">
+                              <h5><b>DETAIL</b></h5>
+                            </div>
+                            <div class="card-body">
+                              <table class="table table-investor-pro6">
+                                <tr class="profile-investor-heading">
+                                  <td> HQ: </td>
+                                  <td> <?=$row['HQ_Location'] ? $row['HQ_Location'] : "-";  ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Primary Investor type: </td>
+                                  <td> <?=$row['Primary_Investor_Type'] ? $row['Primary_Investor_Type'] : "-";  ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Secondary Investor type: </td>
+                                  <td> <?=$row['Other_Investor_Types'] ? $row['Other_Investor_Types'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> AUM: </td>
+                                  <td> <?=$row['AUM'] ? $row['AUM'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Year founded: </td>
+                                  <td> <?=$row['Year_Founded'] ? $row['Year_Founded'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> No. of Investments: </td>
+                                  <td> <?=$row['Investments'] ? $row['Investments'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Exits: </td>
+                                  <td> <?=$row['Exits'] ? $row['Exits'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Active Portfolio: </td>
+                                  <td> <?=$row['Active_Portfolio'] ? $row['Active_Portfolio'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Preferred Investment Amount: </td>
+                                  <td> <?=$row['Preferred_Investment_Amount'] ? $row['Preferred_Investment_Amount'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> Last Investment: </td>
+                                  <td> <?=$row['Last_Investment_Company'] ? $row['Last_Investment_Company'] : "-"; ?> </td>
+                                </tr>
+                                <tr class="profile-investor-heading">
+                                  <td> No. of investment professionals: </td>
+                                  <td> <?=$row['_of_Investment_Professionals'] ? $row['_of_Investment_Professionals'] : "-"; ?> </td>
+                                </tr>
+                              </table>
                             </div>
                           </div>
                         </div>

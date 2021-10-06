@@ -92,6 +92,15 @@ $(document).ready(function(){
     $("#incorrectCredentials").css("display", "none");
   });
 
+  $(document.body).on('click', '.edit-deal-profile' ,function(e){
+    e.preventDefault();
+    editAd($(this).data("id"), $(this).data("type"), $(this).data("deal"));
+  })
+  $(document.body).on('click', '.delete-deal-profile' ,function(e){
+    e.preventDefault();
+    deleteAd($(this).data("id"), $(this).data("type"), $(this).data("deal"));
+  })
+
   $(document.body).on('click', '.bookmark-investor' ,function(e){
     e.preventDefault();
     bookmark('investor', $(this));

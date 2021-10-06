@@ -199,10 +199,10 @@ if (mysqli_num_rows($result) > 0) {
                               <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn">Edit</button>
+                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Edit</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control button-red-border">Delete Ad</button>
+                                  <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Delete Ad</button>
                                 </div>
                               </div>
                             </div>
@@ -237,10 +237,10 @@ if (mysqli_num_rows($result) > 0) {
                               <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn">Edit</button>
+                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="buy">Edit</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control button-red-border">Delete Ad</button>
+                                  <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="buy">Delete Ad</button>
                                 </div>
                               </div>
                             </div>
@@ -263,3 +263,53 @@ if (mysqli_num_rows($result) > 0) {
   <!-- content -->
 </div>
 <!-- content-wrapper -->
+
+<script>
+function editAd(id, asset, deal) {
+  if (deal == "buy") {
+    if (asset == "Real Estate") {
+      url = "./../ma/update_buy_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      url = "./../ma/update_buy_assets_npe.php";
+    } else if (asset == "Credits") {
+      url = "./../ma/update_buy_assets_credits.php";
+    } else if (asset == "Business Company") {
+      url = "./../ma/update_buy_business_company.php";
+    } else if (asset == "Start Up") {
+      url = "./../ma/update_buy_start_up.php";
+    }
+  } else {
+    if (asset == "Real Estate") {
+      url = "./../ma/update_sell_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      url = "./../ma/update_sell_assets_npe.php";
+    } else if (asset == "Credits") {
+      console.log("Credits");
+      url = "./../ma/update_sell_assets_credits.php";
+    } else if (asset == "Business Company") {
+      url = "./../ma/update_sell_business_company.php";
+    } else if (asset == "Start Up") {
+      url = "./../ma/update_sell_start_up.php";
+    }
+  }
+  let p = new URLSearchParams();
+  p.set("id", id);
+  url += "?" + p.toString();
+  window.open(url);
+}
+
+function deleteAd(id, asset, deal) {
+  $.ajax({
+    type: 'POST',
+    url: "./../../assets/php/deleteAd.php",
+    data: {
+      id: id,
+      asset: asset,
+      deal: deal
+    },
+    success: function(data) {
+      alert("deleted");
+    }
+  });
+}
+</script>

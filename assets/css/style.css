@@ -639,3 +639,46 @@ svg{
   color: #FFFFFF;
   background-color: #EB4C3A;
 }
+
+.investor-details-founded i{
+  color: #D7DBEC;
+}
+
+.blue-box-rounded{
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #151A61;
+  margin: 5px;
+  display: inline-block;
+}
+
+.header-contact-table{
+  position: relative;
+  width: 100%;
+  background-color: #D7DBEC;
+  color: #151A61;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.body-contact-table{
+  padding: 10px;
+}
+
+.contact-table-container{
+  border: 1px solid #D7DBEC;
+}
+.contact-table-container i{
+  color: #151A61;
+}
+
+.profile-investor-heading td:first-child{
+  color: #151A61 !important;
+  font-weight: bold;
+}
+
+.profile-investor-heading td{
+  padding: 20px 0px;
+}
