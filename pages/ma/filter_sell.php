@@ -81,41 +81,41 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
+                      <input class="type_category_checkbox_primary all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Building"><span class="category_checkbox_label">Building</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Building"><span class="category_checkbox_label">Building</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Resort"><span class="category_checkbox_label">Resort</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Resort"><span class="category_checkbox_label">Resort</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Hotel"><span class="category_checkbox_label">Hotel</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Hotel"><span class="category_checkbox_label">Hotel</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Private House"><span class="category_checkbox_label">Private House</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Private House"><span class="category_checkbox_label">Private House</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Land"><span class="category_checkbox_label">Land</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Land"><span class="category_checkbox_label">Land</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox" type="checkbox" value="Residential"><span class="category_checkbox_label">Residential (all)</span><br>
-                      <input type="checkbox" value="Single-family homes"><span class="category_checkbox_label_sub">Single-family homes</span><br>
-                      <input type="checkbox" value="Multi-family homes"><span class="category_checkbox_label_sub">Multi-family homes</span><br>
-                      <input type="checkbox" value="Apartments"><span class="category_checkbox_label_sub">Apartments</span><br>
-                      <input type="checkbox" value="Condos"><span class="category_checkbox_label_sub">Condos</span><br>
-                      <input type="checkbox" value="Private House"><span class="category_checkbox_label_sub">Private House</span><br>
+                      <input class="all_selector_checkbox type_category_checkbox_primary" type="checkbox" value="Residential"><span class="category_checkbox_label">Residential (all)</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Single-family homes"><span class="category_checkbox_label_sub">Single-family homes</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Multi-family homes"><span class="category_checkbox_label_sub">Multi-family homes</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Apartments"><span class="category_checkbox_label_sub">Apartments</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Condos"><span class="category_checkbox_label_sub">Condos</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Private House"><span class="category_checkbox_label_sub">Private House</span><br>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox" type="checkbox" value="Commercial"><span class="category_checkbox_label">Commercial (all)</span><br>
-                      <input type="checkbox" value="Office"><span class="category_checkbox_label_sub">Office</span><br>
-                      <input type="checkbox" value="Retail"><span class="category_checkbox_label_sub">Retail</span><br>
+                      <input class="all_selector_checkbox type_category_checkbox_primary" type="checkbox" value="Commercial"><span class="category_checkbox_label">Commercial (all)</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Office"><span class="category_checkbox_label_sub">Office</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Retail"><span class="category_checkbox_label_sub">Retail</span><br>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox" type="checkbox" value="Industrial"><span class="category_checkbox_label">Industrial (all)</span><br>
-                      <input type="checkbox" value="Manufacturing"><span class="category_checkbox_label_sub">Manufacturing</span><br>
-                      <input type="checkbox" value="Storage and Distribution"><span class="category_checkbox_label_sub">Storage and Distribution</span><br>
-                      <input type="checkbox" value="Flex space"><span class="category_checkbox_label_sub">Flex space</span><br>
+                      <input class="all_selector_checkbox type_category_checkbox_primary" type="checkbox" value="Industrial"><span class="category_checkbox_label">Industrial (all)</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Manufacturing"><span class="category_checkbox_label_sub">Manufacturing</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Storage and Distribution"><span class="category_checkbox_label_sub">Storage and Distribution</span><br>
+                      <input class="type_category_checkbox_secondary" type="checkbox" value="Flex space"><span class="category_checkbox_label_sub">Flex space</span><br>
                     </div>
                   </div>
                 </div>
@@ -127,37 +127,37 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
+                      <input class="all_selector_checkbox_main type_category_checkbox_primary" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Past due"><span class="category_checkbox_label">Past due</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Past due"><span class="category_checkbox_label">Past due</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Unlikely to pay"><span class="category_checkbox_label">Unlikely to pay</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Unlikely to pay"><span class="category_checkbox_label">Unlikely to pay</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="NPL"><span class="category_checkbox_label">NPL</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="NPL"><span class="category_checkbox_label">NPL</span>
                     </div>
                   </div>
                 </div>
                 <div class="type_category_section type_category_credits">
                   <div class="row">
                     <div class="col-12">
-                      <h4>Choose type of Start-up</h4><br>
+                      <h4>Choose type of Credit</h4><br>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
+                      <input class="type_category_checkbox_primary all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Past due"><span class="category_checkbox_label">Past due</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Past due"><span class="category_checkbox_label">Past due</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Unlikely to pay"><span class="category_checkbox_label">Unlikely to pay</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Unlikely to pay"><span class="category_checkbox_label">Unlikely to pay</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="NPL"><span class="category_checkbox_label">NPL</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="NPL"><span class="category_checkbox_label">NPL</span>
                     </div>
                   </div>
                 </div>
@@ -169,30 +169,64 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4 col-sm-12">
-                      <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
+                      <input class="type_category_checkbox_primary all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Pre-seed Stage"><span class="category_checkbox_label">Pre-seed Stage</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Pre-seed Stage"><span class="category_checkbox_label">Pre-seed Stage</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Seed Stage"><span class="category_checkbox_label">Seed Stage</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Seed Stage"><span class="category_checkbox_label">Seed Stage</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Early Stage"><span class="category_checkbox_label">Early Stage</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Early Stage"><span class="category_checkbox_label">Early Stage</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Growth Stage"><span class="category_checkbox_label">Growth Stage</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Growth Stage"><span class="category_checkbox_label">Growth Stage</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Expansion Phase"><span class="category_checkbox_label">Expansion Phase</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Expansion Phase"><span class="category_checkbox_label">Expansion Phase</span>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                      <input type="checkbox" value="Exit Phase"><span class="category_checkbox_label">Exit Phase</span>
+                      <input class="type_category_checkbox_primary" type="checkbox" value="Exit Phase"><span class="category_checkbox_label">Exit Phase</span>
                     </div>
                   </div>
                 </div>
               </div>
+              <button type="button" onclick="printshit()">Test</button>
+              <script type="text/javascript">
+                function printshit(){
+                  var primary_category_type = [];
+                    var secondary_category_type = [];
+                  $(".type_category_checkbox_primary:visible").each(function(){
+                    if($(this).prop("checked")){
+                      if($(this).val() == "All"){
+                        primary_category_type = [];
+                        return false;
+                      }else{
+                        primary_category_type.push($(this).val());
+                      }
+                    }
+                  });
+                  $(".type_category_checkbox_secondary:visible").each(function(){
+                    if($(this).prop("checked")){
+                      if($(this).val() == "All"){
+                        secondary_category_type = [];
+                        return false;
+                      }else{
+                        secondary_category_type.push($(this).val());
+                      }
+                    }
+                  });
+                  if(secondary_category_type.length == $(".type_category_checkbox_secondary:visible").length){
+                    secondary_category_type = [];
+                  }
+                  console.log(primary_category_type);
+                  console.log(secondary_category_type);
+                }
 
+
+              </script>
+              
               <?php
 
               include 'filters/sell_company_business.php';

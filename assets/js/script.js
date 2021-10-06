@@ -158,6 +158,17 @@ $(document).ready(function(){
     }
   });
 
+  $("#advancedFilters").on('click', 'input[type="checkbox"]' ,function(e){
+    var elem = $(this);
+    if(elem.val() != "All"){
+      elem.parent().parent().find('input[type="checkbox"]:checked').each(function(){
+        if($(this).val() == "All"){
+          $(this).prop("checked", false);
+        }
+      });
+    }
+  });
+
   $('#AreaOfActivityType li').each(function(){
     if($(this).hasClass('selected')){
       location.push($(this).html().trim().toLowerCase());
