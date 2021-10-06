@@ -97,9 +97,29 @@ $(document).ready(function(){
     bookmark('investor', $(this));
   })
 
-  $(document.body).on('click', '.bookmark-ma' ,function(e){
+  $(document.body).on('click', '.bookmark-business_company' ,function(e){
     e.preventDefault();
-    bookmark('ma', $(this));
+    bookmark('company', $(this));
+  })
+
+  $(document.body).on('click', '.bookmark-start_up' ,function(e){
+    e.preventDefault();
+    bookmark('company', $(this));
+  })
+
+  $(document.body).on('click', '.bookmark-real_estate' ,function(e){
+    e.preventDefault();
+    bookmark('real estate', $(this));
+  })
+
+  $(document.body).on('click', '.bookmark-credits' ,function(e){
+    e.preventDefault();
+    bookmark('credits', $(this));
+  })
+
+  $(document.body).on('click', '.bookmark-npe' ,function(e){
+    e.preventDefault();
+    bookmark('npe', $(this));
   })
 
   $(document.body).on('click', '.bookmark-advisor' ,function(e){

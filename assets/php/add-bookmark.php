@@ -37,19 +37,19 @@ if($type == "investor"){
       $response = mysqli_error($con);
     }
   }
-}else if($type == "ma"){
-  $result= mysqli_query($con, " SELECT ma_id FROM favorites WHERE user_id = '$user_id' ")
+}else if($type == "company"){
+  $result= mysqli_query($con, " SELECT company_id FROM favorites WHERE user_id = '$user_id' ")
   or die('An error occurred! Unable to process this request. '. mysqli_error($con));
   if(mysqli_num_rows($result) > 0 ){
     while($row = mysqli_fetch_array($result)){
-      if($row['ma_id'] == "" || $row['ma_id'] == null){
-        $ma_ids = array();
+      if($row['company_id'] == "" || $row['company_id'] == null){
+        $company_ids = array();
       }else{
-        $ma_ids = json_decode($row['ma_id']);
+        $company_ids = json_decode($row['company_id']);
       }
-      array_push($ma_ids, $bookmark_id);
-      $ma_ids = json_encode($ma_ids);
-      $sql = "UPDATE favorites SET ma_id='$ma_ids' WHERE user_id = '$user_id'";
+      array_push($company_ids, $bookmark_id);
+      $company_ids = json_encode($company_ids);
+      $sql = "UPDATE favorites SET company_id='$company_ids' WHERE user_id = '$user_id'";
       if ($con->query($sql)){
         $response = "success";
       }else{
@@ -57,10 +57,100 @@ if($type == "investor"){
       }
     }
   }else{
-    $ma_ids = array();
-    array_push($ma_ids, $bookmark_id);
-    $ma_ids = json_encode($ma_ids);
-    $sql = "INSERT INTO favorites (user_id, ma_id) VALUES ('$user_id', '$ma_ids')";
+    $company_ids = array();
+    array_push($company_ids, $bookmark_id);
+    $company_ids = json_encode($company_ids);
+    $sql = "INSERT INTO favorites (user_id, company_id) VALUES ('$user_id', '$company_ids')";
+    if ($con->query($sql)){
+      $response = "success";
+    }else{
+      $response = mysqli_error($con);
+    }
+  }
+}else if($type == "credits"){
+  $result= mysqli_query($con, " SELECT credits_id FROM favorites WHERE user_id = '$user_id' ")
+  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+  if(mysqli_num_rows($result) > 0 ){
+    while($row = mysqli_fetch_array($result)){
+      if($row['credits_id'] == "" || $row['credits_id'] == null){
+        $credits_ids = array();
+      }else{
+        $credits_ids = json_decode($row['credits_id']);
+      }
+      array_push($credits_ids, $bookmark_id);
+      $credits_ids = json_encode($credits_ids);
+      $sql = "UPDATE favorites SET credits_id='$credits_ids' WHERE user_id = '$user_id'";
+      if ($con->query($sql)){
+        $response = "success";
+      }else{
+        $response = mysqli_error($con);
+      }
+    }
+  }else{
+    $credits_ids = array();
+    array_push($credits_ids, $bookmark_id);
+    $credits_ids = json_encode($credits_ids);
+    $sql = "INSERT INTO favorites (user_id, credits_id) VALUES ('$user_id', '$credits_ids')";
+    if ($con->query($sql)){
+      $response = "success";
+    }else{
+      $response = mysqli_error($con);
+    }
+  }
+}else if($type == "npe"){
+  $result= mysqli_query($con, " SELECT npe_id FROM favorites WHERE user_id = '$user_id' ")
+  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+  if(mysqli_num_rows($result) > 0 ){
+    while($row = mysqli_fetch_array($result)){
+      if($row['npe_id'] == "" || $row['npe_id'] == null){
+        $npe_ids = array();
+      }else{
+        $npe_ids = json_decode($row['npe_id']);
+      }
+      array_push($npe_ids, $bookmark_id);
+      $npe_ids = json_encode($npe_ids);
+      $sql = "UPDATE favorites SET npe_id='$npe_ids' WHERE user_id = '$user_id'";
+      if ($con->query($sql)){
+        $response = "success";
+      }else{
+        $response = mysqli_error($con);
+      }
+    }
+  }else{
+    $npe_ids = array();
+    array_push($npe_ids, $bookmark_id);
+    $npe_ids = json_encode($npe_ids);
+    $sql = "INSERT INTO favorites (user_id, npe_id) VALUES ('$user_id', '$npe_ids')";
+    if ($con->query($sql)){
+      $response = "success";
+    }else{
+      $response = mysqli_error($con);
+    }
+  }
+}else if($type == "real estate"){
+  $result= mysqli_query($con, " SELECT re_id FROM favorites WHERE user_id = '$user_id' ")
+  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+  if(mysqli_num_rows($result) > 0 ){
+    while($row = mysqli_fetch_array($result)){
+      if($row['re_id'] == "" || $row['re_id'] == null){
+        $re_ids = array();
+      }else{
+        $re_ids = json_decode($row['re_id']);
+      }
+      array_push($re_ids, $bookmark_id);
+      $re_ids = json_encode($re_ids);
+      $sql = "UPDATE favorites SET re_id='$re_ids' WHERE user_id = '$user_id'";
+      if ($con->query($sql)){
+        $response = "success";
+      }else{
+        $response = mysqli_error($con);
+      }
+    }
+  }else{
+    $re_ids = array();
+    array_push($re_ids, $bookmark_id);
+    $re_ids = json_encode($re_ids);
+    $sql = "INSERT INTO favorites (user_id, re_id) VALUES ('$user_id', '$re_ids')";
     if ($con->query($sql)){
       $response = "success";
     }else{

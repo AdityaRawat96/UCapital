@@ -9,6 +9,7 @@ $action = $_POST["action"];
 $sql = "(SELECT
 real_estate.ID,
 real_estate.DEAL,
+real_estate.ASSET_TYPE,
 NULL AS SECTOR,
 NULL AS INDUSTRY,
 real_estate.COUNTRY,
@@ -21,6 +22,7 @@ FROM real_estate where real_estate.DEAL = '$action'  LIMIT $limit)
 UNION ALL( SELECT
 npe.ID,
 npe.DEAL,
+npe.ASSET_TYPE,
 NULL AS SECTOR,
 NULL AS INDUSTRY,
 npe.COUNTRY,
@@ -33,6 +35,7 @@ FROM npe where npe.DEAL = '$action' LIMIT $limit )
 UNION ALL ( SELECT
 credit.ID,
 credit.DEAL,
+credit.ASSET_TYPE,
 NULL AS SECTOR,
 NULL AS INDUSTRY,
 credit.COUNTRY,
@@ -45,6 +48,7 @@ FROM credit where credit.DEAL = '$action' LIMIT $limit )
 UNION ALL ( SELECT
 business_company.ID,
 business_company.DEAL,
+business_company.ASSET_TYPE,
 business_company.SECTOR,
 business_company.INDUSTRY,
 business_company.COUNTRY,
