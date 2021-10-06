@@ -21,12 +21,12 @@ if (isset($_SESSION['email'])) {
             <div class="col-md-9 col-sm-12 input-container">
                 <div class="row location_holder">
                     <div class="col-md-8 col-sm-12 location_container">
-                        <select class="form-control hq_country bc_hq_country_buy" name="hq_country" id="country">
+                        <!-- <select class="form-control hq_country bc_hq_country_buy" name="hq_country" id="country">
                             <option value="" selected disabled>Choose a country</option>
                         </select>
                         <select class="form-control hq_city bc_hq_city_buy" name="hq_city" id="city">
                             <option value="" selected disabled>Choose a city</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
@@ -803,53 +803,58 @@ if (isset($_SESSION['email'])) {
             dataType: 'json',
             success: function(data) {
                 country_data = data;
-                $.each(country_data, function(index, element) {
-                    $('.hq_country').append($('<option>', {
-                        value: element.id,
-                        text: element.country
-                    }));
-                    $(".scalability_area").append($('<option>', {
-                        value: element.id,
-                        text: element.country
-                    }));
-                    $(".area_of_activity").append($('<option>', {
-                        value: element.id,
-                        text: element.country
-                    }));
-                });
-                $(".hq_country option").each(function() {
-                    if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
-                        $(this).attr('selected', 'selected');
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: "../../assets/php/getCities.php",
-                    dataType: 'json',
-                    data: {
-                        country_id: $(".hq_country option:selected").val()
-                    },
-                    success: function(data) {
-                        $('.hq_city').html("");
-                        $('.hq_city').append($('<option>', {
-                            value: "",
-                            text: "Choose a city",
-                            selected: true,
-                            disabled: true
+                var countryVal = "<?= $row['COUNTRY'] ?>";
+                var cityVal = "<?= $row['CITY'] ?>";
+                countryArr = countryVal.split(",");
+                cityArr = cityVal.split(",");
+                var location_container = $(".location_container");
+                countryArr.forEach(function(element, index) {
+                    var countryId = "";
+                    location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+                    country_data.forEach(country_data => {
+                        location_container.find('.hq_country').last().append($('<option>', {
+                            value: country_data.id,
+                            text: country_data.country,
+                            selected: country_data.country == element ? true : false
                         }));
-                        $.each(data, function(index, element) {
-                            $('.hq_city').append($('<option>', {
-                                value: element.city,
-                                text: element.city
-                            }));
-                        });
-                        document.getElementById("city").value = "<?= $row['CITY'] ?>";
-                    }
+                    });
+                    countryId = location_container.find('.hq_country').last().val();
+                    syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+                        console.log(err);
+                    })
                 });
             }
         });
 
     });
+
+    function syncLoadCity(countryId, cityVal, domElem) {
+        console.log(cityVal);
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+                type: 'POST',
+                url: "../../assets/php/getCities.php",
+                dataType: 'json',
+                data: {
+                    country_id: countryId
+                },
+                success: function(data) {
+                    data.forEach(element => {
+                        domElem.append($('<option>', {
+                            value: element.id,
+                            text: element.city,
+                            selected: element.city == cityVal ? true : false
+                        }));
+                    });
+
+                    resolve()
+                },
+                error: function(err) {
+                    reject(err)
+                }
+            });
+        });
+    }
 
     $("body").on("change", ".hq_country", function() {
         loadCities($(this));
