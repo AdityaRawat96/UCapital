@@ -194,39 +194,33 @@
               </div>
               <button type="button" onclick="printshit()">Test</button>
               <script type="text/javascript">
-                function printshit(){
-                  var primary_category_type = [];
-                    var secondary_category_type = [];
-                  $(".type_category_checkbox_primary:visible").each(function(){
-                    if($(this).prop("checked")){
-                      if($(this).val() == "All"){
-                        primary_category_type = [];
-                        return false;
-                      }else{
-                        primary_category_type.push($(this).val());
-                      }
-                    }
-                  });
-                  $(".type_category_checkbox_secondary:visible").each(function(){
-                    if($(this).prop("checked")){
-                      if($(this).val() == "All"){
-                        secondary_category_type = [];
-                        return false;
-                      }else{
+              function printshit(){
+                var primary_category_type = [];
+                var secondary_category_type = [];
+                var category_object = {};
+                $(".type_category_checkbox_primary:visible").each(function(){
+                  var elem = $(this);
+                  if(elem.prop("checked")){
+                    if(elem.val() == "All"){
+                      primary_category_type = [];
+                      return false;
+                    }else{
+                      secondary_category_type = [];
+                      primary_category_type.push(elem.val());
+                      elem.siblings(".type_category_checkbox_secondary:checked").each(function(){
                         secondary_category_type.push($(this).val());
-                      }
+                      });
+                      category_object[elem.val()] = secondary_category_type;
                     }
-                  });
-                  if(secondary_category_type.length == $(".type_category_checkbox_secondary:visible").length){
-                    secondary_category_type = [];
                   }
-                  console.log(primary_category_type);
-                  console.log(secondary_category_type);
-                }
+                });
+
+                console.log(category_object);
+              }
 
 
               </script>
-              
+
               <?php
 
               include 'filters/sell_company_business.php';
