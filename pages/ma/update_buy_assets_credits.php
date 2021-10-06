@@ -6,7 +6,7 @@ if (isset($_SESSION['email'])) {
     include '../elements/sidebar.php';
 
     $id = $_GET["id"];
-    $sql = "SELECT * FROM npe where id=$id";
+    $sql = "SELECT * FROM credit where id=$id";
     $result = mysqli_query($con, $sql);
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
@@ -221,31 +221,31 @@ if (isset($_SESSION['email'])) {
 <script>
     function update() {
         response = {};
-        response['npe_type'] = $(".npe_type_buy").val();
-        response['npe_product_type'] = $(".npe_product_type_buy").val();
-        response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
-        response['npe_hq_city'] = $(".npe_hq_city_buy").val();
-        response['npe_state'] = $(".npe_state_buy").val();
-        response['npe_post_code'] = $(".npe_post_code_buy").val();
-        response['npe_description'] = $(".npe_description_buy").val();
-        response['npe_default_currency'] = $(".npe_default_currency_buy").val();
-        response['npe_value'] = $(".npe_value_buy:checked").val();
+        response['credit_type'] = $(".npe_type_buy").val();
+        response['credit_product_type'] = $(".npe_product_type_buy").val();
+        response['credit_hq_country'] = $(".npe_hq_country_buy option:selected").text();
+        response['credit_hq_city'] = $(".npe_hq_city_buy").val();
+        response['credit_state'] = $(".npe_state_buy").val();
+        response['credit_post_code'] = $(".npe_post_code_buy").val();
+        response['credit_description'] = $(".npe_description_buy").val();
+        response['credit_default_currency'] = $(".npe_default_currency_buy").val();
+        response['credit_value'] = $(".npe_value_buy:checked").val();
         if ($(".npe_value_buy:checked").val() === "undisclosed") {} else if ($(".npe_value_buy:checked").val() === "fixed") {
-            response['npe_value_min'] = $(".npe_value_val_buy").val();
-            response['npe_value_max'] = $(".npe_value_val_buy").val();
+            response['credit_value_min'] = $(".npe_value_val_buy").val();
+            response['credit_value_max'] = $(".npe_value_val_buy").val();
         } else if ($(".npe_value_buy:checked").val() === "range") {
             assetVal = $(".npe_value_sel_buy").val();
             index = assetVal.lastIndexOf("|");
-            response['npe_value_min'] = assetVal.substring(0, index);
-            response['npe_value_max'] = assetVal.substring(index + 1);
+            response['credit_value_min'] = assetVal.substring(0, index);
+            response['credit_value_max'] = assetVal.substring(index + 1);
         }
-        response['npe_lien_position'] = $(".npe_lien_position_buy").val();
-        response['npe_judicialized'] = $(".npe_judicialized_buy").val();
-        response['npe_borrower_details'] = $(".npe_borrower_details_buy").val();
-        response['npe_who_i_am'] = $(".npe_who_i_am").val();
-        response['npe_aum'] = $(".npe_aum_buy").val();
-        response['npe_ratio'] = $(".npe_ratio_buy").val();
-        response['asset_type'] = "NPE";
+        response['credit_lien_position'] = $(".npe_lien_position_buy").val();
+        response['credit_judicialized'] = $(".npe_judicialized_buy").val();
+        response['credit_borrower_details'] = $(".npe_borrower_details_buy").val();
+        response['credit_who_i_am'] = $(".npe_who_i_am").val();
+        response['credit_aum'] = $(".npe_aum_buy").val();
+        response['credit_ratio'] = $(".npe_ratio_buy").val();
+        response['asset_type'] = "Credit";
 
         $.ajax({
             type: 'POST',
@@ -261,17 +261,17 @@ if (isset($_SESSION['email'])) {
     }
 
     function setValues() {
-        document.getElementById("npe_type_buy").value = "<?= $row["NPE_TYPE"] ?>";
+        document.getElementById("npe_type_buy").value = "<?= $row["CREDIT_TYPE"] ?>";
         document.getElementById("npe_product_type_buy").value = "<?= $row["PRODUCT_TYPE"] ?>";
         document.getElementById("country").value = "<?= $row["COUNTRY"] ?>";
         document.getElementById("city").value = "<?= $row["CITY"] ?>";
         document.getElementById("state").value = "<?= $row["STATE"] ?>";
-        document.getElementById("zipcode").value = "<?= $row["POSTAL"] ?>";
+        document.getElementById("zipcode").value = "<?= $row["POSTAL_CODE"] ?>";
         document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
         document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
         document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
         document.getElementById("judicialized").value = "<?= $row["JUDICIALIZED"] ?>";
-        document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAIL"] ?>";
+        document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAILS"] ?>";
         document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
         document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
         document.getElementById("aum").value = "<?= $row["AUM"] ?>";
@@ -308,38 +308,41 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
+                var countryVal = "";
                 $(".hq_country option").each(function() {
                     if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
                         $(this).attr('selected', 'selected');
+                        countryVal = $(this).val();
                     }
                 });
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCities.php",
-            dataType: 'json',
-            data: {
-                country_id: <?= $row['COUNTRY'] ?>
-            },
-            success: function(data) {
-                $('.hq_city').html("");
-                $('.hq_city').append($('<option>', {
-                    value: "",
-                    text: "Choose a city",
-                    selected: true,
-                    disabled: true
-                }));
-                $.each(data, function(index, element) {
-                    $('.hq_city').append($('<option>', {
-                        value: element.city,
-                        text: element.city
-                    }));
-                });
-                document.getElementById("city").value = "<?= $row['CITY'] ?>";
-            }
-        });
 
+                $.ajax({
+                    type: 'POST',
+                    url: "../../assets/php/getCities.php",
+                    dataType: 'json',
+                    data: {
+                        country_id: countryVal
+                    },
+                    success: function(data) {
+                        $('.hq_city').html("");
+                        $('.hq_city').append($('<option>', {
+                            value: "",
+                            text: "Choose a city",
+                            selected: true,
+                            disabled: true
+                        }));
+                        $.each(data, function(index, element) {
+                            $('.hq_city').append($('<option>', {
+                                value: element.city,
+                                text: element.city
+                            }));
+                        });
+                        document.getElementById("city").value = "<?= $row['CITY'] ?>";
+                    }
+                });
+
+            }
+        });
     });
 
     $("body").on("change", ".hq_country", function() {

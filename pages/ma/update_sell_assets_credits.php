@@ -359,35 +359,37 @@ if (isset($_SESSION['email'])) {
                         text: element.country
                     }));
                 });
+                var countryVal = "";
                 $(".hq_country option").each(function() {
                     if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
                         $(this).attr('selected', 'selected');
+                        countryVal = $(this).val();
                     }
                 });
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCities.php",
-            dataType: 'json',
-            data: {
-                country_id: <?= $row['COUNTRY'] ?>
-            },
-            success: function(data) {
-                $('.hq_city').html("");
-                $('.hq_city').append($('<option>', {
-                    value: "",
-                    text: "Choose a city",
-                    selected: true,
-                    disabled: true
-                }));
-                $.each(data, function(index, element) {
-                    $('.hq_city').append($('<option>', {
-                        value: element.city,
-                        text: element.city
-                    }));
+                $.ajax({
+                    type: 'POST',
+                    url: "../../assets/php/getCities.php",
+                    dataType: 'json',
+                    data: {
+                        country_id: countryVal
+                    },
+                    success: function(data) {
+                        $('.hq_city').html("");
+                        $('.hq_city').append($('<option>', {
+                            value: "",
+                            text: "Choose a city",
+                            selected: true,
+                            disabled: true
+                        }));
+                        $.each(data, function(index, element) {
+                            $('.hq_city').append($('<option>', {
+                                value: element.city,
+                                text: element.city
+                            }));
+                        });
+                        document.getElementById("city").value = "<?= $row['CITY'] ?>";
+                    }
                 });
-                document.getElementById("city").value = "<?= $row['CITY'] ?>";
             }
         });
 

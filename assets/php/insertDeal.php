@@ -3,7 +3,7 @@ session_start();
 include('../../assets/php/connection.php');
 
 $data = $_POST['dealData'];
-// var_dump($_POST['dealData']);
+
 $asset_type = array_key_exists('asset_type', $data) ? $data['asset_type'] : "";
 if ($asset_type == "Real Estate") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
@@ -35,7 +35,7 @@ if ($asset_type == "Real Estate") {
 
   $sql = "INSERT INTO `real_estate` (
     `USER_ID`,`DEAL`,`OFFER`,`ASSET_TYPE`,`REAL_ESTATE_TYP`,`REAL_ESTATE_SUB_CAT_TYPE`,`DEAL_SUBJECT`, `ASSET_STATUS`,`ASSET_CONDITION`,`TOTAL_SURFACE`,`COUNTRY`,`CITY`,`CURRENCY`,`ASSET_VAL_TYPE`, `ASSET_VAL_MIN`,`ASSET_VAL_MAX`,`WHO_I_AM`,`AUM`,`DESCRIPTION`,`YEAR_OF_CONSTRUCTION`, `VENDOR_TYPE`,`INVESTMENT_TYPE`,`INVESTMENT_MIN`,`INVESTMENT_MAX`,`YEARLY_RETURN`,`KEY_ELEMENTS`, `IMAGE`) VALUES ($userId,'$deal_type','$offer','$asset_type','$re_type','$re_type_category','$re_deal_subject','$re_asset_status','$re_condition_status', $re_surface_area,'$re_hq_country','$re_hq_city','$default_currency','$re_asset_value',  $re_asset_value_min,$re_asset_value_max,'$re_who_i_am',$re_aum,'$re_general_description',  $re_construction_year,'$re_vendor_type','$re_investment_type',$re_investment_value_min, $re_investment_value_max,$re_yearly_return,'$re_key_elements','$re_image')";
-} else if ($asset_type == "NPE" || ($asset_type == "Credits" && (array_key_exists('deal_type', $data) ? $data['deal_type'] : "") == "buy")) {
+} else if ($asset_type == "NPE") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
   $offer = array_key_exists('offer', $data) ? $data['offer'] : "";
   $npe_type = array_key_exists('npe_type', $data) ? $data['npe_type'] : "";
@@ -59,8 +59,9 @@ if ($asset_type == "Real Estate") {
   $npe_value_max = (array_key_exists('npe_value_max', $data) && $data['npe_value_max'] != "") ? $data['npe_value_max'] : 0;
   $npe_who_i_am = array_key_exists('npe_who_i_am', $data) ? $data['npe_who_i_am'] : "";
   $npe_aum = (array_key_exists('npe_aum', $data) && $data['npe_aum'] != "") ? $data['npe_aum'] : 0;
+  $npe_image = array_key_exists('npe_image', $data) ? $data['npe_image'] : "";
   $userId = $_SESSION['id'];
-  $sql = "INSERT INTO `npe` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `NPE_TYPE`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL`, `DESCRIPTION`, `CURRENCY`, `ORG_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `LIEN_POSITION`, `JUDICIALIZED`, `BORROWER_DETAIL`, `RATIO`, `VALUE_TYPE`, `VALUE_MIN`, `VALUE_MAX`, `WHO_I_AM`, `AUM`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$npe_type', '$npe_product_type', '$npe_collateral_type', '$npe_hq_country', '$npe_hq_city', '$npe_state', '$npe_post_code', '$npe_description', '$npe_default_currency', $npe_original_amount, $npe_asking_price, $npe_market_value, '$npe_lien_position', '$npe_judicialized', '$npe_borrower_details', '$npe_ratio', '$npe_value', $npe_value_min, $npe_value_max, '$npe_who_i_am', $npe_aum)";
+  $sql = "INSERT INTO `npe` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `NPE_TYPE`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL`, `DESCRIPTION`, `CURRENCY`, `ORG_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `LIEN_POSITION`, `JUDICIALIZED`, `BORROWER_DETAIL`, `RATIO`, `VALUE_TYPE`, `VALUE_MIN`, `VALUE_MAX`, `WHO_I_AM`, `AUM`, `IMAGE`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$npe_type', '$npe_product_type', '$npe_collateral_type', '$npe_hq_country', '$npe_hq_city', '$npe_state', '$npe_post_code', '$npe_description', '$npe_default_currency', $npe_original_amount, $npe_asking_price, $npe_market_value, '$npe_lien_position', '$npe_judicialized', '$npe_borrower_details', '$npe_ratio', '$npe_value', $npe_value_min, $npe_value_max, '$npe_who_i_am', $npe_aum,'$npe_image')";
 } else if ($asset_type == "Credits") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
   $offer = array_key_exists('offer', $data) ? $data['offer'] : "";
@@ -89,11 +90,16 @@ if ($asset_type == "Real Estate") {
   $credit_discounted_ratio = (array_key_exists('credit_discounted_ratio', $data) && $data['credit_discounted_ratio'] != "") ? $data['credit_discounted_ratio'] : 0;
   $credit_who_i_am = array_key_exists('credit_who_i_am', $data) ? $data['credit_who_i_am'] : "";
   $credit_aum = (array_key_exists('credit_aum', $data) && $data['credit_aum'] != "") ? $data['credit_aum'] : 0;
+  $credit_image = array_key_exists('credit_image', $data) ? $data['credit_image'] : "";
+  $credit_value_min = (array_key_exists('credit_value_min', $data) && $data['credit_value_min'] != "") ? $data['credit_value_min'] : 0;
+  $credit_value_max = (array_key_exists('credit_value_max', $data) && $data['credit_value_max'] != "") ? $data['credit_value_max'] : 0;
+  $credit_value = array_key_exists('credit_value', $data) ? $data['credit_value'] : "";
+  $credit_ratio = array_key_exists('credit_ratio', $data) ? $data['credit_ratio'] : "";
   $userId = $_SESSION['id'];
   if ($credit_maturity == NULL) {
-    $sql = "INSERT INTO `credit` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `CREDIT_TYPE`, `BORROWER`, `BORROWER_SUBCAT`, `CURRENCY`, `TYPOLOGY`,`PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL_CODE`, `LIEN_POSITION`, `DESCRIPTION`, `ORIGINAL_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `JUDICIALIZED`, `BORROWER_DETAILS`, `RATIO_OB`, `RATE`, `DISCOUNTED_RATIO`, `WHO_I_AM`, `AUM`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$credit_type', '$credit_borrower_type', '$credit_borrower_type_category', '$credit_default_currency', '$credit_typology', '$credit_product_type', '$credit_collateral_type', '$credit_hq_country', '$credit_hq_city', '$credit_state', '$credit_post_code', '$credit_lien_position', '$credit_description', $credit_original_amount, $credit_asking_price, $credit_market_value, '$credit_judicialized', '$credit_borrower_details', $credit_ratio_ob, $credit_rate, $credit_discounted_ratio, '$credit_who_i_am', $credit_aum)";
+    $sql = "INSERT INTO `credit` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `CREDIT_TYPE`, `BORROWER`, `BORROWER_SUBCAT`, `CURRENCY`, `TYPOLOGY`,`PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL_CODE`, `LIEN_POSITION`, `DESCRIPTION`, `ORIGINAL_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `JUDICIALIZED`, `BORROWER_DETAILS`, `RATIO_OB`, `RATE`, `DISCOUNTED_RATIO`, `WHO_I_AM`, `AUM`, `IMAGE`,`RATIO`,`VALUE_TYPE`,`VALUE_MIN`,`VALUE_MAX`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$credit_type', '$credit_borrower_type', '$credit_borrower_type_category', '$credit_default_currency', '$credit_typology', '$credit_product_type', '$credit_collateral_type', '$credit_hq_country', '$credit_hq_city', '$credit_state', '$credit_post_code', '$credit_lien_position', '$credit_description', $credit_original_amount, $credit_asking_price, $credit_market_value, '$credit_judicialized', '$credit_borrower_details', $credit_ratio_ob, $credit_rate, $credit_discounted_ratio, '$credit_who_i_am', $credit_aum, '$credit_image', '$credit_ratio', '$credit_value', $credit_value_min, $credit_value_max)";
   } else {
-    $sql = "INSERT INTO `credit` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `CREDIT_TYPE`, `BORROWER`, `BORROWER_SUBCAT`, `CURRENCY`, `TYPOLOGY`, `MATURITY`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL_CODE`, `LIEN_POSITION`, `DESCRIPTION`, `ORIGINAL_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `JUDICIALIZED`, `BORROWER_DETAILS`, `RATIO_OB`, `RATE`, `DISCOUNTED_RATIO`, `WHO_I_AM`, `AUM`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$credit_type', '$credit_borrower_type', '$credit_borrower_type_category', '$credit_default_currency', '$credit_typology', '$credit_maturity', '$credit_product_type', '$credit_collateral_type', '$credit_hq_country', '$credit_hq_city', '$credit_state', '$credit_post_code', '$credit_lien_position', '$credit_description', $credit_original_amount, $credit_asking_price, $credit_market_value, '$credit_judicialized', '$credit_borrower_details', $credit_ratio_ob, $credit_rate, $credit_discounted_ratio, '$credit_who_i_am', $credit_aum)";
+    $sql = "INSERT INTO `credit` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `CREDIT_TYPE`, `BORROWER`, `BORROWER_SUBCAT`, `CURRENCY`, `TYPOLOGY`, `MATURITY`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL_CODE`, `LIEN_POSITION`, `DESCRIPTION`, `ORIGINAL_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `JUDICIALIZED`, `BORROWER_DETAILS`, `RATIO_OB`, `RATE`, `DISCOUNTED_RATIO`, `WHO_I_AM`, `AUM`,`IMAGE`,`RATIO`,`VALUE_TYPE`,`VALUE_MIN`,`VALUE_MAX`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$credit_type', '$credit_borrower_type', '$credit_borrower_type_category', '$credit_default_currency', '$credit_typology', '$credit_maturity', '$credit_product_type', '$credit_collateral_type', '$credit_hq_country', '$credit_hq_city', '$credit_state', '$credit_post_code', '$credit_lien_position', '$credit_description', $credit_original_amount, $credit_asking_price, $credit_market_value, '$credit_judicialized', '$credit_borrower_details', $credit_ratio_ob, $credit_rate, $credit_discounted_ratio, '$credit_who_i_am', $credit_aum, '$credit_image', '$credit_ratio', '$credit_value', $credit_value_min, $credit_value_max)";
   }
 } else if ($asset_type == "Business Company" || $asset_type == "Start Up") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
@@ -154,3 +160,9 @@ if (!empty($sql)) {
   }
 }
 exit();
+
+
+function getImage($asset, $sector)
+{
+  $imagePath = "";
+}
