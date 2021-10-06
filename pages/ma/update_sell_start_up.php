@@ -684,8 +684,23 @@ if (isset($_SESSION['email'])) {
 <script>
     function update() {
         response = {};
-        response['hq_country'] = $(".su_hq_country_buy option:selected").text();
-        response['hq_city'] = $(".su_hq_city_buy").val();
+        var countryVal = "";
+        var cityVal = "";
+        var countrySetted = false;
+        var citySetted = false;
+        $(".hq_country").each(function() {
+            countrySetted = true;
+            countryVal += $(this).find("option:selected").text() + ",";
+        });
+        $(".hq_city").each(function() {
+            citySetted = true;
+            cityVal += $(this).find("option:selected").val() + ",";
+        });
+
+        if (countrySetted)
+            response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+        if (citySetted)
+            response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
         response['sector_sel'] = $(".su_sector_buy").val();
         response['startup_type'] = $(".su_startup_type_buy").val();
 
@@ -868,6 +883,26 @@ if (isset($_SESSION['email'])) {
             });
         });
     }
+
+    $(".add-location").on('click', function() {
+        var deal_type = $(".deal_type:checked").val();
+        var current_location_container = $(this).parent().parent();
+        if (deal_type == "sell") {
+            current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+        } else {
+            current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+        }
+        $.each(country_data, function(index, element) {
+            current_location_container.find('.hq_country').last().append($('<option>', {
+                value: element.id,
+                text: element.country
+            }));
+        });
+    });
+
+    $(".location_holder").on("click", ".btn-location-remove", function() {
+        $(this).parent().remove();
+    });
 
     $("body").on("change", ".hq_country", function() {
         loadCities($(this));
