@@ -196,31 +196,31 @@
               </div>
               <button type="button" onclick="printshit()">Test</button>
               <script type="text/javascript">
-              function printshit(){
-                var primary_category_type = [];
-                var secondary_category_type = [];
-                var category_object = {};
-                $(".type_category_checkbox_primary:visible").each(function(){
-                  var elem = $(this);
-                  if(elem.prop("checked")){
-                    if(elem.val() == "All"){
-                      primary_category_type = [];
-                      return false;
-                    }else{
-                      secondary_category_type = [];
-                      primary_category_type.push(elem.val());
-                      elem.siblings(".type_category_checkbox_secondary:checked").each(function(){
-                        secondary_category_type.push($(this).val());
-                      });
-                      category_object[elem.val()] = secondary_category_type;
+                function printshit() {
+                  var secondary_category_type = [];
+                  var category_object = [];
+                  $(".type_category_checkbox_primary:visible").each(function() {
+                    var elem = $(this);
+                    if (elem.prop("checked")) {
+                      if (elem.val() == "All") {
+                        return category_object;
+                      } else {
+                        secondary_category_type = [];
+                        elem.siblings(".type_category_checkbox_secondary:checked").each(function() {
+                          secondary_category_type.push($(this).val());
+                        });
+                        if (secondary_category_type.length == 0)
+                          secondary_category_type.push("");
+                        var key = elem.val();
+                        category_object.push({
+                          [key]: secondary_category_type
+                        });
+                      }
                     }
-                  }
-                });
+                  });
 
-                console.log(category_object);
-              }
-
-
+                  return category_object;
+                }
               </script>
 
               <?php
@@ -243,55 +243,59 @@
       </div>
 
       <script type="text/javascript">
-      function appyDealFilter() {
-        var filter_data = [];
-        if ($(".deal-radio:checked").val()) {
-          $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+        function appyDealFilter() {
+          var filter_data = [];
+          if ($(".deal-radio:checked").val()) {
+            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
 
-            var table_name = $($(this).attr("href")).data("column");
+              var table_name = $($(this).attr("href")).data("column");
 
-            var table_data = [];
-            $($(this).attr("href")).find(".selected").each(function() {
-              if ($(this).data("search") == undefined) {
-                return false;
-              }
-              table_data.push($(this).data("search"));
-              console.log($(this).data("search"))
+              var table_data = [];
+              $($(this).attr("href")).find(".selected").each(function() {
+                if ($(this).data("search") == undefined) {
+                  return false;
+                }
+                table_data.push($(this).data("search"));
+                console.log($(this).data("search"))
 
+              });
+              $($(this).attr("href")).find("input:checked").each(function() {
+                if ($(this).val() == "All") {
+                  return false;
+                }
+                table_data.push($(this).val());
+
+              });
+
+              filter_data.push({
+                [table_name]: table_data
+              });
             });
-            $($(this).attr("href")).find("input:checked").each(function() {
-              if ($(this).val() == "All") {
-                return false;
-              }
-              table_data.push($(this).val());
-
-            });
-
+            var propertyType = printshit();
             filter_data.push({
-              [table_name]: table_data
+              "propertyType": propertyType
             });
-          });
-          console.log(filter_data);
-        }
-        $.ajax({
-          type: 'POST',
-          url: '../../assets/php/getBuyFilterData.php',
-          data: {
-            action: "buy",
-            filterData: filter_data,
-            deal: $(".offer:checked").val(),
-            assetType: $(".asset_type option:checked").val()
-          },
-          success: function(data) {
-            console.log("\n")
-            console.log(data);
-          },
-          error: function(request, status, error) {
-            console.log(error);
-            console.log(request.responseText);
+            console.log(filter_data);
           }
-        });
-      }
+          $.ajax({
+            type: 'POST',
+            url: '../../assets/php/getBuyFilterData.php',
+            data: {
+              action: "buy",
+              filterData: filter_data,
+              deal: $(".offer:checked").val(),
+              assetType: $(".asset_type option:checked").val()
+            },
+            success: function(data) {
+              console.log("\n")
+              console.log(data);
+            },
+            error: function(request, status, error) {
+              console.log(error);
+              console.log(request.responseText);
+            }
+          });
+        }
       </script>
 
     </div>

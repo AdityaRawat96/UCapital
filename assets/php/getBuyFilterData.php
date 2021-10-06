@@ -64,6 +64,12 @@ if ($table == 'business_company' || $table == 'real_estate') {
             if ($elem == "revenue") {
                 $sql = addRevenue($sql, $filterData[$key]["revenue"]);
             }
+            if ($elem == "propertyType" && $table == 'business_company') {
+                $sql = addCompanyPropertyType($sql, $filterData[$key]["propertyType"]);
+            }
+            if ($elem == "propertyType" && $table != 'business_company') {
+                $sql = addPropertyType($sql, $filterData[$key]["propertyType"]);
+            }
 
             $globCount++;
             if ($globCount < sizeof($filterData)) {
@@ -84,6 +90,69 @@ if ($table == 'business_company' || $table == 'real_estate') {
     } else {
         return "failed";
     }
+}
+
+
+function addCompanyPropertyType($query, $arr)
+{
+    $outerCounter = 0;
+    $query = $query . " (";
+    foreach (array_keys($arr) as $key) {
+        $counter = 0;
+        foreach (array_keys($arr[$key]) as $propName) {
+            $query = $query . " (";
+            $query = $query . " SUB_COMPANY_TYPE='" . $propName . "'";
+            $query = $query . ")";
+            $counter++;
+            if ($counter < sizeof($arr[$key])) {
+                $query = $query . " OR";
+            }
+        }
+        $outerCounter++;
+        if ($outerCounter < sizeof($arr)) {
+            $query = $query . " OR";
+        }
+    }
+    $query = $query . ")";
+    return $query;
+}
+
+
+
+function addPropertyType($query, $arr)
+{
+    $outerCounter = 0;
+    $query = $query . " (";
+    foreach (array_keys($arr) as $key) {
+        $counter = 0;
+        foreach (array_keys($arr[$key]) as $propName) {
+            $query = $query . " (";
+            $query = $query . " REAL_ESTATE_TYP='" . $propName . "'";
+            if (sizeOf($arr[$key][$propName]) > 0 && $arr[$key][$propName][0] != '') {
+                $query = $query . " AND (";
+                $innerCounter = 0;
+                foreach (array_keys($arr[$key][$propName]) as $value) {
+                    $query = $query . " REAL_ESTATE_SUB_CAT_TYPE= '" . $arr[$key][$propName][$value] . "'";
+                    $innerCounter++;
+                    if ($innerCounter < sizeof($arr[$key][$propName])) {
+                        $query = $query . " OR";
+                    }
+                }
+                $query = $query . ")";
+            }
+            $query = $query . ")";
+            $counter++;
+            if ($counter < sizeof($arr[$key])) {
+                $query = $query . " OR";
+            }
+        }
+        $outerCounter++;
+        if ($outerCounter < sizeof($arr)) {
+            $query = $query . " OR";
+        }
+    }
+    $query = $query . ")";
+    return $query;
 }
 
 function addLocation($query, $arr)

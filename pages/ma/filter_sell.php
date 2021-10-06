@@ -194,31 +194,31 @@
               </div>
               <button type="button" onclick="printshit()">Test</button>
               <script type="text/javascript">
-              function printshit(){
-                var primary_category_type = [];
-                var secondary_category_type = [];
-                var category_object = {};
-                $(".type_category_checkbox_primary:visible").each(function(){
-                  var elem = $(this);
-                  if(elem.prop("checked")){
-                    if(elem.val() == "All"){
-                      primary_category_type = [];
-                      return false;
-                    }else{
-                      secondary_category_type = [];
-                      primary_category_type.push(elem.val());
-                      elem.siblings(".type_category_checkbox_secondary:checked").each(function(){
-                        secondary_category_type.push($(this).val());
-                      });
-                      category_object[elem.val()] = secondary_category_type;
+                function printshit() {
+                  var secondary_category_type = [];
+                  var category_object = [];
+                  $(".type_category_checkbox_primary:visible").each(function() {
+                    var elem = $(this);
+                    if (elem.prop("checked")) {
+                      if (elem.val() == "All") {
+                        return category_object;
+                      } else {
+                        secondary_category_type = [];
+                        elem.siblings(".type_category_checkbox_secondary:checked").each(function() {
+                          secondary_category_type.push($(this).val());
+                        });
+                        if (secondary_category_type.length == 0)
+                          secondary_category_type.push("");
+                        var key = elem.val();
+                        category_object.push({
+                          [key]: secondary_category_type
+                        });
+                      }
                     }
-                  }
-                });
+                  });
 
-                console.log(category_object);
-              }
-
-
+                  return category_object;
+                }
               </script>
 
               <?php
@@ -269,8 +269,12 @@
                 [table_name]: table_data
               });
             });
-            console.log(filter_data);
           }
+          var propertyType = printshit();
+          filter_data.push({
+            "propertyType": propertyType
+          });
+          console.log(filter_data);
           $.ajax({
             type: 'POST',
             url: '../../assets/php/getSellFilterData.php',
@@ -287,7 +291,7 @@
               console.log(obj);
               for (var i = 0; i < obj.length; i++) {
                 var elementData = "";
-                elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> '+obj[i].COUNTRY+", "+obj[i].CITY+'</h5> <p class="card-descripatoin pb-1 pt-1"> '+obj[i].COUNTRY+'</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span><i class="fas fa-chart-line"></i>&nbsp; '+obj[i].INDUSTRY+'</span> <hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span> </div></div></div></a> </div>';
+                elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="' + obj[i].id + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> ' + obj[i].COUNTRY + ", " + obj[i].CITY + '</h5> <p class="card-descripatoin pb-1 pt-1"> ' + obj[i].COUNTRY + '</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: ' + obj[i].SECTOR + ' </span><br><span><i class="fas fa-chart-line"></i>&nbsp; ' + obj[i].INDUSTRY + '</span> <hr> <span>Key Elements: ' + obj[i].KEY_ELEMENTS + '</span> </div></div></div></a> </div>';
                 $(".itemsList").append(elementData);
               }
             },
