@@ -10,6 +10,21 @@ if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
+
+  $company_ids = "";
+  $npe_ids = "";
+  $credits_ids = "";
+  $re_ids = "";
+  $result= mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
+  or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+  if(mysqli_num_rows($result) > 0 ){
+    while($row = mysqli_fetch_array($result)){
+      $company_ids = $row['company_id'];
+      $npe_ids = $row['npe_id'];
+      $credits_ids = $row['credits_id'];
+      $re_ids = $row['re_id'];
+    }
+  }
   ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -78,7 +93,6 @@ if (isset($_SESSION['email'])) {
   </div>
   <!-- content-wrapper -->
 
-
   <?php
   include 'filter_buy.php';
   include '../elements/footer.php';
@@ -92,6 +106,24 @@ if (isset($_SESSION['email'])) {
   var offset = parseInt('<?= $offset ?>');
   var currentPage = parseInt('<?= $currentPage ?>');
 
+  var company_ids = [];
+  var npe_ids = [];
+  var credits_ids = [];
+  var re_ids = [];
+
+  if('<?=$company_ids; ?>' != ''){
+    company_ids = jQuery.parseJSON('<?=$company_ids; ?>');
+  }
+  if('<?=$npe_ids; ?>' != ''){
+    npe_ids = jQuery.parseJSON('<?=$npe_ids; ?>');
+  }
+  if('<?=$credits_ids; ?>' != ''){
+    credits_ids = jQuery.parseJSON('<?=$credits_ids; ?>');
+  }
+  if('<?=$re_ids; ?>' != ''){
+    re_ids = jQuery.parseJSON('<?=$re_ids; ?>');
+  }
+
   autocomplete(document.getElementById("searchIndicators"), searchableElements);
   $(document).ready(function() {
     $.ajax({
@@ -102,17 +134,43 @@ if (isset($_SESSION['email'])) {
         limit: limit
       },
       success: function(data) {
-        console.log(data)
+        $(".itemsList").html("");
         obj = jQuery.parseJSON(data);
-        console.log(obj);
         for (var i = 0; i < obj.length; i++) {
           var elementData = "";
-          elementData += ' <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase()+'" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> '+obj[i].COUNTRY+", "+obj[i].CITY+'</h5> <p class="card-descripatoin pb-1 pt-1"> '+obj[i].COUNTRY+'</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span><i class="fas fa-chart-line"></i> &nbsp; '+obj[i].INDUSTRY+'</span> <hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span> </div></div></div></a> </div>';
-        $(".itemsList").append(elementData);
+          if(obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up"){
+            elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+            if(company_ids.includes(obj[i].ID)){
+              elementData += " bookmark-active";
+            }
+            elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+            $(".itemsList").append(elementData);
+          }else if(obj[i].ASSET_TYPE.toLowerCase() == "real estate"){
+            elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+            if(npe_ids.includes(obj[i].ID)){
+              elementData += " bookmark-active";
+            }
+            elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+            $(".itemsList").append(elementData);
+          }else if(obj[i].ASSET_TYPE.toLowerCase() == "credits"){
+            elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+            if(credits_ids.includes(obj[i].ID)){
+              elementData += " bookmark-active";
+            }
+            elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+            $(".itemsList").append(elementData);
+          }else if(obj[i].ASSET_TYPE.toLowerCase() == "npe"){
+            elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+            if(re_ids.includes(obj[i].ID)){
+              elementData += " bookmark-active";
+            }
+            elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+            $(".itemsList").append(elementData);
+          }
+        }
       }
-    }
+    });
   });
-});
 </script>
 <?php
 } else {

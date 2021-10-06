@@ -25,7 +25,7 @@
 }
 
 .ma-img{
-  height: 200px;
+  height: 150px;
   object-fit: cover;
   object-position: center;
 }
@@ -681,4 +681,24 @@ svg{
 
 .profile-investor-heading td{
   padding: 20px 0px;
+}
+
+.deal-card-heading{
+  text-transform: capitalize;
+  font-size: 25px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.ma_card a{
+  color: #151A61;
+}
+
+.deal-card-subhead{
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.left-tag-card{
+  text-transform: capitalize;
 }
