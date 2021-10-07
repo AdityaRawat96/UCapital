@@ -275,6 +275,13 @@
             "propertyType": propertyType
           });
           console.log(filter_data);
+          var assetType = '';
+          if ($(".offer:checked").val() == "asset") {
+            assetType = $(".asset_type option:checked").val();
+          } else {
+            assetType = $(".company_type option:checked").val()
+          }
+
           $.ajax({
             type: 'POST',
             url: '../../assets/php/getSellFilterData.php',
@@ -282,7 +289,7 @@
               action: "sell",
               filterData: filter_data,
               deal: $(".offer:checked").val(),
-              assetType: $(".asset_type option:checked").val()
+              assetType: assetType
             },
             success: function(data) {
               $(".itemsList").html("");

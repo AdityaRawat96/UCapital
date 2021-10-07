@@ -6,78 +6,103 @@ $ma_ids;
 $action = $_POST["action"];
 $filterData = isset($_POST["filterData"]) > 0 ? $_POST["filterData"] : [];
 $dealType = $_POST["deal"];
-if ($dealType == "asset") {
-    $table = $_POST["assetType"];
-} else {
-    $table = 'business_company';
-}
-if ($table == 'business_company' || $table == 'real_estate') {
-    $sql = "SELECT * FROM $table WHERE DEAL = '$action' ";
-    $globCount = 0;
-    if (sizeof($filterData) > 0) {
-        $sql = $sql . " AND ";
+if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
+    if ($dealType == "asset") {
+        $table = $_POST["assetType"];
+    } else {
+        $table = 'business_company';
     }
-    foreach (array_keys($filterData) as $key) {
-        foreach (array_keys($filterData[$key]) as $elem) {
-            if ($elem == "investment_required") {
-                $sql = addInvestmentRequired($sql, $filterData[$key]["investment_required"]);
-            }
-            if ($elem == "yearly_return") {
-                $sql = addYearlyReturn($sql, $filterData[$key]["yearly_return"]);
-            }
-            if ($elem == "surface_area") {
-                $sql = addTotalSurface($sql, $filterData[$key]["surface_area"]);
-            }
-            if ($elem == "status") {
-                $sql = addStatus($sql, $filterData[$key]["status"]);
-            }
-            if ($elem == "value" && $dealType == "asset") {
-                $sql = addValue($sql, $filterData[$key]["value"]);
-            }
-            if ($elem == "value" && $dealType != "asset") {
-                $sql = addCompanyValue($sql, $filterData[$key]["value"]);
-            }
-            if ($elem == "subject") {
-                $sql = addSubject($sql, $filterData[$key]["subject"]);
-            }
-            if ($elem == "vendor_type") {
-                $sql = addVendorType($sql, $filterData[$key]["vendor_type"]);
-            }
-            if ($elem == "location") {
-                $sql = addLocation($sql, $filterData[$key]["location"]);
-            }
-            if ($elem == "ebidta_margin") {
-                $sql = addEbidtaMargin($sql, $filterData[$key]["ebidta_margin"]);
-            }
-            if ($elem == "num_of_employee") {
-                $sql = addNumOfEmployee($sql, $filterData[$key]["num_of_employee"]);
-            }
-            if ($elem == "operation_technology") {
-                $sql = addOperationTechnology($sql, $filterData[$key]["operation_technology"]);
-            }
-            if ($elem == "industry") {
-                $sql = addIndustry($sql, $filterData[$key]["industry"]);
-            }
-            if ($elem == "area_of_activity") {
-                $sql = addAreaOfActivity($sql, $filterData[$key]["area_of_activity"]);
-            }
-            if ($elem == "revenue") {
-                $sql = addRevenue($sql, $filterData[$key]["revenue"]);
-            }
-            if ($elem == "sector") {
-                $sql = addSector($sql, $filterData[$key]["sector"]);
-            }
-            if ($elem == "propertyType" && $table == 'business_company') {
-                $sql = addCompanyPropertyType($sql, $filterData[$key]["propertyType"]);
-            }
-            if ($elem == "propertyType" && $table != 'business_company') {
-                $sql = addPropertyType($sql, $filterData[$key]["propertyType"]);
-            }
-            $globCount++;
-            if ($globCount < sizeof($filterData)) {
-                $sql = $sql . " AND ";
+    if ($table == 'business_company' || $table == 'real_estate') {
+        if ($_POST['deal'] != 'asset') {
+            $aType = $_POST['assetType'];
+            $sql = "SELECT * FROM $table WHERE DEAL = '$action' AND ASSET_TYPE = '$aType'";
+        } else
+            $sql = "SELECT * FROM $table WHERE DEAL = '$action'";
+        $globCount = 0;
+        if (sizeof($filterData) > 0) {
+            $sql = $sql . " AND ";
+        }
+        foreach (array_keys($filterData) as $key) {
+            foreach (array_keys($filterData[$key]) as $elem) {
+                if ($elem == "investment_required") {
+                    $sql = addInvestmentRequired($sql, $filterData[$key]["investment_required"]);
+                }
+                if ($elem == "yearly_return") {
+                    $sql = addYearlyReturn($sql, $filterData[$key]["yearly_return"]);
+                }
+                if ($elem == "surface_area") {
+                    $sql = addTotalSurface($sql, $filterData[$key]["surface_area"]);
+                }
+                if ($elem == "status") {
+                    $sql = addStatus($sql, $filterData[$key]["status"]);
+                }
+                if ($elem == "value" && $dealType == "asset") {
+                    $sql = addValue($sql, $filterData[$key]["value"]);
+                }
+                if ($elem == "value" && $dealType != "asset") {
+                    $sql = addCompanyValue($sql, $filterData[$key]["value"]);
+                }
+                if ($elem == "subject") {
+                    $sql = addSubject($sql, $filterData[$key]["subject"]);
+                }
+                if ($elem == "vendor_type") {
+                    $sql = addVendorType($sql, $filterData[$key]["vendor_type"]);
+                }
+                if ($elem == "location") {
+                    $sql = addLocation($sql, $filterData[$key]["location"]);
+                }
+                if ($elem == "ebidta_margin") {
+                    $sql = addEbidtaMargin($sql, $filterData[$key]["ebidta_margin"]);
+                }
+                if ($elem == "num_of_employee") {
+                    $sql = addNumOfEmployee($sql, $filterData[$key]["num_of_employee"]);
+                }
+                if ($elem == "operation_technology") {
+                    $sql = addOperationTechnology($sql, $filterData[$key]["operation_technology"]);
+                }
+                if ($elem == "industry") {
+                    $sql = addIndustry($sql, $filterData[$key]["industry"]);
+                }
+                if ($elem == "area_of_activity") {
+                    $sql = addAreaOfActivity($sql, $filterData[$key]["area_of_activity"]);
+                }
+                if ($elem == "revenue") {
+                    $sql = addRevenue($sql, $filterData[$key]["revenue"]);
+                }
+                if ($elem == "sector") {
+                    $sql = addSector($sql, $filterData[$key]["sector"]);
+                }
+                if ($elem == "propertyType" && $table == 'business_company') {
+                    $sql = addCompanyPropertyType($sql, $filterData[$key]["propertyType"]);
+                }
+                if ($elem == "propertyType" && $table != 'business_company') {
+                    $sql = addPropertyType($sql, $filterData[$key]["propertyType"]);
+                }
+                $globCount++;
+                if ($globCount < sizeof($filterData)) {
+                    $sql = $sql . " AND ";
+                }
             }
         }
+
+        $result = mysqli_query($con, $sql)
+            or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+
+        if (mysqli_num_rows($result) > 0) {
+            $response = array();
+            while ($row = mysqli_fetch_array($result)) {
+                array_push($response, $row);
+            }
+            echo json_encode($response);
+        } else {
+            return "failed";
+        }
+    }
+} else {
+    if ($dealType == "asset") {
+        $sql = "(SELECT real_estate.ID, real_estate.DEAL, real_estate.ASSET_TYPE, real_estate.DEAL_SUBJECT AS SUBJECT, real_estate.REAL_ESTATE_TYP AS SUBJECT_TYPE, real_estate.COUNTRY, real_estate.CITY, real_estate.OFFER, real_estate.IMAGE, real_estate.KEY_ELEMENTS, real_estate.ASSET_TYPE FROM real_estate where real_estate.DEAL = 'sell') UNION ALL( SELECT npe.ID, npe.DEAL, npe.ASSET_TYPE, npe.DEAL AS SUBJECT, 'NPE' AS SUBJECT_TYPE, npe.COUNTRY, npe.CITY, npe.OFFER, npe.IMAGE, '-' AS KEY_ELEMENTS, npe.ASSET_TYPE FROM npe where npe.DEAL = 'sell') UNION ALL( SELECT credit.ID, credit.DEAL, credit.ASSET_TYPE, credit.DEAL AS SUBJECT, 'Credit' AS SUBJECT_TYPE, credit.COUNTRY, credit.CITY, credit.OFFER, credit.IMAGE, '-' AS KEY_ELEMENTS, credit.ASSET_TYPE FROM credit where credit.DEAL = 'sell')";
+    } else {
+        $sql = "SELECT business_company.ID, business_company.DEAL, business_company.ASSET_TYPE, business_company.COMPANY_TYPE AS SUBJECT, business_company.ASSET_TYPE AS SUBJECT_TYPE, business_company.SECTOR, business_company.INDUSTRY, business_company.COUNTRY, business_company.CITY, business_company.OFFER, business_company.IMAGE, business_company.KEY_ELEMENTS, business_company.ASSET_TYPE FROM business_company where business_company.DEAL = 'sell'";
     }
 
     $result = mysqli_query($con, $sql)
