@@ -4,6 +4,26 @@ include('../../assets/php/connection.php');
 
 $data = $_POST['dealData'];
 
+if ($sector == "Information Technology") {
+  $imagesDir = './../images/dummyImages/sector_it';
+} else if ($sector == "Business Products and Services (B2B)") {
+  $imagesDir = './../images/dummyImages/sector_business_products';
+} else if ($sector == "Healthcare") {
+  $imagesDir = './../images/dummyImages/sector_healthcare';
+} else if ($sector == "Consumer Products and Services (B2C)") {
+  $imagesDir = './../images/dummyImages/sector_consumer_products';
+} else if ($sector == "Energy") {
+  $imagesDir = './../images/dummyImages/sector_energy';
+} else if ($sector == "Financial Services") {
+  $imagesDir = './../images/dummyImages/sector_financial';
+} else if ($sector == "Materials and Resources") {
+  $imagesDir = './../images/dummyImages/sector_mineral_resources';
+} else {
+  $imagesDir = './../images/dummyImages/company';
+}
+
+
+
 $asset_type = array_key_exists('asset_type', $data) ? $data['asset_type'] : "";
 if ($asset_type == "Real Estate") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
@@ -29,7 +49,7 @@ if ($asset_type == "Real Estate") {
   $re_investment_value_min = (array_key_exists('re_investment_value_min', $data) && $data['re_investment_value_min'] != "") ? $data['re_investment_value_min'] : 0;
   $re_investment_value_max = (array_key_exists('re_investment_value_max', $data) && $data['re_investment_value_max'] != "") ? $data['re_investment_value_max'] : 0;
   $re_key_elements = array_key_exists('re_key_elements', $data) ? $data['re_key_elements'] : "";
-  $re_image = array_key_exists('re_image', $data) ? $data['re_image'] : "";
+  $re_image = array_key_exists('re_image', $data) ? $data['re_image'] : getImage($asset_type, $re_type);
   $re_yearly_return = (array_key_exists('re_yearly_return', $data) && $data['re_yearly_return'] != "") ? $data['re_yearly_return'] : 0;
   $userId = $_SESSION['id'];
 
@@ -59,7 +79,7 @@ if ($asset_type == "Real Estate") {
   $npe_value_max = (array_key_exists('npe_value_max', $data) && $data['npe_value_max'] != "") ? $data['npe_value_max'] : 0;
   $npe_who_i_am = array_key_exists('npe_who_i_am', $data) ? $data['npe_who_i_am'] : "";
   $npe_aum = (array_key_exists('npe_aum', $data) && $data['npe_aum'] != "") ? $data['npe_aum'] : 0;
-  $npe_image = array_key_exists('npe_image', $data) ? $data['npe_image'] : "";
+  $npe_image = array_key_exists('npe_image', $data) ? $data['npe_image'] : getImage($asset_type, "");
   $userId = $_SESSION['id'];
   $sql = "INSERT INTO `npe` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE`, `NPE_TYPE`, `PRODUCT_TYPE`, `COLLATERAL_TYPE`, `COUNTRY`, `CITY`, `STATE`, `POSTAL`, `DESCRIPTION`, `CURRENCY`, `ORG_AMOUNT`, `ASKING_PRICE`, `MARKET_VALUE`, `LIEN_POSITION`, `JUDICIALIZED`, `BORROWER_DETAIL`, `RATIO`, `VALUE_TYPE`, `VALUE_MIN`, `VALUE_MAX`, `WHO_I_AM`, `AUM`, `IMAGE`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$npe_type', '$npe_product_type', '$npe_collateral_type', '$npe_hq_country', '$npe_hq_city', '$npe_state', '$npe_post_code', '$npe_description', '$npe_default_currency', $npe_original_amount, $npe_asking_price, $npe_market_value, '$npe_lien_position', '$npe_judicialized', '$npe_borrower_details', '$npe_ratio', '$npe_value', $npe_value_min, $npe_value_max, '$npe_who_i_am', $npe_aum,'$npe_image')";
 } else if ($asset_type == "Credits") {
@@ -90,7 +110,7 @@ if ($asset_type == "Real Estate") {
   $credit_discounted_ratio = (array_key_exists('credit_discounted_ratio', $data) && $data['credit_discounted_ratio'] != "") ? $data['credit_discounted_ratio'] : 0;
   $credit_who_i_am = array_key_exists('credit_who_i_am', $data) ? $data['credit_who_i_am'] : "";
   $credit_aum = (array_key_exists('credit_aum', $data) && $data['credit_aum'] != "") ? $data['credit_aum'] : 0;
-  $credit_image = array_key_exists('credit_image', $data) ? $data['credit_image'] : "";
+  $credit_image = array_key_exists('credit_image', $data) ? $data['credit_image'] : getImage($asset_type, "");
   $credit_value_min = (array_key_exists('credit_value_min', $data) && $data['credit_value_min'] != "") ? $data['credit_value_min'] : 0;
   $credit_value_max = (array_key_exists('credit_value_max', $data) && $data['credit_value_max'] != "") ? $data['credit_value_max'] : 0;
   $credit_value = array_key_exists('credit_value', $data) ? $data['credit_value'] : "";
@@ -144,7 +164,7 @@ if ($asset_type == "Real Estate") {
   $looking_for = array_key_exists('looking_for', $data) ? $data['looking_for'] : "";
   $what_i_want = array_key_exists('what_i_want', $data) ? $data['what_i_want'] : "";
   $description = array_key_exists('description', $data) ? $data['description'] : "";
-  $image = array_key_exists('image', $data) ? $data['image'] : "";
+  $image = array_key_exists('image', $data) ? $data['image'] : getImage($asset_type, $sector);
   $userId = $_SESSION['id'];
   $sql = "INSERT INTO `business_company` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE` , `COMPANY_TYPE`, `SUB_COMPANY_TYPE`, `COUNTRY`, `CITY`, `FOUNDATION_YEAR`, `CURRENCY`, `COMPANY_VAL_TYPE`, `COMPANY_VAL_MIN`, `COMPANY_VAL_MAX`, `INVESTMENT_TYPE`, `INVESTMENT_MIN`, `INVESTMENT_MAX`, `SECTOR`, `INDUSTRY`, `COMPANY_BUSINESS`, `AREA_OF_ACTIVITY`, `SCALABILITY`, `SCALABILITY_AREA`, `MARKET_SHARE`, `NUM_OF_EMPLOYEE_MIN`, `NUM_OF_EMPLOYEE_MAX`, `ACTUAL_REVENUE_TYPE`, `ACTUAL_REVENUE_MIN`, `ACTUAL_REVENUE_MAX`, `EBIDTA_MARGIN`, `FORECAST_REVENUE_Y1`, `FORECAST_REVENUE_Y2`, `FORECAST_REVENUE_Y3`,`FORECAST_EBITDA_Y1`, `FORECAST_EBITDA_Y2`, `FORECAST_EBITDA_Y3`, `NUM_OF_INVESTMENT`, `INVESTMENT_SIZE`, `PREF_INVESTMENT_AMOUNT`, `WHO_I_AM`, `LOOKING_FOR`, `WANT_TO_DO`, `AUM`, `DESCRIPTION`, `KEY_ELEMENTS`, `IMAGE`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$company_type', '$startup_type', '$country', '$city', $foundation_year, '$default_currency', '$company_value_type', $company_value_min, $company_value_max, '$investment_required_value', $investment_required_min, $investment_required_max, '$sector', '$industry', '$company_business', '$area_of_activity', '$scalability', '$scalability_area', $market_share, $number_of_employees_min, $number_of_employees_max, '$actual_revenue_type', $actual_revenue_min, $actual_revenue_max, $ebidta_margin, $for_rev_1, $for_rev_2, $for_rev_3, $for_ebd_1, $for_ebd_2, $for_ebd_3, $number_of_investments, '$investment_size', '$investment_amount', '$who_i_am', '$looking_for', '$what_i_want', $aum, '$description', '$key_elements', '$image')";
 }
@@ -164,5 +184,77 @@ exit();
 
 function getImage($asset, $sector)
 {
-  $imagePath = "";
+  $image = "";
+  if ($asset != "") {
+    if ($asset == "Real Estate") {
+      if ($sector == "Building") {
+        $imagesDir = 'real_estate_building';
+      } else if ($sector == "Hotel") {
+        $imagesDir = 'real_estate_hotel';
+      } else if ($sector == "Resort") {
+        $imagesDir = 'real_estate_resort';
+      } else if ($sector == "Residential") {
+        $imagesDir = 'sector_it';
+      } else if ($sector == "Commercial") {
+        $imagesDir = 'real_estate_commercial';
+      } else if ($sector == "Industrial") {
+        $imagesDir = 'real_estate_industrial';
+      } else if ($sector == "Land") {
+        $imagesDir = 'real_estate_land';
+      } else {
+        $imagesDir = 'real_estate';
+      }
+    } else if ($asset == "NPE") {
+      $imagesDir = 'npe';
+    } else if ($asset == "Credits") {
+      $imagesDir = 'credits';
+    } else if ($asset == "Business Company") {
+      if ($sector == "Information Technology") {
+        $imagesDir = 'sector_it';
+      } else if ($sector == "Business Products and Services (B2B)") {
+        $imagesDir = 'sector_business_products';
+      } else if ($sector == "Healthcare") {
+        $imagesDir = 'sector_healthcare';
+      } else if ($sector == "Consumer Products and Services (B2C)") {
+        $imagesDir = 'sector_consumer_products';
+      } else if ($sector == "Energy") {
+        $imagesDir = 'sector_energy';
+      } else if ($sector == "Financial Services") {
+        $imagesDir = 'sector_financial';
+      } else if ($sector == "Materials and Resources") {
+        $imagesDir = 'sector_mineral_resources';
+      } else {
+        $imagesDir = 'company';
+      }
+    } else if ($asset == "Start Up") {
+      if ($sector == "Information Technology") {
+        $imagesDir = 'sector_it';
+      } else if ($sector == "Business Products and Services (B2B)") {
+        $imagesDir = 'sector_business_products';
+      } else if ($sector == "Healthcare") {
+        $imagesDir = 'sector_healthcare';
+      } else if ($sector == "Consumer Products and Services (B2C)") {
+        $imagesDir = 'sector_consumer_products';
+      } else if ($sector == "Energy") {
+        $imagesDir = 'sector_energy';
+      } else if ($sector == "Financial Services") {
+        $imagesDir = 'sector_financial';
+      } else if ($sector == "Materials and Resources") {
+        $imagesDir = 'sector_mineral_resources';
+      } else {
+        $imagesDir = 'startup';
+      }
+    }
+  }
+
+  $images = glob('./../images/dummyImages/' . $imagesDir . '/*');
+  if (isset($images)) {
+    $randomImage = $images[array_rand($images)];
+    $searchSubStr = "images/";
+    $firstIndex = stripos($randomImage, $searchSubStr);
+    $position = $firstIndex + strlen($searchSubStr);
+    return substr($randomImage, $position);
+  } else {
+    return "";
+  }
 }
