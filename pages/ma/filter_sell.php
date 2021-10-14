@@ -51,25 +51,25 @@
               <div class="tab-pane active" id="dealType">
                 <h1>Type</h1><br>
                 <button type="button" name="button" class="btn btn-deal-custom show_section_tabs">
-                  <input type="radio" name="offer" class="deal-radio offer" value="asset"> Asset
+                  <input type="radio" name="offer" class="deal-radio offer searchable" value="asset" data-search="asset"> Asset
                 </button>
                 <button type="button" name="button" class="btn btn-deal-custom show_section_tabs">
-                  <input type="radio" name="offer" class="deal-radio offer" value="company"> Company
+                  <input type="radio" name="offer" class="deal-radio offer searchable" value="company" data-search="company"> Company
                 </button><br><br>
 
                 <div class="company_type_section hidden_deal_container">
                   <select class="form-control offer_type_selector company_type" name="company_type">
                     <option value="" selected disabled>Choose type of company</option>
-                    <option value="Business Company">Business Company</option>
-                    <option value="Start Up">Start Up</option>
+                    <option class="searchable" value="Business Company" data-search="Business Company">Business Company</option>
+                    <option class="searchable" value="Start Up" data-search="Start Up">Start Up</option>
                   </select>
                 </div>
                 <div class="asset_type_section hidden_deal_container">
                   <select class="form-control offer_type_selector asset_type" name="asset_type">
                     <option value="" selected disabled>Choose type of asset</option>
-                    <option value="real_estate">Real Estate</option>
-                    <option value="npe">NPE</option>
-                    <option value="credits">Credits</option>
+                    <option class="searchable" data-search="Real Estate" value="real_estate">Real Estate</option>
+                    <option class="searchable" data-search="NPE" value="npe">NPE</option>
+                    <option class="searchable" data-search="Credits" value="credits">Credits</option>
                   </select>
                 </div>
                 <br><br>
@@ -192,9 +192,8 @@
                   </div>
                 </div>
               </div>
-              <button type="button" onclick="printshit()">Test</button>
               <script type="text/javascript">
-                function printshit() {
+                function getPropertyType() {
                   var secondary_category_type = [];
                   var category_object = [];
                   $(".type_category_checkbox_primary:visible").each(function() {
@@ -241,74 +240,101 @@
       </div>
 
       <script type="text/javascript">
-        function appyDealFilter() {
-          var filter_data = [];
-          if ($(".deal-radio:checked").val()) {
-            $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
+          function appyDealFilter() {
+            var filter_data = [];
+            if ($(".deal-radio:checked").val()) {
+              $("." + $(".deal-radio:checked").val() + "_tabs a").each(function() {
 
-              var table_name = $($(this).attr("href")).data("column");
+                var table_name = $($(this).attr("href")).data("column");
 
-              var table_data = [];
-              $($(this).attr("href")).find(".selected").each(function() {
-                if ($(this).data("search") == undefined) {
-                  return false;
+                var table_data = [];
+                $($(this).attr("href")).find(".selected").each(function() {
+                  if ($(this).data("search") == undefined) {
+                    return false;
+                  }
+                  table_data.push($(this).data("search"));
+                  console.log($(this).data("search"))
+
+                });
+                $($(this).attr("href")).find("input:checked").each(function() {
+                  if ($(this).val() == "All") {
+                    return false;
+                  }
+                  table_data.push($(this).val());
+
+                });
+
+                filter_data.push({
+                  [table_name]: table_data
+                });
+              });
+            }
+            var propertyType = getPropertyType();
+            filter_data.push({
+              "propertyType": propertyType
+            });
+            console.log(filter_data);
+            var assetType = '';
+            if ($(".offer:checked").val() == "asset") {
+              assetType = $(".asset_type option:checked").val();
+            } else {
+              assetType = $(".company_type option:checked").val()
+            }
+
+            $.ajax({
+              type: 'POST',
+              url: '../../assets/php/getSellFilterData.php',
+              data: {
+                action: "sell",
+                filterData: filter_data,
+                deal: $(".offer:checked").val(),
+                assetType: assetType
+              },
+              success: function(data) {
+                $(".itemsList").html("");
+                console.log(data)
+                obj = jQuery.parseJSON(data);
+                console.log(obj);
+                for (var i = 0; i < obj.length; i++) {
+                  var elementData = "";
+                  if(obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up"){
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if(company_ids.includes(obj[i].ID)){
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "real estate"){
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if(npe_ids.includes(obj[i].ID)){
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "credits"){
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if(credits_ids.includes(obj[i].ID)){
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "npe"){
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if(re_ids.includes(obj[i].ID)){
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <span><i> '+obj[i].COUNTRY+", "+obj[i].CITY+' </i></span> <span class="deal-card-heading">'+obj[i].SUBJECT+' <b>'+obj[i].SUBJECT_TYPE+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].SECTOR+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp; '+obj[i].INDUSTRY+'</span><hr> <span>Key Elements: '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  }
                 }
-                table_data.push($(this).data("search"));
-                console.log($(this).data("search"))
-
-              });
-              $($(this).attr("href")).find("input:checked").each(function() {
-                if ($(this).val() == "All") {
-                  return false;
-                }
-                table_data.push($(this).val());
-
-              });
-
-              filter_data.push({
-                [table_name]: table_data
-              });
+              },
+              error: function(request, status, error) {
+                console.log(error);
+                console.log(request.responseText);
+              }
             });
           }
-          var propertyType = printshit();
-          filter_data.push({
-            "propertyType": propertyType
-          });
-          console.log(filter_data);
-          var assetType = '';
-          if ($(".offer:checked").val() == "asset") {
-            assetType = $(".asset_type option:checked").val();
-          } else {
-            assetType = $(".company_type option:checked").val()
-          }
-
-          $.ajax({
-            type: 'POST',
-            url: '../../assets/php/getSellFilterData.php',
-            data: {
-              action: "sell",
-              filterData: filter_data,
-              deal: $(".offer:checked").val(),
-              assetType: assetType
-            },
-            success: function(data) {
-              $(".itemsList").html("");
-              console.log(data)
-              obj = jQuery.parseJSON(data);
-              console.log(obj);
-              for (var i = 0; i < obj.length; i++) {
-                var elementData = "";
-                elementData += ' <div class="col-md-6 col-sm-5 inline-block ma_card pagination-item"> <a href="ma-detail.php?ma=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma" data-id="' + obj[i].id + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> <div class="d-flex flex-column justify-content-end p-2"> <h5 class="card-heading text-dark"> ' + obj[i].COUNTRY + ", " + obj[i].CITY + '</h5> <p class="card-descripatoin pb-1 pt-1"> ' + obj[i].COUNTRY + '</p><div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: ' + obj[i].SECTOR + ' </span><br><span><i class="fas fa-chart-line"></i>&nbsp; ' + obj[i].INDUSTRY + '</span> <hr> <span>Key Elements: ' + obj[i].KEY_ELEMENTS + '</span> </div></div></div></a> </div>';
-                $(".itemsList").append(elementData);
-              }
-            },
-            error: function(request, status, error) {
-              console.log(error);
-              console.log(request.responseText);
-            }
-          });
-        }
-      </script>
+        </script>
 
     </div>
   </div>

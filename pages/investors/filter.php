@@ -17,12 +17,12 @@
             <ul class="listing-add-post1 nav nav-pills">
               <li> <a href="#investorName" data-toggle="tab" class="add-active active"> Name of the investor </a> </li>
               <li> <a href="#PrimaryInvestor" data-toggle="tab"> Primary Investor Type </a> </li>
+              <li> <a href="#preferredInvestment" data-toggle="tab"> Preferred Investment Type </a> </li>
               <li> <a href="#AUM" data-toggle="tab"> A.U.M. </a> </li>
               <li> <a href="#Preferredindustry" data-toggle="tab"> Preferred industry </a> </li>
-              <li> <a href="#TotalInvestments" data-toggle="tab"> Total Investments. </a> </li>
-              <li> <a href="#PreferredInvestmentAmount" data-toggle="tab"> Preferred Investment Amount </a> </li>
               <li> <a href="#PreferredVerticals" data-toggle="tab"> Preferred Verticals </a> </li>
-              <li> <a href="#Where" data-toggle="tab"> Where </a> </li>
+              <li> <a href="#Where" data-toggle="tab"> Preferred Geography </a> </li>
+              <li> <a href="#investmentProfessionals" data-toggle="tab"> No. of Investment Professionals </a> </li>
             </ul>
           </div>
 
@@ -39,6 +39,21 @@
                 </div><br>
                 <div class="form-group mt-1 mb-4" id="investorNameType">
                   <ul class="engery654 subcategories investorNameSearch">
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="preferredInvestment">
+                <div class="input-group">
+                  <input type="text" class="form-control filter_search_query" placeholder="Search..">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" onclick="searchFilter($(this));">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div><br>
+                <div class="form-group mt-1 mb-4" id="preferredInvestmentType">
+                  <ul class="engery654 subcategories preferredinvestmenttypesSearch">
                   </ul>
                 </div>
               </div>
@@ -472,29 +487,15 @@
               </div>
 
 
-              <div class="tab-pane" id="TotalInvestments">
-                <div class="form-group mt-1 mb-4" id="totalInvestmentsType">
+              <div class="tab-pane" id="investmentProfessionals">
+                <div class="form-group mt-1 mb-4" id="investmentProfessionalsType">
                   <ul class="engery654 subcategories">
-                    <li class="searchable" data-search="Total Investments Less than 10" data-count="(X < 10)">Total Investments Less than 10</li>
-                    <li class="searchable" data-search="10 &#x3c; Total Investments &#x3c; 100" data-count="(X >= 10 && X < 100)">10 &#x3c; Total Investments &#x3c; 100</li>
-                    <li class="searchable" data-search="Total Investments &#x3e; 100" data-count="(X >= 100)">Total Investments &#x3e; 100</li>
+                    <li class="searchable" data-search="Investment Professionals Less than 10" data-count="(X < 10)">Less than 10</li>
+                    <li class="searchable" data-search="10 &#x3c; Investment Professionals &#x3c; 50" data-count="(X >= 10 && X <= 50)">From 10 to 50</li>
+                    <li class="searchable" data-search="Investment Professionals &#x3e; 50" data-count="(X > 50)">Above 50</li>
                   </ul>
                 </div>
               </div>
-
-
-              <div class="tab-pane" id="PreferredInvestmentAmount">
-                <div class="form-group mt-1 mb-4" id="preferredInvestmentAmountType">
-                  <ul class="engery654 subcategories">
-                    <li class="searchable" data-search="Preferred Investment Amount Less than 1 million" data-count="(X < 1000000)">Preferred Investment Amount Less than 1 million</li>
-                    <li class="searchable" data-search="1 million &#x3c; Preferred Investment Amount &#x3c; 10 million" data-count="(X >= 1000000 && X < 10000000)">1 million &#x3c; Preferred Investment Amount &#x3c; 10 million</li>
-                    <li class="searchable" data-search="10 million &#x3c; Preferred Investment Amount &#x3c; 100 million" data-count="(X >= 10000000 && X < 100000000)">10 million &#x3c; Preferred Investment Amount &#x3c; 100 million</li>
-                    <li class="searchable" data-search="100 million &#x3c; Preferred Investment Amount &#x3c; 1 billion" data-count="(X >= 100000000 && X < 1000000000)">100 million &#x3c; Preferred Investment Amount &#x3c; 1 billion</li>
-                    <li class="searchable" data-search="Preferred Investment Amount &#x3e; 1 billion" data-count="(X >= 1000000000)">Preferred Investment Amount &#x3e; 1 billion</li>
-                  </ul>
-                </div>
-              </div>
-
 
               <div class="tab-pane" id="Where">
                 <div class="input-group">

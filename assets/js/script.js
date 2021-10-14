@@ -38,13 +38,7 @@ $(document).ready(function(){
   });
 
   $(".offer_type_selector").change(function(){
-    var section_string = $(".deal_type:checked").val() +"_"+ $(".offer:checked").val() +"_"+ $(this).val();
-    section_string = section_string.replace(" ", "_");
-    section_string = section_string.toLowerCase();
-    $(".hidden_deal_container_main").fadeOut(0);
-    $("."+section_string).fadeIn(0);
-    $(".type_category_section").fadeOut(0);
-    $(".type_category_"+$(this).val().replace(" ", "_").toLowerCase()).fadeIn(0);
+    show_hidden_options($(this))
   });
 
   $(".btn-deal-custom").on('click', function(){
@@ -140,7 +134,7 @@ $(document).ready(function(){
     $("."+$(this).data("type")+"-card-"+$(this).data("id")).fadeOut(0);
   })
 
-  $(".subcategories > li").on('click', function(){
+  $(document.body).on('click', ".subcategories > li" ,function(e){
     if($(this).hasClass('select_all_filter')){
       if($(this).hasClass('selected')){
         $(this).removeClass('selected')
@@ -222,6 +216,16 @@ $(document).ready(function(){
   })
 
 });
+
+function show_hidden_options(elem){
+  var section_string = $(".deal_type:checked").val() +"_"+ $(".offer:checked").val() +"_"+ elem.val();
+  section_string = section_string.replace(" ", "_");
+  section_string = section_string.toLowerCase();
+  $(".hidden_deal_container_main").fadeOut(0);
+  $("."+section_string).fadeIn(0);
+  $(".type_category_section").fadeOut(0);
+  $(".type_category_"+elem.val().replace(" ", "_").toLowerCase()).fadeIn(0);
+}
 
 function showRealEstateOptions(){
   $("#realstate-options-group").fadeIn(0);
@@ -469,359 +473,183 @@ function applyFilter(){
 
   refreshFilters();
 
-  if($("#advancedFilters").data('filter') == "ma"){
-    var category_filter = true;
-    var realestate_filter = true;
-    var value_filter = true;
-    var industry_filter = true;
-    var sector_filter = true;
-    var revenue_filter = true;
-    var ebitda_filter = true;
-    var financialstatus_filter = true;
-    var foundationyear_filter = true;
-    var location_filter = true;
+  var investorname_filter = true;
+  var preferredinvestmenttype_filter = true;
+  var preferredverticals_filter = true;
+  var primaryinvestortype_filter = true;
+  var preferredindustrytype_filter = true;
+  var location_filter = true;
+  var aum_filter = true;
+  var investmentprofessionals_filter = true;
 
-    var category = [];
-    var realestate = [];
-    var value = "";
-    var industry = [];
-    var sector = [];
-    var revenue = "";
-    var ebitda = "";
-    var financialstatus = [];
-    var foundationyear = [];
-    var location = [];
+  var investorname =[];
+  var preferredinvestmenttype = [];
+  var preferredverticals = [];
+  var primary_investor_type =[];
+  var preferrerd_industry_type = [];
+  var location = [];
+  var aumcondition = "";
+  var investmentprofessionals = "";
 
-    $('#assetType li').each(function(){
-      if($(this).hasClass('selected')){
-        category.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $('#companyType li').each(function(){
-      if($(this).hasClass('selected')){
-        category.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $('#realestateType li').each(function(){
-      if($(this).hasClass('selected')){
-        realestate.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $('#sectorType li').each(function(){
-      if($(this).hasClass('selected')){
-        sector.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $("#revenueType li").each(function(){
-      if($(this).hasClass('selected')){
-        revenue += $(this).data("count").trim() + " || ";
-      }
-    });
-    $("#ebitdaType li").each(function(){
-      if($(this).hasClass('selected')){
-        ebitda += $(this).data("count").trim() + " || ";
-      }
-    });
-    $('#financeStatusType li').each(function(){
-      if($(this).hasClass('selected')){
-        financialstatus.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $('#foundationYearType li').each(function(){
-      if($(this).hasClass('selected')){
-        foundationyear.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $("#valueType li").each(function(){
-      if($(this).hasClass('selected')){
-        value += $(this).data("count").trim() + " || ";
-      }
-    });
-    $('#IndustryType li').each(function(){
-      if($(this).hasClass('selected')){
-        industry.push($(this).html().trim().toLowerCase());
-      }
-    });
-    $('#whereType li').each(function(){
-      if($(this).hasClass('selected')){
-        location.push($(this).html().trim().toLowerCase());
-      }
-    });
+  $('#investorNameType li').each(function(){
+    if($(this).hasClass('selected')){
+      investorname.push($(this).html().trim().toLowerCase());
+    }
+  });
 
-    if(category.length === 0){
-      category_filter = false;
+  $('#preferredInvestmentType li').each(function(){
+    if($(this).hasClass('selected')){
+      preferredinvestmenttype.push($(this).html().trim().toLowerCase());
     }
-    if(realestate.length === 0){
-      realestate_filter = false;
-    }
-    if(industry.length === 0){
-      industry_filter = false;
-    }
-    if(sector.length === 0){
-      sector_filter = false;
-    }
-    if(financialstatus.length === 0){
-      financialstatus_filter = false;
-    }
-    if(foundationyear.length === 0){
-      foundationyear_filter = false;
-    }
-    if(location.length === 0){
-      location_filter = false;
-    }
-    if(value == ""){
-      value_filter = false;
-    }
-    if(revenue == ""){
-      revenue_filter = false;
-    }
-    if(ebitda == ""){
-      ebitda_filter = false;
-    }
+  });
 
-    if(!category_filter && !realestate_filter && !industry_filter && !sector_filter && !financialstatus_filter && !foundationyear_filter && !location_filter && !value_filter && !revenue_filter && !ebitda_filter){
-      refreshFilters();
-      showResults();
-    }else{
-      for(var i = 0; i < obj.length; i++){
-        var cond1 = true;
-        var cond2 = true;
-        var cond3 = true;
-        var cond4 = true;
-        var cond5 = true;
-        var cond6 = true;
-        var cond7 = true;
-        var cond8 = true;
-        var cond9 = true;
-        var cond10 = true;
+  $('#PreferredVerticalsType li').each(function(){
+    if($(this).hasClass('selected')){
+      preferredverticals.push($(this).html().trim().toLowerCase());
+    }
+  });
 
-        if(category_filter){
-          if ( $.inArray(obj[i].category.trim().toLowerCase(), category) == -1 ) {
-            cond1 = false;
-          }
+  $('.primary_investor_sub.selected').each(function () {
+    primary_investor_type.push($(this).html().trim().toLowerCase());
+  });
+
+  $('#PreferredindustryType li').each(function(){
+    if($(this).hasClass('selected')){
+      preferrerd_industry_type.push($(this).html().trim().toLowerCase());
+    }
+  });
+
+  $('#whereType li').each(function(){
+    if($(this).hasClass('selected')){
+      location.push($(this).html().trim().toLowerCase());
+    }
+  });
+
+  $("#aumType li").each(function(){
+    if($(this).hasClass('selected')){
+      aumcondition += $(this).data("count").trim() + " || ";
+    }
+  });
+
+  $("#investmentProfessionalsType li").each(function(){
+    if($(this).hasClass('selected')){
+      investmentprofessionals += $(this).data("count").trim() + " || ";
+    }
+  });
+
+
+  if(investorname.length === 0){
+    investorname_filter = false;
+  }
+  if(preferredinvestmenttype.length === 0){
+    preferredinvestmenttype_filter = false;
+  }
+  if(preferredverticals.length === 0){
+    preferredverticals_filter = false;
+  }
+  if(primary_investor_type.length === 0){
+    primaryinvestortype_filter = false;
+  }
+  if(preferrerd_industry_type.length === 0){
+    preferredindustrytype_filter = false;
+  }
+  if(location.length === 0){
+    location_filter = false;
+  }
+  if(aumcondition == ""){
+    aum_filter = false;
+  }
+  if(investmentprofessionals == ""){
+    investmentprofessionals_filter = false;
+  }
+
+  if(!investorname_filter && !preferredinvestmenttype_filter && !preferredverticals_filter && !primaryinvestortype_filter && !preferredindustrytype_filter && !location_filter && !aum_filter && !investmentprofessionals_filter){
+    refreshFilters();
+    showResults();
+  }else{
+    for(var i = 0; i < obj.length; i++){
+      var cond1 = true;
+      var cond2 = true;
+      var cond3 = true;
+      var cond4 = true;
+      var cond5 = true;
+      var cond6 = true;
+      var cond7 = true;
+      var cond8 = true;
+
+      if(investorname_filter){
+        if ( $.inArray(obj[i].name.trim().toLowerCase(), investorname) == -1 ) {
+          cond1 = false;
         }
-        if(realestate_filter && cond1){
-          if ( $.inArray(obj[i].realestate.trim().toLowerCase(), realestate) == -1 ) {
-            cond2 = false;
-          }
+      }
+      if(preferredinvestmenttype_filter && cond1){
+        var preferredinvestmenttypes_temp = obj[i].preferredinvestmenttypes.trim().toLowerCase();
+        var preferredinvestment = preferredinvestmenttypes_temp.split(",");
+        if(!preferredinvestment.some(item => preferredinvestmenttype.includes(item))){
+          cond2 = false;
         }
-        if(industry_filter && cond1 && cond2){
-          cond3 = obj[i].industry ? industry.some(r=> obj[i].industry.split(",").includes(r)) : false;
+      }
+      if(preferredverticals_filter && cond1 && cond2){
+        var preferredverticals_temp = obj[i].Preferred_Verticals.trim().toLowerCase();
+        var preferredvertical = preferredverticals_temp.split(",");
+        if(!preferredvertical.some(item => preferredverticals.includes(item))){
+          cond3 = false;
         }
-        if(sector_filter && cond1 && cond2 && cond3){
-          cond4 = obj[i].sector ? sector.some(r=> obj[i].sector.split(",").includes(r)) : false;
+      }
+      if(primaryinvestortype_filter && cond1 && cond2 && cond3){
+        if ( $.inArray(obj[i].primaryinvestortype.trim(), primary_investor_type) == -1 ) {
+          cond4 = false;
         }
-        if(financialstatus_filter && cond1 && cond2 && cond3 && cond4){
-          if ( $.inArray(obj[i].financialstatus.trim(), financialstatus) == -1 ) {
-            cond5 = false;
-          }
+      }
+      if(preferredindustrytype_filter && cond1 && cond2 && cond3 && cond4){
+        var ind_temp = obj[i].preferredindustry.trim();
+        var industries = ind_temp.split(",");
+        if(!industries.some(item => preferrerd_industry_type.includes(item))){
+          cond5 = false;
         }
-        if(foundationyear_filter && cond1 && cond2 && cond3 && cond4 && cond5){
-          if ( $.inArray(obj[i].foundationyear.toString().trim().toLowerCase(), foundationyear) == -1 ) {
-            cond6 = false;
-          }
+      }
+      if(location_filter && cond1 && cond2 && cond3 && cond4 && cond5){
+        if ( $.inArray(obj[i].where.trim(), location) == -1 ) {
+          cond6 = false;
         }
-        if(location_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6){
-          if ( $.inArray(obj[i].location.trim().toLowerCase(), location) == -1 ) {
+      }
+      if(aum_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6){
+        if(obj[i].aum != null &&  obj[i].aum != ""){
+          var aumcondition_temp = aumcondition.substring(0, aumcondition.length - 3);
+          aumcondition_temp = aumcondition_temp.replace(/\X/g, obj[i].aum);
+          if(!eval(aumcondition_temp)) {
             cond7 = false;
           }
+        }else{
+          cond7 = false;
         }
-        if(value_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7){
-          if(obj[i].value != null &&  obj[i].value != ""){
-            var value_temp = value.substring(0, value.length - 3);
-            value_temp = value_temp.replace(/\X/g, obj[i].value);
-            if(!eval(value_temp)) {
-              cond8 = false;
-            }
-          }else{
+      }
+      if(investmentprofessionals_filter && cond1 && cond2 && cond3 && cond4 && cond5  && cond6 && cond7 && cond8){
+        if(obj[i].investmentprofessionals != null &&  obj[i].investmentprofessionals != ""){
+          var investmentprofessionals_temp = investmentprofessionals.substring(0, investmentprofessionals.length - 3);
+          investmentprofessionals_temp = investmentprofessionals_temp.replace(/\X/g, obj[i].investmentprofessionals);
+          if(!eval(investmentprofessionals_temp)) {
             cond8 = false;
           }
-        }
-        if(revenue_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
-          if(obj[i].revenue != null &&  obj[i].revenue != ""){
-            var revenue_temp = revenue.substring(0, revenue.length - 3);
-            revenue_temp = revenue_temp.replace(/\X/g, obj[i].revenue);
-            if(!eval(revenue_temp)) {
-              cond9 = false;
-            }
-          }else{
-            cond9 = false;
-          }
-        }
-        if(ebitda_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8 && cond9){
-          if(obj[i].ebitda != null &&  obj[i].ebitda != ""){
-            var ebitda_temp = ebitda.substring(0, ebitda.length - 3);
-            ebitda_temp = ebitda_temp.replace(/\X/g, obj[i].ebitda);
-            if(!eval(ebitda_temp)) {
-              cond10 = false;
-            }
-          }else{
-            cond10 = false;
-          }
-        }
-
-        if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8 && cond9 && cond10){
-          var elementData = "";
-          elementData += '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/'+obj[i].image_folder+'/'+obj[i].image+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].type+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
-          if(obj[i].favorite){
-            elementData += ' bookmark-active';
-          }
-          elementData += '" data-id="'+obj[i].id+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> '+obj[i].title+'</h5><p class="card-descripatoin pb-1 pt-1"> '+obj[i].description+'</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].location+'"> <span> <i class="fas fa-map-marker-alt"></i> '+obj[i].location+' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> '+obj[i].value+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].industry_visible+'"> <span><i class="fas fa-chart-pie"></i> '+obj[i].industry_visible+' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="'+obj[i].category+'"> <span><i class="fas fa-chart-line"></i>'+obj[i].category+'</span> </a> <a href="ma-detail.php?ma='+obj[i].id+'" class="contact-here-sectin564"> Contact here <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
-          $(".itemsList").append(elementData);
+        }else{
+          cond8 = false;
         }
       }
-      $('.paginationList').rpmPagination({
-        domElement: '.pagination-item',
-        limit: 48,
-      });
+
+      if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
+        var elementData = "";
+        elementData += '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor='+obj[i].id+'" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
+        if(obj[i].favorite){
+          elementData += ' bookmark-active';
+        }
+        elementData += '" data-id="'+obj[i].id+'"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">'+obj[i].name+'</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>'+obj[i].location+'</p></div></a></div>';
+        $(".itemsList").append(elementData);
+      }
     }
-  }else if($("#advancedFilters").data('filter') == "investor"){
-
-    var primaryinvestortype_filter = true;
-    var preferredindustrytype_filter = true;
-    var location_filter = true;
-    var aum_filter = true;
-    var totalinvestments_filter = true;
-    var preferredinvestmentamount_filter = true;
-
-    var primary_investor_type =[];
-    var preferrerd_industry_type = [];
-    var location = [];
-    var aumcondition = "";
-    var totalInvestments = "";
-    var preferredInvestmentAmount = "";
-
-    $('.primary_investor_sub.selected').each(function () {
-      primary_investor_type.push($(this).html().trim().toLowerCase());
+    $('.paginationList').rpmPagination({
+      domElement: '.pagination-item',
+      limit: 48,
     });
-
-    $('#PreferredindustryType li').each(function(){
-      if($(this).hasClass('selected')){
-        preferrerd_industry_type.push($(this).html().trim().toLowerCase());
-      }
-    });
-
-    $('#whereType li').each(function(){
-      if($(this).hasClass('selected')){
-        location.push($(this).html().trim().toLowerCase());
-      }
-    });
-
-    $("#aumType li").each(function(){
-      if($(this).hasClass('selected')){
-        aumcondition += $(this).data("count").trim() + " || ";
-      }
-    });
-
-    $("#totalInvestmentsType li").each(function(){
-      if($(this).hasClass('selected')){
-        totalInvestments += $(this).data("count").trim() + " || ";
-      }
-    });
-
-    $("#preferredInvestmentAmountType li").each(function(){
-      if($(this).hasClass('selected')){
-        preferredInvestmentAmount += $(this).data("count").trim() + " || ";
-      }
-    });
-
-
-    if(primary_investor_type.length === 0){
-      primaryinvestortype_filter = false;
-    }
-    if(preferrerd_industry_type.length === 0){
-      preferredindustrytype_filter = false;
-    }
-    if(location.length === 0){
-      location_filter = false;
-    }
-    if(aumcondition == ""){
-      aum_filter = false;
-    }
-    if(totalInvestments == ""){
-      totalinvestments_filter = false;
-    }
-    if(preferredInvestmentAmount == ""){
-      preferredinvestmentamount_filter = false;
-    }
-
-    if(!primaryinvestortype_filter && !preferredindustrytype_filter && !location_filter && !aum_filter && !totalinvestments_filter && !preferredinvestmentamount_filter){
-      refreshFilters();
-      showResults();
-    }else{
-      for(var i = 0; i < obj.length; i++){
-        var cond1 = true;
-        var cond2 = true;
-        var cond3 = true;
-        var cond4 = true;
-        var cond5 = true;
-        var cond6 = true;
-        if(primaryinvestortype_filter){
-          if ( $.inArray(obj[i].primaryinvestortype.trim(), primary_investor_type) == -1 ) {
-            cond1 = false;
-          }
-        }
-        if(preferredindustrytype_filter && cond1){
-          var ind_temp = obj[i].preferredindustry.trim() + "," + obj[i].Preferred_Verticals.trim();
-          var industries = ind_temp.split(",");
-          if(!industries.some(item => preferrerd_industry_type.includes(item))){
-            cond2 = false;
-          }
-        }
-        if(location_filter && cond1 && cond2){
-          if ( $.inArray(obj[i].where.trim(), location) == -1 ) {
-            cond3 = false;
-          }
-        }
-        if(aum_filter && cond1 && cond2 && cond3){
-          if(obj[i].aum != null &&  obj[i].aum != ""){
-            var aumcondition_temp = aumcondition.substring(0, aumcondition.length - 3);
-            aumcondition_temp = aumcondition_temp.replace(/\X/g, obj[i].aum);
-            if(!eval(aumcondition_temp)) {
-              cond4 = false;
-            }
-          }else{
-            cond4 = false;
-          }
-        }
-        if(totalinvestments_filter && cond1 && cond2 && cond3 && cond4){
-          if(obj[i].totalinvestments != null &&  obj[i].totalinvestments != ""){
-            var totalInvestments_temp = totalInvestments.substring(0, totalInvestments.length - 3);
-            totalInvestments_temp = totalInvestments_temp.replace(/\X/g, obj[i].totalinvestments);
-            if(!eval(totalInvestments_temp)) {
-              cond5 = false;
-            }
-          }else{
-            cond5 = false;
-          }
-        }
-        if(preferredinvestmentamount_filter && cond1 && cond2 && cond3 && cond4 && cond5){
-          if(obj[i].preferredinvestmentamount != null &&  obj[i].preferredinvestmentamount != ""){
-            var preferredInvestmentAmount_temp = preferredInvestmentAmount.substring(0, preferredInvestmentAmount.length - 3);
-            preferredInvestmentAmount_temp = preferredInvestmentAmount_temp.replace(/\X/g, obj[i].preferredinvestmentamount);
-            if(!eval(preferredInvestmentAmount_temp)) {
-              cond6 = false;
-            }
-          }else{
-            cond6 = false;
-          }
-        }
-
-        if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6){
-          var elementData = "";
-          elementData += '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor='+obj[i].id+'" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
-          if(obj[i].favorite){
-            elementData += ' bookmark-active';
-          }
-          elementData += '" data-id="'+obj[i].id+'"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">'+obj[i].name+'</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>'+obj[i].location+'</p></div></a></div>';
-          $(".itemsList").append(elementData);
-        }
-      }
-      $('.paginationList').rpmPagination({
-        domElement: '.pagination-item',
-        limit: 48,
-      });
-    }
   }
   addToSearch();
 }
@@ -849,20 +677,29 @@ function addToSearch(){
 function clearSearch(remove_query){
   $('.searchable').each(function () {
     if($(this).data("search") == remove_query){
-      if($(this).hasClass("selected")){
-        $(this).removeClass("selected");
-      }
-      if($(this).data("container")){
-        var elemTag = $(this).data("container");
-        var categ = $("#"+elemTag).data('category');
-        var counterSelected = 0;
-        $('#' + categ + ' .primary_investor_sub').each(function () {
-          if($(this).hasClass('selected')){
-            counterSelected++;
+      if(itemType == "ma"){
+        if($(this).prop('checked') == true){
+          $(this).prop('checked', false);
+        }
+        if($(this).parent()[0].nodeName.toLowerCase() === 'select'){
+          $(this).parent().val("");
+        }
+      }else{
+        if($(this).hasClass("selected")){
+          $(this).removeClass("selected");
+        }
+        if($(this).data("container")){
+          var elemTag = $(this).data("container");
+          var categ = $("#"+elemTag).data('category');
+          var counterSelected = 0;
+          $('#' + categ + ' .primary_investor_sub').each(function () {
+            if($(this).hasClass('selected')){
+              counterSelected++;
+            }
+          });
+          if(counterSelected == 0){
+            $("#"+elemTag).click();
           }
-        });
-        if(counterSelected == 0){
-          $("#"+elemTag).click();
         }
       }
     }
@@ -874,7 +711,12 @@ function clearSearch(remove_query){
     }
   });
 
-  applyFilter();
+  if(itemType == "ma"){
+    appyDealFilter()
+  }else{
+    applyFilter();
+  }
+
 }
 
 
@@ -898,13 +740,24 @@ function refreshFilters(){
 
 function addSeachFilter(searchQuery){
   $('.searchable').each(function () {
-    if($(this).data("search") == searchQuery){
-      if(!$(this).hasClass("selected")){
-        $(this).addClass("selected");
-      }
-      if($(this).data("container")){
-        var elemTag = $(this).data("container");
-        $("#"+elemTag).click();
+    var elem = $(this);
+    if(elem.data("search") == searchQuery){
+      if(itemType == "ma"){
+        if(elem.prop('checked') == false){
+          elem.click();
+        }
+        if(elem.parent()[0].nodeName.toLowerCase() === 'select'){
+          elem.parent().val(elem.val());
+          show_hidden_options(elem.parent());
+        }
+      }else{
+        if(!elem.hasClass("selected")){
+          elem.addClass("selected");
+        }
+        if(elem.data("container")){
+          var elemTag = elem.data("container");
+          $("#"+elemTag).click();
+        }
       }
     }
   });
@@ -917,7 +770,12 @@ function addSeachFilter(searchQuery){
     $(".searchItems").append('<span class="searchedItem" data-query="'+searchQuery+'"><span class="searchClear" onclick="clearSearch('+"'"+searchQuery+"'"+')">X</span><span class="searchText">'+searchQuery+'</span></span>');
   }
   $("#searchIndicators").val("");
-  applyFilter();
+
+  if(itemType == "ma"){
+    appyDealFilter();
+  }else{
+    applyFilter();
+  }
 }
 
 

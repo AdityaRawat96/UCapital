@@ -41,7 +41,7 @@ if (isset($_SESSION['email'])) {
           </div><!-- /.col -->
           <div class="col-sm-6">
             <div class="float-sm-right">
-              <a href="post_ad.php" class="post-add our-back-btn"> <img src="../../dist/img/new/post-your-add.svg"> Post Your Add </a>
+              <a href="deals.php" class="post-add our-back-btn"> <img src="../../dist/img/new/post-your-add.svg"> Post Your Add </a>
             </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -124,7 +124,6 @@ if (isset($_SESSION['email'])) {
     re_ids = jQuery.parseJSON('<?=$re_ids; ?>');
   }
 
-  autocomplete(document.getElementById("searchIndicators"), searchableElements);
   $(document).ready(function() {
     $.ajax({
       type: 'POST',
@@ -168,6 +167,12 @@ if (isset($_SESSION['email'])) {
             $(".itemsList").append(elementData);
           }
         }
+        var searchableElements = [];
+
+        $('.searchable').each(function () {
+          searchableElements.push($(this).data("search").toString().trim());
+        });
+        autocomplete(document.getElementById("searchIndicators"), searchableElements);
       }
     });
   });

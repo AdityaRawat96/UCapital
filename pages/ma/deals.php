@@ -761,6 +761,14 @@ if (isset($_SESSION['email'])) {
         },
         success: function(data) {
           console.log(data);
+          if ( response.trim() == "success" ){
+            swal("Success!", "Deal added!", "success")
+            .then((value) => {
+              location.reload();
+            });
+          }else {
+            swal("Error!", "An unexpected error occurred, please try again!", "error");
+          }
         }
       });
 

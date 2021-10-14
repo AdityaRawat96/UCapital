@@ -1,38 +1,59 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])) {
-    include '../elements/header.php';
-    include '../elements/navbar.php';
-    include '../elements/sidebar.php';
+  include '../elements/header.php';
+  include '../elements/navbar.php';
+  include '../elements/sidebar.php';
 
-    $id = $_GET["id"];
-    $sql = "SELECT * FROM business_company where id=$id";
-    $result = mysqli_query($con, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_array($result);
-    }
-?>
-    <div class="sell_company_business_company">
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>HQ Location</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <div class="row location_holder">
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM business_company where id=$id";
+  $result = mysqli_query($con, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_array($result);
+  }
+  ?>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-left">
+              <li class="breadcrumb-item"><a href="#" class="text-dark text-custom-1"> <img src="../../dist/img/new/m-a-breadcum.svg"> M & A ></a></li>
+              <li class="breadcrumb-item active text-custom-2"> Post AD LITE </li>
+            </ol>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- content-header -->
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="card p-3"><br>
+          <form class="ad-form" action="index.html" method="post">
+            <div class="sell_company_business_company">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>HQ Location</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <div class="row location_holder">
                     <div class="col-md-8 col-sm-12 location_container">
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
+                      <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Subject</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="form-control bc_company_type" name="company_type" id="company_type">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Subject</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select name="subject" class="form-control bc_company_type" name="company_type" id="company_type">
                     <option value="" selected disabled>Choose the subject</option>
                     <option value="Fundraising">Fundraising</option>
                     <option value="Sell minority">Sell minority</option>
@@ -43,23 +64,23 @@ if (isset($_SESSION['email'])) {
                     <option value="Collaboration">Collaboration</option>
                     <option value="Joint venture">Joint venture</option>
                     <option value="Debt Raising">Debt Raising</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Foundation year</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Default Currency</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <select class="form-control default_currency bc_default_currency" name="company_type" id="currency">
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Foundation year</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Default Currency</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <select class="form-control default_currency bc_default_currency" name="company_type" id="currency">
                     <option data-value="€" selected value='Euro'>Euro</option>
                     <option data-value="$" value='Dollar'>Dollar</option>
                     <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
@@ -68,111 +89,111 @@ if (isset($_SESSION['email'])) {
                     <option data-value="¥" value='Yen'>Yen</option>
                     <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
                     <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Company value</span>
-                <span class="deal-subhead">(Choose one)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="company_value" value="undisclosed" class="deal-radio bc_company_value">
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
-                    </div>
+                  </select>
                 </div>
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Company value</span>
+                  <span class="deal-subhead">(Choose one)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="company_value" value="fixed" class="deal-radio bc_company_value">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="undisclosed" class="deal-radio bc_company_value">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_company_value_val" id="company_value_val" placeholder="Type a value">
+                      <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="fixed" class="deal-radio bc_company_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control bc_company_value_val" id="company_value_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
+                      <span class="input-group-text">.00</span>
                     </div>
-                </div>
-                <div class="input-group">
+                  </div>
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="company_value" value="range" class="deal-radio bc_company_value">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="range" class="deal-radio bc_company_value">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
-                            <option value="" selected disabled>Select a range</option>
-                            <option value="0|500000">from 0 to 500k</option>
-                            <option value="500000|1000000">from 500k to 1 million</option>
-                            <option value="1000000|10000000">from 1 to 10 million</option>
-                            <option value="10000000|50000000">from 10 to 50 million</option>
-                            <option value="50000000|1000000000">over 50 million</option>
-                        </select>
+                      <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
+                        <option value="" selected disabled>Select a range</option>
+                        <option value="0|500000">from 0 to 500k</option>
+                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="1000000|10000000">from 1 to 10 million</option>
+                        <option value="10000000|50000000">from 10 to 50 million</option>
+                        <option value="50000000|1000000000">over 50 million</option>
+                      </select>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Investment Required</span>
-                <span class="deal-subhead">(Choose one)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Investment Required</span>
+                  <span class="deal-subhead">(Choose one)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="investment_required" value="undisclosed" class="deal-radio bc_investment_required_value">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="undisclosed" class="deal-radio bc_investment_required_value">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                      <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
                     </div>
-                </div>
-                <div class="input-group">
+                  </div>
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="investment_required" value="fixed" class="deal-radio bc_investment_required_value">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="fixed" class="deal-radio bc_investment_required_value">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_investment_required_value_val" id="investment_required_value" placeholder="Type a value">
+                      <input type="number" class="form-control bc_investment_required_value_val" id="investment_required_value" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
+                      <span class="input-group-text">.00</span>
                     </div>
-                </div>
-                <div class="input-group">
+                  </div>
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="investment_required" value="range" class="deal-radio bc_investment_required_value">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="range" class="deal-radio bc_investment_required_value">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
-                            <option value="" selected disabled>Select a range</option>
-                            <option value="0|500000">from 0 to 500k</option>
-                            <option value="500000|1000000">from 500k to 1 million</option>
-                            <option value="1000000|10000000">from 1 to 10 million</option>
-                            <option value="10000000|50000000">from 10 to 50 million</option>
-                            <option value="50000000|1000000000">over 50 million</option>
-                        </select>
+                      <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
+                        <option value="" selected disabled>Select a range</option>
+                        <option value="0|500000">from 0 to 500k</option>
+                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="1000000|10000000">from 1 to 10 million</option>
+                        <option value="10000000|50000000">from 10 to 50 million</option>
+                        <option value="50000000|1000000000">over 50 million</option>
+                      </select>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Sector</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="form-control bc_sector_sel" id="sector">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Sector</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select class="form-control bc_sector_sel" id="sector" name="sector">
                     <option value="" selected disabled>Choose Sector</option>
                     <option value="Information Technology">Information Technology</option>
                     <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -181,16 +202,16 @@ if (isset($_SESSION['email'])) {
                     <option value="Energy">Energy</option>
                     <option value="Financial Services">Financial Services</option>
                     <option value="Materials and Resources">Materials and Resources</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Industry</span>
-                <span class="deal-subhead">(Multiple choice max 5)</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="industry bc_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Industry</span>
+                  <span class="deal-subhead">(Multiple choice max 5)</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select class="industry bc_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
                     <option value="3D Printing">3D Printing</option>
                     <option value="Accessories">Accessories</option>
                     <option value="Accounting">Accounting</option>
@@ -502,574 +523,1007 @@ if (isset($_SESSION['email'])) {
                     <option value="Wearables & Quantified Self">Wearables & Quantified Self</option>
                     <option value="Wireless Communications Equipment">Wireless Communications Equipment</option>
                     <option value="Wireless Service Providers">Wireless Service Providers</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Company Business</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <textarea name="company_business" rows="3" id="company_business" class="form-control bc_company_business" placeholder="Business description"></textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Area of activity</span>
-                <span class="deal-subhead">(Unlimited Choices)</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="activity_area">
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Scalability</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
-                            <input type="radio" name="scalability" value="Yes" class="deal-radio bc_scalability"> Yes
-                        </button>
-                    </div>
-                    <div class="col-md-8 col-sm-12">
-                        <select class="form-control scalability_area bc_scalability_area" name="scalability_area" id="scalability_area">
-                            <option value="" selected disabled>Which area</option>
-                            <option value="Global">Global</option>
-                        </select>
-                    </div>
+                  </select>
                 </div>
-                <div class="row">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Company Business</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <textarea name="company_business" rows="3" id="company_business" class="form-control bc_company_business" placeholder="Business description"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Area of activity</span>
+                  <span class="deal-subhead">(Unlimited Choices)</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="activity_area">
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Scalability</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="row">
                     <div class="col-md-4 col-sm-12">
-                        <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
-                            <input type="radio" name="scalability" value="No" class="deal-radio bc_scalability"> No
-                        </button>
+                      <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                        <input type="radio" name="scalability" value="Yes" class="deal-radio bc_scalability"> Yes
+                      </button>
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <div class="input-group input-group-nomargin">
-                            <div class="custom-file">
-                                <input type="number" class="form-control bc_market_share" placeholder="Enter market share" id="market_share">
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">%</span>
-                            </div>
+                      <select class="form-control scalability_area bc_scalability_area" name="scalability_area" id="scalability_area">
+                        <option value="" selected disabled>Which area</option>
+                        <option value="Global">Global</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                      <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                        <input type="radio" name="scalability" value="No" class="deal-radio bc_scalability"> No
+                      </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                      <div class="input-group input-group-nomargin">
+                        <div class="custom-file">
+                          <input type="number" class="form-control bc_market_share" placeholder="Enter market share" id="market_share">
                         </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Number of employees</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-containera">
-                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
-                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
-                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
-                <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Actual Revenue</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Number of employees</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-containera">
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Actual Revenue</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="actual_revenue_required" value="fixed" class="deal-radio bc_actual_revenue_type">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="actual_revenue_required" value="fixed" class="deal-radio bc_actual_revenue_type">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
+                      <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
+                      <span class="input-group-text">.00</span>
                     </div>
-                </div>
-                <div class="input-group">
+                  </div>
+                  <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <input type="radio" name="actual_revenue_required" value="range" class="deal-radio bc_actual_revenue_type">
-                        </span>
+                      <span class="input-group-text">
+                        <input type="radio" name="actual_revenue_required" value="range" class="deal-radio bc_actual_revenue_type">
+                      </span>
                     </div>
                     <div class="custom-file">
-                        <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
-                            <option value="" selected disabled>Select a range</option>
-                            <option value="0|1000000">&#60; 1 million</option>
-                            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-                            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                            <option value="50000000|1000000000"> &#62; 50 milion</option>
-                        </select>
+                      <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
+                        <option value="" selected disabled>Select a range</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Actual Ebitda Margin</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Actual Ebitda Margin</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_ebidta_margin" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
+                      <input type="number" class="form-control bc_ebidta_margin" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">%</span>
+                      <span class="input-group-text">%</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
 
 
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Revenue</span>
-                <span class="deal-subhead">(Y1Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Revenue</span>
+                  <span class="deal-subhead">(Y1Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_1" id="rev_y1y" placeholder="Enter a value for 1st year">
+                      <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1" id="rev_y1y" placeholder="Enter a value for 1st year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Ebitda</span>
-                <span class="deal-subhead">(Y1Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Ebitda</span>
+                  <span class="deal-subhead">(Y1Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_1" id="ebd_y1y" placeholder="Enter a value for 1st year">
+                      <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" id="ebd_y1y" placeholder="Enter a value for 1st year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">%</span>
+                      <span class="input-group-text">%</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Revenue</span>
-                <span class="deal-subhead">(Y2Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Revenue</span>
+                  <span class="deal-subhead">(Y2Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_2" id="rev_y2y" placeholder="Enter a value for 2nd year">
+                      <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2" id="rev_y2y" placeholder="Enter a value for 2nd year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Ebitda</span>
-                <span class="deal-subhead">(Y2Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Ebitda</span>
+                  <span class="deal-subhead">(Y2Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_2" id="ebd_y2y" placeholder="Enter a value for 2nd year">
+                      <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" id="ebd_y2y" placeholder="Enter a value for 2nd year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">%</span>
+                      <span class="input-group-text">%</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Revenue</span>
-                <span class="deal-subhead">(Y3Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Revenue</span>
+                  <span class="deal-subhead">(Y3Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_rev_3" id="rev_y3y" placeholder="Enter a value for 3rd year">
+                      <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3" id="rev_y3y" placeholder="Enter a value for 3rd year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Forcast Ebitda</span>
-                <span class="deal-subhead">(Y3Y)</span>
-            </div>
-            <div class="col-md-4 col-sm-12 input-container">
-                <div class="input-group">
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Forcast Ebitda</span>
+                  <span class="deal-subhead">(Y3Y)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
                     <div class="custom-file">
-                        <input type="number" class="form-control bc_for_ebd_3" id="ebd_y3y" placeholder="Enter a value for 3rd year">
+                      <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" id="ebd_y3y" placeholder="Enter a value for 3rd year">
                     </div>
                     <div class="input-group-append">
-                        <span class="input-group-text">%</span>
+                      <span class="input-group-text">%</span>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>General Description</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <textarea name="general_description" id="description" rows="3" class="form-control bc_description" placeholder="Who you are, What are you looking for..."></textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Key Elements</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <textarea name="key_elements" id="keyElements" rows="3" class="form-control bc_key_elements" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
-            </div>
-        </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>General Description</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <textarea name="general_description" id="description" rows="3" class="form-control bc_description" placeholder="Who you are, What are you looking for..."></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Key Elements</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <textarea name="key_elements" id="keyElements" rows="3" class="form-control bc_key_elements" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
+                </div>
+              </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12 deal-heading">
-                <span>Image</span>
-                <span class="deal-subhead">(Max 5MB)</span>
-            </div>
-            <div class="col-md-9 col-sm-12 input-container">
-                <div class="input-group bc_image">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Image</span>
+                  <span class="deal-subhead">(Max 5MB)</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container">
+                  <div class="input-group bc_image">
                     <input type="text" id="adImage-list" hidden value="">
                     <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
+                  </div>
                 </div>
+              </div>
             </div>
+            <br><br>
+            <div class="row">
+              <div class="col-md-3 col-sm-12">
+              </div>
+              <div class="col-md-9 col-sm-12">
+                <button type="submit" name="button" class="btn btn-success">Update</button>
+              </div>
+            </div>
+            <br><br><br><br><br><br>
+          </form><br>
         </div>
+        <!-- container-fluid -->
+      </section>
+      <!-- content -->
     </div>
-
-    <input type="button" class="btn btn-success" value="Update" onclick="update()" style="width: 60%; margin-left: 20%;" />
-
+    <!-- content-wrapper -->
     <?php
     include '../elements/footer.php';
     ?>
 
-<?php
-} else {
-?>
+    <?php
+  } else {
+    ?>
     <script>
-        window.open('../../', '_self')
+    window.open('../../', '_self')
     </script>
-<?php
-}
-?>
+    <?php
+  }
+  ?>
+  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-<script>
-    function update() {
-        response = {};
-        var countryVal = "";
-        var cityVal = "";
-        var countrySetted = false;
-        var citySetted = false;
-        $(".hq_country").each(function() {
-            countrySetted = true;
-            countryVal += $(this).find("option:selected").text() + ",";
-        });
-        $(".hq_city").each(function() {
-            citySetted = true;
-            cityVal += $(this).find("option:selected").val() + ",";
-        });
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+  <script>
 
-        if (countrySetted)
-            response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
-        if (citySetted)
-            response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
-        response['company_type'] = $(".bc_company_type").val();
-        response['foundation_year'] = $(".bc_foundation_year").val();
-        response['default_currency'] = $(".bc_default_currency").val();
+  $(document).ready(function() {
+    $('.ad-form').validate({
+      submitHandler: function() {
+        validateAdditionalFields();
+      },
+      rules: {
+        deal_type: {
+          required: true
+        },
+        offer: {
+          required: true
+        },
+        company_type: {
+          required: true
+        },
+        asset_type: {
+          required: true
+        },
+        startup_type: {
+          required: true,
+        },
+        hq_country: {
+          required: true,
+        },
+        subject: {
+          required: true
+        },
+        foundation_year: {
+          digits: true
+        },
+        default_currency: {
+          required: true,
+        },
+        sector: {
+          required: true
+        },
+        industry: {
+          required: true
+        },
+        company_business: {
+          required: true
+        },
+        area_of_activity: {
+          required: true,
+        },
+        number_of_employees: {
+          required: true
+        },
+        ebitda_margin: {
+          required: true
+        },
+        forcast_revenue_1: {
+          required: true,
+        },
+        forcast_ebitda_1: {
+          required: true
+        },
+        forcast_revenue_2: {
+          required: true,
+        },
+        forcast_ebitda_2: {
+          required: true
+        },
+        forcast_revenue_3: {
+          required: true,
+        },
+        forcast_ebitda_3: {
+          required: true
+        },
+        general_description: {
+          required: true
+        },
+        key_elements: {
+          required: true,
+        },
+        investment_size: {
+          required: true,
+        },
+        who_i_am: {
+          required: true,
+        },
+        aum: {
+          required: true,
+        },
+        number_of_investments: {
+          required: true,
+        },
+        investment_amount: {
+          required: true,
+        },
+        what_i_want: {
+          required: true,
+        },
+        looking_for: {
+          required: true,
+        },
+        re_type: {
+          required: true,
+        },
+        re_type_category: {
+          required: true,
+        },
+        asset_status: {
+          required: true,
+        },
+        asset_condition: {
+          required: true,
+        },
+        yearly_return: {
+          required: true,
+        },
+        construction_year: {
+          required: true,
+        },
+        total_surface_area: {
+          required: true,
+        },
+        vendor_type: {
+          required: true,
+        },
+        npe_type: {
+          required: true,
+        },
+        product_type: {
+          required: true,
+        },
+        collateral_type: {
+          required: true,
+        },
+        original_amount: {
+          required: true,
+        },
+        asking_price: {
+          required: true,
+        },
+        market_value: {
+          required: true,
+        },
+        lien_position: {
+          required: true,
+        },
+        judicialized: {
+          required: true,
+        },
+        borrower_details: {
+          required: true,
+        },
+        ratio: {
+          required: true,
+        },
+        borrower_type: {
+          required: true,
+        },
+        borrower_type_category: {
+          required: true,
+        },
+        credit_type: {
+          required: true,
+        },
+        typology: {
+          required: true,
+        },
+        maturity: {
+          required: true,
+        },
+        ratio_ob: {
+          required: true,
+        },
+        rate: {
+          required: true,
+        },
+        discounted_ratio: {
+          required: true,
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.input-group').append(error);
+      },
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
 
-        response['company_value_type'] = $(".bc_company_value:checked").val();
-        if ($(".bc_company_value:checked").val() === "undisclosed") {} else if ($(".bc_company_value:checked").val() === "fixed") {
-            response['company_value_min'] = $(".bc_company_value_val").val();
-            response['company_value_max'] = $(".bc_company_value_val").val();
-        } else if ($(".bc_company_value:checked").val() === "range") {
-            assetVal = $(".bc_company_value_sel").val();
-            index = assetVal.lastIndexOf("|");
-            response['company_value_min'] = assetVal.substring(0, index);
-            response['company_value_max'] = assetVal.substring(index + 1);
+    $(".industry").each(function() {
+      $(this).select2({
+        maximumSelectionLength: 5,
+        formatSelectionTooBig: function(limit) {
+          return 'Only 5 selections are allowed!';
         }
+      });
+    });
 
-        response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
-        if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
-            response['investment_required_min'] = $(".bc_investment_required_value_val").val();
-            response['investment_required_max'] = $(".bc_investment_required_value_val").val();
-        } else if ($(".bc_investment_required_value:checked").val() === "range") {
-            assetVal = $(".bc_investment_required_value_sel").val();
-            index = assetVal.lastIndexOf("|");
-            response['investment_required_min'] = assetVal.substring(0, index);
-            response['investment_required_max'] = assetVal.substring(index + 1);
+    $(".area_of_activity").each(function() {
+      $(this).select2({
+        maximumSelectionLength: 5,
+        formatSelectionTooBig: function(limit) {
+          return 'Only 5 selections are allowed!';
         }
+      });
+    });
 
-        response['sector_sel'] = $(".bc_sector_sel").val();
+  });
 
-        var isIndustrySetted = false;
-        var industry = '';
-        $(".bc_industry_sel").each(function() {
-            isIndustrySetted = true;
-            industry += $(this).val() + "|";
-        });
-        if (isIndustrySetted)
-            response['industry_sel'] = industry.substring(0, industry.length - 1);
 
-        response['company_business'] = $(".bc_company_business").val();
-        var isAreaSetted = false;
-        var areaOfActivity = '';
-        $(".bc_area_of_activity").each(function() {
-            isAreaSetted = true;
-            areaOfActivity += $(this).val() + "|";
-        });
-        if (isAreaSetted)
-            response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
-
-        response['scalability'] = $(".bc_scalability").val();
-        response['scalability_area'] = $(".bc_scalability_area").val();
-        response['market_share'] = $(".bc_market_share").val();
-        console.log($(".bc_number_of_employees:checked").val());
-        if (null != $(".bc_number_of_employees:checked").val()) {
-            var numOfEmp = $(".bc_number_of_employees:checked").val();
-            index = numOfEmp.lastIndexOf("|");
-            response['number_of_employees_min'] = numOfEmp.substring(0, index);
-            response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+  function validateAdditionalFields() {
+    var all_validated = true;
+    $(".input-group-multiple-radio:visible").each(function() {
+      if ($(this).find("input[type='radio']:checked").length == 0) {
+        if ($(this).find("small").length == 0) {
+          $(this).append("<small style='color: red'>Please select any one option</small>");
+          all_validated = false;
         }
-
-        response['actual_revenue_type'] = $(".bc_actual_revenue_type:checked").val();
-        if ($(".bc_actual_revenue_type:checked").val() === "fixed") {
-            response['actual_revenue_min'] = $(".bc_actual_revenue_val").val();
-            response['actual_revenue_max'] = $(".bc_actual_revenue_val").val();
-        } else if ($(".bc_actual_revenue_type:checked").val() === "range") {
-            assetVal = $(".bc_actual_revenue_sel").val();
-            index = assetVal.lastIndexOf("|");
-            response['actual_revenue_min'] = assetVal.substring(0, index);
-            response['actual_revenue_max'] = assetVal.substring(index + 1);
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $(this).offset().top
+        }, 0);
+      } else {
+        if ($(this).find("small").length == 0) {
+          var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
+          if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
+            $(this).append("<small style='color: red'>This field is required</small>");
+            all_validated = false;
+            $([document.documentElement, document.body]).animate({
+              scrollTop: $(this).offset().top
+            }, 0);
+          }
         }
-        response['ebidta_margin'] = $(".bc_ebidta_margin").val();
-        response['for_rev_1'] = $(".bc_for_rev_1").val();
-        response['for_ebd_1'] = $(".bc_for_ebd_1").val();
-        response['for_rev_2'] = $(".bc_for_rev_2").val();
-        response['for_ebd_2'] = $(".bc_for_ebd_2").val();
-        response['for_rev_3'] = $(".bc_for_rev_3").val();
-        response['for_ebd_3'] = $(".bc_for_ebd_3").val();
-
-        response['description'] = $(".bc_description").val();
-        response['key_elements'] = $(".bc_key_elements").val();
-        response['image'] = $(".bc_image_buy").val();
-        response["asset_type"] = "BC";
-        console.log(response);
-
-        $.ajax({
-            type: 'POST',
-            url: '../../assets/php/updateDeals.php',
-            data: {
-                dealData: response,
-                id: <?= $id ?>
-            },
-            success: function(data) {
-                console.log(data);
-            }
-        });
+      }
+    });
+    if (all_validated) {
+      update();
+    }
+  }
 
 
+  function update() {
+    response = {};
+    var countryVal = "";
+    var cityVal = "";
+    var countrySetted = false;
+    var citySetted = false;
+    $(".hq_country").each(function() {
+      countrySetted = true;
+      countryVal += $(this).find("option:selected").text() + ",";
+    });
+    $(".hq_city").each(function() {
+      citySetted = true;
+      cityVal += $(this).find("option:selected").val() + ",";
+    });
+
+    if (countrySetted)
+    response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    if (citySetted)
+    response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+    response['company_type'] = $(".bc_company_type").val();
+    response['foundation_year'] = $(".bc_foundation_year").val();
+    response['default_currency'] = $(".bc_default_currency").val();
+
+    response['company_value_type'] = $(".bc_company_value:checked").val();
+    if ($(".bc_company_value:checked").val() === "undisclosed") {} else if ($(".bc_company_value:checked").val() === "fixed") {
+      response['company_value_min'] = $(".bc_company_value_val").val();
+      response['company_value_max'] = $(".bc_company_value_val").val();
+    } else if ($(".bc_company_value:checked").val() === "range") {
+      assetVal = $(".bc_company_value_sel").val();
+      index = assetVal.lastIndexOf("|");
+      response['company_value_min'] = assetVal.substring(0, index);
+      response['company_value_max'] = assetVal.substring(index + 1);
     }
 
-    function setValues() {
-        document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
-        document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
-        document.getElementById("company_type").value = "<?= $row["COMPANY_TYPE"] ?>";
-        document.getElementById("foundation_year").value = "<?= $row["FOUNDATION_YEAR"] ?>";
-        document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
-        document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
-        document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
-        document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
-        document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
-        document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
-        document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
-        document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
-        document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
-        document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
-        $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
-        document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
-
-        $("input[name=company_value][value=<?= $row["COMPANY_VAL_TYPE"] ?>]").attr('checked', 'checked');
-        if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
-            document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
-        } else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "range") {
-            document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
-        }
-
-        $("input[name=investment_required][value=<?= $row["INVESTMENT_TYPE"] ?>]").attr('checked', 'checked');
-        if ("<?= $row["INVESTMENT_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "fixed") {
-            document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_MIN"] ?>";
-        } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
-            document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
-        }
-
-        $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
-        if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
-            document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
-        } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
-            document.getElementById("actual_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
-        }
-
-        var values = "<?= $row["INDUSTRY"] ?>";
-        $.each(values.split(","), function(i, e) {
-            $("#industry option[value='" + e + "']").prop("selected", true);
-        });
-
-        $("input[name=number_of_employees][value='<?= $row["NUM_OF_EMPLOYEE_MIN"] . '|' . $row['NUM_OF_EMPLOYEE_MAX'] ?>']").attr('checked', 'checked');
-
-
+    response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
+    if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
+      response['investment_required_min'] = $(".bc_investment_required_value_val").val();
+      response['investment_required_max'] = $(".bc_investment_required_value_val").val();
+    } else if ($(".bc_investment_required_value:checked").val() === "range") {
+      assetVal = $(".bc_investment_required_value_sel").val();
+      index = assetVal.lastIndexOf("|");
+      response['investment_required_min'] = assetVal.substring(0, index);
+      response['investment_required_max'] = assetVal.substring(index + 1);
     }
+
+    response['sector_sel'] = $(".bc_sector_sel").val();
+
+    var isIndustrySetted = false;
+    var industry = '';
+    $(".bc_industry_sel").each(function() {
+      isIndustrySetted = true;
+      industry += $(this).val() + "|";
+    });
+    if (isIndustrySetted)
+    response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+    response['company_business'] = $(".bc_company_business").val();
+    var isAreaSetted = false;
+    var areaOfActivity = '';
+    $(".bc_area_of_activity").each(function() {
+      isAreaSetted = true;
+      areaOfActivity += $(this).val() + "|";
+    });
+    if (isAreaSetted)
+    response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+
+    response['scalability'] = $(".bc_scalability").val();
+    response['scalability_area'] = $(".bc_scalability_area").val();
+    response['market_share'] = $(".bc_market_share").val();
+    console.log($(".bc_number_of_employees:checked").val());
+    if (null != $(".bc_number_of_employees:checked").val()) {
+      var numOfEmp = $(".bc_number_of_employees:checked").val();
+      index = numOfEmp.lastIndexOf("|");
+      response['number_of_employees_min'] = numOfEmp.substring(0, index);
+      response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+    }
+
+    response['actual_revenue_type'] = $(".bc_actual_revenue_type:checked").val();
+    if ($(".bc_actual_revenue_type:checked").val() === "fixed") {
+      response['actual_revenue_min'] = $(".bc_actual_revenue_val").val();
+      response['actual_revenue_max'] = $(".bc_actual_revenue_val").val();
+    } else if ($(".bc_actual_revenue_type:checked").val() === "range") {
+      assetVal = $(".bc_actual_revenue_sel").val();
+      index = assetVal.lastIndexOf("|");
+      response['actual_revenue_min'] = assetVal.substring(0, index);
+      response['actual_revenue_max'] = assetVal.substring(index + 1);
+    }
+    response['ebidta_margin'] = $(".bc_ebidta_margin").val();
+    response['for_rev_1'] = $(".bc_for_rev_1").val();
+    response['for_ebd_1'] = $(".bc_for_ebd_1").val();
+    response['for_rev_2'] = $(".bc_for_rev_2").val();
+    response['for_ebd_2'] = $(".bc_for_ebd_2").val();
+    response['for_rev_3'] = $(".bc_for_rev_3").val();
+    response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+
+    response['description'] = $(".bc_description").val();
+    response['key_elements'] = $(".bc_key_elements").val();
+    response['image'] = $(".bc_image_buy").val();
+    response["asset_type"] = "BC";
+    console.log(response);
+
+    $.ajax({
+      type: 'POST',
+      url: '../../assets/php/updateDeals.php',
+      data: {
+        dealData: response,
+        id: <?= $id ?>
+      },
+      success: function(data) {
+        console.log(data);
+      }
+    });
+
+
+  }
+
+  function setValues() {
+    document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
+    document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
+    document.getElementById("company_type").value = "<?= $row["COMPANY_TYPE"] ?>";
+    document.getElementById("foundation_year").value = "<?= $row["FOUNDATION_YEAR"] ?>";
+    document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
+    document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
+    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
+    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
+    document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
+    document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
+    document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
+    $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
+    document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
+
+    $("input[name=company_value][value=<?= $row["COMPANY_VAL_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
+      document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
+    } else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "range") {
+      document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
+    }
+
+    $("input[name=investment_required][value=<?= $row["INVESTMENT_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["INVESTMENT_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "fixed") {
+      document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_MIN"] ?>";
+    } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
+      document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
+    }
+
+    $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
+      document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
+    } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
+      document.getElementById("actual_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
+    }
+
+    var values = "<?= $row["INDUSTRY"] ?>";
+    $.each(values.split(","), function(i, e) {
+      $("#industry option[value='" + e + "']").prop("selected", true);
+    });
+    $("#industry").trigger('change');
+
+    $("input[name=number_of_employees][value='<?= $row["NUM_OF_EMPLOYEE_MIN"] . '|' . $row['NUM_OF_EMPLOYEE_MAX'] ?>']").attr('checked', 'checked');
+
+    var image_file = '<?=$row["IMAGE"];?>';
+    folderName = image_file.split("/")[1];
+    imageName = image_file.split("/")[2];
+    var fileDetails = [];
+    var fileAttachmentNames = [];
+    var fileDetail = {
+      name: imageName,
+      file: '../../assets/uploads/MergerAcquisition/' + folderName + '/' + imageName,
+      url: '../../assets/uploads/MergerAcquisition/' + folderName + '/' + imageName
+    }
+    fileDetails.push(fileDetail);
+    fileAttachmentNames.push(imageName)
+
+    addFiles('adImage', fileDetails, fileAttachmentNames);
+  }
 </script>
 
 <script>
-    var country_data;
-    $(document).ready(function() {
-        setValues();
-        var scalability_area = "<?= $row["SCALABILITY_AREA"] ?>";
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCountries.php",
-            dataType: 'json',
-            success: function(data) {
-                country_data = data;
-                $.each(country_data, function(index, element) {
-                    $(".scalability_area").append($('<option>', {
-                        value: element.id,
-                        text: element.country,
-                        selected: element.country == scalability_area ? true : false
-                    }));
-                    $(".area_of_activity").append($('<option>', {
-                        value: element.id,
-                        text: element.country
-                    }));
-                });
+var country_data;
+$(document).ready(function() {
+  setValues();
+  var scalability_area = "<?= $row["SCALABILITY_AREA"] ?>";
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCountries.php",
+    dataType: 'json',
+    success: function(data) {
+      country_data = data;
+      $.each(country_data, function(index, element) {
+        $(".scalability_area").append($('<option>', {
+          value: element.id,
+          text: element.country,
+          selected: element.country == scalability_area ? true : false
+        }));
+        $(".area_of_activity").append($('<option>', {
+          value: element.id,
+          text: element.country
+        }));
+      });
 
-                var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
-                $.each(values.split(","), function(i, e) {
-                    $("#activity_area option").each(function() {
-                        if ($(this).text() == e) {
-                            $(this).attr('selected', 'selected');
-                        };
-                    });
-                });
-
-                var countryVal = "<?= $row['COUNTRY'] ?>";
-                var cityVal = "<?= $row['CITY'] ?>";
-                countryArr = countryVal.split(",");
-                cityArr = cityVal.split(",");
-                var location_container = $(".location_container");
-                countryArr.forEach(function(element, index) {
-                    var countryId = "";
-                    location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-                    country_data.forEach(country_data => {
-                        location_container.find('.hq_country').last().append($('<option>', {
-                            value: country_data.id,
-                            text: country_data.country,
-                            selected: country_data.country == element ? true : false
-                        }));
-                    });
-                    countryId = location_container.find('.hq_country').last().val();
-                    syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
-                        console.log(err)
-                    })
-                });
-            }
+      var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
+      $.each(values.split(","), function(i, e) {
+        $("#activity_area option").each(function() {
+          if ($(this).text() == e) {
+            $(this).attr('selected', 'selected');
+          };
         });
-    });
+      });
 
-    function syncLoadCity(countryId, cityVal, domElem) {
-        console.log(cityVal);
-        return new Promise(function(resolve, reject) {
-            $.ajax({
-                type: 'POST',
-                url: "../../assets/php/getCities.php",
-                dataType: 'json',
-                data: {
-                    country_id: countryId
-                },
-                success: function(data) {
-                    data.forEach(element => {
-                        domElem.append($('<option>', {
-                            value: element.id,
-                            text: element.city,
-                            selected: element.city == cityVal ? true : false
-                        }));
-                    });
-
-                    resolve()
-                },
-                error: function(err) {
-                    reject(err)
-                }
-            });
+      var countryVal = "<?= $row['COUNTRY'] ?>";
+      var cityVal = "<?= $row['CITY'] ?>";
+      countryArr = countryVal.split(",");
+      cityArr = cityVal.split(",");
+      var location_container = $(".location_container");
+      countryArr.forEach(function(element, index) {
+        var countryId = "";
+        location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+        country_data.forEach(country_data => {
+          location_container.find('.hq_country').last().append($('<option>', {
+            value: country_data.id,
+            text: country_data.country,
+            selected: country_data.country == element ? true : false
+          }));
         });
+        countryId = location_container.find('.hq_country').last().val();
+        syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+          console.log(err)
+        })
+      });
     }
+  });
+});
 
-    $(".add-location").on('click', function() {
-        var deal_type = $(".deal_type:checked").val();
-        var current_location_container = $(this).parent().parent();
-        if (deal_type == "sell") {
-            current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-        } else {
-            current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-        }
-        $.each(country_data, function(index, element) {
-            current_location_container.find('.hq_country').last().append($('<option>', {
-                value: element.id,
-                text: element.country
-            }));
+function syncLoadCity(countryId, cityVal, domElem) {
+  console.log(cityVal);
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'POST',
+      url: "../../assets/php/getCities.php",
+      dataType: 'json',
+      data: {
+        country_id: countryId
+      },
+      success: function(data) {
+        data.forEach(element => {
+          domElem.append($('<option>', {
+            value: element.id,
+            text: element.city,
+            selected: element.city == cityVal ? true : false
+          }));
         });
-    });
 
-    $(".location_holder").on("click", ".btn-location-remove", function() {
-        $(this).parent().remove();
+        resolve()
+      },
+      error: function(err) {
+        reject(err)
+      }
     });
+  });
+}
 
-    $("body").on("change", ".hq_country", function() {
-        loadCities($(this));
-    });
+$(".add-location").on('click', function() {
+  var deal_type = $(".deal_type:checked").val();
+  var current_location_container = $(this).parent().parent();
+  if (deal_type == "sell") {
+    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+  } else {
+    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+  }
+  $.each(country_data, function(index, element) {
+    current_location_container.find('.hq_country').last().append($('<option>', {
+      value: element.id,
+      text: element.country
+    }));
+  });
+});
 
-    function loadCities(elem) {
-        $.ajax({
-            type: 'POST',
-            url: "../../assets/php/getCities.php",
-            dataType: 'json',
-            data: {
-                country_id: elem.val()
-            },
-            success: function(data) {
-                var city_selector = elem.siblings('.hq_city');
-                city_selector.html("");
-                city_selector.append($('<option>', {
-                    value: "",
-                    text: "Choose a city",
-                    selected: true,
-                    disabled: true
-                }));
-                $.each(data, function(index, element) {
-                    city_selector.append($('<option>', {
-                        value: element.city,
-                        text: element.city
-                    }));
-                });
-            }
-        });
+$(".location_holder").on("click", ".btn-location-remove", function() {
+  $(this).parent().remove();
+});
+
+$("body").on("change", ".hq_country", function() {
+  loadCities($(this));
+});
+
+function loadCities(elem) {
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCities.php",
+    dataType: 'json',
+    data: {
+      country_id: elem.val()
+    },
+    success: function(data) {
+      var city_selector = elem.siblings('.hq_city');
+      city_selector.html("");
+      city_selector.append($('<option>', {
+        value: "",
+        text: "Choose a city",
+        selected: true,
+        disabled: true
+      }));
+      $.each(data, function(index, element) {
+        city_selector.append($('<option>', {
+          value: element.city,
+          text: element.city
+        }));
+      });
     }
+  });
+}
+
+function addFiles(filerID, fileDetails, fileAttachmentNames){
+  var uploadedFiles = fileAttachmentNames;
+  $("#"+filerID).filer({
+    limit: 1,
+    maxSize: 5,
+    extensions: null,
+    changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+    showThumbs: true,
+    theme: "dragdropbox",
+    files: fileDetails,
+    templates: {
+      box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+      item: '<li class="jFiler-item">\
+      <div class="jFiler-item-container">\
+      <div class="jFiler-item-inner">\
+      <div class="jFiler-item-thumb">\
+      <div class="jFiler-item-status"></div>\
+      <div class="jFiler-item-thumb-overlay">\
+      <div class="jFiler-item-info">\
+      <div style="display:table-cell;vertical-align: middle;">\
+      <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name}}</b></span>\
+      <span class="jFiler-item-others">{{fi-size2}}</span>\
+      </div>\
+      </div>\
+      </div>\
+      {{fi-image}}\
+      </div>\
+      <div class="jFiler-item-assets jFiler-row">\
+      <ul class="list-inline pull-left">\
+      <li>{{fi-progressBar}}</li>\
+      </ul>\
+      <ul class="list-inline pull-right">\
+      <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+      </ul>\
+      </div>\
+      </div>\
+      </div>\
+      </li>',
+      itemAppend: '<li class="jFiler-item">\
+      <div class="jFiler-item-container">\
+      <div class="jFiler-item-inner">\
+      <div class="jFiler-item-thumb">\
+      <div class="jFiler-item-status"></div>\
+      <div class="jFiler-item-thumb-overlay">\
+      <div class="jFiler-item-info">\
+      <div style="display:table-cell;vertical-align: middle;">\
+      <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name}}</b></span>\
+      <span class="jFiler-item-others">{{fi-size2}}</span>\
+      </div>\
+      </div>\
+      </div>\
+      {{fi-image}}\
+      </div>\
+      <div class="jFiler-item-assets jFiler-row">\
+      <ul class="list-inline pull-left">\
+      <li><span class="downloadButton" id="{{fi-name}}" onclick="downloadAttachment(this)" style="color: #4285F4;"><i class="fas fa-2x fa-arrow-circle-down"></i></span></li>\
+      </ul>\
+      <ul class="list-inline pull-right">\
+      <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+      </ul>\
+      </div>\
+      </div>\
+      </div>\
+      </li>',
+      progressBar: '<div class="bar"></div>',
+      itemAppendToEnd: false,
+      canvasImage: true,
+      removeConfirmation: true,
+      _selectors: {
+        list: '.jFiler-items-list',
+        item: '.jFiler-item',
+        progressBar: '.bar',
+        remove: '.jFiler-item-trash-action'
+      }
+    },
+    dragDrop: {
+      dragEnter: null,
+      dragLeave: null,
+      drop: null,
+      dragContainer: null,
+    },
+    uploadFile: {
+      url: "../../vendor/plugins/filer/php/ajax_upload_file.php",
+      data: {
+        folderName: folderName,
+      },
+      type: 'POST',
+      enctype: 'multipart/form-data',
+      synchron: true,
+      beforeSend: function(){},
+      success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id){
+        var parent = itemEl.find(".jFiler-jProgressBar").parent(),
+        new_file_name = JSON.parse(data),
+        filerKit = inputEl.prop("jFiler");
+        filerKit.files_list[id].name = new_file_name;
+        uploadedFiles.push(new_file_name);
+        $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
+        itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function(){
+          $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
+        });
+      },
+      error: function(el){
+        var parent = el.find(".jFiler-jProgressBar").parent();
+        el.find(".jFiler-jProgressBar").fadeOut("slow", function(){
+          $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
+        });
+      },
+      statusCode: null,
+      onProgress: null,
+      onComplete: null
+    },
+    allowDuplicates: false,
+    clipBoardPaste: true,
+    excludeName: null,
+    beforeRender: null,
+    afterRender: null,
+    beforeShow: null,
+    beforeSelect: null,
+    onSelect: null,
+    afterShow: null,
+    onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
+      var filerKit = inputEl.prop("jFiler"),
+      file_name = filerKit.files_list[id].name;
+      if(file_name == undefined){
+        file_name = filerKit.files_list[id].file.name;
+      }
+      uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
+        return value != file_name;
+      });
+      $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
+      $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName='+folderName, {file: file_name});
+    },
+    onEmpty: null,
+    options: null,
+    dialogs: {
+      alert: function(text) {
+        return alert(text);
+      },
+      confirm: function (text, callback) {
+        confirm(text) ? callback() : null;
+      }
+    },
+    captions: {
+      button: "Choose Files",
+      feedback: "Choose files To Upload",
+      feedback2: "files were chosen",
+      drop: "Drop file here to Upload",
+      removeConfirmation: "Are you sure you want to remove this file?",
+      errors: {
+        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+        filesType: "Only Images are allowed to be uploaded.",
+        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+      }
+    }
+  });
+}
 </script>

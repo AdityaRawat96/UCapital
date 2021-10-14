@@ -21,11 +21,11 @@ if(isset($_SESSION['email'])){
   <script type="text/javascript">
   var obj = [];
   var preferred_verticals_array = [];
+  var preferred_investment_types_array = [];
   var itemType = "investors";
   var offset = parseInt('<?=$offset?>');
   var currentPage = parseInt('<?=$currentPage?>');
 
-  autocomplete(document.getElementById("searchIndicators"), searchableElements);
   $(document).ready(function(){
     $.ajax({
       type: 'POST',
@@ -43,8 +43,23 @@ if(isset($_SESSION['email'])){
               }
             });
           }
+          if(obj[i].preferredinvestmenttypes){
+            obj[i].preferredinvestmenttypes.split(",").forEach(function(investmenttype){
+              investmenttype = investmenttype.trim();
+              if(!preferred_investment_types_array.includes(investmenttype)){
+                $(".preferredinvestmenttypesSearch").append('<li class="searchable" data-search="'+investmenttype+'">'+investmenttype+'</li>');
+                preferred_investment_types_array.push(investmenttype);
+              }
+            });
+          }
         }
         showResults();
+        var searchableElements = [];
+
+        $('.searchable').each(function () {
+          searchableElements.push($(this).data("search").toString().trim());
+        });
+        autocomplete(document.getElementById("searchIndicators"), searchableElements);
       }
     });
   })

@@ -1,8 +1,4 @@
-var searchableElements = [];
 
-$('.searchable').each(function () {
-  searchableElements.push($(this).data("search").toString().trim());
-});
 
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,

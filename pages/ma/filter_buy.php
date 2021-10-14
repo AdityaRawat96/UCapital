@@ -194,9 +194,8 @@
                   </div>
                 </div>
               </div>
-              <button type="button" onclick="printshit()">Test</button>
               <script type="text/javascript">
-                function printshit() {
+                function getPropertyType() {
                   var secondary_category_type = [];
                   var category_object = [];
                   $(".type_category_checkbox_primary:visible").each(function() {
@@ -271,7 +270,7 @@
                 [table_name]: table_data
               });
             });
-            var propertyType = printshit();
+            var propertyType = getPropertyType();
             filter_data.push({
               "propertyType": propertyType
             });

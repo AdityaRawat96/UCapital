@@ -15,9 +15,33 @@ if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
     if ($table == 'business_company' || $table == 'real_estate') {
         if ($_POST['deal'] != 'asset') {
             $aType = $_POST['assetType'];
-            $sql = "SELECT * FROM $table WHERE DEAL = '$action' AND ASSET_TYPE = '$aType'";
+            $sql = "SELECT   business_company.ID,
+              business_company.DEAL,
+              business_company.ASSET_TYPE,
+              business_company.COMPANY_TYPE AS SUBJECT,
+              business_company.ASSET_TYPE AS SUBJECT_TYPE,
+              business_company.SECTOR,
+              business_company.INDUSTRY,
+              business_company.COUNTRY,
+              business_company.CITY,
+              business_company.OFFER,
+              business_company.IMAGE,
+              business_company.KEY_ELEMENTS,
+              business_company.ASSET_TYPE FROM $table WHERE DEAL = '$action' AND ASSET_TYPE = '$aType'";
         } else
-            $sql = "SELECT * FROM $table WHERE DEAL = '$action'";
+            $sql = "SELECT real_estate.ID,
+            real_estate.DEAL,
+            real_estate.ASSET_TYPE,
+            real_estate.DEAL_SUBJECT AS SUBJECT,
+            real_estate.REAL_ESTATE_TYP AS SUBJECT_TYPE,
+            '-' AS SECTOR,
+            '-' AS INDUSTRY,
+            real_estate.COUNTRY,
+            real_estate.CITY,
+            real_estate.OFFER,
+            real_estate.IMAGE,
+            real_estate.KEY_ELEMENTS,
+            real_estate.ASSET_TYPE FROM $table WHERE DEAL = '$action'";
         $globCount = 0;
         if (sizeof($filterData) > 0) {
             $sql = $sql . " AND ";
@@ -100,9 +124,67 @@ if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
     }
 } else {
     if ($dealType == "asset") {
-        $sql = "(SELECT real_estate.ID, real_estate.DEAL, real_estate.ASSET_TYPE, real_estate.DEAL_SUBJECT AS SUBJECT, real_estate.REAL_ESTATE_TYP AS SUBJECT_TYPE, real_estate.COUNTRY, real_estate.CITY, real_estate.OFFER, real_estate.IMAGE, real_estate.KEY_ELEMENTS, real_estate.ASSET_TYPE FROM real_estate where real_estate.DEAL = 'sell') UNION ALL( SELECT npe.ID, npe.DEAL, npe.ASSET_TYPE, npe.DEAL AS SUBJECT, 'NPE' AS SUBJECT_TYPE, npe.COUNTRY, npe.CITY, npe.OFFER, npe.IMAGE, '-' AS KEY_ELEMENTS, npe.ASSET_TYPE FROM npe where npe.DEAL = 'sell') UNION ALL( SELECT credit.ID, credit.DEAL, credit.ASSET_TYPE, credit.DEAL AS SUBJECT, 'Credit' AS SUBJECT_TYPE, credit.COUNTRY, credit.CITY, credit.OFFER, credit.IMAGE, '-' AS KEY_ELEMENTS, credit.ASSET_TYPE FROM credit where credit.DEAL = 'sell')";
+        $sql = "(SELECT
+        real_estate.ID,
+        real_estate.DEAL,
+        real_estate.ASSET_TYPE,
+        real_estate.DEAL_SUBJECT AS SUBJECT,
+        real_estate.REAL_ESTATE_TYP AS SUBJECT_TYPE,
+        '-' AS SECTOR,
+        '-' AS INDUSTRY,
+        real_estate.COUNTRY,
+        real_estate.CITY,
+        real_estate.OFFER,
+        real_estate.IMAGE,
+        real_estate.KEY_ELEMENTS,
+        real_estate.ASSET_TYPE
+        FROM real_estate where real_estate.DEAL = 'sell')
+        UNION ALL( SELECT
+        npe.ID,
+        npe.DEAL,
+        npe.ASSET_TYPE,
+        npe.DEAL AS SUBJECT,
+        'NPE' AS SUBJECT_TYPE,
+        '-' AS SECTOR,
+        '-' AS INDUSTRY,
+        npe.COUNTRY,
+        npe.CITY,
+        npe.OFFER,
+        npe.IMAGE,
+        '-' AS KEY_ELEMENTS,
+        npe.ASSET_TYPE
+        FROM npe where npe.DEAL = 'sell')
+        UNION ALL( SELECT
+        credit.ID,
+        credit.DEAL,
+        credit.ASSET_TYPE,
+        credit.DEAL AS SUBJECT,
+        'Credit' AS SUBJECT_TYPE,
+        '-' AS SECTOR,
+        '-' AS INDUSTRY,
+        credit.COUNTRY,
+        credit.CITY,
+        credit.OFFER,
+        credit.IMAGE,
+        '-' AS KEY_ELEMENTS,
+        credit.ASSET_TYPE
+        FROM credit where credit.DEAL = 'sell')";
     } else {
-        $sql = "SELECT business_company.ID, business_company.DEAL, business_company.ASSET_TYPE, business_company.COMPANY_TYPE AS SUBJECT, business_company.ASSET_TYPE AS SUBJECT_TYPE, business_company.SECTOR, business_company.INDUSTRY, business_company.COUNTRY, business_company.CITY, business_company.OFFER, business_company.IMAGE, business_company.KEY_ELEMENTS, business_company.ASSET_TYPE FROM business_company where business_company.DEAL = 'sell'";
+        $sql = "SELECT
+        business_company.ID,
+        business_company.DEAL,
+        business_company.ASSET_TYPE,
+        business_company.COMPANY_TYPE AS SUBJECT,
+        business_company.ASSET_TYPE AS SUBJECT_TYPE,
+        business_company.SECTOR,
+        business_company.INDUSTRY,
+        business_company.COUNTRY,
+        business_company.CITY,
+        business_company.OFFER,
+        business_company.IMAGE,
+        business_company.KEY_ELEMENTS,
+        business_company.ASSET_TYPE
+        FROM business_company where business_company.DEAL = 'sell'";
     }
 
     $result = mysqli_query($con, $sql)
