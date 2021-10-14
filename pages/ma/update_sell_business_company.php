@@ -1150,7 +1150,7 @@ if (isset($_SESSION['email'])) {
 
     response['description'] = $(".bc_description").val();
     response['key_elements'] = $(".bc_key_elements").val();
-    response['image'] = $(".bc_image_buy").val();
+    response['image'] = $("#adImage-list").val();
     response["asset_type"] = "BC";
     console.log(response);
 
@@ -1235,6 +1235,7 @@ if (isset($_SESSION['email'])) {
       url: '../../assets/uploads/MergerAcquisition/' + folderName + '/' + imageName
     }
     fileDetails.push(fileDetail);
+    $("#adImage-list").val('<?= $row["IMAGE"]; ?>');
     fileAttachmentNames.push(imageName)
 
     addFiles('adImage', fileDetails, fileAttachmentNames);
@@ -1458,9 +1459,9 @@ if (isset($_SESSION['email'])) {
         dragContainer: null,
       },
       uploadFile: {
-        url: "../../vendor/plugins/filer/php/ajax_upload_file.php",
+        url: "../../plugins/filer/php/ajax_upload_file.php",
         data: {
-          folderName: folderName,
+          folderName: "Deals",
         },
         type: 'POST',
         enctype: 'multipart/form-data',
@@ -1472,7 +1473,7 @@ if (isset($_SESSION['email'])) {
             filerKit = inputEl.prop("jFiler");
           filerKit.files_list[id].name = new_file_name;
           uploadedFiles.push(new_file_name);
-          $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+          $("." + filerID + "-list").val("Deals" + "/" + new_file_name)
           itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
             $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
           });
@@ -1506,7 +1507,7 @@ if (isset($_SESSION['email'])) {
           return value != file_name;
         });
         $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
-        $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
+        $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + "Deals", {
           file: file_name
         });
       },
