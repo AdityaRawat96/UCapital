@@ -64,9 +64,9 @@ FROM business_company where USER_ID = $user_id)";
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
-    if($row["DEAL"] == "buy"){
+    if ($row["DEAL"] == "buy") {
       array_push($published_buy_deal, $row);
-    }else{
+    } else {
       array_push($published_sell_deal, $row);
     }
   }
@@ -76,20 +76,20 @@ $company_ids = array();
 $npe_ids = array();
 $credits_ids = array();
 $re_ids = array();
-$result= mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
-or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-if(mysqli_num_rows($result) > 0 ){
-  while($row = mysqli_fetch_array($result)){
-    if($row['company_id'] != null && $row['company_id'] != ''){
+$result = mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
+  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_array($result)) {
+    if ($row['company_id'] != null && $row['company_id'] != '') {
       $company_ids = json_decode($row['company_id']);
     }
-    if($row['npe_id'] != null && $row['npe_id'] != ''){
+    if ($row['npe_id'] != null && $row['npe_id'] != '') {
       $npe_ids = json_decode($row['npe_id']);
     }
-    if($row['credits_id'] != null && $row['credits_id'] != ''){
+    if ($row['credits_id'] != null && $row['credits_id'] != '') {
       $credits_ids = json_decode($row['credits_id']);
     }
-    if($row['re_id'] != null && $row['re_id'] != ''){
+    if ($row['re_id'] != null && $row['re_id'] != '') {
       $re_ids = json_decode($row['re_id']);
     }
   }
@@ -162,24 +162,24 @@ if(mysqli_num_rows($result) > 0 ){
                     <?php
                     if ($_SESSION['user_type'] == 2) {
                       $result = mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                          ?>
+                    ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                          <?php
+                        <?php
                         }
                       }
                     } else {
                       $result = mysqli_query($con, " SELECT *  FROM users WHERE id='$user_id'")
-                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                          ?>
+                        ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                          <?php
+                    <?php
                         }
                       }
                     }
@@ -212,45 +212,46 @@ if(mysqli_num_rows($result) > 0 ){
                 <div class="row">
                   <?php
                   foreach ($published_sell_deal as $deal) {
-                    ?>
+                  ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
-                      <a href="ma-detail.php?ma=<?=$deal['ID']; ?>">
+                      <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
-                          <img class="card-img-top ma-img" src="../../assets/uploads/<?=$deal['IMAGE']; ?>" alt="image">
-                          <span class="left-tag-card our-back"> <?=$deal['OFFER']; ?> </span>
+                          <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
+                          <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
-                            if(strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up"){
-                              if (in_array($deal['ID'], $company_ids)){
+                            if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                              if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "real estate"){
-                              if (in_array($deal['ID'], $re_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                              if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "credits"){
-                              if (in_array($deal['ID'], $credits_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                              if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "npe"){
-                              if (in_array($deal['ID'], $npe_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                              if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
                             }
                             ?>
-                            bookmark-<?=strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?=$deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
+                            bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
                           </span>
                           <div class="d-flex flex-column justify-content-end p-2">
-                            <span><i> <?=$deal['COUNTRY'].", ".$deal['CITY']; ?> </i></span>
-                            <span class="deal-card-heading"><?=$deal['SUBJECT']; ?> <b><?=$deal['SUBJECT_TYPE']; ?></b></span>
+                            <span><i> <?= $deal['COUNTRY'] . ", " . $deal['CITY']; ?> </i></span>
+                            <span class="deal-card-heading"><?= $deal['SUBJECT']; ?> <b><?= $deal['SUBJECT_TYPE']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?=$deal['SECTOR']; ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp; <?=$deal['INDUSTRY']; ?></span><hr>
-                              <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
+                              <hr>
+                              <span>Key Elements: <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Edit</button>
+                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell" onclick="editAd('<?= $deal['ID'] ?>','<?= $deal['ASSET_TYPE'] ?>','sell')">Edit</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                   <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Delete Ad</button>
@@ -261,7 +262,7 @@ if(mysqli_num_rows($result) > 0 ){
                         </div>
                       </a>
                     </div>
-                    <?php
+                  <?php
                   }
                   ?>
                 </div>
@@ -270,45 +271,46 @@ if(mysqli_num_rows($result) > 0 ){
                 <div class="row">
                   <?php
                   foreach ($published_buy_deal as $deal) {
-                    ?>
+                  ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
-                      <a href="ma-detail.php?ma=<?=$deal['ID']; ?>">
+                      <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
-                          <img class="card-img-top ma-img" src="../../assets/uploads/<?=$deal['IMAGE']; ?>" alt="image">
-                          <span class="left-tag-card our-back"> <?=$deal['OFFER']; ?> </span>
+                          <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
+                          <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
-                            if(strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up"){
-                              if (in_array($deal['ID'], $company_ids)){
+                            if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                              if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "real estate"){
-                              if (in_array($deal['ID'], $re_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                              if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "credits"){
-                              if (in_array($deal['ID'], $credits_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                              if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
-                            }else if(strtolower($deal['ASSET_TYPE']) == "npe"){
-                              if (in_array($deal['ID'], $npe_ids)){
+                            } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                              if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
                             }
                             ?>
-                            bookmark-<?=strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?=$deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
+                            bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
                           </span>
                           <div class="d-flex flex-column justify-content-end p-2">
-                            <span><i> <?=$deal['COUNTRY'].", ".$deal['CITY']; ?> </i></span>
-                            <span class="deal-card-heading"><?=$deal['SUBJECT']; ?> <b><?=$deal['SUBJECT_TYPE']; ?></b></span>
+                            <span><i> <?= $deal['COUNTRY'] . ", " . $deal['CITY']; ?> </i></span>
+                            <span class="deal-card-heading"><?= $deal['SUBJECT']; ?> <b><?= $deal['SUBJECT_TYPE']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?=$deal['SECTOR']; ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp; <?=$deal['INDUSTRY']; ?></span><hr>
-                              <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
+                              <hr>
+                              <span>Key Elements: <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Edit</button>
+                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell" onclick="editAd('<?= $deal['ID'] ?>','<?= $deal['ASSET_TYPE'] ?>','buy')">Edit</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                   <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell">Delete Ad</button>
@@ -319,7 +321,7 @@ if(mysqli_num_rows($result) > 0 ){
                         </div>
                       </a>
                     </div>
-                    <?php
+                  <?php
                   }
                   ?>
                 </div>
@@ -336,51 +338,51 @@ if(mysqli_num_rows($result) > 0 ){
 <!-- content-wrapper -->
 
 <script>
-function editAd(id, asset, deal) {
-  if (deal == "buy") {
-    if (asset == "Real Estate") {
-      url = "./../ma/update_buy_assets_real_estate.php";
-    } else if (asset == "NPE") {
-      url = "./../ma/update_buy_assets_npe.php";
-    } else if (asset == "Credits") {
-      url = "./../ma/update_buy_assets_credits.php";
-    } else if (asset == "Business Company") {
-      url = "./../ma/update_buy_business_company.php";
-    } else if (asset == "Start Up") {
-      url = "./../ma/update_buy_start_up.php";
+  function editAd(id, asset, deal) {
+    if (deal == "buy") {
+      if (asset == "Real Estate") {
+        url = "./../ma/update_buy_assets_real_estate.php";
+      } else if (asset == "NPE") {
+        url = "./../ma/update_buy_assets_npe.php";
+      } else if (asset == "Credits") {
+        url = "./../ma/update_buy_assets_credits.php";
+      } else if (asset == "Business Company") {
+        url = "./../ma/update_buy_business_company.php";
+      } else if (asset == "Start Up") {
+        url = "./../ma/update_buy_start_up.php";
+      }
+    } else {
+      if (asset == "Real Estate") {
+        url = "./../ma/update_sell_assets_real_estate.php";
+      } else if (asset == "NPE") {
+        url = "./../ma/update_sell_assets_npe.php";
+      } else if (asset == "Credits") {
+        console.log("Credits");
+        url = "./../ma/update_sell_assets_credits.php";
+      } else if (asset == "Business Company") {
+        url = "./../ma/update_sell_business_company.php";
+      } else if (asset == "Start Up") {
+        url = "./../ma/update_sell_start_up.php";
+      }
     }
-  } else {
-    if (asset == "Real Estate") {
-      url = "./../ma/update_sell_assets_real_estate.php";
-    } else if (asset == "NPE") {
-      url = "./../ma/update_sell_assets_npe.php";
-    } else if (asset == "Credits") {
-      console.log("Credits");
-      url = "./../ma/update_sell_assets_credits.php";
-    } else if (asset == "Business Company") {
-      url = "./../ma/update_sell_business_company.php";
-    } else if (asset == "Start Up") {
-      url = "./../ma/update_sell_start_up.php";
-    }
+    let p = new URLSearchParams();
+    p.set("id", id);
+    url += "?" + p.toString();
+    window.open(url);
   }
-  let p = new URLSearchParams();
-  p.set("id", id);
-  url += "?" + p.toString();
-  window.open(url);
-}
 
-function deleteAd(id, asset, deal) {
-  $.ajax({
-    type: 'POST',
-    url: "./../../assets/php/deleteAd.php",
-    data: {
-      id: id,
-      asset: asset,
-      deal: deal
-    },
-    success: function(data) {
-      alert("deleted");
-    }
-  });
-}
+  function deleteAd(id, asset, deal) {
+    $.ajax({
+      type: 'POST',
+      url: "./../../assets/php/deleteAd.php",
+      data: {
+        id: id,
+        asset: asset,
+        deal: deal
+      },
+      success: function(data) {
+        alert("deleted");
+      }
+    });
+  }
 </script>

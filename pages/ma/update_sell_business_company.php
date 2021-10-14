@@ -11,7 +11,7 @@ if (isset($_SESSION['email'])) {
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
   }
-  ?>
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -787,34 +787,33 @@ if (isset($_SESSION['email'])) {
           </form><br>
         </div>
         <!-- container-fluid -->
-      </section>
-      <!-- content -->
-    </div>
-    <!-- content-wrapper -->
-    <?php
-    include '../elements/footer.php';
-    ?>
-
-    <?php
-  } else {
-    ?>
-    <script>
-    window.open('../../', '_self')
-    </script>
-    <?php
-  }
+    </section>
+    <!-- content -->
+  </div>
+  <!-- content-wrapper -->
+  <?php
+  include '../elements/footer.php';
   ?>
-  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-  <!-- jquery-validation -->
-  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-  <script src="../../plugins/select2/js/select2.full.min.js"></script>
-  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<?php
+} else {
+?>
   <script>
+    window.open('../../', '_self')
+  </script>
+<?php
+}
+?>
+<link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<script>
   $(document).ready(function() {
     $('.ad-form').validate({
       submitHandler: function() {
@@ -1068,11 +1067,11 @@ if (isset($_SESSION['email'])) {
       citySetted = true;
       cityVal += $(this).find("option:selected").val() + ",";
     });
-
+    console.log("cityVal " + cityVal);
     if (countrySetted)
-    response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
     if (citySetted)
-    response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
     response['company_type'] = $(".bc_company_type").val();
     response['foundation_year'] = $(".bc_foundation_year").val();
     response['default_currency'] = $(".bc_default_currency").val();
@@ -1108,20 +1107,20 @@ if (isset($_SESSION['email'])) {
       industry += $(this).val() + "|";
     });
     if (isIndustrySetted)
-    response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
     response['company_business'] = $(".bc_company_business").val();
     var isAreaSetted = false;
     var areaOfActivity = '';
-    $(".bc_area_of_activity").each(function() {
+    $(".bc_area_of_activity option:checked").each(function() {
       isAreaSetted = true;
-      areaOfActivity += $(this).val() + "|";
+      areaOfActivity += $(this).text() + ",";
     });
     if (isAreaSetted)
-    response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
     response['scalability'] = $(".bc_scalability").val();
-    response['scalability_area'] = $(".bc_scalability_area").val();
+    response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
     response['market_share'] = $(".bc_market_share").val();
     console.log($(".bc_number_of_employees:checked").val());
     if (null != $(".bc_number_of_employees:checked").val()) {
@@ -1164,6 +1163,14 @@ if (isset($_SESSION['email'])) {
       },
       success: function(data) {
         console.log(data);
+        if (data.trim() == "success") {
+          swal("Success!", "Deal Updated!", "success")
+            .then((value) => {
+              location.reload();
+            });
+        } else {
+          swal("Error!", "An unexpected error occurred, please try again!", "error");
+        }
       }
     });
 
@@ -1217,7 +1224,7 @@ if (isset($_SESSION['email'])) {
 
     $("input[name=number_of_employees][value='<?= $row["NUM_OF_EMPLOYEE_MIN"] . '|' . $row['NUM_OF_EMPLOYEE_MAX'] ?>']").attr('checked', 'checked');
 
-    var image_file = '<?=$row["IMAGE"];?>';
+    var image_file = '<?= $row["IMAGE"]; ?>';
     folderName = image_file.split("/")[1];
     imageName = image_file.split("/")[2];
     var fileDetails = [];
@@ -1235,153 +1242,153 @@ if (isset($_SESSION['email'])) {
 </script>
 
 <script>
-var country_data;
-$(document).ready(function() {
-  setValues();
-  var scalability_area = "<?= $row["SCALABILITY_AREA"] ?>";
-  $.ajax({
-    type: 'POST',
-    url: "../../assets/php/getCountries.php",
-    dataType: 'json',
-    success: function(data) {
-      country_data = data;
-      $.each(country_data, function(index, element) {
-        $(".scalability_area").append($('<option>', {
-          value: element.id,
-          text: element.country,
-          selected: element.country == scalability_area ? true : false
-        }));
-        $(".area_of_activity").append($('<option>', {
-          value: element.id,
-          text: element.country
-        }));
-      });
-
-      var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
-      $.each(values.split(","), function(i, e) {
-        $("#activity_area option").each(function() {
-          if ($(this).text() == e) {
-            $(this).attr('selected', 'selected');
-          };
-        });
-      });
-
-      var countryVal = "<?= $row['COUNTRY'] ?>";
-      var cityVal = "<?= $row['CITY'] ?>";
-      countryArr = countryVal.split(",");
-      cityArr = cityVal.split(",");
-      var location_container = $(".location_container");
-      countryArr.forEach(function(element, index) {
-        var countryId = "";
-        location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-        country_data.forEach(country_data => {
-          location_container.find('.hq_country').last().append($('<option>', {
-            value: country_data.id,
-            text: country_data.country,
-            selected: country_data.country == element ? true : false
+  var country_data;
+  $(document).ready(function() {
+    setValues();
+    var scalability_area = "<?= $row["SCALABILITY_AREA"] ?>";
+    $.ajax({
+      type: 'POST',
+      url: "../../assets/php/getCountries.php",
+      dataType: 'json',
+      success: function(data) {
+        country_data = data;
+        $.each(country_data, function(index, element) {
+          $(".scalability_area").append($('<option>', {
+            value: element.id,
+            text: element.country,
+            selected: element.country == scalability_area ? true : false
+          }));
+          $(".area_of_activity").append($('<option>', {
+            value: element.id,
+            text: element.country
           }));
         });
-        countryId = location_container.find('.hq_country').last().val();
-        syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
-          console.log(err)
-        })
-      });
-    }
-  });
-});
 
-function syncLoadCity(countryId, cityVal, domElem) {
-  console.log(cityVal);
-  return new Promise(function(resolve, reject) {
+        var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
+        $.each(values.split(","), function(i, e) {
+          $("#activity_area option").each(function() {
+            if ($(this).text() == e) {
+              $(this).attr('selected', 'selected');
+            };
+          });
+        });
+
+        var countryVal = "<?= $row['COUNTRY'] ?>";
+        var cityVal = "<?= $row['CITY'] ?>";
+        countryArr = countryVal.split(",");
+        cityArr = cityVal.split(",");
+        var location_container = $(".location_container");
+        countryArr.forEach(function(element, index) {
+          var countryId = "";
+          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+          country_data.forEach(country_data => {
+            location_container.find('.hq_country').last().append($('<option>', {
+              value: country_data.id,
+              text: country_data.country,
+              selected: country_data.country == element ? true : false
+            }));
+          });
+          countryId = location_container.find('.hq_country').last().val();
+          syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+            console.log(err)
+          })
+        });
+      }
+    });
+  });
+
+  function syncLoadCity(countryId, cityVal, domElem) {
+    console.log(cityVal);
+    return new Promise(function(resolve, reject) {
+      $.ajax({
+        type: 'POST',
+        url: "../../assets/php/getCities.php",
+        dataType: 'json',
+        data: {
+          country_id: countryId
+        },
+        success: function(data) {
+          data.forEach(element => {
+            domElem.append($('<option>', {
+              value: element.city,
+              text: element.city,
+              selected: element.city == cityVal ? true : false
+            }));
+          });
+
+          resolve()
+        },
+        error: function(err) {
+          reject(err)
+        }
+      });
+    });
+  }
+
+  $(".add-location").on('click', function() {
+    var deal_type = $(".deal_type:checked").val();
+    var current_location_container = $(this).parent().parent();
+    if (deal_type == "sell") {
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+    } else {
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+    }
+    $.each(country_data, function(index, element) {
+      current_location_container.find('.hq_country').last().append($('<option>', {
+        value: element.id,
+        text: element.country
+      }));
+    });
+  });
+
+  $(".location_holder").on("click", ".btn-location-remove", function() {
+    $(this).parent().remove();
+  });
+
+  $("body").on("change", ".hq_country", function() {
+    loadCities($(this));
+  });
+
+  function loadCities(elem) {
     $.ajax({
       type: 'POST',
       url: "../../assets/php/getCities.php",
       dataType: 'json',
       data: {
-        country_id: countryId
+        country_id: elem.val()
       },
       success: function(data) {
-        data.forEach(element => {
-          domElem.append($('<option>', {
-            value: element.id,
-            text: element.city,
-            selected: element.city == cityVal ? true : false
+        var city_selector = elem.siblings('.hq_city');
+        city_selector.html("");
+        city_selector.append($('<option>', {
+          value: "",
+          text: "Choose a city",
+          selected: true,
+          disabled: true
+        }));
+        $.each(data, function(index, element) {
+          city_selector.append($('<option>', {
+            value: element.city,
+            text: element.city
           }));
         });
-
-        resolve()
-      },
-      error: function(err) {
-        reject(err)
       }
     });
-  });
-}
-
-$(".add-location").on('click', function() {
-  var deal_type = $(".deal_type:checked").val();
-  var current_location_container = $(this).parent().parent();
-  if (deal_type == "sell") {
-    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-  } else {
-    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
   }
-  $.each(country_data, function(index, element) {
-    current_location_container.find('.hq_country').last().append($('<option>', {
-      value: element.id,
-      text: element.country
-    }));
-  });
-});
 
-$(".location_holder").on("click", ".btn-location-remove", function() {
-  $(this).parent().remove();
-});
-
-$("body").on("change", ".hq_country", function() {
-  loadCities($(this));
-});
-
-function loadCities(elem) {
-  $.ajax({
-    type: 'POST',
-    url: "../../assets/php/getCities.php",
-    dataType: 'json',
-    data: {
-      country_id: elem.val()
-    },
-    success: function(data) {
-      var city_selector = elem.siblings('.hq_city');
-      city_selector.html("");
-      city_selector.append($('<option>', {
-        value: "",
-        text: "Choose a city",
-        selected: true,
-        disabled: true
-      }));
-      $.each(data, function(index, element) {
-        city_selector.append($('<option>', {
-          value: element.city,
-          text: element.city
-        }));
-      });
-    }
-  });
-}
-
-function addFiles(filerID, fileDetails, fileAttachmentNames){
-  var uploadedFiles = fileAttachmentNames;
-  $("#"+filerID).filer({
-    limit: 1,
-    maxSize: 5,
-    extensions: null,
-    changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
-    showThumbs: true,
-    theme: "dragdropbox",
-    files: fileDetails,
-    templates: {
-      box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-      item: '<li class="jFiler-item">\
+  function addFiles(filerID, fileDetails, fileAttachmentNames) {
+    var uploadedFiles = fileAttachmentNames;
+    $("#" + filerID).filer({
+      limit: 1,
+      maxSize: 5,
+      extensions: null,
+      changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+      showThumbs: true,
+      theme: "dragdropbox",
+      files: fileDetails,
+      templates: {
+        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+        item: '<li class="jFiler-item">\
       <div class="jFiler-item-container">\
       <div class="jFiler-item-inner">\
       <div class="jFiler-item-thumb">\
@@ -1407,7 +1414,7 @@ function addFiles(filerID, fileDetails, fileAttachmentNames){
       </div>\
       </div>\
       </li>',
-      itemAppend: '<li class="jFiler-item">\
+        itemAppend: '<li class="jFiler-item">\
       <div class="jFiler-item-container">\
       <div class="jFiler-item-inner">\
       <div class="jFiler-item-thumb">\
@@ -1433,97 +1440,99 @@ function addFiles(filerID, fileDetails, fileAttachmentNames){
       </div>\
       </div>\
       </li>',
-      progressBar: '<div class="bar"></div>',
-      itemAppendToEnd: false,
-      canvasImage: true,
-      removeConfirmation: true,
-      _selectors: {
-        list: '.jFiler-items-list',
-        item: '.jFiler-item',
-        progressBar: '.bar',
-        remove: '.jFiler-item-trash-action'
-      }
-    },
-    dragDrop: {
-      dragEnter: null,
-      dragLeave: null,
-      drop: null,
-      dragContainer: null,
-    },
-    uploadFile: {
-      url: "../../vendor/plugins/filer/php/ajax_upload_file.php",
-      data: {
-        folderName: folderName,
+        progressBar: '<div class="bar"></div>',
+        itemAppendToEnd: false,
+        canvasImage: true,
+        removeConfirmation: true,
+        _selectors: {
+          list: '.jFiler-items-list',
+          item: '.jFiler-item',
+          progressBar: '.bar',
+          remove: '.jFiler-item-trash-action'
+        }
       },
-      type: 'POST',
-      enctype: 'multipart/form-data',
-      synchron: true,
-      beforeSend: function(){},
-      success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id){
-        var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-        new_file_name = JSON.parse(data),
-        filerKit = inputEl.prop("jFiler");
-        filerKit.files_list[id].name = new_file_name;
-        uploadedFiles.push(new_file_name);
-        $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
-        itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function(){
-          $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
+      dragDrop: {
+        dragEnter: null,
+        dragLeave: null,
+        drop: null,
+        dragContainer: null,
+      },
+      uploadFile: {
+        url: "../../vendor/plugins/filer/php/ajax_upload_file.php",
+        data: {
+          folderName: folderName,
+        },
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        synchron: true,
+        beforeSend: function() {},
+        success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
+          var parent = itemEl.find(".jFiler-jProgressBar").parent(),
+            new_file_name = JSON.parse(data),
+            filerKit = inputEl.prop("jFiler");
+          filerKit.files_list[id].name = new_file_name;
+          uploadedFiles.push(new_file_name);
+          $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+          itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
+            $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
+          });
+        },
+        error: function(el) {
+          var parent = el.find(".jFiler-jProgressBar").parent();
+          el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
+            $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
+          });
+        },
+        statusCode: null,
+        onProgress: null,
+        onComplete: null
+      },
+      allowDuplicates: false,
+      clipBoardPaste: true,
+      excludeName: null,
+      beforeRender: null,
+      afterRender: null,
+      beforeShow: null,
+      beforeSelect: null,
+      onSelect: null,
+      afterShow: null,
+      onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
+        var filerKit = inputEl.prop("jFiler"),
+          file_name = filerKit.files_list[id].name;
+        if (file_name == undefined) {
+          file_name = filerKit.files_list[id].file.name;
+        }
+        uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
+          return value != file_name;
+        });
+        $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+        $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
+          file: file_name
         });
       },
-      error: function(el){
-        var parent = el.find(".jFiler-jProgressBar").parent();
-        el.find(".jFiler-jProgressBar").fadeOut("slow", function(){
-          $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
-        });
+      onEmpty: null,
+      options: null,
+      dialogs: {
+        alert: function(text) {
+          return alert(text);
+        },
+        confirm: function(text, callback) {
+          confirm(text) ? callback() : null;
+        }
       },
-      statusCode: null,
-      onProgress: null,
-      onComplete: null
-    },
-    allowDuplicates: false,
-    clipBoardPaste: true,
-    excludeName: null,
-    beforeRender: null,
-    afterRender: null,
-    beforeShow: null,
-    beforeSelect: null,
-    onSelect: null,
-    afterShow: null,
-    onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
-      var filerKit = inputEl.prop("jFiler"),
-      file_name = filerKit.files_list[id].name;
-      if(file_name == undefined){
-        file_name = filerKit.files_list[id].file.name;
+      captions: {
+        button: "Choose Files",
+        feedback: "Choose files To Upload",
+        feedback2: "files were chosen",
+        drop: "Drop file here to Upload",
+        removeConfirmation: "Are you sure you want to remove this file?",
+        errors: {
+          filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+          filesType: "Only Images are allowed to be uploaded.",
+          filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+          filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+        }
       }
-      uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
-        return value != file_name;
-      });
-      $("#"+filerID+"-list").val(JSON.stringify(uploadedFiles))
-      $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName='+folderName, {file: file_name});
-    },
-    onEmpty: null,
-    options: null,
-    dialogs: {
-      alert: function(text) {
-        return alert(text);
-      },
-      confirm: function (text, callback) {
-        confirm(text) ? callback() : null;
-      }
-    },
-    captions: {
-      button: "Choose Files",
-      feedback: "Choose files To Upload",
-      feedback2: "files were chosen",
-      drop: "Drop file here to Upload",
-      removeConfirmation: "Are you sure you want to remove this file?",
-      errors: {
-        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
-        filesType: "Only Images are allowed to be uploaded.",
-        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
-        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
-      }
-    }
-  });
-}
+    });
+  }
 </script>

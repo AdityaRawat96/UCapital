@@ -11,7 +11,7 @@ if (isset($_SESSION['email'])) {
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
   }
-  ?>
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -236,34 +236,33 @@ if (isset($_SESSION['email'])) {
           </form><br>
         </div>
         <!-- container-fluid -->
-      </section>
-      <!-- content -->
-    </div>
-    <!-- content-wrapper -->
-    <?php
-    include '../elements/footer.php';
-    ?>
-
-    <?php
-  } else {
-    ?>
-    <script>
-    window.open('../../', '_self')
-    </script>
-    <?php
-  }
+    </section>
+    <!-- content -->
+  </div>
+  <!-- content-wrapper -->
+  <?php
+  include '../elements/footer.php';
   ?>
-  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-  <!-- jquery-validation -->
-  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-  <script src="../../plugins/select2/js/select2.full.min.js"></script>
-  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<?php
+} else {
+?>
   <script>
+    window.open('../../', '_self')
+  </script>
+<?php
+}
+?>
+<link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<script>
   $(document).ready(function() {
     $('.ad-form').validate({
       submitHandler: function() {
@@ -522,6 +521,14 @@ if (isset($_SESSION['email'])) {
       },
       success: function(data) {
         console.log(data);
+        if (data.trim() == "success") {
+          swal("Success!", "Deal Updated!", "success")
+            .then((value) => {
+              location.reload();
+            });
+        } else {
+          swal("Error!", "An unexpected error occurred, please try again!", "error");
+        }
       }
     });
   }
@@ -551,94 +558,94 @@ if (isset($_SESSION['email'])) {
 </script>
 
 <script>
-var country_data;
-$(document).ready(function() {
-  setValues();
-  $.ajax({
-    type: 'POST',
-    url: "../../assets/php/getCountries.php",
-    dataType: 'json',
-    success: function(data) {
-      country_data = data;
-      $.each(country_data, function(index, element) {
-        $('.hq_country').append($('<option>', {
-          value: element.id,
-          text: element.country
-        }));
-        $(".scalability_area").append($('<option>', {
-          value: element.id,
-          text: element.country
-        }));
-        $(".area_of_activity").append($('<option>', {
-          value: element.id,
-          text: element.country
-        }));
-      });
-      var countryVal = "";
-      $(".hq_country option").each(function() {
-        if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
-          $(this).attr('selected', 'selected');
-          countryVal = $(this).val();
-        }
-      });
-
-      $.ajax({
-        type: 'POST',
-        url: "../../assets/php/getCities.php",
-        dataType: 'json',
-        data: {
-          country_id: countryVal
-        },
-        success: function(data) {
-          $('.hq_city').html("");
-          $('.hq_city').append($('<option>', {
-            value: "",
-            text: "Choose a city",
-            selected: true,
-            disabled: true
+  var country_data;
+  $(document).ready(function() {
+    setValues();
+    $.ajax({
+      type: 'POST',
+      url: "../../assets/php/getCountries.php",
+      dataType: 'json',
+      success: function(data) {
+        country_data = data;
+        $.each(country_data, function(index, element) {
+          $('.hq_country').append($('<option>', {
+            value: element.id,
+            text: element.country
           }));
-          $.each(data, function(index, element) {
+          $(".scalability_area").append($('<option>', {
+            value: element.id,
+            text: element.country
+          }));
+          $(".area_of_activity").append($('<option>', {
+            value: element.id,
+            text: element.country
+          }));
+        });
+        var countryVal = "";
+        $(".hq_country option").each(function() {
+          if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
+            $(this).attr('selected', 'selected');
+            countryVal = $(this).val();
+          }
+        });
+
+        $.ajax({
+          type: 'POST',
+          url: "../../assets/php/getCities.php",
+          dataType: 'json',
+          data: {
+            country_id: countryVal
+          },
+          success: function(data) {
+            $('.hq_city').html("");
             $('.hq_city').append($('<option>', {
-              value: element.city,
-              text: element.city
+              value: "",
+              text: "Choose a city",
+              selected: true,
+              disabled: true
             }));
-          });
-          document.getElementById("city").value = "<?= $row['CITY'] ?>";
-        }
-      });
+            $.each(data, function(index, element) {
+              $('.hq_city').append($('<option>', {
+                value: element.city,
+                text: element.city
+              }));
+            });
+            document.getElementById("city").value = "<?= $row['CITY'] ?>";
+          }
+        });
 
-    }
+      }
+    });
   });
-});
 
-$("body").on("change", ".hq_country", function() {
-  loadCities($(this));
-});
+  $("body").on("change", ".hq_country", function() {
+    loadCities($(this));
+  });
 
-function loadCities(elem) {
-  $.ajax({
-    type: 'POST',
-    url: "../../assets/php/getCities.php",
-    dataType: 'json',
-    data: {
-      country_id: elem.val()
-    },
-    success: function(data) {
-      var city_selector = elem.siblings('.hq_city');
-      city_selector.html("");
-      city_selector.append($('<option>', {
-        value: "",
-        text: "Choose a city",
-        selected: true,
-        disabled: true
-      }));
-      $.each(data, function(index, element) {
+  function loadCities(elem) {
+    $.ajax({
+      type: 'POST',
+      url: "../../assets/php/getCities.php",
+      dataType: 'json',
+      data: {
+        country_id: elem.val()
+      },
+      success: function(data) {
+        var city_selector = elem.siblings('.hq_city');
+        city_selector.html("");
         city_selector.append($('<option>', {
-          value: element.city,
-          text: element.city
+          value: "",
+          text: "Choose a city",
+          selected: true,
+          disabled: true
         }));
-      });
-    }
-  });
-}
+        $.each(data, function(index, element) {
+          city_selector.append($('<option>', {
+            value: element.city,
+            text: element.city
+          }));
+        });
+      }
+    });
+  }
 </script>
