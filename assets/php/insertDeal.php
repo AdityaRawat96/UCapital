@@ -151,9 +151,8 @@ if ($asset_type == "Real Estate") {
 
 
 if (!empty($sql)) {
-  print_r($sql);
   if ($con->query($sql)) {
-    echo json_encode("Success");
+    echo "success";
   } else {
     $response = mysqli_error($con);
     echo json_encode("error  " . $response);
@@ -166,7 +165,6 @@ function getImage($asset, $sector)
 {
   $image = "";
   if ($asset != "") {
-    echo $asset;
     if ($asset == "Real Estate") {
       if ($sector == "Building") {
         $imagesDir = 'real_estate_building';
@@ -185,7 +183,6 @@ function getImage($asset, $sector)
       } else {
         $imagesDir = 'real_estate';
       }
-      echo $imagesDir;
     } else if ($asset == "NPE") {
       $imagesDir = 'npe';
     } else if ($asset == "Credits") {
@@ -227,10 +224,10 @@ function getImage($asset, $sector)
         $imagesDir = 'startup';
       }
     }
-    $images = glob('./../images/dummyImages/' . $imagesDir . '/*');
+    $images = glob('./../uploads/dummyImages/' . $imagesDir . '/*');
     if (isset($images)) {
       $randomImage = $images[array_rand($images)];
-      $searchSubStr = "images/";
+      $searchSubStr = "uploads/";
       $firstIndex = stripos($randomImage, $searchSubStr);
       $position = $firstIndex + strlen($searchSubStr);
       return substr($randomImage, $position);

@@ -238,7 +238,7 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="appyDealFilter()">Apply</button>
+        <button type="button" class="btn our-back-btn" data-dismiss="modal" onclick="appyDealFilter()">Apply</button>
       </div>
 
       <script type="text/javascript">

@@ -1458,6 +1458,12 @@ thead.m-a-detials-header {
   margin: 0 auto;
 }
 
+@media (max-width: 768px){
+  .register-form-section-34543 {
+    width: 100%;
+  }
+}
+
 .create-acount-title97 {
   color: #383740;
   display: block;

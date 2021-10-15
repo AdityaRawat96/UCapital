@@ -517,10 +517,15 @@ svg{
 }
 
 .btn-social-login{
+  height: 50px;
+  width: 50px;
   text-align: left;
   color: white;
   margin-top: 5px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-social-login-facebook{
@@ -701,4 +706,58 @@ svg{
 
 .left-tag-card{
   text-transform: capitalize;
+}
+
+.merger_image_container{
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  position: relative;
+  min-height: 30vh;
+  background-clip: content-box;
+  background-position: center;
+}
+
+.merger-tag-top{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 20px 10px;
+  padding: 7px 14px;
+  border-radius: 5px;
+  background-color: #03C3F8;
+  color: white;
+}
+
+.merger-tag-bottom{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin: 20px 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #1BB584;
+  color: white;
+}
+
+.merger-tag-bookmark{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-right: 20px;
+}
+
+.post-add {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .news_category{
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+  }
+  .news_category span{
+    white-space: nowrap;
+  }
 }

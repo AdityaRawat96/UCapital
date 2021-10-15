@@ -1103,16 +1103,17 @@ if (isset($_SESSION['email'])) {
     }
 
     var image_file = '<?= $row["IMAGE"]; ?>';
-    folderName = image_file.split("/")[1];
+    folderName = image_file.split("/")[0] + "/" + image_file.split("/")[1];
     imageName = image_file.split("/")[2];
     var fileDetails = [];
     var fileAttachmentNames = [];
     var fileDetail = {
       name: imageName,
-      file: '../../assets/uploads/MergerAcquisition/' + folderName + '/' + imageName,
-      url: '../../assets/uploads/MergerAcquisition/' + folderName + '/' + imageName
+      file: '../../assets/uploads/' + image_file,
+      url: '../../assets/uploads/' + image_file
     }
     fileDetails.push(fileDetail);
+    $("#adImage-list").val('<?= $row["IMAGE"]; ?>');
     fileAttachmentNames.push(imageName)
 
     addFiles('adImage', fileDetails, fileAttachmentNames);
@@ -1313,7 +1314,7 @@ if (isset($_SESSION['email'])) {
         dragContainer: null,
       },
       uploadFile: {
-        url: "../../vendor/plugins/filer/php/ajax_upload_file.php",
+        url: "../../plugins/filer/php/ajax_upload_file.php",
         data: {
           folderName: folderName,
         },
@@ -1327,7 +1328,7 @@ if (isset($_SESSION['email'])) {
             filerKit = inputEl.prop("jFiler");
           filerKit.files_list[id].name = new_file_name;
           uploadedFiles.push(new_file_name);
-          $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
+          $("#" + filerID + "-list").val(folderName + "/" + new_file_name)
           itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
             $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
           });
@@ -1360,10 +1361,12 @@ if (isset($_SESSION['email'])) {
         uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
           return value != file_name;
         });
-        $("#" + filerID + "-list").val(JSON.stringify(uploadedFiles))
-        $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
-          file: file_name
-        });
+        $("#" + filerID + "-list").val("")
+        if(folderName.split("/")[0] == "MergerAcquisition"){
+          $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
+            file: file_name
+          });
+        }
       },
       onEmpty: null,
       options: null,
