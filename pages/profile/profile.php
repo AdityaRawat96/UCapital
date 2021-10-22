@@ -248,7 +248,7 @@ if (mysqli_num_rows($result) > 0) {
                               <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
                               <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
                               <hr>
-                              <span>Key Elements: <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
                                   <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell" onclick="editAd('<?= $deal['ID'] ?>','<?= $deal['ASSET_TYPE'] ?>','sell')">Edit</button>
@@ -307,7 +307,7 @@ if (mysqli_num_rows($result) > 0) {
                               <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
                               <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
                               <hr>
-                              <span>Key Elements: <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
                                 <div class="col-md-6 col-sm-12">
                                   <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="sell" onclick="editAd('<?= $deal['ID'] ?>','<?= $deal['ASSET_TYPE'] ?>','buy')">Edit</button>

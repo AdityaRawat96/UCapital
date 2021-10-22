@@ -57,9 +57,9 @@ body {
 }
 
 .navbar-white {
-  background-color: #FEFCF8;
+  background-color: #FFFFFF;
   color: #1f2d3d;
-  box-shadow: 0 3px 15px #F6C1432F;
+  box-shadow: 0 3px 5px lightgrey;
 }
 
 .profile-picture-heading {

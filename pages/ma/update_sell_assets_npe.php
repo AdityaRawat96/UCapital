@@ -516,6 +516,9 @@ if (isset($_SESSION['email'])) {
     document.getElementById("asking_price").value = "<?= $row["ASKING_PRICE"] ?>";
     document.getElementById("market_value").value = "<?= $row["MARKET_VALUE"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
   }
 </script>
 

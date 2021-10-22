@@ -603,6 +603,9 @@ if (isset($_SESSION['email'])) {
     } else {
       $(".collateral_type").hide();
     }
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
   }
 </script>
 

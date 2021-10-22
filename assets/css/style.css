@@ -761,3 +761,7 @@ svg{
     white-space: nowrap;
   }
 }
+
+.content-wrapper{
+  background-color: #FFFFFF !important;
+}

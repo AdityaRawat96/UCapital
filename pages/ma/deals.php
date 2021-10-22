@@ -578,10 +578,6 @@ if (isset($_SESSION['email'])) {
         });
       });
 
-      $(".default_currency").on("change", function() {
-        $(".span-currency-icon").html($(this).find('option:selected').data('value'));
-      });
-
       $(".industry").each(function() {
         $(this).select2({
           maximumSelectionLength: 5,

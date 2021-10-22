@@ -580,6 +580,9 @@ if (isset($_SESSION['email'])) {
     } else if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "range") {
       document.getElementById("asset_value_range").value = "<?= $row["ASSET_VAL_MIN"] . '|' . $row["ASSET_VAL_MAX"] ?>";
     }
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
   }
 </script>
 

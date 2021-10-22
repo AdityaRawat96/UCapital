@@ -1080,6 +1080,9 @@ if (isset($_SESSION['email'])) {
     } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
       document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
     }
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
 
     var values = "<?= $row["INDUSTRY"] ?>";
     $.each(values.split(","), function(i, e) {

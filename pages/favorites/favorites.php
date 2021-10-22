@@ -154,7 +154,7 @@
                             <div class="listing">
                               <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?=$deal['SECTOR']; ?> </span><br>
                               <span><i class="fas fa-chart-line"></i> &nbsp; <?=$deal['INDUSTRY']; ?></span><hr>
-                              <span>Key Elements: <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
+                              <span ><b>Key Elements:</b> <?=$deal['KEY_ELEMENTS']; ?></span><br><br>
                             </div>
                           </div>
                         </div>

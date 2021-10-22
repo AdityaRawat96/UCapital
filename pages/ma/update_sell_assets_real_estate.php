@@ -684,6 +684,9 @@ if (isset($_SESSION['email'])) {
     } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
       document.getElementById("investment_val_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
     }
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
 
 
     var image_file = '<?= $row["IMAGE"]; ?>';

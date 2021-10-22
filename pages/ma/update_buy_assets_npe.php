@@ -551,7 +551,10 @@ if (isset($_SESSION['email'])) {
       document.getElementById("npe_value_val").value = "<?= $row["VALUE_MIN"] ?>";
     } else if ("<?= $row["VALUE_TYPE"] ?>" == "range") {
       document.getElementById("npe_value_sel").value = "<?= $row["VALUE_MIN"] . '|' . $row["VALUE_MAX"] ?>";
-    }
+    } 
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
   }
 </script>
 

@@ -1060,6 +1060,9 @@ if (isset($_SESSION['email'])) {
     document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
     var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
     var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
+    $(".span-currency-icon").html(
+        $(".default_currency").find("option:selected").data("value")
+      );
 
     var investmentSizeArr = investmentSize.split(",");
     var investmentAmountArr = investmentAmount.split(",");
