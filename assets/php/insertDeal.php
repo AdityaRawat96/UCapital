@@ -129,12 +129,18 @@ if ($asset_type == "Real Estate") {
   $number_of_employees_min = (array_key_exists('number_of_employees_min', $data) && $data['number_of_employees_min'] != "") ? $data['number_of_employees_min'] : 0;
   $number_of_employees_max = (array_key_exists('number_of_employees_max', $data) && $data['number_of_employees_max'] != "") ? $data['number_of_employees_max'] : 0;
   $ebidta_margin = (array_key_exists('ebidta_margin', $data) && $data['ebidta_margin'] != "") ? $data['ebidta_margin'] : 0;
-  $for_rev_1 = (array_key_exists('for_rev_1', $data) && $data['for_rev_1'] != "") ? $data['for_rev_1'] : 0;
-  $for_ebd_1 = (array_key_exists('for_ebd_1', $data) && $data['for_ebd_1'] != "") ? $data['for_ebd_1'] : 0;
-  $for_rev_2 = (array_key_exists('for_rev_2', $data) && $data['for_rev_2'] != "") ? $data['for_rev_2'] : 0;
-  $for_ebd_2 = (array_key_exists('for_ebd_2', $data) && $data['for_ebd_2'] != "") ? $data['for_ebd_2'] : 0;
-  $for_rev_3 = (array_key_exists('for_rev_3', $data) && $data['for_rev_3'] != "") ? $data['for_rev_3'] : 0;
-  $for_ebd_3 = (array_key_exists('for_ebd_3', $data) && $data['for_ebd_3'] != "") ? $data['for_ebd_3'] : 0;
+  $for_rev_1 = (array_key_exists('for_rev_1', $data) && $data['for_rev_1'] != "") ? $data['for_rev_1'] : "";
+  $for_ebd_1 = (array_key_exists('for_ebd_1', $data) && $data['for_ebd_1'] != "") ? $data['for_ebd_1'] : "";
+  $for_rev_2 = (array_key_exists('for_rev_2', $data) && $data['for_rev_2'] != "") ? $data['for_rev_2'] : "";
+  $for_ebd_2 = (array_key_exists('for_ebd_2', $data) && $data['for_ebd_2'] != "") ? $data['for_ebd_2'] : "";
+  $for_rev_3 = (array_key_exists('for_rev_3', $data) && $data['for_rev_3'] != "") ? $data['for_rev_3'] : "";
+  $for_ebd_3 = (array_key_exists('for_ebd_3', $data) && $data['for_ebd_3'] != "") ? $data['for_ebd_3'] : "";
+  $for_rev_1_sel = (array_key_exists('for_rev_1_sel', $data) && $data['for_rev_1_sel'] != "") ? $data['for_rev_1_sel'] : "";
+  $for_ebd_1_sel = (array_key_exists('for_ebd_1_sel', $data) && $data['for_ebd_1_sel'] != "") ? $data['for_ebd_1_sel'] : "";
+  $for_rev_2_sel = (array_key_exists('for_rev_2_sel', $data) && $data['for_rev_2_sel'] != "") ? $data['for_rev_2_sel'] : "";
+  $for_ebd_2_sel = (array_key_exists('for_ebd_2_sel', $data) && $data['for_ebd_2_sel'] != "") ? $data['for_ebd_2_sel'] : "";
+  $for_rev_3_sel = (array_key_exists('for_rev_3_sel', $data) && $data['for_rev_3_sel'] != "") ? $data['for_rev_3_sel'] : "";
+  $for_ebd_3_sel = (array_key_exists('for_ebd_3_sel', $data) && $data['for_ebd_3_sel'] != "") ? $data['for_ebd_3_sel'] : "";
   $aum = (array_key_exists('aum', $data) && $data['aum'] != "") ? $data['aum'] : 0;
   $key_elements = array_key_exists('key_elements', $data) ? $data['key_elements'] : "";
   $number_of_investments = (array_key_exists('number_of_investments', $data) && $data['number_of_investments'] != "") ? $data['number_of_investments'] : 0;
@@ -146,7 +152,7 @@ if ($asset_type == "Real Estate") {
   $description = array_key_exists('description', $data) ? $data['description'] : "";
   $image = array_key_exists('image', $data) && $data['image'] != "" ? $data['image'] : getImage($asset_type, $sector);
   $userId = $_SESSION['id'];
-  $sql = "INSERT INTO `business_company` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE` , `COMPANY_TYPE`, `SUB_COMPANY_TYPE`, `COUNTRY`, `CITY`, `FOUNDATION_YEAR`, `CURRENCY`, `COMPANY_VAL_TYPE`, `COMPANY_VAL_MIN`, `COMPANY_VAL_MAX`, `INVESTMENT_TYPE`, `INVESTMENT_MIN`, `INVESTMENT_MAX`, `SECTOR`, `INDUSTRY`, `COMPANY_BUSINESS`, `AREA_OF_ACTIVITY`, `SCALABILITY`, `SCALABILITY_AREA`, `MARKET_SHARE`, `NUM_OF_EMPLOYEE_MIN`, `NUM_OF_EMPLOYEE_MAX`, `ACTUAL_REVENUE_TYPE`, `ACTUAL_REVENUE_MIN`, `ACTUAL_REVENUE_MAX`, `EBIDTA_MARGIN`, `FORECAST_REVENUE_Y1`, `FORECAST_REVENUE_Y2`, `FORECAST_REVENUE_Y3`,`FORECAST_EBITDA_Y1`, `FORECAST_EBITDA_Y2`, `FORECAST_EBITDA_Y3`, `NUM_OF_INVESTMENT`, `INVESTMENT_SIZE`, `PREF_INVESTMENT_AMOUNT`, `WHO_I_AM`, `LOOKING_FOR`, `WANT_TO_DO`, `AUM`, `DESCRIPTION`, `KEY_ELEMENTS`, `IMAGE`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$company_type', '$startup_type', '$country', '$city', $foundation_year, '$default_currency', '$company_value_type', $company_value_min, $company_value_max, '$investment_required_value', $investment_required_min, $investment_required_max, '$sector', '$industry', '$company_business', '$area_of_activity', '$scalability', '$scalability_area', $market_share, $number_of_employees_min, $number_of_employees_max, '$actual_revenue_type', $actual_revenue_min, $actual_revenue_max, $ebidta_margin, '$for_rev_1', '$for_rev_2', '$for_rev_3', '$for_ebd_1', '$for_ebd_2', '$for_ebd_3', $number_of_investments, '$investment_size', '$investment_amount', '$who_i_am', '$looking_for', '$what_i_want', $aum, '$description', '$key_elements', '$image')";
+  $sql = "INSERT INTO `business_company` (`USER_ID`, `DEAL`, `OFFER`, `ASSET_TYPE` , `COMPANY_TYPE`, `SUB_COMPANY_TYPE`, `COUNTRY`, `CITY`, `FOUNDATION_YEAR`, `CURRENCY`, `COMPANY_VAL_TYPE`, `COMPANY_VAL_MIN`, `COMPANY_VAL_MAX`, `INVESTMENT_TYPE`, `INVESTMENT_MIN`, `INVESTMENT_MAX`, `SECTOR`, `INDUSTRY`, `COMPANY_BUSINESS`, `AREA_OF_ACTIVITY`, `SCALABILITY`, `SCALABILITY_AREA`, `MARKET_SHARE`, `NUM_OF_EMPLOYEE_MIN`, `NUM_OF_EMPLOYEE_MAX`, `ACTUAL_REVENUE_TYPE`, `ACTUAL_REVENUE_MIN`, `ACTUAL_REVENUE_MAX`, `EBIDTA_MARGIN`, `FORECAST_REVENUE_Y1`, `FORECAST_REVENUE_Y2`, `FORECAST_REVENUE_Y3`,`FORECAST_EBITDA_Y1`, `FORECAST_EBITDA_Y2`, `FORECAST_EBITDA_Y3`, `NUM_OF_INVESTMENT`, `INVESTMENT_SIZE`, `PREF_INVESTMENT_AMOUNT`, `WHO_I_AM`, `LOOKING_FOR`, `WANT_TO_DO`, `AUM`, `DESCRIPTION`, `KEY_ELEMENTS`, `IMAGE`, `FORECAST_REVENUE_Y1_SEL`, `FORECAST_REVENUE_Y2_SEL`, `FORECAST_REVENUE_Y3_SEL`, `FORECAST_EBITDA_Y1_SEL`, `FORECAST_EBITDA_Y2_SEL`, `FORECAST_EBITDA_Y3_SEL`) VALUES ('$userId', '$deal_type', '$offer', '$asset_type', '$company_type', '$startup_type', '$country', '$city', $foundation_year, '$default_currency', '$company_value_type', $company_value_min, $company_value_max, '$investment_required_value', $investment_required_min, $investment_required_max, '$sector', '$industry', '$company_business', '$area_of_activity', '$scalability', '$scalability_area', $market_share, $number_of_employees_min, $number_of_employees_max, '$actual_revenue_type', $actual_revenue_min, $actual_revenue_max, $ebidta_margin, '$for_rev_1', '$for_rev_2', '$for_rev_3', '$for_ebd_1', '$for_ebd_2', '$for_ebd_3', $number_of_investments, '$investment_size', '$investment_amount', '$who_i_am', '$looking_for', '$what_i_want', $aum, '$description', '$key_elements', '$image','$for_rev_1_sel','$for_rev_2_sel','$for_rev_3_sel','$for_ebd_1_sel','$for_ebd_2_sel','$for_ebd_3_sel')";
 }
 
 

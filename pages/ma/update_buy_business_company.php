@@ -10,7 +10,6 @@ if (isset($_SESSION['email'])) {
   $result = mysqli_query($con, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
-    var_dump($row);
   }
 ?>
   <!-- Content Wrapper. Contains page content -->
@@ -483,6 +482,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_1_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1_buy" placeholder="Enter a value for 1st year" id="rev_y1y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_1_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_revenue_1" class="form-control bc_for_rev_1_buy" id="rev_y1y">
                         <option value="" selected disabled>Select a value for 1st year</option>
@@ -506,6 +523,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_1_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1_buy" placeholder="Enter a value for 1st year" id="ebd_y1y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_1_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_ebitda_1" class="form-control bc_for_ebd_1_buy" id="ebd_y1y">
                         <option value="" selected disabled>Select a value for 1st year</option>
@@ -532,6 +567,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_2_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2_buy" placeholder="Enter a value for 2nd year" id="rev_y2y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_2_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_revenue_2" class="form-control bc_for_rev_2_buy" id="rev_y2y">
                         <option value="" selected disabled>Select a value for 2nd year</option>
@@ -554,6 +607,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_2_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2_buy" placeholder="Enter a value for 2nd year" id="ebd_y2y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_2_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_ebitda_2" class="form-control bc_for_ebd_2_buy" id="ebd_y2y">
                         <option value="" selected disabled>Select a value for 2nd year</option>
@@ -580,6 +651,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_3_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3_buy" placeholder="Enter a value for 3rd year" id="rev_y3y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_3_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_revenue_3" class="form-control bc_for_rev_3_buy" id="rev_y3y">
                         <option value="" selected disabled>Select a value for 3rd year</option>
@@ -602,6 +691,24 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_3_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3_buy" placeholder="Enter a value for 3rd year" id="ebd_y3y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_3_sel" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
                       <select name="forcast_ebitda_3" class="form-control bc_for_ebd_3_buy" id="ebd_y3y">
                         <option value="" selected disabled>Select a value for 3rd year</option>
@@ -813,24 +920,6 @@ if (isset($_SESSION['email'])) {
         ebitda_margin: {
           required: true
         },
-        forcast_revenue_1: {
-          required: true,
-        },
-        forcast_ebitda_1: {
-          required: true
-        },
-        forcast_revenue_2: {
-          required: true,
-        },
-        forcast_ebitda_2: {
-          required: true
-        },
-        forcast_revenue_3: {
-          required: true,
-        },
-        forcast_ebitda_3: {
-          required: true
-        },
         general_description: {
           required: true
         },
@@ -1035,12 +1124,42 @@ if (isset($_SESSION['email'])) {
     }
 
     response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
-    response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
-    response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
-    response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
-    response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
-    response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
-    response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
+    response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
+    response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
+    response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
+    response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sel']:checked").val();
+    response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sel']:checked").val();
+    response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sel']:checked").val();
+    if ($("input[name='forcast_revenue_1_sel']:checked").val() == "fixed") {
+      response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
+    } else {
+      response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
+    }
+    if ($("input[name='forcast_revenue_2_sel']:checked").val() == "fixed") {
+      response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
+    } else {
+      response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
+    }
+    if ($("input[name='forcast_revenue_3_sel']:checked").val() == "fixed") {
+      response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
+    } else {
+      response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_1_sel']:checked").val() == "fixed") {
+      response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
+    } else {
+      response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_2_sel']:checked").val() == "fixed") {
+      response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
+    } else {
+      response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_3_sel']:checked").val() == "fixed") {
+      response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
+    } else {
+      response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
+    }
     response['who_i_am'] = $(".bc_who_i_am").val();
     response['aum'] = $(".bc_aum").val();
     response['number_of_investments'] = $(".bc_number_of_investments").val();
@@ -1093,18 +1212,49 @@ if (isset($_SESSION['email'])) {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
-    document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
-    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
-    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
-    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
-    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
-    document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
     document.getElementById("aum").value = "<?= $row["AUM"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
     document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
+    $("input[name=forcast_revenue_1_sel][value=<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_revenue_2_sel][value=<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_revenue_3_sel][value=<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_1_sel][value=<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_2_sel][value=<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_3_sel][value=<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>]").attr('checked', 'checked');
+
+    if ('<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y1y_n").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
+    } else {
+      document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
+    }
+    if ('<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y2y_n").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    } else {
+      document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    }
+    if ('<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y3y_n").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
+    } else {
+      document.getElementById("rev_y3y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y1y_n").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    } else {
+      document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y2y_n").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    } else {
+      document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y3y_n").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
+    } else {
+      document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
+    }
     var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
     var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
     $(".span-currency-icon").html(

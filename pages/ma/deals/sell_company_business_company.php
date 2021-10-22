@@ -624,6 +624,24 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_revenue_1_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_revenue_1_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
           <select name="forcast_revenue_1" class="form-control bc_for_rev_1">
             <option value="" selected disabled>Select a value for 1st year</option>
@@ -644,8 +662,26 @@
       <span>Forcast Ebitda</span>
       <span class="deal-subhead">(Y1Y)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_ebitda_1_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_ebitda_1_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
           <select name="forcast_ebitda_1" class="form-control bc_for_ebd_1">
             <option value="" selected disabled>Select a value for 1st year</option>
@@ -672,6 +708,24 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_revenue_2_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_revenue_2_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
           <select name="forcast_revenue_2" class="form-control bc_for_rev_2">
             <option value="" selected disabled>Select a value for 1st year</option>
@@ -694,8 +748,23 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_ebitda_2_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
-          <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year">
+          <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_ebitda_2_sell" class="deal-radio">
+          </span>
         </div>
         <div class="custom-file">
           <select name="forcast_ebitda_2" class="form-control bc_for_ebd_2">
@@ -723,6 +792,24 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_revenue_3_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3" placeholder="Enter a value for 1st year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_revenue_3_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
           <select name="forcast_revenue_3" class="form-control bc_for_rev_3">
             <option value="" selected disabled>Select a value for 3rd year</option>
@@ -745,6 +832,24 @@
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="forcast_ebitda_3_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="forcast_ebitda_3_sell" class="deal-radio">
+          </span>
+        </div>
         <div class="custom-file">
           <select name="forcast_ebitda_3" class="form-control bc_for_ebd_3">
             <option value="" selected disabled>Select a value for 3rd year</option>

@@ -195,24 +195,6 @@ if (isset($_SESSION['email'])) {
           ebitda_margin: {
             required: true
           },
-          forcast_revenue_1: {
-            required: true,
-          },
-          forcast_ebitda_1: {
-            required: true
-          },
-          forcast_revenue_2: {
-            required: true,
-          },
-          forcast_ebitda_2: {
-            required: true
-          },
-          forcast_revenue_3: {
-            required: true,
-          },
-          forcast_ebitda_3: {
-            required: true
-          },
           general_description: {
             required: true
           },
@@ -995,12 +977,43 @@ if (isset($_SESSION['email'])) {
       }
 
       response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
-      response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
-      response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
-      response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
-      response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
-      response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
-      response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
+      response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
+      response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
+      response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
+      response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sel']:checked").val();
+      response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sel']:checked").val();
+      response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sel']:checked").val();
+      if ($("input[name='forcast_revenue_1_sel']:checked").val() == "fixed") {
+        response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
+      } else {
+        response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_2_sel']:checked").val() == "fixed") {
+        response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
+      } else {
+        response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_3_sel']:checked").val() == "fixed") {
+        response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
+      } else {
+        response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_1_sel']:checked").val() == "fixed") {
+        response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
+      } else {
+        response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_2_sel']:checked").val() == "fixed") {
+        response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
+      } else {
+        response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_3_sel']:checked").val() == "fixed") {
+        response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
+      } else {
+        response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
+      }
+
       response['who_i_am'] = $(".bc_who_i_am").val();
       response['aum'] = $(".bc_aum").val();
       response['number_of_investments'] = $(".bc_number_of_investments").val();
@@ -1197,12 +1210,44 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
       response['ebidta_margin'] = $(".bc_ebidta_margin").val();
-      response['for_rev_1'] = $(".bc_for_rev_1 option:selected").val();
-      response['for_ebd_1'] = $(".bc_for_ebd_1 option:selected").val();
-      response['for_rev_2'] = $(".bc_for_rev_2 option:selected").val();
-      response['for_ebd_2'] = $(".bc_for_ebd_2 option:selected").val();
-      response['for_rev_3'] = $(".bc_for_rev_3 option:selected").val();
-      response['for_ebd_3'] = $(".bc_for_ebd_3 option:selected").val();
+
+      response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sell']:checked").val();
+      response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sell']:checked").val();
+      response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sell']:checked").val();
+      response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sell']:checked").val();
+      response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sell']:checked").val();
+      response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sell']:checked").val();
+      if ($("input[name='forcast_revenue_1_sell']:checked").val() == "fixed") {
+        response['for_rev_1'] = $(".bc_for_rev_1").val();
+      } else {
+        response['for_rev_1'] = $(".bc_for_rev_1 option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_2_sell']:checked").val() == "fixed") {
+        response['for_rev_2'] = $(".bc_for_rev_2").val();
+      } else {
+        response['for_rev_2'] = $(".bc_for_rev_2 option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_3_sell']:checked").val() == "fixed") {
+        response['for_rev_3'] = $(".bc_for_rev_3").val();
+      } else {
+        response['for_rev_3'] = $(".bc_for_rev_3 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_1_sell']:checked").val() == "fixed") {
+        response['for_ebd_1'] = $(".bc_for_ebd_1").val();
+      } else {
+        response['for_ebd_1'] = $(".bc_for_ebd_1 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_2_sell']:checked").val() == "fixed") {
+        response['for_ebd_2'] = $(".bc_for_ebd_2").val();
+      } else {
+        response['for_ebd_2'] = $(".bc_for_ebd_2 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_3_sell']:checked").val() == "fixed") {
+        response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+      } else {
+        response['for_ebd_3'] = $(".bc_for_ebd_3 option:selected").val();
+      }
+
 
       response['description'] = $(".bc_description").val();
       response['key_elements'] = $(".bc_key_elements").val();
