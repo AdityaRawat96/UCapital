@@ -1141,12 +1141,12 @@ if (isset($_SESSION['email'])) {
       response['actual_revenue_max'] = assetVal.substring(index + 1);
     }
     response['ebidta_margin'] = $(".bc_ebidta_margin").val();
-    response['for_rev_1'] = $(".bc_for_rev_1").val();
-    response['for_ebd_1'] = $(".bc_for_ebd_1").val();
-    response['for_rev_2'] = $(".bc_for_rev_2").val();
-    response['for_ebd_2'] = $(".bc_for_ebd_2").val();
-    response['for_rev_3'] = $(".bc_for_rev_3").val();
-    response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+    response['for_rev_1'] = $(".bc_for_rev_1 option:selected").val();
+    response['for_ebd_1'] = $(".bc_for_ebd_1 option:selected").val();
+    response['for_rev_2'] = $(".bc_for_rev_2 option:selected").val();
+    response['for_ebd_2'] = $(".bc_for_ebd_2 option:selected").val();
+    response['for_rev_3'] = $(".bc_for_rev_3 option:selected").val();
+    response['for_ebd_3'] = $(".bc_for_ebd_3 option:selected").val();
 
     response['description'] = $(".bc_description").val();
     response['key_elements'] = $(".bc_key_elements").val();
@@ -1184,10 +1184,10 @@ if (isset($_SESSION['email'])) {
     document.getElementById("foundation_year").value = "<?= $row["FOUNDATION_YEAR"] ?>";
     document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
     document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
-    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
-    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
-    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
-    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
     document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
@@ -1216,8 +1216,8 @@ if (isset($_SESSION['email'])) {
       document.getElementById("actual_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
     }
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
 
     var values = "<?= $row["INDUSTRY"] ?>";
     $.each(values.split(","), function(i, e) {
@@ -1510,7 +1510,7 @@ if (isset($_SESSION['email'])) {
           return value != file_name;
         });
         $("#" + filerID + "-list").val("")
-        if(folderName.split("/")[0] == "MergerAcquisition"){
+        if (folderName.split("/")[0] == "MergerAcquisition") {
           $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
             file: file_name
           });

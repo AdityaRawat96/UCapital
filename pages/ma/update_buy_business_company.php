@@ -10,6 +10,7 @@ if (isset($_SESSION['email'])) {
   $result = mysqli_query($con, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
+    var_dump($row);
   }
 ?>
   <!-- Content Wrapper. Contains page content -->
@@ -483,7 +484,13 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1_buy" id="rev_y1y" placeholder="Enter a value for 1st year">
+                      <select name="forcast_revenue_1" class="form-control bc_for_rev_1_buy" id="rev_y1y">
+                        <option value="" selected disabled>Select a value for 1st year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -491,6 +498,7 @@ if (isset($_SESSION['email'])) {
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Preferred Forcast Ebitda</span>
@@ -499,7 +507,16 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1_buy" id="ebd_y1y" placeholder="Enter a value for 1st year">
+                      <select name="forcast_ebitda_1" class="form-control bc_for_ebd_1_buy" id="ebd_y1y">
+                        <option value="" selected disabled>Select a value for 1st year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -516,7 +533,13 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2_buy" id="rev_y2y" placeholder="Enter a value for 2nd year">
+                      <select name="forcast_revenue_2" class="form-control bc_for_rev_2_buy" id="rev_y2y">
+                        <option value="" selected disabled>Select a value for 2nd year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -532,7 +555,16 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2_buy" id="ebd_y2y" placeholder="Enter a value for 2nd year">
+                      <select name="forcast_ebitda_2" class="form-control bc_for_ebd_2_buy" id="ebd_y2y">
+                        <option value="" selected disabled>Select a value for 2nd year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -549,7 +581,13 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3_buy" id="rev_y3y" placeholder="Enter a value for 3rd year">
+                      <select name="forcast_revenue_3" class="form-control bc_for_rev_3_buy" id="rev_y3y">
+                        <option value="" selected disabled>Select a value for 3rd year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -565,7 +603,16 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3_buy" id="ebd_y3y" placeholder="Enter a value for 3rd year">
+                      <select name="forcast_ebitda_3" class="form-control bc_for_ebd_3_buy" id="ebd_y3y">
+                        <option value="" selected disabled>Select a value for 3rd year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -988,12 +1035,12 @@ if (isset($_SESSION['email'])) {
     }
 
     response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
-    response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
-    response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
-    response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
-    response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
-    response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
-    response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
+    response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
+    response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
+    response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
+    response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
+    response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
+    response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
     response['who_i_am'] = $(".bc_who_i_am").val();
     response['aum'] = $(".bc_aum").val();
     response['number_of_investments'] = $(".bc_number_of_investments").val();
@@ -1047,10 +1094,10 @@ if (isset($_SESSION['email'])) {
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
     document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
-    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
-    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
-    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
-    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
     document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
     document.getElementById("aum").value = "<?= $row["AUM"] ?>";
@@ -1061,8 +1108,8 @@ if (isset($_SESSION['email'])) {
     var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
     var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
 
     var investmentSizeArr = investmentSize.split(",");
     var investmentAmountArr = investmentAmount.split(",");
@@ -1351,7 +1398,7 @@ if (isset($_SESSION['email'])) {
           return value != file_name;
         });
         $("#" + filerID + "-list").val("")
-        if(folderName.split("/")[0] == "MergerAcquisition"){
+        if (folderName.split("/")[0] == "MergerAcquisition") {
           $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
             file: file_name
           });

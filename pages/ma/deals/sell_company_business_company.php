@@ -625,7 +625,13 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year">
+          <select name="forcast_revenue_1" class="form-control bc_for_rev_1">
+            <option value="" selected disabled>Select a value for 1st year</option>
+            <option value="0|1000000">&#60; 1 million</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+            <option value="50000000|1000000000"> &#62; 50 milion</option>
+          </select>
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -641,7 +647,16 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year">
+          <select name="forcast_ebitda_1" class="form-control bc_for_ebd_1">
+            <option value="" selected disabled>Select a value for 1st year</option>
+            <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+            <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+            <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+            <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+            <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+            <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+            <option value="40|100">Over 40%</option>
+          </select>
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
@@ -658,7 +673,13 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2" placeholder="Enter a value for 2nd year">
+          <select name="forcast_revenue_2" class="form-control bc_for_rev_2">
+            <option value="" selected disabled>Select a value for 1st year</option>
+            <option value="0|1000000">&#60; 1 million</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+            <option value="50000000|1000000000"> &#62; 50 milion</option>
+          </select>
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -676,6 +697,18 @@
         <div class="custom-file">
           <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year">
         </div>
+        <div class="custom-file">
+          <select name="forcast_ebitda_2" class="form-control bc_for_ebd_2">
+            <option value="" selected disabled>Select a value for 2nd year</option>
+            <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+            <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+            <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+            <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+            <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+            <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+            <option value="40|100">Over 40%</option>
+          </select>
+        </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>
         </div>
@@ -691,7 +724,13 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3" placeholder="Enter a value for 3rd year">
+          <select name="forcast_revenue_3" class="form-control bc_for_rev_3">
+            <option value="" selected disabled>Select a value for 3rd year</option>
+            <option value="0|1000000">&#60; 1 million</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+            <option value="50000000|1000000000"> &#62; 50 milion</option>
+          </select>
         </div>
         <div class="input-group-append">
           <span class="input-group-text span-currency-icon">€</span>
@@ -707,7 +746,16 @@
     <div class="col-md-4 col-sm-12 input-container input-group">
       <div class="input-group">
         <div class="custom-file">
-          <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year">
+          <select name="forcast_ebitda_3" class="form-control bc_for_ebd_3">
+            <option value="" selected disabled>Select a value for 3rd year</option>
+            <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+            <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+            <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+            <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+            <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+            <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+            <option value="40|100">Over 40%</option>
+          </select>
         </div>
         <div class="input-group-append">
           <span class="input-group-text">%</span>

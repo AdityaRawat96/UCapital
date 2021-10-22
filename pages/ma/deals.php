@@ -803,12 +803,15 @@ if (isset($_SESSION['email'])) {
 
     function getBuyNPEData() {
       response = {};
-      response['npe_type'] = $(".npe_type_buy").val();
+      npe_type = "";
+      $(".npe_type_buy").each(function() {
+        npe_type += $(this).val() + "|";
+      });
+      response['npe_type'] = npe_type;
+
       response['npe_product_type'] = $(".npe_product_type_buy").val();
       response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
       response['npe_hq_city'] = $(".npe_hq_city_buy").val();
-      response['npe_state'] = $(".npe_state_buy").val();
-      response['npe_post_code'] = $(".npe_post_code_buy").val();
       response['npe_description'] = $(".npe_description_buy").val();
       response['npe_default_currency'] = $(".npe_default_currency_buy").val();
       response['npe_value'] = $(".npe_value_buy:checked").val();
@@ -992,12 +995,12 @@ if (isset($_SESSION['email'])) {
       }
 
       response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
-      response['for_rev_1'] = $(".bc_for_rev_1_buy").val();
-      response['for_ebd_1'] = $(".bc_for_ebd_1_buy").val();
-      response['for_rev_2'] = $(".bc_for_rev_2_buy").val();
-      response['for_ebd_2'] = $(".bc_for_ebd_2_buy").val();
-      response['for_rev_3'] = $(".bc_for_rev_3_buy").val();
-      response['for_ebd_3'] = $(".bc_for_ebd_3_buy").val();
+      response['for_rev_1'] = $(".bc_for_rev_1_buy option:selected").val();
+      response['for_ebd_1'] = $(".bc_for_ebd_1_buy option:selected").val();
+      response['for_rev_2'] = $(".bc_for_rev_2_buy option:selected").val();
+      response['for_ebd_2'] = $(".bc_for_ebd_2_buy option:selected").val();
+      response['for_rev_3'] = $(".bc_for_rev_3_buy option:selected").val();
+      response['for_ebd_3'] = $(".bc_for_ebd_3_buy option:selected").val();
       response['who_i_am'] = $(".bc_who_i_am").val();
       response['aum'] = $(".bc_aum").val();
       response['number_of_investments'] = $(".bc_number_of_investments").val();
@@ -1194,12 +1197,12 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
       response['ebidta_margin'] = $(".bc_ebidta_margin").val();
-      response['for_rev_1'] = $(".bc_for_rev_1").val();
-      response['for_ebd_1'] = $(".bc_for_ebd_1").val();
-      response['for_rev_2'] = $(".bc_for_rev_2").val();
-      response['for_ebd_2'] = $(".bc_for_ebd_2").val();
-      response['for_rev_3'] = $(".bc_for_rev_3").val();
-      response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+      response['for_rev_1'] = $(".bc_for_rev_1 option:selected").val();
+      response['for_ebd_1'] = $(".bc_for_ebd_1 option:selected").val();
+      response['for_rev_2'] = $(".bc_for_rev_2 option:selected").val();
+      response['for_ebd_2'] = $(".bc_for_ebd_2 option:selected").val();
+      response['for_rev_3'] = $(".bc_for_rev_3 option:selected").val();
+      response['for_ebd_3'] = $(".bc_for_ebd_3 option:selected").val();
 
       response['description'] = $(".bc_description").val();
       response['key_elements'] = $(".bc_key_elements").val();
