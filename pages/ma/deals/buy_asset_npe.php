@@ -4,7 +4,7 @@
       <span>Type of NPE</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control npe_type npe_type_buy" name="npe_type">
+      <select class="form-control npe_type npe_type_buy" name="npe_type" id="npe_type" multiple="multiple">
         <option value="" selected disabled>Choose type of NPE</option>
         <option value="Past due">Past due</option>
         <option value="Unlikely to pay">Unlikely to pay</option>
@@ -18,7 +18,7 @@
       <span>Loan/Product type</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control product_type npe_product_type_buy" name="product_type">
+      <select class="form-control product_type npe_product_type_buy" name="product_type" id="product_type" multiple="multiple">
         <option value="" selected disabled>Choose type of Loan/Product</option>
         <option value="Secured">Secured</option>
         <option value="Unsecured">Unsecured</option>
@@ -38,8 +38,6 @@
           <select class="form-control hq_city npe_hq_city_buy" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
-          <input type="text" name="state" value="" class="form-control npe_state_buy" placeholder="Enter State">
-          <input type="number" name="post_code" value="" class="form-control npe_post_code_buy" placeholder="Enter Zip/Postal code">
         </div>
       </div>
     </div>

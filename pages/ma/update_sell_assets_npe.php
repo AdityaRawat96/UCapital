@@ -39,7 +39,7 @@ if (isset($_SESSION['email'])) {
                   <span>Type of NPE</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control npe_type" name="npe_type" id="npe_type">
+                  <select class="form-control npe_type" name="npe_type" id="npe_type" multiple="multiple">
                     <option value="" selected disabled>Choose type of NPE</option>
                     <option value="Past due">Past due</option>
                     <option value="Unlikely to pay">Unlikely to pay</option>
@@ -53,7 +53,7 @@ if (isset($_SESSION['email'])) {
                   <span>Loan/Product type</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control product_type npe_product_type" name="product_type" id="product_type">
+                  <select class="form-control product_type npe_product_type" name="product_type" id="product_type" multiple="multiple">
                     <option value="" selected disabled>Choose type of Loan/Product</option>
                     <option value="NPL">NPL</option>
                     <option value="Secured">Secured</option>
@@ -455,8 +455,24 @@ if (isset($_SESSION['email'])) {
 
   function update() {
     response = {};
-    response['npe_type'] = $(".npe_type").val();
-    response['npe_product_type'] = $(".npe_product_type").val();
+    npe_type = "";
+    isNpeTypeSetted = false;
+    $(".npe_type option:checked").each(function() {
+      npe_type += $(this).val() + ",";
+      isNpeTypeSetted = true;
+    });
+    if (isNpeTypeSetted)
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+
+    product_type = "";
+    isProductTypeSetted = false;
+    $(".npe_product_type option:checked").each(function() {
+      product_type += $(this).val() + ",";
+      isProductTypeSetted = true;
+    });
+    if (isProductTypeSetted)
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+
     response['npe_collateral_type'] = $(".npe_collateral_type").val();
     response['npe_hq_country'] = $(".npe_hq_country option:selected").text();
     response['npe_hq_city'] = $(".npe_hq_city").val();
@@ -495,8 +511,14 @@ if (isset($_SESSION['email'])) {
   }
 
   function setValues() {
-    document.getElementById("npe_type").value = "<?= $row["NPE_TYPE"] ?>";
-    document.getElementById("product_type").value = "<?= $row["PRODUCT_TYPE"] ?>";
+    var values = "<?= $row["NPE_TYPE"] ?>";
+    $.each(values.split(","), function(i, e) {
+      $("#npe_type option[value='" + e + "']").prop("selected", true);
+    });
+    values = "<?= $row["PRODUCT_TYPE"] ?>";
+    $.each(values.split(","), function(i, e) {
+      $("#product_type option[value='" + e + "']").prop("selected", true);
+    });
     if ('' != "<?= $row["COLLATERAL_TYPE"] ?>") {
       document.getElementById("collateral_type").value = "<?= $row["COLLATERAL_TYPE"] ?>";
 
@@ -505,8 +527,6 @@ if (isset($_SESSION['email'])) {
     }
     document.getElementById("country").value = "<?= $row["COUNTRY"] ?>";
     document.getElementById("city").value = "<?= $row["CITY"] ?>";
-    document.getElementById("state").value = "<?= $row["STATE"] ?>";
-    document.getElementById("zipcode").value = "<?= $row["POSTAL"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
@@ -517,8 +537,8 @@ if (isset($_SESSION['email'])) {
     document.getElementById("market_value").value = "<?= $row["MARKET_VALUE"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
   }
 </script>
 

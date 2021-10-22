@@ -39,7 +39,7 @@ if (isset($_SESSION['email'])) {
                   <span>Type of NPE</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="npe_type">
+                  <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="npe_type" multiple="multiple">
                     <option value="" selected disabled>Choose type of NPE</option>
                     <option value="Past due">Past due</option>
                     <option value="Unlikely to pay">Unlikely to pay</option>
@@ -53,7 +53,7 @@ if (isset($_SESSION['email'])) {
                   <span>Loan/Product type</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control product_type npe_product_type_buy" id="npe_product_type_buy" name="product_type">
+                  <select class="form-control product_type npe_product_type_buy" id="npe_product_type_buy" name="product_type" multiple="multiple">
                     <option value="" selected disabled>Choose type of Loan/Product</option>
                     <option value="Secured">Secured</option>
                     <option value="Unsecured">Unsecured</option>
@@ -73,8 +73,6 @@ if (isset($_SESSION['email'])) {
                       <select class="form-control hq_city npe_hq_city_buy" name="hq_city" id="city">
                         <option value="" selected disabled>Choose a city</option>
                       </select>
-                      <input type="text" name="state" value="" class="form-control npe_state_buy" id="state" placeholder="Enter State">
-                      <input type="number" name="post_code" value="" class="form-control npe_post_code_buy" id="zipcode" placeholder="Enter Zip/Postal code">
                     </div>
                   </div>
                 </div>
@@ -484,8 +482,24 @@ if (isset($_SESSION['email'])) {
 
   function update() {
     response = {};
-    response['npe_type'] = $(".npe_type_buy").val();
-    response['npe_product_type'] = $(".npe_product_type_buy").val();
+    npe_type = "";
+    isNpeTypeSetted = false;
+    $(".npe_type_buy option:checked").each(function() {
+      npe_type += $(this).val() + ",";
+      isNpeTypeSetted = true;
+    });
+    if (isNpeTypeSetted)
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+
+    product_type = "";
+    isProductTypeSetted = false;
+    $(".npe_product_type_buy option:checked").each(function() {
+      product_type += $(this).val() + ",";
+      isProductTypeSetted = true;
+    });
+    if (isProductTypeSetted)
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+
     response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
     response['npe_hq_city'] = $(".npe_hq_city_buy").val();
     response['npe_state'] = $(".npe_state_buy").val();
@@ -532,12 +546,16 @@ if (isset($_SESSION['email'])) {
   }
 
   function setValues() {
-    document.getElementById("npe_type_buy").value = "<?= $row["NPE_TYPE"] ?>";
-    document.getElementById("npe_product_type_buy").value = "<?= $row["PRODUCT_TYPE"] ?>";
+    var values = "<?= $row["NPE_TYPE"] ?>";
+    $.each(values.split(","), function(i, e) {
+      $("#npe_type_buy option[value='" + e + "']").prop("selected", true);
+    });
+    values = "<?= $row["PRODUCT_TYPE"] ?>";
+    $.each(values.split(","), function(i, e) {
+      $("#npe_product_type_buy option[value='" + e + "']").prop("selected", true);
+    });
     document.getElementById("country").value = "<?= $row["COUNTRY"] ?>";
     document.getElementById("city").value = "<?= $row["CITY"] ?>";
-    document.getElementById("state").value = "<?= $row["STATE"] ?>";
-    document.getElementById("zipcode").value = "<?= $row["POSTAL"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
@@ -551,10 +569,10 @@ if (isset($_SESSION['email'])) {
       document.getElementById("npe_value_val").value = "<?= $row["VALUE_MIN"] ?>";
     } else if ("<?= $row["VALUE_TYPE"] ?>" == "range") {
       document.getElementById("npe_value_sel").value = "<?= $row["VALUE_MIN"] . '|' . $row["VALUE_MAX"] ?>";
-    } 
+    }
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
   }
 </script>
 
