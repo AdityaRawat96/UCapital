@@ -121,8 +121,8 @@ if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
         }
     }
 } else {
-  if ($dealType == "asset") {
-      $sql = "(SELECT
+    if ($dealType == "asset") {
+        $sql = "(SELECT
       real_estate.ID,
       real_estate.DEAL,
       real_estate.ASSET_TYPE,
@@ -167,8 +167,8 @@ if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
       '-' AS KEY_ELEMENTS,
       credit.ASSET_TYPE
       FROM credit where credit.DEAL = 'buy')";
-  } else {
-      $sql = "SELECT
+    } else {
+        $sql = "SELECT
       business_company.ID,
       business_company.DEAL,
       business_company.ASSET_TYPE,
@@ -183,7 +183,7 @@ if (isset($_POST["assetType"]) && $_POST["assetType"] != '') {
       business_company.KEY_ELEMENTS,
       business_company.ASSET_TYPE
       FROM business_company where business_company.DEAL = 'buy'";
-  }
+    }
 
     $result = mysqli_query($con, $sql)
         or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
@@ -273,6 +273,10 @@ function addLocation($query, $arr)
         $counter++;
         if ($counter < sizeof($arr)) {
             $query = $query . " OR ";
+        } else {
+            $query = $query . "OR (";
+            $query = $query . " FIND_IN_SET('*Any',COUNTRY)";
+            $query = $query . ")";
         }
     }
     $query = $query . ")";

@@ -540,6 +540,10 @@ function addLocation($query, $arr)
         $counter++;
         if ($counter < sizeof($arr)) {
             $query = $query . " OR ";
+        } else {
+            $query = $query . "OR (";
+            $query = $query . " FIND_IN_SET('*Any',COUNTRY)";
+            $query = $query . ")";
         }
     }
     $query = $query . ")";
