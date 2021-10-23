@@ -39,8 +39,7 @@ if (isset($_SESSION['email'])) {
                   <span>Type of NPE</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="npe_type" multiple="multiple">
-                    <option value="" selected disabled>Choose type of NPE</option>
+                  <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="npe_type" data-placeholder="Choose type of NPE" multiple="multiple">
                     <option value="Past due">Past due</option>
                     <option value="Unlikely to pay">Unlikely to pay</option>
                     <option value="NPL">NPL</option>
@@ -53,8 +52,7 @@ if (isset($_SESSION['email'])) {
                   <span>Loan/Product type</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control product_type npe_product_type_buy" id="npe_product_type_buy" name="product_type" multiple="multiple">
-                    <option value="" selected disabled>Choose type of Loan/Product</option>
+                  <select class="form-control product_type npe_product_type_buy" id="npe_product_type_buy" data-placeholder="Choose type of Loan/Product" name="product_type" multiple="multiple">
                     <option value="Secured">Secured</option>
                     <option value="Unsecured">Unsecured</option>
                   </select>
@@ -261,6 +259,8 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 <script>
   $(document).ready(function() {
+    $("#npe_type_buy").select2();
+    $("#npe_product_type_buy").select2();
     $('.ad-form').validate({
       submitHandler: function() {
         validateAdditionalFields();
@@ -550,10 +550,12 @@ if (isset($_SESSION['email'])) {
     $.each(values.split(","), function(i, e) {
       $("#npe_type_buy option[value='" + e + "']").prop("selected", true);
     });
+    $("#npe_type_buy").trigger('change');
     values = "<?= $row["PRODUCT_TYPE"] ?>";
     $.each(values.split(","), function(i, e) {
       $("#npe_product_type_buy option[value='" + e + "']").prop("selected", true);
     });
+    $("#npe_product_type_buy").trigger('change');
     document.getElementById("country").value = "<?= $row["COUNTRY"] ?>";
     document.getElementById("city").value = "<?= $row["CITY"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";

@@ -573,6 +573,19 @@ if (isset($_SESSION['email'])) {
         $(this).select2();
       });
 
+      $(".npe_type").each(function() {
+        $(this).select2();
+      });
+      $(".npe_product_type").each(function() {
+        $(this).select2();
+      });
+      $(".npe_type_buy").each(function() {
+        $(this).select2();
+      });
+      $(".npe_product_type_buy").each(function() {
+        $(this).select2();
+      });
+
       $(".input-group-multiple-radio").on("click", "input", function() {
         $(this).parent().parent().parent().parent().find("small").remove();
         $(this).parent().parent().find("input[type=radio]").prop("checked", true);

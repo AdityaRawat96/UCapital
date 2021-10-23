@@ -39,8 +39,7 @@ if (isset($_SESSION['email'])) {
                   <span>Type of NPE</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control npe_type" name="npe_type" id="npe_type" multiple="multiple">
-                    <option value="" selected disabled>Choose type of NPE</option>
+                  <select class="form-control npe_type" name="npe_type" id="npe_type" data-placeholder="Choose type of NPE" multiple="multiple">
                     <option value="Past due">Past due</option>
                     <option value="Unlikely to pay">Unlikely to pay</option>
                     <option value="NPL">NPL</option>
@@ -53,8 +52,7 @@ if (isset($_SESSION['email'])) {
                   <span>Loan/Product type</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control product_type npe_product_type" name="product_type" id="product_type" multiple="multiple">
-                    <option value="" selected disabled>Choose type of Loan/Product</option>
+                  <select class="form-control product_type npe_product_type" name="product_type" data-placeholder="Choose type of Loan/Product" id="product_type" multiple="multiple">
                     <option value="NPL">NPL</option>
                     <option value="Secured">Secured</option>
                     <option value="Unsecured">Unsecured</option>
@@ -234,6 +232,8 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 <script>
   $(document).ready(function() {
+    $("#npe_type").select2();
+    $("#product_type").select2();
     $('.ad-form').validate({
       submitHandler: function() {
         validateAdditionalFields();
@@ -515,10 +515,12 @@ if (isset($_SESSION['email'])) {
     $.each(values.split(","), function(i, e) {
       $("#npe_type option[value='" + e + "']").prop("selected", true);
     });
+    $("#npe_type").trigger('change');
     values = "<?= $row["PRODUCT_TYPE"] ?>";
     $.each(values.split(","), function(i, e) {
       $("#product_type option[value='" + e + "']").prop("selected", true);
     });
+    $("#product_type").trigger('change');
     if ('' != "<?= $row["COLLATERAL_TYPE"] ?>") {
       document.getElementById("collateral_type").value = "<?= $row["COLLATERAL_TYPE"] ?>";
 

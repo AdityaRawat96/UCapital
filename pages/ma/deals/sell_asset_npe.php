@@ -4,8 +4,7 @@
       <span>Type of NPE</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control npe_type" name="npe_type" multiple="multiple">
-        <option value="" selected disabled>Choose type of NPE</option>
+      <select class="form-control npe_type" name="npe_type" style="width: 100%;" data-placeholder="Choose type of NPE" multiple="multiple">
         <option value="Past due">Past due</option>
         <option value="Unlikely to pay">Unlikely to pay</option>
         <option value="NPL">NPL</option>
@@ -18,8 +17,7 @@
       <span>Loan/Product type</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control product_type npe_product_type" name="product_type" multiple="multiple">
-        <option value="" selected disabled>Choose type of Loan/Product</option>
+      <select class="form-control product_type npe_product_type" name="product_type" style="width: 100%;" data-placeholder="Choose type of Loan/Product" multiple="multiple">
         <option value="NPL">NPL</option>
         <option value="Secured">Secured</option>
         <option value="Unsecured">Unsecured</option>
