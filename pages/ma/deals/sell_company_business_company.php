@@ -601,15 +601,49 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Actual Ebitda Margin</span>
+      <span>Preferred Ebitda Margin</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda">
+          </span>
+        </div>
         <div class="custom-file">
-          <input type="number" name="ebitda_margin" class="form-control bc_ebidta_margin" placeholder="Insert a value from -100 to 100">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="fixed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control bc_preferred_ebitda_val" min="-100" max="100" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">%</span>
+          <span class="input-group-text">.00</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="range" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda">
+          </span>
+        </div>
+        <div class="custom-file">
+          <select class="form-control bc_preferred_ebitda_range" name="preferred_ebitda_range">
+            <option value="" selected disabled>Select a value for 1st year</option>
+            <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+            <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+            <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+            <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+            <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+            <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+            <option value="40|100">Over 40%</option>
+          </select>
         </div>
       </div>
     </div>
