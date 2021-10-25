@@ -601,7 +601,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Ebitda Margin</span>
+      <span>Actual Ebitda Margin</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container">
       <div class="input-group">
@@ -617,7 +617,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" value="fixed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda_buy">
+            <input type="radio" value="fixed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda">
           </span>
         </div>
         <div class="custom-file">
