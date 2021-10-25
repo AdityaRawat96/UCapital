@@ -477,13 +477,47 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Preferred Ebitda Margin</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
+                <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="ebitda_margin" class="form-control bc_ebidta_margin_buy" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control bc_preferred_ebitda_val" min="-100" max="100" placeholder="Type a value" id="bc_pref_ebitda_val">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">%</span>
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select class="form-control bc_preferred_ebitda_range" name="preferred_ebitda_range" id="bc_pref_ebitda_range">
+                        <option value="" selected disabled>Select a value for 1st year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -1137,7 +1171,16 @@ if (isset($_SESSION['email'])) {
       response['actual_revenue_max'] = assetVal.substring(index + 1);
     }
 
-    response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
+    response['ebitda_margin_type'] = $(".bc_pref_ebitda:checked").val();
+    if ($(".bc_pref_ebitda:checked").val() === "undisclosed") {} else if ($(".bc_pref_ebitda:checked").val() === "fixed") {
+      response['editda_margin_min'] = $(".bc_preferred_ebitda_val").val();
+      response['editda_margin_max'] = $(".bc_preferred_ebitda_val").val();
+    } else if ($(".bc_pref_ebitda:checked").val() === "range") {
+      assetVal = $(".bc_preferred_ebitda_range").val();
+      index = assetVal.lastIndexOf("|");
+      response['editda_margin_min'] = assetVal.substring(0, index);
+      response['editda_margin_max'] = assetVal.substring(index + 1);
+    }
     response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
     response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
     response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
@@ -1226,7 +1269,6 @@ if (isset($_SESSION['email'])) {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("startup_type").value = "<?= $row["SUB_COMPANY_TYPE"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
-    document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
     document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
     document.getElementById("aum").value = "<?= $row["AUM"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
@@ -1299,6 +1341,15 @@ if (isset($_SESSION['email'])) {
     } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
       document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
     }
+
+    $("input[name=bc_pref_ebitda][value=<?= $row["EBITDA_MARGIN_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "fixed") {
+      document.getElementById("bc_pref_ebitda_val").value = "<?= $row["EBIDTA_MARGIN"] ?>";
+    } else if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "range") {
+      document.getElementById("bc_pref_ebitda_range").value = "<?= $row["EBIDTA_MARGIN"] . '|' . $row["EBITDA_MARGIN_MAX"] ?>";
+    }
+
+
 
     var image_file = '<?= $row["IMAGE"]; ?>';
     folderName = image_file.split("/")[0] + "/" + image_file.split("/")[1];

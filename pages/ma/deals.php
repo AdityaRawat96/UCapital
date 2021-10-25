@@ -1063,7 +1063,17 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
 
-      response['ebidta_margin'] = $(".bc_ebidta_margin_buy").val();
+      response['ebitda_margin_type'] = $(".bc_pref_ebitda_buy:checked").val();
+      if ($(".bc_pref_ebitda_buy:checked").val() === "undisclosed") {} else if ($(".bc_pref_ebitda_buy:checked").val() === "fixed") {
+        response['editda_margin_min'] = $(".bc_preferred_ebitda_val_buy").val();
+        response['editda_margin_max'] = $(".bc_preferred_ebitda_val_buy").val();
+      } else if ($(".bc_pref_ebitda_buy:checked").val() === "range") {
+        assetVal = $(".bc_preferred_ebitda_range_buy").val();
+        index = assetVal.lastIndexOf("|");
+        response['editda_margin_min'] = assetVal.substring(0, index);
+        response['editda_margin_max'] = assetVal.substring(index + 1);
+      }
+
       response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
       response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
       response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
@@ -1172,7 +1182,17 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
 
-      response['ebidta_margin'] = $(".su_ebidta_margin_buy").val();
+      response['ebitda_margin_type'] = $(".su_pref_ebitda_buy:checked").val();
+      if ($(".su_pref_ebitda_buy:checked").val() === "undisclosed") {} else if ($(".su_pref_ebitda_buy:checked").val() === "fixed") {
+        response['editda_margin_min'] = $(".su_preferred_ebitda_val_buy").val();
+        response['editda_margin_max'] = $(".su_preferred_ebitda_val_buy").val();
+      } else if ($(".su_pref_ebitda_buy:checked").val() === "range") {
+        assetVal = $(".su_preferred_ebitda_range_buy").val();
+        index = assetVal.lastIndexOf("|");
+        response['editda_margin_min'] = assetVal.substring(0, index);
+        response['editda_margin_max'] = assetVal.substring(index + 1);
+      }
+
       response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
       response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
       response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
@@ -1352,6 +1372,17 @@ if (isset($_SESSION['email'])) {
         response['company_value_max'] = assetVal.substring(index + 1);
       }
 
+      response['ebitda_margin_type'] = $(".bc_pref_ebitda:checked").val();
+      if ($(".bc_pref_ebitda:checked").val() === "undisclosed") {} else if ($(".bc_pref_ebitda:checked").val() === "fixed") {
+        response['editda_margin_min'] = $(".bc_preferred_ebitda_val").val();
+        response['editda_margin_max'] = $(".bc_preferred_ebitda_val").val();
+      } else if ($(".bc_pref_ebitda:checked").val() === "range") {
+        assetVal = $(".bc_preferred_ebitda_range").val();
+        index = assetVal.lastIndexOf("|");
+        response['editda_margin_min'] = assetVal.substring(0, index);
+        response['editda_margin_max'] = assetVal.substring(index + 1);
+      }
+
       response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
       if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
         response['investment_required_min'] = $(".bc_investment_required_value_val").val();
@@ -1405,8 +1436,6 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_min'] = assetVal.substring(0, index);
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
-      response['ebidta_margin'] = $(".bc_ebidta_margin").val();
-
       response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sell']:checked").val();
       response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sell']:checked").val();
       response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sell']:checked").val();
@@ -1541,7 +1570,17 @@ if (isset($_SESSION['email'])) {
         response['actual_revenue_min'] = assetVal.substring(0, index);
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
-      response['ebidta_margin'] = $(".su_ebidta_margin").val();
+
+      response['ebitda_margin_type'] = $(".su_pref_ebitda:checked").val();
+      if ($(".su_pref_ebitda:checked").val() === "undisclosed") {} else if ($(".su_pref_ebitda:checked").val() === "fixed") {
+        response['editda_margin_min'] = $(".su_preferred_ebitda_val").val();
+        response['editda_margin_max'] = $(".su_preferred_ebitda_val").val();
+      } else if ($(".su_pref_ebitda:checked").val() === "range") {
+        assetVal = $(".su_preferred_ebitda_range").val();
+        index = assetVal.lastIndexOf("|");
+        response['editda_margin_min'] = assetVal.substring(0, index);
+        response['editda_margin_max'] = assetVal.substring(index + 1);
+      }
 
       response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sell']:checked").val();
       response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sell']:checked").val();
