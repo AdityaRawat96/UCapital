@@ -33,7 +33,23 @@ if (isset($_SESSION['email'])) {
       <div class="container-fluid">
         <div class="card p-3"><br>
           <form class="ad-form" action="index.html" method="post">
-            <div class="buy_company_business_company">
+            <div class="buy_company_start_up">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Type of Start up</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select class="form-control startup_type su_startup_type_buy" name="startup_type" id="startup_type">
+                    <option value="" selected disabled>Choose type of Start up</option>
+                    <option value="Pre-seed Stage">Pre-seed Stage</option>
+                    <option value="Seed Stage">Seed Stage</option>
+                    <option value="Early Stage">Early Stage</option>
+                    <option value="Growth Stage">Growth Stage</option>
+                    <option value="Expansion Phase">Expansion Phase</option>
+                    <option value="Exit Phase">Exit Phase</option>
+                  </select>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Location</span>
@@ -1109,7 +1125,7 @@ if (isset($_SESSION['email'])) {
       response['industry_sel'] = industry.substring(0, industry.length - 1);
 
     response['default_currency'] = $(".bc_default_currency_buy").val();
-
+    response['startup_type'] = $(".su_startup_type_buy").val();
     response['actual_revenue_type'] = $(".bc_actual_revenue_type_buy:checked").val();
     if ($(".bc_actual_revenue_type_buy:checked").val() === "undisclosed") {} else if ($(".bc_actual_revenue_type_buy:checked").val() === "fixed") {
       response['actual_revenue_min'] = $(".bc_actual_revenue_val_buy").val();
@@ -1208,6 +1224,7 @@ if (isset($_SESSION['email'])) {
 
   function setValues() {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
+    document.getElementById("startup_type").value = "<?= $row["SUB_COMPANY_TYPE"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
     document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";

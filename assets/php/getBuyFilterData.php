@@ -275,7 +275,7 @@ function addLocation($query, $arr)
             $query = $query . " OR ";
         } else {
             $query = $query . "OR (";
-            $query = $query . " FIND_IN_SET('*Any',COUNTRY)";
+            $query = $query . " FIND_IN_SET('All',COUNTRY)";
             $query = $query . ")";
         }
     }

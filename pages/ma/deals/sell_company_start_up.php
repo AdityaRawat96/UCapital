@@ -1,6 +1,22 @@
 <div class="sell_company_start_up hidden_deal_container_main">
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Type of Start up</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control startup_type su_startup_type" name="startup_type">
+        <option value="" selected disabled>Choose type of Start up</option>
+        <option value="Pre-seed Stage">Pre-seed Stage</option>
+        <option value="Seed Stage">Seed Stage</option>
+        <option value="Early Stage">Early Stage</option>
+        <option value="Growth Stage">Growth Stage</option>
+        <option value="Expansion Phase">Expansion Phase</option>
+        <option value="Exit Phase">Exit Phase</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
       <span>HQ Location</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
