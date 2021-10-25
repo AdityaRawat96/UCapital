@@ -31,15 +31,16 @@
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
-        <div class="col-md-12 col-sm-12 location_container">
+        <div class="col-md-8 col-sm-12 location_container">
           <select class="form-control hq_country npec_hq_country_buy" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
           <select class="form-control hq_city npec_hq_city_buy" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
-          <input type="text" name="state" value="" class="form-control npec_state_buy" placeholder="Enter State">
-          <input type="number" name="post_code" value="" class="form-control npec_post_code_buy" placeholder="Enter Zip/Postal code">
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
         </div>
       </div>
     </div>

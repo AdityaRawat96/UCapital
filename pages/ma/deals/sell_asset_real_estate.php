@@ -104,6 +104,9 @@
             <option value="" selected disabled>Choose a city</option>
           </select>
         </div>
+        <div class="col-md-4 col-sm-12">
+          <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
+        </div>
       </div>
     </div>
   </div>

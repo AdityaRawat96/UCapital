@@ -1244,11 +1244,11 @@ if (isset($_SESSION['email'])) {
     var citySetted = false;
     $(".hq_country").each(function() {
       countrySetted = true;
-      countryVal += $(this).find("option:selected").text() + ",";
+      countryVal += $(this).find("option:selected").text() + "|";
     });
     $(".hq_city").each(function() {
       citySetted = true;
-      cityVal += $(this).find("option:selected").val() + ",";
+      cityVal += $(this).find("option:selected").val() + "|";
     });
     console.log("cityVal " + cityVal);
     if (countrySetted)
@@ -1297,7 +1297,7 @@ if (isset($_SESSION['email'])) {
     var areaOfActivity = '';
     $(".bc_area_of_activity option:checked").each(function() {
       isAreaSetted = true;
-      areaOfActivity += $(this).text() + ",";
+      areaOfActivity += $(this).text() + "|";
     });
     if (isAreaSetted)
       response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
@@ -1479,7 +1479,7 @@ if (isset($_SESSION['email'])) {
     );
 
     var values = "<?= $row["INDUSTRY"] ?>";
-    $.each(values.split(","), function(i, e) {
+    $.each(values.split("|"), function(i, e) {
       $("#industry option[value='" + e + "']").prop("selected", true);
     });
     $("#industry").trigger('change');
@@ -1528,7 +1528,7 @@ if (isset($_SESSION['email'])) {
         });
 
         var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
-        $.each(values.split(","), function(i, e) {
+        $.each(values.split("|"), function(i, e) {
           $("#activity_area option").each(function() {
             if ($(this).text() == e) {
               $(this).attr('selected', 'selected');
@@ -1538,8 +1538,8 @@ if (isset($_SESSION['email'])) {
 
         var countryVal = "<?= $row['COUNTRY'] ?>";
         var cityVal = "<?= $row['CITY'] ?>";
-        countryArr = countryVal.split(",");
-        cityArr = cityVal.split(",");
+        countryArr = countryVal.split("|");
+        cityArr = cityVal.split("|");
         var location_container = $(".location_container");
         countryArr.forEach(function(element, index) {
           var countryId = "";

@@ -1136,11 +1136,11 @@ if (isset($_SESSION['email'])) {
     var citySetted = false;
     $(".hq_country").each(function() {
       countrySetted = true;
-      countryVal += $(this).find("option:selected").text() + ",";
+      countryVal += $(this).find("option:selected").text() + "|";
     });
     $(".hq_city").each(function() {
       citySetted = true;
-      cityVal += $(this).find("option:selected").val() + ",";
+      cityVal += $(this).find("option:selected").val() + "|";
     });
 
     if (countrySetted)
@@ -1229,12 +1229,12 @@ if (isset($_SESSION['email'])) {
     var investmentSize = "";
     $(".bc_investment_required_value_buy").each(function() {
       if ($(this).prop("checked")) {
-        investmentSize += $(this).val() + ",";
+        investmentSize += $(this).val() + "|";
       }
     });
     $(".bc_investment_amount_buy").each(function() {
       if ($(this).prop("checked")) {
-        investmentAmount += $(this).val() + ",";
+        investmentAmount += $(this).val() + "|";
       }
     });
     investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
@@ -1318,8 +1318,8 @@ if (isset($_SESSION['email'])) {
       $(".default_currency").find("option:selected").data("value")
     );
 
-    var investmentSizeArr = investmentSize.split(",");
-    var investmentAmountArr = investmentAmount.split(",");
+    var investmentSizeArr = investmentSize.split("|");
+    var investmentAmountArr = investmentAmount.split("|");
 
     for (var i = 0; i < investmentSizeArr.length; i++) {
       $('input[name="investment_size"][value="' + investmentSizeArr[i].toString() + '"]').prop("checked", true);
@@ -1330,7 +1330,7 @@ if (isset($_SESSION['email'])) {
     }
 
     var values = "<?= $row["INDUSTRY"] ?>";
-    $.each(values.split(","), function(i, e) {
+    $.each(values.split("|"), function(i, e) {
       $("#bc_industry option[value='" + e + "']").prop("selected", true);
     });
     $("#bc_industry").trigger('change');
@@ -1382,8 +1382,8 @@ if (isset($_SESSION['email'])) {
         country_data = data;
         var countryVal = "<?= $row['COUNTRY'] ?>";
         var cityVal = "<?= $row['CITY'] ?>";
-        countryArr = countryVal.split(",");
-        cityArr = cityVal.split(",");
+        countryArr = countryVal.split("|");
+        cityArr = cityVal.split("|");
         var location_container = $(".location_container");
         countryArr.forEach(function(element, index) {
           var countryId = "";
