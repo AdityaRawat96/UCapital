@@ -358,6 +358,10 @@ body {
   color: #FFF;
 }
 
+.card-img-contain{
+  position: relative;
+}
+
 .left-tag-card {
   width: auto;
   position: absolute;
@@ -366,6 +370,18 @@ body {
   font-size: 12px;
   padding: 2px 10px;
   border-radius: 3px;
+}
+
+.bottom-right-tag-card {
+  width: auto;
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background: #151A61;
+  color: #FFF;
 }
 
 .right-tag-batch {

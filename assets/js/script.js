@@ -1,5 +1,72 @@
 var tempItemList = [];
 
+function formatDealValue(type, min, max, currency){
+  var SI_SYMBOL = ["", "k", "mln", "G", "T", "P", "E"];
+  var formatted_currency = "";
+
+  var currency_symbol = "";
+  if(currency == "Euro"){
+    currency_symbol = "€";
+  }else if(currency == "Dollar"){
+    currency_symbol = "$";
+  }else if(currency == "Canadian Dollar"){
+    currency_symbol = "C$";
+  }else if(currency == "Pound"){
+    currency_symbol = "£";
+  }else if(currency == "Australian Dollar"){
+    currency_symbol = "A$";
+  }else if(currency == "Yen"){
+    currency_symbol = "¥";
+  }else if(currency == "Swedish Krona"){
+    currency_symbol = "SEK";
+  }else if(currency == "Danish Krona"){
+    currency_symbol = "DKK";
+  }
+
+  if(type == "undisclosed"){
+    formatted_currency = "Undisclosed";
+  }else if(type == "fixed"){
+    var tier = Math.log10(Math.abs(min)) / 3 | 0;
+    if(tier == 0) return min;
+    var suffix = SI_SYMBOL[tier];
+    var scale = Math.pow(10, tier * 3);
+    var scaled = min / scale;
+    formatted_currency = scaled.toFixed(1) + " " + suffix + " " + currency_symbol;
+  }else if(type == "range"){
+    if(min == 0){
+      var scaled1 = 0;
+      var suffix1 = "";
+
+      var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
+      if(tier2 == 0) return max;
+      var suffix2 = SI_SYMBOL[tier2];
+      var scale2 = Math.pow(10, tier2 * 3);
+      var scaled2 = max / scale2;
+
+      formatted_currency = scaled1 + " - " + scaled2.toFixed(1) + " " + suffix2 + " " + currency_symbol;
+    }else{
+      var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
+      if(tier1 == 0) return min;
+      var suffix1 = SI_SYMBOL[tier1];
+      var scale1 = Math.pow(10, tier1 * 3);
+      var scaled1 = min / scale1;
+
+      var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
+      if(tier2 == 0) return max;
+      var suffix2 = SI_SYMBOL[tier2];
+      var scale2 = Math.pow(10, tier2 * 3);
+      var scaled2 = max / scale2;
+      formatted_currency = scaled1.toFixed(1) + " " + suffix1 + " - " + scaled2.toFixed(1) + " " + suffix2 + " " + currency_symbol;
+    }
+  }
+
+  formatted_currency = formatted_currency.replace(".", ",");
+
+
+
+  return formatted_currency;
+}
+
 function load_section(button_val) {
   var section_name = $(".deal_type:checked").val();
   var offer_type = $(".offer:checked").val();
@@ -37,18 +104,18 @@ $(document).ready(function () {
   $(".all_selector_checkbox_main").change(function () {
     if ($(this).prop("checked")) {
       $(this)
-        .parent()
-        .parent()
-        .parent()
-        .find("input[type='checkbox']")
-        .prop("checked", true);
+      .parent()
+      .parent()
+      .parent()
+      .find("input[type='checkbox']")
+      .prop("checked", true);
     } else {
       $(this)
-        .parent()
-        .parent()
-        .parent()
-        .find("input[type='checkbox']")
-        .prop("checked", false);
+      .parent()
+      .parent()
+      .parent()
+      .find("input[type='checkbox']")
+      .prop("checked", false);
     }
   });
 
@@ -60,16 +127,16 @@ $(document).ready(function () {
     $(this).find(".deal-radio").prop("checked", true);
     $(".btn-deal-custom").removeClass("selected");
     $('.btn-deal-custom input[type="radio"]:checked')
-      .parents(".btn-deal-custom")
-      .addClass("selected");
+    .parents(".btn-deal-custom")
+    .addClass("selected");
     load_section($(this).find(".offer").val());
 
     var section_string =
-      $(".deal_type:checked").val() +
-      "_" +
-      $(".offer:checked").val() +
-      "_" +
-      $(".offer_type_selector").val();
+    $(".deal_type:checked").val() +
+    "_" +
+    $(".offer:checked").val() +
+    "_" +
+    $(".offer_type_selector").val();
     section_string = section_string.replace(" ", "_");
     section_string = section_string.toLowerCase();
     $(".hidden_deal_container_main").fadeOut(0);
@@ -102,8 +169,8 @@ $(document).ready(function () {
   );
   $(
     "." +
-      location.href.split("pages")[1].split("/")[2].split(".php")[0] +
-      "-sub-nav"
+    location.href.split("pages")[1].split("/")[2].split(".php")[0] +
+    "-sub-nav"
   ).addClass("active-manu-in");
   if (typeof ma_action !== "undefined") {
     $(".ma-detail-type").html(ma_action);
@@ -189,14 +256,14 @@ $(document).ready(function () {
     var elem = $(this);
     if (elem.val() != "All") {
       elem
-        .parent()
-        .parent()
-        .find('input[type="checkbox"]:checked')
-        .each(function () {
-          if ($(this).val() == "All") {
-            $(this).prop("checked", false);
-          }
-        });
+      .parent()
+      .parent()
+      .find('input[type="checkbox"]:checked')
+      .each(function () {
+        if ($(this).val() == "All") {
+          $(this).prop("checked", false);
+        }
+      });
     }
   });
 
@@ -245,9 +312,9 @@ $(document).ready(function () {
       $(this).removeClass("pass_visible");
       $(this).html('<i class="fas fa-eye"></i>');
       $(this)
-        .closest(":has(input)")
-        .find("input:first")
-        .attr("type", "password");
+      .closest(":has(input)")
+      .find("input:first")
+      .attr("type", "password");
     } else {
       $(this).addClass("pass_visible");
       $(this).html('<i class="fas fa-eye-slash"></i>');
@@ -258,11 +325,11 @@ $(document).ready(function () {
 
 function show_hidden_options(elem) {
   var section_string =
-    $(".deal_type:checked").val() +
-    "_" +
-    $(".offer:checked").val() +
-    "_" +
-    elem.val();
+  $(".deal_type:checked").val() +
+  "_" +
+  $(".offer:checked").val() +
+  "_" +
+  elem.val();
   section_string = section_string.replace(" ", "_");
   section_string = section_string.toLowerCase();
   $(".hidden_deal_container_main").fadeOut(0);
@@ -627,129 +694,129 @@ function applyFilter() {
       }
       if (preferredinvestmenttype_filter && cond1) {
         var preferredinvestmenttypes_temp = obj[i].preferredinvestmenttypes
-          .trim()
-          .toLowerCase();
+        .trim()
+        .toLowerCase();
         var preferredinvestment = preferredinvestmenttypes_temp.split(",");
         if (
           !preferredinvestment.some((item) =>
-            preferredinvestmenttype.includes(item)
-          )
-        ) {
-          cond2 = false;
-        }
-      }
-      if (preferredverticals_filter && cond1 && cond2) {
-        var preferredverticals_temp =
-          obj[i].Preferred_Verticals.trim().toLowerCase();
-        var preferredvertical = preferredverticals_temp.split(",");
-        if (
-          !preferredvertical.some((item) => preferredverticals.includes(item))
-        ) {
-          cond3 = false;
-        }
-      }
-      if (primaryinvestortype_filter && cond1 && cond2 && cond3) {
-        if (
-          $.inArray(obj[i].primaryinvestortype.trim(), primary_investor_type) ==
-          -1
-        ) {
-          cond4 = false;
-        }
-      }
-      if (preferredindustrytype_filter && cond1 && cond2 && cond3 && cond4) {
-        var ind_temp = obj[i].preferredindustry.trim();
-        var industries = ind_temp.split(",");
-        if (
-          !industries.some((item) => preferrerd_industry_type.includes(item))
-        ) {
-          cond5 = false;
-        }
-      }
-      if (location_filter && cond1 && cond2 && cond3 && cond4 && cond5) {
-        if ($.inArray(obj[i].where.trim(), location) == -1) {
-          cond6 = false;
-        }
-      }
-      if (aum_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
-        if (obj[i].aum != null && obj[i].aum != "") {
-          var aumcondition_temp = aumcondition.substring(
-            0,
-            aumcondition.length - 3
-          );
-          aumcondition_temp = aumcondition_temp.replace(/\X/g, obj[i].aum);
-          if (!eval(aumcondition_temp)) {
-            cond7 = false;
-          }
-        } else {
-          cond7 = false;
-        }
-      }
-      if (
-        investmentprofessionals_filter &&
-        cond1 &&
-        cond2 &&
-        cond3 &&
-        cond4 &&
-        cond5 &&
-        cond6 &&
-        cond7 &&
-        cond8
+          preferredinvestmenttype.includes(item)
+        )
       ) {
-        if (
-          obj[i].investmentprofessionals != null &&
-          obj[i].investmentprofessionals != ""
-        ) {
-          var investmentprofessionals_temp = investmentprofessionals.substring(
-            0,
-            investmentprofessionals.length - 3
-          );
-          investmentprofessionals_temp = investmentprofessionals_temp.replace(
-            /\X/g,
-            obj[i].investmentprofessionals
-          );
-          if (!eval(investmentprofessionals_temp)) {
-            cond8 = false;
-          }
-        } else {
-          cond8 = false;
-        }
-      }
-
-      if (
-        cond1 &&
-        cond2 &&
-        cond3 &&
-        cond4 &&
-        cond5 &&
-        cond6 &&
-        cond7 &&
-        cond8
-      ) {
-        var elementData = "";
-        elementData +=
-          '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor=' +
-          obj[i].id +
-          '" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
-        if (obj[i].favorite) {
-          elementData += " bookmark-active";
-        }
-        elementData +=
-          '" data-id="' +
-          obj[i].id +
-          '"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">' +
-          obj[i].name +
-          '</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>' +
-          obj[i].location +
-          "</p></div></a></div>";
-        $(".itemsList").append(elementData);
+        cond2 = false;
       }
     }
-    $(".paginationList").rpmPagination({
-      domElement: ".pagination-item",
-      limit: 48,
-    });
+    if (preferredverticals_filter && cond1 && cond2) {
+      var preferredverticals_temp =
+      obj[i].Preferred_Verticals.trim().toLowerCase();
+      var preferredvertical = preferredverticals_temp.split(",");
+      if (
+        !preferredvertical.some((item) => preferredverticals.includes(item))
+      ) {
+        cond3 = false;
+      }
+    }
+    if (primaryinvestortype_filter && cond1 && cond2 && cond3) {
+      if (
+        $.inArray(obj[i].primaryinvestortype.trim(), primary_investor_type) ==
+        -1
+      ) {
+        cond4 = false;
+      }
+    }
+    if (preferredindustrytype_filter && cond1 && cond2 && cond3 && cond4) {
+      var ind_temp = obj[i].preferredindustry.trim();
+      var industries = ind_temp.split(",");
+      if (
+        !industries.some((item) => preferrerd_industry_type.includes(item))
+      ) {
+        cond5 = false;
+      }
+    }
+    if (location_filter && cond1 && cond2 && cond3 && cond4 && cond5) {
+      if ($.inArray(obj[i].where.trim(), location) == -1) {
+        cond6 = false;
+      }
+    }
+    if (aum_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
+      if (obj[i].aum != null && obj[i].aum != "") {
+        var aumcondition_temp = aumcondition.substring(
+          0,
+          aumcondition.length - 3
+        );
+        aumcondition_temp = aumcondition_temp.replace(/\X/g, obj[i].aum);
+        if (!eval(aumcondition_temp)) {
+          cond7 = false;
+        }
+      } else {
+        cond7 = false;
+      }
+    }
+    if (
+      investmentprofessionals_filter &&
+      cond1 &&
+      cond2 &&
+      cond3 &&
+      cond4 &&
+      cond5 &&
+      cond6 &&
+      cond7 &&
+      cond8
+    ) {
+      if (
+        obj[i].investmentprofessionals != null &&
+        obj[i].investmentprofessionals != ""
+      ) {
+        var investmentprofessionals_temp = investmentprofessionals.substring(
+          0,
+          investmentprofessionals.length - 3
+        );
+        investmentprofessionals_temp = investmentprofessionals_temp.replace(
+          /\X/g,
+          obj[i].investmentprofessionals
+        );
+        if (!eval(investmentprofessionals_temp)) {
+          cond8 = false;
+        }
+      } else {
+        cond8 = false;
+      }
+    }
+
+    if (
+      cond1 &&
+      cond2 &&
+      cond3 &&
+      cond4 &&
+      cond5 &&
+      cond6 &&
+      cond7 &&
+      cond8
+    ) {
+      var elementData = "";
+      elementData +=
+      '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor=' +
+      obj[i].id +
+      '" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
+      if (obj[i].favorite) {
+        elementData += " bookmark-active";
+      }
+      elementData +=
+      '" data-id="' +
+      obj[i].id +
+      '"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">' +
+      obj[i].name +
+      '</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>' +
+      obj[i].location +
+      "</p></div></a></div>";
+      $(".itemsList").append(elementData);
+    }
   }
-  addToSearch();
+  $(".paginationList").rpmPagination({
+    domElement: ".pagination-item",
+    limit: 48,
+  });
+}
+addToSearch();
 }
 
 function addToSearch() {
@@ -762,14 +829,14 @@ function addToSearch() {
     if ($.inArray(searchQuery, searchExisting) == -1) {
       $(".searchItems").append(
         '<span class="searchedItem" data-query="' +
-          searchQuery +
-          '"><span class="searchClear" onclick="clearSearch(' +
-          "'" +
-          searchQuery +
-          "'" +
-          ')">X</span><span class="searchText">' +
-          searchQuery +
-          "</span></span>"
+        searchQuery +
+        '"><span class="searchClear" onclick="clearSearch(' +
+        "'" +
+        searchQuery +
+        "'" +
+        ')">X</span><span class="searchText">' +
+        searchQuery +
+        "</span></span>"
       );
     }
   });
@@ -874,14 +941,14 @@ function addSeachFilter(searchQuery) {
   if ($.inArray(searchQuery, searchExisting) == -1) {
     $(".searchItems").append(
       '<span class="searchedItem" data-query="' +
-        searchQuery +
-        '"><span class="searchClear" onclick="clearSearch(' +
-        "'" +
-        searchQuery +
-        "'" +
-        ')">X</span><span class="searchText">' +
-        searchQuery +
-        "</span></span>"
+      searchQuery +
+      '"><span class="searchClear" onclick="clearSearch(' +
+      "'" +
+      searchQuery +
+      "'" +
+      ')">X</span><span class="searchText">' +
+      searchQuery +
+      "</span></span>"
     );
   }
   $("#searchIndicators").val("");
@@ -900,20 +967,20 @@ function showResults() {
       if (obj[i]) {
         var elementData = "";
         elementData +=
-          '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor=' +
-          obj[i].id +
-          '" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
+        '<div class="col-md-3 col-sm-6 investor_card pagination-item"><a href="investor-detail.php?investor=' +
+        obj[i].id +
+        '" class="card investor-category-l-4"><div class="card-header"><span class="right-investor-batch"><span class="bookmark bookmark-investor';
         if (obj[i].favorite) {
           elementData += " bookmark-active";
         }
         elementData +=
-          '" data-id="' +
-          obj[i].id +
-          '"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">' +
-          obj[i].name +
-          '</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>' +
-          obj[i].location +
-          "</p></div></a></div>";
+        '" data-id="' +
+        obj[i].id +
+        '"><i class="fas fa-bookmark fa-2x"></i></span></span><img src="../../dist/img/investor/1.jpg" alt="1" class="investor-images-set"></div><div class="card-body"><h6 class="card-title-heading-set">' +
+        obj[i].name +
+        '</h6><p class="card-text-location10"> <i class="fas fa-map-marker-alt"></i>' +
+        obj[i].location +
+        "</p></div></a></div>";
         $(".itemsList").append(elementData);
       }
     }
@@ -922,40 +989,40 @@ function showResults() {
       if (obj[i]) {
         var elementData = "";
         elementData +=
-          '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/' +
-          obj[i].image_folder +
-          "/" +
-          obj[i].image +
-          '" alt="image"> <span class="left-tag-card our-back"> ' +
-          obj[i].type +
-          ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
+        '<div class="col-md-3 col-sm-5 inline-block ma_card pagination-item"><div class="card mb-4 cart-custom-redious our-shadow"> <img class="card-img-top ma-img" src="../../assets/uploads/MergerAcquisition/' +
+        obj[i].image_folder +
+        "/" +
+        obj[i].image +
+        '" alt="image"> <span class="left-tag-card our-back"> ' +
+        obj[i].type +
+        ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-ma';
         if (obj[i].favorite) {
           elementData += " bookmark-active";
         }
         elementData +=
-          '" data-id="' +
-          obj[i].id +
-          '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> ' +
-          obj[i].title +
-          '</h5><p class="card-descripatoin pb-1 pt-1"> ' +
-          obj[i].description +
-          '</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
-          obj[i].location +
-          '"> <span> <i class="fas fa-map-marker-alt"></i> ' +
-          obj[i].location +
-          ' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> ' +
-          obj[i].value +
-          ' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
-          obj[i].industry_visible +
-          '"> <span><i class="fas fa-chart-pie"></i> ' +
-          obj[i].industry_visible +
-          ' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
-          obj[i].category +
-          '"> <span><i class="fas fa-chart-line"></i>' +
-          obj[i].category +
-          '</span> </a> <a href="ma-detail.php?ma=' +
-          obj[i].id +
-          '" class="contact-here-sectin564"> More Info <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
+        '" data-id="' +
+        obj[i].id +
+        '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><div class="d-flex flex-column justify-content-end p-2"><h5 class="card-heading text-dark"> ' +
+        obj[i].title +
+        '</h5><p class="card-descripatoin pb-1 pt-1"> ' +
+        obj[i].description +
+        '</p><div class="listing"> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
+        obj[i].location +
+        '"> <span> <i class="fas fa-map-marker-alt"></i> ' +
+        obj[i].location +
+        ' </span> </a> <a class="our-color listing-card-tag1"> <span><i class="fas fa-dollar-sign"></i> ' +
+        obj[i].value +
+        ' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
+        obj[i].industry_visible +
+        '"> <span><i class="fas fa-chart-pie"></i> ' +
+        obj[i].industry_visible +
+        ' </span> </a> <a class="our-color listing-card-tag1 clickable-filter" data-clickfilter="' +
+        obj[i].category +
+        '"> <span><i class="fas fa-chart-line"></i>' +
+        obj[i].category +
+        '</span> </a> <a href="ma-detail.php?ma=' +
+        obj[i].id +
+        '" class="contact-here-sectin564"> More Info <i class="fas fa-chevron-right"></i></a></div></div></div></div>';
         $(".itemsList").append(elementData);
       }
     }
@@ -964,24 +1031,24 @@ function showResults() {
       if (obj[i]) {
         var elementData = "";
         elementData +=
-          '<div class="col-md-4 col-sm-6 pagination-item"><div class="card advisor-category-l-4"><div class="card-header"> <span class="right-investor-batch"> <span class="bookmark bookmark-advisor';
+        '<div class="col-md-4 col-sm-6 pagination-item"><div class="card advisor-category-l-4"><div class="card-header"> <span class="right-investor-batch"> <span class="bookmark bookmark-advisor';
         if (obj[i].favorite) {
           elementData += " bookmark-active";
         }
         elementData +=
-          '" data-id="' +
-          obj[i].id +
-          '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><center> <img src="../../assets/uploads/Advisor/' +
-          obj[i].folder_name +
-          "/" +
-          obj[i].profile_picture +
-          '" alt="1" class="profile-advisor-category12"></center></div><div class="card-body"><p class="studio-commercialista"> ' +
-          obj[i].studio_name +
-          '</p><hr><p class="studio-commercialista-second"> <i class="far fa-star"></i> ' +
-          obj[i].interests +
-          '</p> <a href="advisor-detail.php?advisor=' +
-          obj[i].id +
-          '" class="advisor-category-contact-34"> More Info > </a></div></div></div>';
+        '" data-id="' +
+        obj[i].id +
+        '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span><center> <img src="../../assets/uploads/Advisor/' +
+        obj[i].folder_name +
+        "/" +
+        obj[i].profile_picture +
+        '" alt="1" class="profile-advisor-category12"></center></div><div class="card-body"><p class="studio-commercialista"> ' +
+        obj[i].studio_name +
+        '</p><hr><p class="studio-commercialista-second"> <i class="far fa-star"></i> ' +
+        obj[i].interests +
+        '</p> <a href="advisor-detail.php?advisor=' +
+        obj[i].id +
+        '" class="advisor-category-contact-34"> More Info > </a></div></div></div>';
         $(".itemsList").append(elementData);
       }
     }
@@ -1003,15 +1070,15 @@ $(document).ready(function () {
       $(this).siblings(".input-group-btn").find(".btn").trigger("click");
     } else {
       $(this)
-        .siblings(".input-group-btn")
-        .find(".btn")
-        .parent()
-        .parent()
-        .parent()
-        .find(".searchable")
-        .each(function () {
-          $(this).removeClass("hide_search");
-        });
+      .siblings(".input-group-btn")
+      .find(".btn")
+      .parent()
+      .parent()
+      .parent()
+      .find(".searchable")
+      .each(function () {
+        $(this).removeClass("hide_search");
+      });
     }
   });
 });
@@ -1019,23 +1086,23 @@ $(document).ready(function () {
 function searchFilter(elem) {
   $(".searchable").removeClass("hide_search");
   var filter_search_query = elem
-    .parent()
-    .parent()
-    .find(".filter_search_query")
-    .val()
-    .toLocaleLowerCase();
+  .parent()
+  .parent()
+  .find(".filter_search_query")
+  .val()
+  .toLocaleLowerCase();
   if (filter_search_query != "") {
     elem
-      .parent()
-      .parent()
-      .parent()
-      .find(".searchable")
-      .each(function () {
-        if (
-          $(this).html().toLocaleLowerCase().indexOf(filter_search_query) == -1
-        ) {
-          $(this).addClass("hide_search");
-        }
-      });
+    .parent()
+    .parent()
+    .parent()
+    .find(".searchable")
+    .each(function () {
+      if (
+        $(this).html().toLocaleLowerCase().indexOf(filter_search_query) == -1
+      ) {
+        $(this).addClass("hide_search");
+      }
+    });
   }
 }
