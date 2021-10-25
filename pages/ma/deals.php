@@ -1083,8 +1083,6 @@ if (isset($_SESSION['email'])) {
 
     function getBuyStartUpData() {
       response = {};
-      response['sector_sel'] = $(".su_sector_buy").val();
-      response['startup_type'] = $(".su_startup_type_buy").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -1103,10 +1101,10 @@ if (isset($_SESSION['email'])) {
       if (citySetted)
         response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
-
+      response['sector_sel'] = $(".su_sector_sel_buy").val();
       var isIndustrySetted = false;
       var industry = '';
-      $(".su_industry_buy").each(function() {
+      $(".su_industry_sel_buy").each(function() {
         isIndustrySetted = true;
         industry += $(this).val() + "|";
       });
@@ -1115,31 +1113,62 @@ if (isset($_SESSION['email'])) {
 
       response['default_currency'] = $(".su_default_currency_buy").val();
 
-      response['actual_revenue_type'] = $(".su_preferred_revenue_buy:checked").val();
-      if ($(".su_preferred_revenue_buy:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue_buy:checked").val() === "fixed") {
-        response['actual_revenue_min'] = $(".su_preferred_revenue_val_buy").val();
-        response['actual_revenue_max'] = $(".su_preferred_revenue_val_buy").val();
-      } else if ($(".su_preferred_revenue_buy:checked").val() === "range") {
-        assetVal = $(".su_preferred_revenue_sel_buy").val();
+      response['actual_revenue_type'] = $(".su_actual_revenue_type_buy:checked").val();
+      if ($(".su_actual_revenue_type_buy:checked").val() === "undisclosed") {} else if ($(".su_actual_revenue_type_buy:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".su_actual_revenue_val_buy").val();
+        response['actual_revenue_max'] = $(".su_actual_revenue_val_buy").val();
+      } else if ($(".su_actual_revenue_type_buy:checked").val() === "range") {
+        assetVal = $(".su_actual_revenue_sel_buy").val();
         index = assetVal.lastIndexOf("|");
         response['actual_revenue_min'] = assetVal.substring(0, index);
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
 
       response['ebidta_margin'] = $(".su_ebidta_margin_buy").val();
-      response['for_rev_1'] = $(".su_for_rev_1_buy").val();
-      response['for_ebd_1'] = $(".su_for_ebd_1_buy").val();
-      response['for_rev_2'] = $(".su_for_rev_2_buy").val();
-      response['for_ebd_2'] = $(".su_for_ebd_2_buy").val();
-      response['for_rev_3'] = $(".su_for_rev_3_buy").val();
-      response['for_ebd_3'] = $(".su_for_ebd_3_buy").val();
-      response['who_i_am'] = $(".su_who_i_am_buy").val();
+      response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sel']:checked").val();
+      response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sel']:checked").val();
+      response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sel']:checked").val();
+      response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sel']:checked").val();
+      response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sel']:checked").val();
+      response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sel']:checked").val();
+      if ($("input[name='forcast_revenue_1_sel']:checked").val() == "fixed") {
+        response['for_rev_1'] = $(".su_for_rev_1_buy").val();
+      } else {
+        response['for_rev_1'] = $(".su_for_rev_1_buy option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_2_sel']:checked").val() == "fixed") {
+        response['for_rev_2'] = $(".su_for_rev_2_buy").val();
+      } else {
+        response['for_rev_2'] = $(".su_for_rev_2_buy option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_3_sel']:checked").val() == "fixed") {
+        response['for_rev_3'] = $(".su_for_rev_3_buy").val();
+      } else {
+        response['for_rev_3'] = $(".su_for_rev_3_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_1_sel']:checked").val() == "fixed") {
+        response['for_ebd_1'] = $(".su_for_ebd_1_buy").val();
+      } else {
+        response['for_ebd_1'] = $(".su_for_ebd_1_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_2_sel']:checked").val() == "fixed") {
+        response['for_ebd_2'] = $(".su_for_ebd_2_buy").val();
+      } else {
+        response['for_ebd_2'] = $(".su_for_ebd_2_buy option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_3_sel']:checked").val() == "fixed") {
+        response['for_ebd_3'] = $(".su_for_ebd_3_buy").val();
+      } else {
+        response['for_ebd_3'] = $(".su_for_ebd_3_buy option:selected").val();
+      }
+
+      response['who_i_am'] = $(".su_who_i_am").val();
       response['aum'] = $(".su_aum").val();
       response['number_of_investments'] = $(".su_number_of_investments").val();
-      response['what_i_want'] = $(".su_what_i_want").val();
+      response['what_i_want'] = $(".su_what_i_want_buy").val();
       response['description'] = $(".su_description_buy").val();
       response['looking_for'] = $(".su_looking_for").val();
-      response['image'] = $(".buy_startup_image-list").val();
+      response['image'] = $(".buy_su_image-list").val();
 
       var investmentAmount = "";
       var investmentSize = "";
@@ -1148,7 +1177,7 @@ if (isset($_SESSION['email'])) {
           investmentSize += $(this).val() + ",";
         }
       });
-      $(".su_preferred_investment_amount").each(function() {
+      $(".su_investment_amount_buy").each(function() {
         if ($(this).prop("checked")) {
           investmentAmount += $(this).val() + ",";
         }
@@ -1158,8 +1187,87 @@ if (isset($_SESSION['email'])) {
       response['investment_size'] = investmentSize;
       response['investment_amount'] = investmentAmount;
       return response;
-
     }
+
+    // function getBuyStartUpData() {
+    //   response = {};
+    //   response['sector_sel'] = $(".su_sector_buy").val();
+    //   response['startup_type'] = $(".su_startup_type_buy").val();
+    //   var countryVal = "";
+    //   var cityVal = "";
+    //   var countrySetted = false;
+    //   var citySetted = false;
+    //   $(".su_hq_country_buy").each(function() {
+    //     countrySetted = true;
+    //     countryVal += $(this).find("option:selected").text() + ",";
+    //   });
+    //   $(".su_hq_city_buy").each(function() {
+    //     citySetted = true;
+    //     cityVal += $(this).find("option:selected").val() + ",";
+    //   });
+
+    //   if (countrySetted)
+    //     response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    //   if (citySetted)
+    //     response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
+
+    //   var isIndustrySetted = false;
+    //   var industry = '';
+    //   $(".su_industry_buy").each(function() {
+    //     isIndustrySetted = true;
+    //     industry += $(this).val() + "|";
+    //   });
+    //   if (isIndustrySetted)
+    //     response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+    //   response['default_currency'] = $(".su_default_currency_buy").val();
+
+    //   response['actual_revenue_type'] = $(".su_preferred_revenue_buy:checked").val();
+    //   if ($(".su_preferred_revenue_buy:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue_buy:checked").val() === "fixed") {
+    //     response['actual_revenue_min'] = $(".su_preferred_revenue_val_buy").val();
+    //     response['actual_revenue_max'] = $(".su_preferred_revenue_val_buy").val();
+    //   } else if ($(".su_preferred_revenue_buy:checked").val() === "range") {
+    //     assetVal = $(".su_preferred_revenue_sel_buy").val();
+    //     index = assetVal.lastIndexOf("|");
+    //     response['actual_revenue_min'] = assetVal.substring(0, index);
+    //     response['actual_revenue_max'] = assetVal.substring(index + 1);
+    //   }
+
+    //   response['ebidta_margin'] = $(".su_ebidta_margin_buy").val();
+    //   response['for_rev_1'] = $(".su_for_rev_1_buy").val();
+    //   response['for_ebd_1'] = $(".su_for_ebd_1_buy").val();
+    //   response['for_rev_2'] = $(".su_for_rev_2_buy").val();
+    //   response['for_ebd_2'] = $(".su_for_ebd_2_buy").val();
+    //   response['for_rev_3'] = $(".su_for_rev_3_buy").val();
+    //   response['for_ebd_3'] = $(".su_for_ebd_3_buy").val();
+    //   response['who_i_am'] = $(".su_who_i_am_buy").val();
+    //   response['aum'] = $(".su_aum").val();
+    //   response['number_of_investments'] = $(".su_number_of_investments").val();
+    //   response['what_i_want'] = $(".su_what_i_want").val();
+    //   response['description'] = $(".su_description_buy").val();
+    //   response['looking_for'] = $(".su_looking_for").val();
+    //   response['image'] = $(".buy_startup_image-list").val();
+
+    //   var investmentAmount = "";
+    //   var investmentSize = "";
+    //   $(".su_investment_required_value_buy").each(function() {
+    //     if ($(this).prop("checked")) {
+    //       investmentSize += $(this).val() + ",";
+    //     }
+    //   });
+    //   $(".su_preferred_investment_amount").each(function() {
+    //     if ($(this).prop("checked")) {
+    //       investmentAmount += $(this).val() + ",";
+    //     }
+    //   });
+    //   investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+    //   investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
+    //   response['investment_size'] = investmentSize;
+    //   response['investment_amount'] = investmentAmount;
+    //   return response;
+
+    // }
 
     function getSellBusinessCompanyData() {
       response = {};
@@ -1310,71 +1418,206 @@ if (isset($_SESSION['email'])) {
         citySetted = true;
         cityVal += $(this).find("option:selected").val() + ",";
       });
+
       if (countrySetted)
         response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
         response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
-      response['sector_sel'] = $(".su_sector").val();
-      response['startup_type'] = $(".su_startup_type").val();
+      response['company_type'] = $(".su_company_type").val();
+      response['foundation_year'] = $(".su_foundation_year").val();
+      response['default_currency'] = $(".su_default_currency").val();
 
+      response['company_value_type'] = $(".su_company_value:checked").val();
+      if ($(".su_company_value:checked").val() === "undisclosed") {} else if ($(".su_company_value:checked").val() === "fixed") {
+        response['company_value_min'] = $(".su_company_value_val").val();
+        response['company_value_max'] = $(".su_company_value_val").val();
+      } else if ($(".su_company_value:checked").val() === "range") {
+        assetVal = $(".su_company_value_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['company_value_min'] = assetVal.substring(0, index);
+        response['company_value_max'] = assetVal.substring(index + 1);
+      }
+
+      response['investment_required_value'] = $(".su_investment_required_value:checked").val();
+      if ($(".su_investment_required_value:checked").val() === "undisclosed") {} else if ($(".su_investment_required_value:checked").val() === "fixed") {
+        response['investment_required_min'] = $(".su_investment_required_value_val").val();
+        response['investment_required_max'] = $(".su_investment_required_value_val").val();
+      } else if ($(".su_investment_required_value:checked").val() === "range") {
+        assetVal = $(".su_investment_required_value_sel").val();
+        index = assetVal.lastIndexOf("|");
+        response['investment_required_min'] = assetVal.substring(0, index);
+        response['investment_required_max'] = assetVal.substring(index + 1);
+      }
+
+      response['sector_sel'] = $(".su_sector_sel").val();
 
       var isIndustrySetted = false;
       var industry = '';
-      $(".su_industry").each(function() {
+      $(".su_industry_sel").each(function() {
         isIndustrySetted = true;
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
         response['industry_sel'] = industry.substring(0, industry.length - 1);
 
-      response['default_currency'] = $(".su_default_currency").val();
+      response['company_business'] = $(".su_company_business").val();
+      var isAreaSetted = false;
+      var areaOfActivity = '';
+      $(".su_area_of_activity option:checked").each(function() {
+        isAreaSetted = true;
+        areaOfActivity += $(this).text() + ",";
+      });
+      if (isAreaSetted)
+        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-      response['actual_revenue_type'] = $(".su_preferred_revenue:checked").val();
-      if ($(".su_preferred_revenue:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue:checked").val() === "fixed") {
-        response['actual_revenue_min'] = $(".su_preferred_revenue_val").val();
-        response['actual_revenue_max'] = $(".su_preferred_revenue_val").val();
-      } else if ($(".su_preferred_revenue:checked").val() === "range") {
-        assetVal = $(".su_preferred_revenue_sel").val();
+      response['scalability'] = $(".su_scalability").val();
+      response['scalability_area'] = $(".su_scalability_area option:selected").val() == "" ? "" : $(".su_scalability_area option:selected").text();
+      response['market_share'] = $(".su_market_share").val();
+      console.log($(".su_number_of_employees:checked").val());
+      if (null != $(".su_number_of_employees:checked").val()) {
+        var numOfEmp = $(".su_number_of_employees:checked").val();
+        index = numOfEmp.lastIndexOf("|");
+        response['number_of_employees_min'] = numOfEmp.substring(0, index);
+        response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+      }
+
+      response['actual_revenue_type'] = $(".su_actual_revenue_type:checked").val();
+      if ($(".su_actual_revenue_type:checked").val() === "fixed") {
+        response['actual_revenue_min'] = $(".su_actual_revenue_val").val();
+        response['actual_revenue_max'] = $(".su_actual_revenue_val").val();
+      } else if ($(".su_actual_revenue_type:checked").val() === "range") {
+        assetVal = $(".su_actual_revenue_sel").val();
         index = assetVal.lastIndexOf("|");
         response['actual_revenue_min'] = assetVal.substring(0, index);
         response['actual_revenue_max'] = assetVal.substring(index + 1);
       }
-
       response['ebidta_margin'] = $(".su_ebidta_margin").val();
-      response['for_rev_1'] = $(".su_for_rev_1").val();
-      response['for_ebd_1'] = $(".su_for_ebd_1").val();
-      response['for_rev_2'] = $(".su_for_rev_2").val();
-      response['for_ebd_2'] = $(".su_for_ebd_2").val();
-      response['for_rev_3'] = $(".su_for_rev_3").val();
-      response['for_ebd_3'] = $(".su_for_ebd_3").val();
-      response['who_i_am'] = $(".su_who_i_am").val();
-      response['aum'] = $(".su_aum").val();
-      response['number_of_investments'] = $(".su_number_of_investments").val();
-      response['what_i_want'] = $(".su_what_i_want").val();
-      response['description'] = $(".su_description").val();
-      response['looking_for'] = $(".su_looking_for").val();
-      response['image'] = $(".sell_startup_image-list").val();
 
-      var investmentAmount = "";
-      var investmentSize = "";
-      $(".su_investment_required_value").each(function() {
-        if ($(this).prop("checked")) {
-          investmentSize += $(this).val() + ",";
-        }
-      });
-      $(".su_preferred_investment_amount").each(function() {
-        if ($(this).prop("checked")) {
-          investmentAmount += $(this).val() + ",";
-        }
-      });
-      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
-      investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
-      response['investment_size'] = investmentSize;
-      response['investment_amount'] = investmentAmount;
+      response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sell']:checked").val();
+      response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sell']:checked").val();
+      response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sell']:checked").val();
+      response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sell']:checked").val();
+      response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sell']:checked").val();
+      response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sell']:checked").val();
+      if ($("input[name='forcast_revenue_1_sell']:checked").val() == "fixed") {
+        response['for_rev_1'] = $(".su_for_rev_1").val();
+      } else {
+        response['for_rev_1'] = $(".su_for_rev_1 option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_2_sell']:checked").val() == "fixed") {
+        response['for_rev_2'] = $(".su_for_rev_2").val();
+      } else {
+        response['for_rev_2'] = $(".su_for_rev_2 option:selected").val();
+      }
+      if ($("input[name='forcast_revenue_3_sell']:checked").val() == "fixed") {
+        response['for_rev_3'] = $(".su_for_rev_3").val();
+      } else {
+        response['for_rev_3'] = $(".su_for_rev_3 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_1_sell']:checked").val() == "fixed") {
+        response['for_ebd_1'] = $(".su_for_ebd_1").val();
+      } else {
+        response['for_ebd_1'] = $(".su_for_ebd_1 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_2_sell']:checked").val() == "fixed") {
+        response['for_ebd_2'] = $(".su_for_ebd_2").val();
+      } else {
+        response['for_ebd_2'] = $(".su_for_ebd_2 option:selected").val();
+      }
+      if ($("input[name='forcast_ebitda_3_sell']:checked").val() == "fixed") {
+        response['for_ebd_3'] = $(".su_for_ebd_3").val();
+      } else {
+        response['for_ebd_3'] = $(".su_for_ebd_3 option:selected").val();
+      }
+
+
+      response['description'] = $(".su_description").val();
+      response['key_elements'] = $(".su_key_elements").val();
+      response['image'] = $(".sell_su_image-list").val();
       return response;
 
     }
+
+    // function getSellStartUpData() {
+    //   response = {};
+    //   var countryVal = "";
+    //   var cityVal = "";
+    //   var countrySetted = false;
+    //   var citySetted = false;
+    //   $(".su_hq_country").each(function() {
+    //     countrySetted = true;
+    //     countryVal += $(this).find("option:selected").text() + ",";
+    //   });
+    //   $(".su_hq_city").each(function() {
+    //     citySetted = true;
+    //     cityVal += $(this).find("option:selected").val() + ",";
+    //   });
+    //   if (countrySetted)
+    //     response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    //   if (citySetted)
+    //     response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
+    //   response['sector_sel'] = $(".su_sector").val();
+    //   response['startup_type'] = $(".su_startup_type").val();
+
+
+    //   var isIndustrySetted = false;
+    //   var industry = '';
+    //   $(".su_industry").each(function() {
+    //     isIndustrySetted = true;
+    //     industry += $(this).val() + "|";
+    //   });
+    //   if (isIndustrySetted)
+    //     response['industry_sel'] = industry.substring(0, industry.length - 1);
+
+    //   response['default_currency'] = $(".su_default_currency").val();
+
+    //   response['actual_revenue_type'] = $(".su_preferred_revenue:checked").val();
+    //   if ($(".su_preferred_revenue:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue:checked").val() === "fixed") {
+    //     response['actual_revenue_min'] = $(".su_preferred_revenue_val").val();
+    //     response['actual_revenue_max'] = $(".su_preferred_revenue_val").val();
+    //   } else if ($(".su_preferred_revenue:checked").val() === "range") {
+    //     assetVal = $(".su_preferred_revenue_sel").val();
+    //     index = assetVal.lastIndexOf("|");
+    //     response['actual_revenue_min'] = assetVal.substring(0, index);
+    //     response['actual_revenue_max'] = assetVal.substring(index + 1);
+    //   }
+
+    //   response['ebidta_margin'] = $(".su_ebidta_margin").val();
+    //   response['for_rev_1'] = $(".su_for_rev_1").val();
+    //   response['for_ebd_1'] = $(".su_for_ebd_1").val();
+    //   response['for_rev_2'] = $(".su_for_rev_2").val();
+    //   response['for_ebd_2'] = $(".su_for_ebd_2").val();
+    //   response['for_rev_3'] = $(".su_for_rev_3").val();
+    //   response['for_ebd_3'] = $(".su_for_ebd_3").val();
+    //   response['who_i_am'] = $(".su_who_i_am").val();
+    //   response['aum'] = $(".su_aum").val();
+    //   response['number_of_investments'] = $(".su_number_of_investments").val();
+    //   response['what_i_want'] = $(".su_what_i_want").val();
+    //   response['description'] = $(".su_description").val();
+    //   response['looking_for'] = $(".su_looking_for").val();
+    //   response['image'] = $(".sell_startup_image-list").val();
+
+    //   var investmentAmount = "";
+    //   var investmentSize = "";
+    //   $(".su_investment_required_value").each(function() {
+    //     if ($(this).prop("checked")) {
+    //       investmentSize += $(this).val() + ",";
+    //     }
+    //   });
+    //   $(".su_preferred_investment_amount").each(function() {
+    //     if ($(this).prop("checked")) {
+    //       investmentAmount += $(this).val() + ",";
+    //     }
+    //   });
+    //   investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+    //   investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
+    //   response['investment_size'] = investmentSize;
+    //   response['investment_amount'] = investmentAmount;
+    //   return response;
+
+    // }
   </script>
 <?php
 } else {

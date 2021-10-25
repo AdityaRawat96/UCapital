@@ -33,31 +33,14 @@ if (isset($_SESSION['email'])) {
       <div class="container-fluid">
         <div class="card p-3"><br>
           <form class="ad-form" action="index.html" method="post">
-            <div class="buy_company_start_up">
+            <div class="sell_company_business_company">
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Type of Start up</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control startup_type su_startup_type_buy" name="startup_type" id="startup_type">
-                    <option value="" selected disabled>Choose type of Start up</option>
-                    <option value="Pre-seed Stage">Pre-seed Stage</option>
-                    <option value="Seed Stage">Seed Stage</option>
-                    <option value="Early Stage">Early Stage</option>
-                    <option value="Growth Stage">Growth Stage</option>
-                    <option value="Expansion Phase">Expansion Phase</option>
-                    <option value="Exit Phase">Exit Phase</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Location</span>
+                  <span>HQ Location</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <div class="row location_holder">
                     <div class="col-md-8 col-sm-12 location_container">
-
                     </div>
                     <div class="col-md-4 col-sm-12">
                       <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
@@ -67,10 +50,150 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Subject</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select name="subject" class="form-control bc_company_type" name="company_type" id="company_type">
+                    <option value="" selected disabled>Choose the subject</option>
+                    <option value="Fundraising">Fundraising</option>
+                    <option value="Sell minority">Sell minority</option>
+                    <option value="Sell majority">Sell majority</option>
+                    <option value="Sell totality">Sell totality</option>
+                    <option value="IPO">IPO</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="Joint venture">Joint venture</option>
+                    <option value="Debt Raising">Debt Raising</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Foundation year</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Default Currency</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <select class="form-control default_currency bc_default_currency" name="company_type" id="currency">
+                    <option data-value="€" selected value='Euro'>Euro</option>
+                    <option data-value="$" value='Dollar'>Dollar</option>
+                    <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
+                    <option data-value="£" value='Pound'>Pound</option>
+                    <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+                    <option data-value="¥" value='Yen'>Yen</option>
+                    <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
+                    <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Company value</span>
+                  <span class="deal-subhead">(Choose one)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="undisclosed" class="deal-radio bc_company_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="fixed" class="deal-radio bc_company_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control bc_company_value_val" id="company_value_val" placeholder="Type a value">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="company_value" value="range" class="deal-radio bc_company_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
+                        <option value="" selected disabled>Select a range</option>
+                        <option value="0|500000">from 0 to 500k</option>
+                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="1000000|10000000">from 1 to 10 million</option>
+                        <option value="10000000|50000000">from 10 to 50 million</option>
+                        <option value="50000000|1000000000">over 50 million</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Investment Required</span>
+                  <span class="deal-subhead">(Choose one)</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="undisclosed" class="deal-radio bc_investment_required_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="fixed" class="deal-radio bc_investment_required_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control bc_investment_required_value_val" id="investment_required_value" placeholder="Type a value">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" name="investment_required" value="range" class="deal-radio bc_investment_required_value">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
+                        <option value="" selected disabled>Select a range</option>
+                        <option value="0|500000">from 0 to 500k</option>
+                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="1000000|10000000">from 1 to 10 million</option>
+                        <option value="10000000|50000000">from 10 to 50 million</option>
+                        <option value="50000000|1000000000">over 50 million</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Sector</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control su_sector_buy" id="sector" name="sector">
+                  <select class="form-control bc_sector_sel" id="sector" name="sector">
                     <option value="" selected disabled>Choose Sector</option>
                     <option value="Information Technology">Information Technology</option>
                     <option value="Business Products and Services (B2B)">Business Products and Services (B2B)</option>
@@ -88,7 +211,7 @@ if (isset($_SESSION['email'])) {
                   <span class="deal-subhead">(Multiple choice max 5)</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="industry su_industry_buy" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+                  <select class="industry bc_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
                     <option value="3D Printing">3D Printing</option>
                     <option value="Accessories">Accessories</option>
                     <option value="Accounting">Accounting</option>
@@ -405,45 +528,83 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Default Currency</span>
+                  <span>Company Business</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <select class="form-control default_currency su_default_currency_buy" name="company_type" id="currency">
-                    <option data-value="€" selected value='Euro'>Euro</option>
-                    <option data-value="$" value='Dollar'>Dollar</option>
-                    <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
-                    <option data-value="£" value='Pound'>Pound</option>
-                    <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
-                    <option data-value="¥" value='Yen'>Yen</option>
-                    <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
-                    <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <textarea name="company_business" rows="3" id="company_business" class="form-control bc_company_business" placeholder="Business description"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Area of activity</span>
+                  <span class="deal-subhead">(Unlimited Choices)</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group">
+                  <select class="area_of_activity bc_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="activity_area">
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Revenue</span>
-                  <span class="deal-subhead">(Choose one)</span>
+                  <span>Scalability</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                      <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                        <input type="radio" name="scalability" value="Yes" class="deal-radio bc_scalability"> Yes
+                      </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                      <select class="form-control scalability_area bc_scalability_area" name="scalability_area" id="scalability_area">
+                        <option value="" selected disabled>Which area</option>
+                        <option value="Global">Global</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                      <button type="button" name="button" class="btn btn-deal-custom" style="width: 100%;">
+                        <input type="radio" name="scalability" value="No" class="deal-radio bc_scalability"> No
+                      </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                      <div class="input-group input-group-nomargin">
+                        <div class="custom-file">
+                          <input type="number" class="form-control bc_market_share" placeholder="Enter market share" id="market_share">
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Number of employees</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-containera">
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Actual Revenue</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <input type="radio" name="preferred_revenue" value="undisclosed" class="deal-radio su_preferred_revenue_buy">
+                        <input type="radio" name="actual_revenue_required" value="fixed" class="deal-radio bc_actual_revenue_type">
                       </span>
                     </div>
                     <div class="custom-file">
-                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <input type="radio" name="preferred_revenue" value="fixed" class="deal-radio su_preferred_revenue_buy">
-                      </span>
-                    </div>
-                    <div class="custom-file">
-                      <input type="number" class="form-control su_preferred_revenue_val_buy" id="preferred_revenue_val" placeholder="Type a value">
+                      <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">.00</span>
@@ -452,16 +613,16 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <input type="radio" name="preferred_revenue" value="range" class="deal-radio su_preferred_revenue_buy">
+                        <input type="radio" name="actual_revenue_required" value="range" class="deal-radio bc_actual_revenue_type">
                       </span>
                     </div>
                     <div class="custom-file">
-                      <select class="form-control su_preferred_revenue_sel_buy" id="preferred_revenue_sel" name="preferred_revenue_range">
+                      <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
                         <option value="0|1000000">&#60; 1 million</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
                         <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                        <option value="50000000|1000000000">&#62; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
                       </select>
                     </div>
                   </div>
@@ -469,12 +630,12 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Ebitda Margin</span>
+                  <span>Actual Ebitda Margin</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="ebitda_margin" class="form-control su_ebidta_margin_buy" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
+                      <input type="number" class="form-control bc_ebidta_margin" id="ebdita_margin" placeholder="Insert a value from -100 to 100">
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -487,13 +648,37 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Revenue</span>
+                  <span>Forcast Revenue</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_1_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_1" class="form-control su_for_rev_1_buy" id="rev_y1y" placeholder="Enter a value for 1st year">
+                      <input type="number" name="forcast_revenue_1" class="form-control bc_for_rev_1" placeholder="Enter a value for 1st year" id="rev_y1y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_1_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_revenue_1" class="form-control bc_for_rev_1" id="rev_y1y">
+                        <option value="" selected disabled>Select a value for 1st year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -503,13 +688,40 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Ebitda</span>
+                  <span>Forcast Ebitda</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_1_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_1" class="form-control su_for_ebd_1_buy" id="ebd_y1y" placeholder="Enter a value for 1st year">
+                      <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year" id="ebd_y1y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_1_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_ebitda_1" class="form-control bc_for_ebd_1" id="ebd_y1y">
+                        <option value="" selected disabled>Select a value for 1st year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -520,13 +732,37 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Revenue</span>
+                  <span>Forcast Revenue</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_2_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_2" class="form-control su_for_rev_2_buy" id="rev_y2y" placeholder="Enter a value for 2nd year">
+                      <input type="number" name="forcast_revenue_2" class="form-control bc_for_rev_2" placeholder="Enter a value for 2nd year" id="rev_y2y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_2_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_revenue_2" class="form-control bc_for_rev_2" id="rev_y2y">
+                        <option value="" selected disabled>Select a value for 2nd year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -536,13 +772,40 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Ebitda</span>
+                  <span>Forcast Ebitda</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_2_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_2" class="form-control su_for_ebd_2_buy" id="ebd_y2y" placeholder="Enter a value for 2nd year">
+                      <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year" id="ebd_y2y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_2_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_ebitda_2" class="form-control bc_for_ebd_2" id="ebd_y2y">
+                        <option value="" selected disabled>Select a value for 2nd year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
@@ -553,13 +816,37 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Revenue</span>
+                  <span>Forcast Revenue</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_revenue_3_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_revenue_3" class="form-control su_for_rev_3_buy" id="rev_y3y" placeholder="Enter a value for 3rd year">
+                      <input type="number" name="forcast_revenue_3" class="form-control bc_for_rev_3" placeholder="Enter a value for 3rd year" id="rev_y3y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_revenue_3_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_revenue_3" class="form-control bc_for_rev_3" id="rev_y3y">
+                        <option value="" selected disabled>Select a value for 3rd year</option>
+                        <option value="0|1000000">&#60; 1 million</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
+                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text span-currency-icon">€</span>
@@ -569,89 +856,45 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Forcast Ebitda</span>
+                  <span>Forcast Ebitda</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="fixed" name="forcast_ebitda_3_sell" class="deal-radio">
+                      </span>
+                    </div>
                     <div class="custom-file">
-                      <input type="number" name="forcast_ebitda_3" class="form-control su_for_ebd_3_buy" id="ebd_y3y" placeholder="Enter a value for 3rd year">
+                      <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year" id="ebd_y3y_n">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="range" name="forcast_ebitda_3_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <select name="forcast_ebitda_3" class="form-control bc_for_ebd_3" id="ebd_y3y">
+                        <option value="" selected disabled>Select a value for 3rd year</option>
+                        <option value="-100|-50">-100%&#60;ebitda margin&#60;-50%</option>
+                        <option value="-50|-25">-50%&#60;ebitda margin&#60;-25%</option>
+                        <option value="-25|0">-25%&#60;ebitda margin&#60;0%</option>
+                        <option value="0|10">0%&#60;ebitda margin&#60;10%</option>
+                        <option value="10|20">10%&#60;ebitda margin&#60;20%</option>
+                        <option value="20|40">20%&#60;ebitda margin&#60;40%</option>
+                        <option value="40|100">Over 40%</option>
+                      </select>
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Investment Size</span>
-                  <span class="deal-subhead">(Multiple Choice)</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container">
-                  <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500k<br>
-                  <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500k to 1 mln<br>
-                  <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
-                  <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Who I am</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control default_currency su_who_i_am_buy" name="who_i_am" id="who_i_am">
-                    <option value="" selected disabled>Select an option</option>
-                    <option value="Individual">Individual</option>
-                    <option value="Corporation">Corporation</option>
-                    <option value="PE Fund">PE Fund</option>
-                    <option value="VC Fund">VC Fund</option>
-                    <option value="Asset Management">Asset Management</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>AUM</span>
-                </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="aum" value="" class="form-control su_aum" id="aum" placeholder="Enter a value">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Number of Investments</span>
-                </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="number_of_investments" id="number_of_investments" value="" class="form-control su_number_of_investments" placeholder="Enter a value">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Investment Amount</span>
-                  <span class="deal-subhead">(Multiple Choice)</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container">
-                  <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="0|1000000"> Less than 1 mln<br>
-                  <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="1000000|10000000"> From 1 to 10 mln<br>
-                  <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="10000000|50000000"> From 10 mln to 50 mln<br>
-                  <input type="checkbox" name="investment_amount" class="su_preferred_investment_amount" value="50000000|1000000000"> More than 50 mln<br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>What I want to do</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control what_i_want su_what_i_want" name="what_i_want" id="what_i_want">
-                    <option value="" selected disabled>Select an option</option>
-                    <option value="Buy majority">Buy majority</option>
-                    <option value="Buy totality">Buy totality</option>
-                    <option value="Partnership">Partnership</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="Joint venture">Joint venture</option>
-                    <option value="Lending">Lending</option>
-                  </select>
                 </div>
               </div>
 
@@ -660,15 +903,15 @@ if (isset($_SESSION['email'])) {
                   <span>General Description</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="general_description" rows="3" id="description" class="form-control su_description_buy" placeholder="Type a description"></textarea>
+                  <textarea name="general_description" id="description" rows="3" class="form-control bc_description" placeholder="Who you are, What are you looking for..."></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>What are we looking for</span>
+                  <span>Key Elements</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="looking_for" id="looking_for" rows="3" class="form-control su_looking_for" placeholder="Type a description"></textarea>
+                  <textarea name="key_elements" id="keyElements" rows="3" class="form-control bc_key_elements" placeholder="Holder of patents, VC-backed, PE-backed, Artificial intelligence, ESG Compliant, Renewables, Digital Platform"></textarea>
                 </div>
               </div>
 
@@ -677,10 +920,10 @@ if (isset($_SESSION['email'])) {
                   <span>Image</span>
                   <span class="deal-subhead">(Max 5MB)</span>
                 </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <div class="input-group">
+                <div class="col-md-9 col-sm-12 input-container">
+                  <div class="input-group bc_image">
                     <input type="text" id="adImage-list" hidden value="">
-                    <input type="file" name="files[]" class="adImage su_image_buy" id="adImage" multiple="false">
+                    <input type="file" name="files[]" class="adImage" id="adImage" multiple="false">
                   </div>
                 </div>
               </div>
@@ -724,8 +967,6 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 <script>
-  var folderName;
-
   $(document).ready(function() {
     $('.ad-form').validate({
       submitHandler: function() {
@@ -775,24 +1016,6 @@ if (isset($_SESSION['email'])) {
           required: true
         },
         ebitda_margin: {
-          required: true
-        },
-        forcast_revenue_1: {
-          required: true,
-        },
-        forcast_ebitda_1: {
-          required: true
-        },
-        forcast_revenue_2: {
-          required: true,
-        },
-        forcast_ebitda_2: {
-          required: true
-        },
-        forcast_revenue_3: {
-          required: true,
-        },
-        forcast_ebitda_3: {
           required: true
         },
         general_description: {
@@ -923,6 +1146,15 @@ if (isset($_SESSION['email'])) {
       });
     });
 
+    $(".area_of_activity").each(function() {
+      $(this).select2({
+        maximumSelectionLength: 5,
+        formatSelectionTooBig: function(limit) {
+          return 'Only 5 selections are allowed!';
+        }
+      });
+    });
+
   });
 
 
@@ -970,69 +1202,121 @@ if (isset($_SESSION['email'])) {
       citySetted = true;
       cityVal += $(this).find("option:selected").val() + ",";
     });
-
+    console.log("cityVal " + cityVal);
     if (countrySetted)
       response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
     if (citySetted)
       response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
-    response['sector_sel'] = $(".su_sector_buy").val();
-    response['startup_type'] = $(".su_startup_type_buy").val();
+    response['company_type'] = $(".bc_company_type").val();
+    response['foundation_year'] = $(".bc_foundation_year").val();
+    response['default_currency'] = $(".bc_default_currency").val();
 
+    response['company_value_type'] = $(".bc_company_value:checked").val();
+    if ($(".bc_company_value:checked").val() === "undisclosed") {} else if ($(".bc_company_value:checked").val() === "fixed") {
+      response['company_value_min'] = $(".bc_company_value_val").val();
+      response['company_value_max'] = $(".bc_company_value_val").val();
+    } else if ($(".bc_company_value:checked").val() === "range") {
+      assetVal = $(".bc_company_value_sel").val();
+      index = assetVal.lastIndexOf("|");
+      response['company_value_min'] = assetVal.substring(0, index);
+      response['company_value_max'] = assetVal.substring(index + 1);
+    }
+
+    response['investment_required_value'] = $(".bc_investment_required_value:checked").val();
+    if ($(".bc_investment_required_value:checked").val() === "undisclosed") {} else if ($(".bc_investment_required_value:checked").val() === "fixed") {
+      response['investment_required_min'] = $(".bc_investment_required_value_val").val();
+      response['investment_required_max'] = $(".bc_investment_required_value_val").val();
+    } else if ($(".bc_investment_required_value:checked").val() === "range") {
+      assetVal = $(".bc_investment_required_value_sel").val();
+      index = assetVal.lastIndexOf("|");
+      response['investment_required_min'] = assetVal.substring(0, index);
+      response['investment_required_max'] = assetVal.substring(index + 1);
+    }
+
+    response['sector_sel'] = $(".bc_sector_sel").val();
 
     var isIndustrySetted = false;
     var industry = '';
-    $(".su_industry_buy").each(function() {
+    $(".bc_industry_sel").each(function() {
       isIndustrySetted = true;
       industry += $(this).val() + "|";
     });
-    if (true)
+    if (isIndustrySetted)
       response['industry_sel'] = industry.substring(0, industry.length - 1);
 
-    response['default_currency'] = $(".su_default_currency_buy").val();
+    response['company_business'] = $(".bc_company_business").val();
+    var isAreaSetted = false;
+    var areaOfActivity = '';
+    $(".bc_area_of_activity option:checked").each(function() {
+      isAreaSetted = true;
+      areaOfActivity += $(this).text() + ",";
+    });
+    if (isAreaSetted)
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-    response['actual_revenue_type'] = $(".su_preferred_revenue_buy:checked").val();
-    if ($(".su_preferred_revenue_buy:checked").val() === "undisclosed") {} else if ($(".su_preferred_revenue_buy:checked").val() === "fixed") {
-      response['actual_revenue_min'] = $(".su_preferred_revenue_val_buy").val();
-      response['actual_revenue_max'] = $(".su_preferred_revenue_val_buy").val();
-    } else if ($(".su_preferred_revenue_buy:checked").val() === "range") {
-      assetVal = $(".su_preferred_revenue_sel_buy").val();
+    response['scalability'] = $(".bc_scalability").val();
+    response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
+    response['market_share'] = $(".bc_market_share").val();
+    console.log($(".bc_number_of_employees:checked").val());
+    if (null != $(".bc_number_of_employees:checked").val()) {
+      var numOfEmp = $(".bc_number_of_employees:checked").val();
+      index = numOfEmp.lastIndexOf("|");
+      response['number_of_employees_min'] = numOfEmp.substring(0, index);
+      response['number_of_employees_max'] = numOfEmp.substring(index + 1);
+    }
+
+    response['actual_revenue_type'] = $(".bc_actual_revenue_type:checked").val();
+    if ($(".bc_actual_revenue_type:checked").val() === "fixed") {
+      response['actual_revenue_min'] = $(".bc_actual_revenue_val").val();
+      response['actual_revenue_max'] = $(".bc_actual_revenue_val").val();
+    } else if ($(".bc_actual_revenue_type:checked").val() === "range") {
+      assetVal = $(".bc_actual_revenue_sel").val();
       index = assetVal.lastIndexOf("|");
       response['actual_revenue_min'] = assetVal.substring(0, index);
       response['actual_revenue_max'] = assetVal.substring(index + 1);
     }
+    response['ebidta_margin'] = $(".bc_ebidta_margin").val();
+    response['for_rev_1_sel'] = $("input[name='forcast_revenue_1_sell']:checked").val();
+    response['for_rev_2_sel'] = $("input[name='forcast_revenue_2_sell']:checked").val();
+    response['for_rev_3_sel'] = $("input[name='forcast_revenue_3_sell']:checked").val();
+    response['for_ebd_1_sel'] = $("input[name='forcast_ebitda_1_sell']:checked").val();
+    response['for_ebd_2_sel'] = $("input[name='forcast_ebitda_2_sell']:checked").val();
+    response['for_ebd_3_sel'] = $("input[name='forcast_ebitda_3_sell']:checked").val();
+    if ($("input[name='forcast_revenue_1_sell']:checked").val() == "fixed") {
+      response['for_rev_1'] = $(".bc_for_rev_1").val();
+    } else {
+      response['for_rev_1'] = $(".bc_for_rev_1 option:selected").val();
+    }
+    if ($("input[name='forcast_revenue_2_sell']:checked").val() == "fixed") {
+      response['for_rev_2'] = $(".bc_for_rev_2").val();
+    } else {
+      response['for_rev_2'] = $(".bc_for_rev_2 option:selected").val();
+    }
+    if ($("input[name='forcast_revenue_3_sell']:checked").val() == "fixed") {
+      response['for_rev_3'] = $(".bc_for_rev_3").val();
+    } else {
+      response['for_rev_3'] = $(".bc_for_rev_3 option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_1_sell']:checked").val() == "fixed") {
+      response['for_ebd_1'] = $(".bc_for_ebd_1").val();
+    } else {
+      response['for_ebd_1'] = $(".bc_for_ebd_1 option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_2_sell']:checked").val() == "fixed") {
+      response['for_ebd_2'] = $(".bc_for_ebd_2").val();
+    } else {
+      response['for_ebd_2'] = $(".bc_for_ebd_2 option:selected").val();
+    }
+    if ($("input[name='forcast_ebitda_3_sell']:checked").val() == "fixed") {
+      response['for_ebd_3'] = $(".bc_for_ebd_3").val();
+    } else {
+      response['for_ebd_3'] = $(".bc_for_ebd_3 option:selected").val();
+    }
 
-    response['ebidta_margin'] = $(".su_ebidta_margin_buy").val();
-    response['for_rev_1'] = $(".su_for_rev_1_buy").val();
-    response['for_ebd_1'] = $(".su_for_ebd_1_buy").val();
-    response['for_rev_2'] = $(".su_for_rev_2_buy").val();
-    response['for_ebd_2'] = $(".su_for_ebd_2_buy").val();
-    response['for_rev_3'] = $(".su_for_rev_3_buy").val();
-    response['for_ebd_3'] = $(".su_for_ebd_3_buy").val();
-    response['who_i_am'] = $(".su_who_i_am_buy").val();
-    response['aum'] = $(".su_aum").val();
-    response['number_of_investments'] = $(".su_number_of_investments").val();
-    response['what_i_want'] = $(".su_what_i_want").val();
-    response['description'] = $(".su_description_buy").val();
-    response['looking_for'] = $(".su_looking_for").val();
-    response['image'] = $(".su_image_buy").val();
-
-    var investmentAmount = "";
-    var investmentSize = "";
-    $(".su_investment_required_value_buy").each(function() {
-      if ($(this).prop("checked")) {
-        investmentSize += $(this).val() + ",";
-      }
-    });
-    $(".su_preferred_investment_amount").each(function() {
-      if ($(this).prop("checked")) {
-        investmentAmount += $(this).val() + ",";
-      }
-    });
-    investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
-    investmentSize = investmentSize.length > 0 ? investmentSize.substring(0, investmentSize.length - 1) : investmentSize;
-    response['investment_size'] = investmentSize;
-    response['investment_amount'] = investmentAmount;
-    response["asset_type"] = "SU";
+    response['description'] = $(".bc_description").val();
+    response['key_elements'] = $(".bc_key_elements").val();
+    response['image'] = $("#adImage-list").val();
+    response["asset_type"] = "BC";
     console.log(response);
 
     $.ajax({
@@ -1054,35 +1338,81 @@ if (isset($_SESSION['email'])) {
         }
       }
     });
+
+
   }
 
   function setValues() {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
-    document.getElementById("startup_type").value = "<?= $row["SUB_COMPANY_TYPE"] ?>";
+    document.getElementById("company_type").value = "<?= $row["COMPANY_TYPE"] ?>";
+    document.getElementById("foundation_year").value = "<?= $row["FOUNDATION_YEAR"] ?>";
     document.getElementById("ebdita_margin").value = "<?= $row["EBIDTA_MARGIN"] ?>";
-    document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
-    document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
-    document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
-    document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
-    document.getElementById("rev_y3y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
-    document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
-    document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    document.getElementById("aum").value = "<?= $row["AUM"] ?>";
-    document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
-    document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
-    document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+    document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
+    document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
+    $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
+    document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
+    $("input[name=forcast_revenue_1_sell][value=<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_revenue_2_sell][value=<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_revenue_3_sell][value=<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_1_sell][value=<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_2_sell][value=<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_3_sell][value=<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>]").attr('checked', 'checked');
 
-    $("input[name=preferred_revenue][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
+    if ('<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y1y_n").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
+    } else {
+      document.getElementById("rev_y1y").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
+    }
+    if ('<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y2y_n").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    } else {
+      document.getElementById("rev_y2y").value = "<?= $row["FORECAST_REVENUE_Y2"] ?>";
+    }
+    if ('<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>' == "fixed") {
+      document.getElementById("rev_y3y_n").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
+    } else {
+      document.getElementById("rev_y3y").value = "<?= $row["FORECAST_REVENUE_Y3"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y1y_n").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    } else {
+      document.getElementById("ebd_y1y").value = "<?= $row["FORECAST_EBITDA_Y1"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y2y_n").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    } else {
+      document.getElementById("ebd_y2y").value = "<?= $row["FORECAST_EBITDA_Y2"] ?>";
+    }
+    if ('<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>' == "fixed") {
+      document.getElementById("ebd_y3y_n").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
+    } else {
+      document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
+    }
+    $("input[name=company_value][value=<?= $row["COMPANY_VAL_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
+      document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
+    } else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "range") {
+      document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
+    }
+
+    $("input[name=investment_required][value=<?= $row["INVESTMENT_TYPE"] ?>]").attr('checked', 'checked');
+    if ("<?= $row["INVESTMENT_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "fixed") {
+      document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_MIN"] ?>";
+    } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
+      document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
+    }
+
+    $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
     if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
-      document.getElementById("preferred_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
+      document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
     } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
-      document.getElementById("preferred_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
+      document.getElementById("actual_revenue_sel").value = "<?= $row["ACTUAL_REVENUE_MIN"] . '|' . $row["ACTUAL_REVENUE_MAX"] ?>";
     }
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
 
     var values = "<?= $row["INDUSTRY"] ?>";
     $.each(values.split(","), function(i, e) {
@@ -1090,20 +1420,7 @@ if (isset($_SESSION['email'])) {
     });
     $("#industry").trigger('change');
 
-    var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
-    var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
-    console.log(investmentAmount);
-
-    var investmentSizeArr = investmentSize.split(",");
-    var investmentAmountArr = investmentAmount.split(",");
-
-    for (var i = 0; i < investmentSizeArr.length; i++) {
-      console.log(investmentSizeArr[i].toString())
-      $('input[name="investment_size"][value="' + investmentSizeArr[i].toString() + '"]').prop("checked", true);
-    }
-    for (var i = 0; i < investmentAmountArr.length; i++) {
-      $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
-    }
+    $("input[name=number_of_employees][value='<?= $row["NUM_OF_EMPLOYEE_MIN"] . '|' . $row['NUM_OF_EMPLOYEE_MAX'] ?>']").attr('checked', 'checked');
 
     var image_file = '<?= $row["IMAGE"]; ?>';
     folderName = image_file.split("/")[0] + "/" + image_file.split("/")[1];
@@ -1127,12 +1444,34 @@ if (isset($_SESSION['email'])) {
   var country_data;
   $(document).ready(function() {
     setValues();
+    var scalability_area = "<?= $row["SCALABILITY_AREA"] ?>";
     $.ajax({
       type: 'POST',
       url: "../../assets/php/getCountries.php",
       dataType: 'json',
       success: function(data) {
         country_data = data;
+        $.each(country_data, function(index, element) {
+          $(".scalability_area").append($('<option>', {
+            value: element.id,
+            text: element.country,
+            selected: element.country == scalability_area ? true : false
+          }));
+          $(".area_of_activity").append($('<option>', {
+            value: element.id,
+            text: element.country
+          }));
+        });
+
+        var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
+        $.each(values.split(","), function(i, e) {
+          $("#activity_area option").each(function() {
+            if ($(this).text() == e) {
+              $(this).attr('selected', 'selected');
+            };
+          });
+        });
+
         var countryVal = "<?= $row['COUNTRY'] ?>";
         var cityVal = "<?= $row['CITY'] ?>";
         countryArr = countryVal.split(",");
@@ -1175,6 +1514,7 @@ if (isset($_SESSION['email'])) {
               selected: element.city == cityVal ? true : false
             }));
           });
+
           resolve()
         },
         error: function(err) {
@@ -1365,7 +1705,7 @@ if (isset($_SESSION['email'])) {
           return value != file_name;
         });
         $("#" + filerID + "-list").val("")
-        if(folderName.split("/")[0] == "MergerAcquisition"){
+        if (folderName.split("/")[0] == "MergerAcquisition") {
           $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
             file: file_name
           });
