@@ -111,7 +111,7 @@
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
         <option data-value="£" value='Pound'>Pound</option>
-        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
         <option data-value="¥" value='Yen'>Yen</option>
         <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
         <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
@@ -194,7 +194,7 @@
       <span>General Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" placeholder="Type a description"></textarea>
+      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
     </div>
   </div>
 </div>

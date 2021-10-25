@@ -43,7 +43,7 @@
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="industry bc_industry_sel_buy" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="bc_industry">
+      <select class="industry bc_industry_sel_buy" multiple="multiple" data-placeholder="Select Industries" style="width: 100%;" name="industry" id="bc_industry">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
         <option value="Accounting">Accounting</option>
@@ -368,7 +368,7 @@
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
         <option data-value="£" value='Pound'>Pound</option>
-        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
         <option data-value="¥" value='Yen'>Yen</option>
         <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
         <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
@@ -442,10 +442,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Revenue</span>
-      <span class="deal-subhead">(Y1Y)</span>
+      <span>Preferred Estimate Revenue</span>
+      <span class="deal-subhead">(1 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -482,10 +482,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Ebitda</span>
-      <span class="deal-subhead">(Y1Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(1 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -526,10 +526,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Revenue</span>
-      <span class="deal-subhead">(Y2Y)</span>
+      <span>Estimate Revenue</span>
+      <span class="deal-subhead">(2 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -566,10 +566,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Ebitda</span>
-      <span class="deal-subhead">(Y2Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(2 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -610,10 +610,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Revenue</span>
-      <span class="deal-subhead">(Y3Y)</span>
+      <span>Estimate Revenue</span>
+      <span class="deal-subhead">(3 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -650,10 +650,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Forcast Ebitda</span>
-      <span class="deal-subhead">(Y3Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(3 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">

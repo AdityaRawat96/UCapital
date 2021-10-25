@@ -56,7 +56,7 @@
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
         <option data-value="£" value='Pound'>Pound</option>
-        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
         <option data-value="¥" value='Yen'>Yen</option>
         <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
         <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
@@ -182,7 +182,7 @@
       <span class="deal-subhead">(Multiple choice max 5)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="industry su_industry_sel" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry1">
+      <select class="industry su_industry_sel" multiple="multiple" data-placeholder="Select Industries" style="width: 100%;" name="industry" id="industry2">
         <option value="3D Printing">3D Printing</option>
         <option value="Accessories">Accessories</option>
         <option value="Accounting">Accounting</option>
@@ -511,7 +511,7 @@
       <span class="deal-subhead">(Unlimited Choices)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="area_of_activity su_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="area_of_activity">
+      <select class="area_of_activity su_area_of_activity" multiple="multiple" data-placeholder="Choose country" style="width: 100%;" name="area_of_activity" id="area_of_activity_2">
       </select>
     </div>
   </div>
@@ -619,10 +619,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Revenue</span>
-      <span class="deal-subhead">(Y1Y)</span>
+      <span>Preferred Estimate Revenue</span>
+      <span class="deal-subhead">(1 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -659,10 +659,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Ebitda</span>
-      <span class="deal-subhead">(Y1Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(1 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -673,7 +673,7 @@
           <input type="number" name="forcast_ebitda_1" class="form-control su_for_ebd_1" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text span-currency-icon">€</span>
+          <span class="input-group-text span-currency-icon">%</span>
         </div>
       </div>
       <div class="input-group">
@@ -703,10 +703,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Revenue</span>
-      <span class="deal-subhead">(Y2Y)</span>
+      <span>Estimate Revenue</span>
+      <span class="deal-subhead">(2 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -743,10 +743,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Ebitda</span>
-      <span class="deal-subhead">(Y2Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(2 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -757,7 +757,7 @@
           <input type="number" name="forcast_ebitda_2" class="form-control su_for_ebd_2" placeholder="Enter a value for 1st year">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text span-currency-icon">€</span>
+          <span class="input-group-text span-currency-icon">%</span>
         </div>
       </div>
       <div class="input-group">
@@ -787,10 +787,10 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Revenue</span>
-      <span class="deal-subhead">(Y3Y)</span>
+      <span>Estimate Revenue</span>
+      <span class="deal-subhead">(3 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -827,10 +827,10 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Forcast Ebitda</span>
-      <span class="deal-subhead">(Y3Y)</span>
+      <span>Estimate Ebitda Margin</span>
+      <span class="deal-subhead">(3 Year)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
+    <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -841,7 +841,7 @@
           <input type="number" name="forcast_ebitda_3" class="form-control su_for_ebd_3" placeholder="Enter a value for 3rd year">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text span-currency-icon">€</span>
+          <span class="input-group-text span-currency-icon">%</span>
         </div>
       </div>
       <div class="input-group">

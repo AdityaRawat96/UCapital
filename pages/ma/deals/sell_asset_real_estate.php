@@ -117,7 +117,7 @@
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
         <option data-value="£" value='Pound'>Pound</option>
-        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
         <option data-value="¥" value='Yen'>Yen</option>
         <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
         <option data-value="DKK" value='Danish Krona'>Danish Krona</option>

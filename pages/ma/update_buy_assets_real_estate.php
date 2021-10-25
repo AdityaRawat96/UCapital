@@ -144,7 +144,7 @@ if (isset($_SESSION['email'])) {
                   <option data-value="$" value='Dollar'>Dollar</option>
                   <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
                   <option data-value="£" value='Pound'>Pound</option>
-                  <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+                  <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
                   <option data-value="¥" value='Yen'>Yen</option>
                   <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
                   <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
@@ -227,7 +227,7 @@ if (isset($_SESSION['email'])) {
                 <span>General Description</span>
               </div>
               <div class="col-md-9 col-sm-12 input-container input-group">
-                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" placeholder="Type a description"></textarea>
+                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
               </div>
             </div>
         </div>
@@ -319,25 +319,9 @@ if (isset($_SESSION['email'])) {
           required: true
         },
         ebitda_margin: {
-          required: true
-        },
-        forcast_revenue_1: {
           required: true,
-        },
-        forcast_ebitda_1: {
-          required: true
-        },
-        forcast_revenue_2: {
-          required: true,
-        },
-        forcast_ebitda_2: {
-          required: true
-        },
-        forcast_revenue_3: {
-          required: true,
-        },
-        forcast_ebitda_3: {
-          required: true
+          max: 100,
+          min: -100
         },
         general_description: {
           required: true
@@ -380,12 +364,15 @@ if (isset($_SESSION['email'])) {
         },
         yearly_return: {
           required: true,
+          min: 0,
+          max: 100
         },
         construction_year: {
           required: true,
         },
         total_surface_area: {
           required: true,
+          min: 0
         },
         vendor_type: {
           required: true,
@@ -397,15 +384,6 @@ if (isset($_SESSION['email'])) {
           required: true,
         },
         collateral_type: {
-          required: true,
-        },
-        original_amount: {
-          required: true,
-        },
-        asking_price: {
-          required: true,
-        },
-        market_value: {
           required: true,
         },
         lien_position: {
@@ -436,13 +414,15 @@ if (isset($_SESSION['email'])) {
           required: true,
         },
         ratio_ob: {
-          required: true,
+          min: 0,
+          max: 100
         },
         rate: {
           required: true,
         },
         discounted_ratio: {
-          required: true,
+          min: 0,
+          max: 100
         },
       },
       errorElement: 'span',

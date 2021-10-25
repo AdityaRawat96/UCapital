@@ -18,7 +18,6 @@
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control product_type npe_product_type" name="product_type" style="width: 100%;" data-placeholder="Choose type of Loan/Product" multiple="multiple">
-        <option value="NPL">NPL</option>
         <option value="Secured">Secured</option>
         <option value="Unsecured">Unsecured</option>
       </select>
@@ -76,7 +75,7 @@
         <option data-value="$" value='Dollar'>Dollar</option>
         <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
         <option data-value="£" value='Pound'>Pound</option>
-        <option data-value="A" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
         <option data-value="¥" value='Yen'>Yen</option>
         <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
         <option data-value="DKK" value='Danish Krona'>Danish Krona</option>

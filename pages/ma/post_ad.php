@@ -134,7 +134,7 @@ if(isset($_SESSION['email'])){
 
                   <div class="input-group">
                     <label>Industry </label>
-                    <select class="select2" multiple="multiple" data-placeholder="Select Industries (Max 3)" style="width: 100%;" name="industry" id="industry">
+                    <select class="select2" multiple="multiple" data-placeholder="Select Industries" style="width: 100%;" name="industry" id="industry">
                       <option value="3D Printing">3D Printing</option>
                       <option value="Accessories">Accessories</option>
                       <option value="Accounting">Accounting</option>

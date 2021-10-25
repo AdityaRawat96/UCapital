@@ -4,7 +4,7 @@ if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-?>
+  ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -83,7 +83,7 @@ if (isset($_SESSION['email'])) {
               <div class="col-md-9 col-sm-12 input-container input-group">
                 <select class="form-control offer_type_selector asset_type" name="asset_type">
                   <option value="" selected disabled>Choose type of asset</option>
-                  <option value="Real Estate">Business Real Estate</option>
+                  <option value="Real Estate">Real Estate</option>
                   <option value="NPE">NPE</option>
                   <option value="Credits">Credits</option>
                 </select>
@@ -118,28 +118,28 @@ if (isset($_SESSION['email'])) {
           <br><br><br><br><br><br>
 
           <!-- container-fluid -->
-    </section>
-    <!-- content -->
-    </form>
+        </section>
+        <!-- content -->
+      </form>
 
-  </div>
-  <!-- content-wrapper -->
+    </div>
+    <!-- content-wrapper -->
 
 
-  <?php
-  include '../elements/footer.php';
-  ?>
-  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <?php
+    include '../elements/footer.php';
+    ?>
+    <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-  <!-- jquery-validation -->
-  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-  <script src="../../plugins/select2/js/select2.full.min.js"></script>
-  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+    <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     var folderTimestamp = '<?php echo time(); ?>';
     var folderName = 'MergerAcquisition/' + folderTimestamp;
 
@@ -193,7 +193,9 @@ if (isset($_SESSION['email'])) {
             required: true
           },
           ebitda_margin: {
-            required: true
+            required: true,
+            max: 100,
+            min: -100
           },
           general_description: {
             required: true
@@ -236,12 +238,15 @@ if (isset($_SESSION['email'])) {
           },
           yearly_return: {
             required: true,
+            min: 0,
+            max: 100
           },
           construction_year: {
             required: true,
           },
           total_surface_area: {
             required: true,
+            min: 0
           },
           vendor_type: {
             required: true,
@@ -253,15 +258,6 @@ if (isset($_SESSION['email'])) {
             required: true,
           },
           collateral_type: {
-            required: true,
-          },
-          original_amount: {
-            required: true,
-          },
-          asking_price: {
-            required: true,
-          },
-          market_value: {
             required: true,
           },
           lien_position: {
@@ -292,13 +288,15 @@ if (isset($_SESSION['email'])) {
             required: true,
           },
           ratio_ob: {
-            required: true,
+            min: 0,
+            max: 100
           },
           rate: {
             required: true,
           },
           discounted_ratio: {
-            required: true,
+            min: 0,
+            max: 100
           },
         },
         errorElement: 'span',
@@ -439,8 +437,8 @@ if (isset($_SESSION['email'])) {
           beforeSend: function() {},
           success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
             var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-              new_file_name = JSON.parse(data),
-              filerKit = inputEl.prop("jFiler");
+            new_file_name = JSON.parse(data),
+            filerKit = inputEl.prop("jFiler");
             filerKit.files_list[id].name = new_file_name;
             uploadedFiles.push(new_file_name);
             $("." + filerID + "-list").val(folderName + "/" + new_file_name)
@@ -471,7 +469,7 @@ if (isset($_SESSION['email'])) {
         afterShow: null,
         onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
           var filerKit = inputEl.prop("jFiler"),
-            file_name = filerKit.files_list[id].name;
+          file_name = filerKit.files_list[id].name;
           uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
             return value != file_name;
           });
@@ -506,11 +504,11 @@ if (isset($_SESSION['email'])) {
       });
 
     }
-  </script>
+    </script>
 
 
-  <!-- company_sell -->
-  <script type="text/javascript">
+    <!-- company_sell -->
+    <script type="text/javascript">
     var country_data;
     $(document).ready(function() {
       $.ajax({
@@ -518,20 +516,52 @@ if (isset($_SESSION['email'])) {
         url: "../../assets/php/getCountries.php",
         dataType: 'json',
         success: function(data) {
-          country_data = data;
-          $.each(country_data, function(index, element) {
-            $('.hq_country').append($('<option>', {
-              value: element.id,
-              text: element.country
-            }));
-            $(".scalability_area").append($('<option>', {
-              value: element.id,
-              text: element.country
-            }));
-            $(".area_of_activity").append($('<option>', {
-              value: element.id,
-              text: element.country
-            }));
+          country_data = data.reduce(function(result, current) {
+            result[current.area] = result[current.area] || [];
+            result[current.area].push(current);
+            return result;
+          }, {});
+          var keys = Object.keys(country_data).forEach(key =>{
+            if(key != "null"){
+              $('.hq_country').append('<optgroup label="'+ key +'">');
+              $('.scalability_area').append('<optgroup label="'+ key +'">');
+              $('.area_of_activity').append('<optgroup label="'+ key +'">');
+
+              $.each(country_data[key], function(index, element) {
+                $('.hq_country').append($('<option>', {
+                  value: element.id,
+                  text: element.country
+                }));
+                $(".scalability_area").append($('<option>', {
+                  value: element.id,
+                  text: element.country
+                }));
+                $(".area_of_activity").append($('<option>', {
+                  value: element.id,
+                  text: element.country
+                }));
+
+                if (index === country_data[key].length -1){
+                  $('.hq_country').append('</optgroup>');
+                  $('.scalability_area').append('</optgroup>');
+                  $('.area_of_activity').append('</optgroup>');
+                }
+              });
+            }else{
+              $('.hq_country').append($('<option>', {
+                value: "0",
+                text: "ALL"
+              }));
+              $(".scalability_area").append($('<option>', {
+                value: 0,
+                text: "ALL"
+              }));
+              $(".area_of_activity").append($('<option>', {
+                value: 0,
+                text: "ALL"
+              }));
+            }
+
           });
         }
       });
@@ -552,11 +582,23 @@ if (isset($_SESSION['email'])) {
         } else {
           current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
         }
-        $.each(country_data, function(index, element) {
-          current_location_container.find('.hq_country').last().append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
+
+        var keys = Object.keys(country_data).forEach(key =>{
+          if(key != "null"){
+            $('.hq_country').last().append('<optgroup label="'+ key +'">');
+            $.each(country_data[key], function(index, element) {
+              $('.hq_country').last().append($('<option>', {
+                value: element.id,
+                text: element.country
+              }));
+            });
+            $('.hq_country').last().append('</optgroup>');
+          }else{
+            $('.hq_country').last().append($('<option>', {
+              value: "0",
+              text: "ALL"
+            }));
+          }
         });
       });
 
@@ -628,10 +670,10 @@ if (isset($_SESSION['email'])) {
     initFiler('sell_re_image');
     initFiler('buy_bc_image');
     initFiler('buy_startup_image');
-  </script>
+    </script>
 
-  <!-- Real Estate Sell -->
-  <script type="text/javascript">
+    <!-- Real Estate Sell -->
+    <script type="text/javascript">
     $(".re_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".re_type_category").html("");
@@ -654,11 +696,11 @@ if (isset($_SESSION['email'])) {
         $(".re_type_category_container").fadeOut();
       }
     })
-  </script>
+    </script>
 
 
-  <!-- NPE Sell -->
-  <script type="text/javascript">
+    <!-- NPE Sell -->
+    <script type="text/javascript">
     $(".product_type").change(function() {
       if ($(this).find("option:selected").val() == "Secured") {
         $(".collateral_type_container").fadeIn();
@@ -666,10 +708,10 @@ if (isset($_SESSION['email'])) {
         $(".collateral_type_container").fadeOut();
       }
     })
-  </script>
+    </script>
 
-  <!-- Credits Sell -->
-  <script type="text/javascript">
+    <!-- Credits Sell -->
+    <script type="text/javascript">
     $(".borrower_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".borrower_type_category").html("");
@@ -692,8 +734,8 @@ if (isset($_SESSION['email'])) {
         $(".borrower_type_category_container").fadeOut();
       }
     })
-  </script>
-  <script>
+    </script>
+    <script>
     function insertDealData() {
       insertData = {};
       var deal_type = $(".deal_type:checked").val();
@@ -754,9 +796,9 @@ if (isset($_SESSION['email'])) {
           console.log(data);
           if (data.trim() == "success") {
             swal("Success!", "Deal added!", "success")
-              .then((value) => {
-                location.reload();
-              });
+            .then((value) => {
+              location.reload();
+            });
           } else {
             swal("Error!", "An unexpected error occurred, please try again!", "error");
           }
@@ -805,7 +847,7 @@ if (isset($_SESSION['email'])) {
         isNpeTypeSetted = true;
       });
       if (isNpeTypeSetted)
-        response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
 
       product_type = "";
       isProductTypeSetted = false;
@@ -814,7 +856,7 @@ if (isset($_SESSION['email'])) {
         isProductTypeSetted = true;
       });
       if (isProductTypeSetted)
-        response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
 
       response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
       response['npe_hq_city'] = $(".npe_hq_city_buy").val();
@@ -889,7 +931,7 @@ if (isset($_SESSION['email'])) {
         isNpeTypeSetted = true;
       });
       if (isNpeTypeSetted)
-        response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
 
       product_type = "";
       isProductTypeSetted = false;
@@ -898,7 +940,7 @@ if (isset($_SESSION['email'])) {
         isProductTypeSetted = true;
       });
       if (isProductTypeSetted)
-        response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
 
       response['npe_collateral_type'] = $(".npe_collateral_type").val();
       response['npe_hq_country'] = $(".npe_hq_country option:selected").text();
@@ -989,9 +1031,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['sector_sel'] = $(".bc_sector_sel_buy").val();
       var isIndustrySetted = false;
@@ -1001,7 +1043,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".bc_default_currency_buy").val();
 
@@ -1097,9 +1139,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['sector_sel'] = $(".su_sector_sel_buy").val();
       var isIndustrySetted = false;
@@ -1109,7 +1151,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".su_default_currency_buy").val();
 
@@ -1285,9 +1327,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['company_type'] = $(".bc_company_type").val();
       response['foundation_year'] = $(".bc_foundation_year").val();
@@ -1324,7 +1366,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['company_business'] = $(".bc_company_business").val();
       var isAreaSetted = false;
@@ -1334,7 +1376,7 @@ if (isset($_SESSION['email'])) {
         areaOfActivity += $(this).text() + ",";
       });
       if (isAreaSetted)
-        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".bc_scalability").val();
       response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
@@ -1420,9 +1462,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['company_type'] = $(".su_company_type").val();
       response['foundation_year'] = $(".su_foundation_year").val();
@@ -1459,7 +1501,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + "|";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['company_business'] = $(".su_company_business").val();
       var isAreaSetted = false;
@@ -1469,7 +1511,7 @@ if (isset($_SESSION['email'])) {
         areaOfActivity += $(this).text() + ",";
       });
       if (isAreaSetted)
-        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".su_scalability").val();
       response['scalability_area'] = $(".su_scalability_area option:selected").val() == "" ? "" : $(".su_scalability_area option:selected").text();
@@ -1618,13 +1660,13 @@ if (isset($_SESSION['email'])) {
     //   return response;
 
     // }
-  </script>
-<?php
-} else {
-?>
-  <script>
+    </script>
+    <?php
+  } else {
+    ?>
+    <script>
     window.open('../../', '_self')
-  </script>
-<?php
-}
-?>
+    </script>
+    <?php
+  }
+  ?>
