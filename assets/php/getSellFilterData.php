@@ -375,13 +375,19 @@ function addEbidtaMargin($query, $arr)
     $query = $query . "(";
     $counter = 0;
     foreach ($arr as $value) {
-        $val = explode("|", $value);
-        $query = $query . "(";
-        $query = $query . " EBIDTA_MARGIN>=" . $val[0] . " AND EBIDTA_MARGIN<=" . $val[1];
-        $query = $query . ")";
-        $counter++;
-        if ($counter < sizeof($arr)) {
-            $query = $query . " OR ";
+        if (strtolower($value) == "undisclosed") {
+            $query = $query . "(";
+            $query = $query . " EBITDA_MARGIN_TYPE='" . $value . "'";
+            $query = $query . ")";
+        } else {
+            $val = explode("|", $value);
+            $query = $query . "(";
+            $query = $query . " EBIDTA_MARGIN>=" . $val[0] . " AND EBITDA_MARGIN_MAX<=" . $val[1];
+            $query = $query . ")";
+            $counter++;
+            if ($counter < sizeof($arr)) {
+                $query = $query . " OR ";
+            }
         }
     }
     $query = $query . ")";
