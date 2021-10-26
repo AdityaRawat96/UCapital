@@ -345,7 +345,7 @@ function addTotalSurface($query, $arr)
     foreach ($arr as $value) {
         $val = explode("|", $value);
         $query = $query . "(";
-        $query = $query . " TOTAL_SURFACE>=" . $val[0] . " AND TOTAL_SURFACE<=" . $val[1];
+        $query = $query . " TOTAL_SURFACE>=" . $val[0] . " AND TOTAL_SURFACE_MAX<=" . $val[1];
         $query = $query . ")";
         $counter++;
         if ($counter < sizeof($arr)) {
