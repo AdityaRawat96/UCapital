@@ -14,7 +14,7 @@ if ($asset_type == "RE") {
     $re_condition_status = array_key_exists('re_condition_status', $data) ? $data['re_condition_status'] : "";
     $re_surface_area = (array_key_exists('re_surface_area', $data) && $data['re_surface_area'] != "") ? $data['re_surface_area'] : 0;
     $re_hq_country = array_key_exists('re_hq_country', $data) ?  $data['re_hq_country'] : "";
-    $re_hq_city = array_key_exists('re_hq_city', $data) ? $data['re_hq_city'] : "";
+    $re_hq_city = array_key_exists('re_hq_city', $data) ? mysqli_real_escape_string($con, $data['re_hq_city']) : "";
     $default_currency = array_key_exists('default_currency', $data) ? $data['default_currency'] : "";
     $re_asset_value = array_key_exists('re_asset_value', $data) ? $data['re_asset_value'] : "";
     $re_asset_value_min = (array_key_exists('re_asset_value_min', $data) && $data['re_asset_value_min'] != "") ? $data['re_asset_value_min'] : 0;
@@ -36,7 +36,7 @@ if ($asset_type == "RE") {
     $npe_product_type = array_key_exists('npe_product_type', $data) ? $data['npe_product_type'] : "";
     $npe_collateral_type = array_key_exists('npe_collateral_type', $data) ? $data['npe_collateral_type'] : "";
     $npe_hq_country = array_key_exists('npe_hq_country', $data) ? $data['npe_hq_country'] : "";
-    $npe_hq_city = array_key_exists('npe_hq_city', $data) ? htmlspecialchars($data['npe_hq_city']) : "";
+    $npe_hq_city = array_key_exists('npe_hq_city', $data) ? mysqli_real_escape_string($con, $data['npe_hq_city']) : "";
     $npe_state = array_key_exists('npe_state', $data) ? $data['npe_state'] : "";
     $npe_post_code = array_key_exists('npe_post_code', $data) ? $data['npe_post_code'] : "";
     $npe_description = array_key_exists('npe_description', $data) ? $data['npe_description'] : "";
@@ -60,7 +60,7 @@ if ($asset_type == "RE") {
     $credit_product_type = array_key_exists('credit_product_type', $data) ? $data['credit_product_type'] : "";
     $credit_collateral_type = array_key_exists('credit_collateral_type', $data) ? $data['credit_collateral_type'] : "";
     $credit_hq_country = array_key_exists('credit_hq_country', $data) ? $data['credit_hq_country'] : "";
-    $credit_hq_city = array_key_exists('credit_hq_city', $data) ? $data['credit_hq_city'] : "";
+    $credit_hq_city = array_key_exists('credit_hq_city', $data) ? mysqli_real_escape_string($con, $data['credit_hq_city']) : "";
     $credit_state = array_key_exists('credit_state', $data) ? $data['credit_state'] : "";
     $credit_post_code = array_key_exists('credit_post_code', $data) ? $data['credit_post_code'] : "";
     $credit_description = array_key_exists('credit_description', $data) ? $data['credit_description'] : "";
@@ -93,7 +93,7 @@ if ($asset_type == "RE") {
 } else if ($asset_type == "BC" || $asset_type == "SU") {
     $startup_type = array_key_exists('startup_type', $data) ? $data['startup_type'] : "";
     $country = array_key_exists('hq_country', $data) ? $data['hq_country'] : "";
-    $city = array_key_exists('hq_city', $data) ? $data['hq_city'] : "";
+    $city = array_key_exists('hq_city', $data) ? mysqli_real_escape_string($con, $data['hq_city']) : "";
     $foundation_year = (array_key_exists('foundation_year', $data) && $data['foundation_year'] != "") ? $data['foundation_year'] : 0;
     $default_currency = array_key_exists('default_currency', $data) ? $data['default_currency'] : "";
     $company_value_type = array_key_exists('company_value_type', $data) ? $data['company_value_type'] : "";
