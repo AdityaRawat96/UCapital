@@ -1078,8 +1078,6 @@ if (isset($_SESSION['email'])) {
       response['credit_maturity'] = $(".credit_maturity").val();
       response['credit_product_type'] = $(".credit_product_type").val();
       response['credit_collateral_type'] = $(".credit_collateral_type").val();
-      // response['credit_hq_country'] = $(".credit_hq_country option:selected").text();
-      // response['credit_hq_city'] = $(".credit_hq_city").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;

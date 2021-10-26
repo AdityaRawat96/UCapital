@@ -117,8 +117,6 @@
           <select class="form-control hq_city credit_hq_city" name="hq_city">
             <option value="" selected disabled>Choose a city</option>
           </select>
-          <input type="text" name="state" value="" class="form-control credit_state" placeholder="Enter State">
-          <input type="number" name="post_code" value="" class="form-control credit_post_code" placeholder="Enter Zip/Postal code">
         </div>
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
