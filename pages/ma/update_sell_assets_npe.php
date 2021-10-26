@@ -533,20 +533,29 @@ if (isset($_SESSION['email'])) {
       url: "../../assets/php/getCountries.php",
       dataType: 'json',
       success: function(data) {
-        country_data = data;
-        $.each(country_data, function(index, element) {
-          $('.hq_country').append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
-          $(".scalability_area").append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
-          $(".area_of_activity").append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
+        country_data = data.reduce(function(result, current) {
+          result[current.area] = result[current.area] || [];
+          result[current.area].push(current);
+          return result;
+        }, {});
+        var keys = Object.keys(country_data).forEach(key => {
+          if (key != "null") {
+            $('.hq_country').append('<optgroup label="' + key + '">');
+            $.each(country_data[key], function(index, element) {
+              $('.hq_country').append($('<option>', {
+                value: element.id,
+                text: element.country
+              }));
+              if (index === country_data[key].length - 1) {
+                $('.hq_country').append('</optgroup>');
+              }
+            });
+          } else {
+            $('.hq_country').append($('<option>', {
+              value: "0",
+              text: "All"
+            }));
+          }
         });
         var countryVal = "";
         $(".hq_country option").each(function() {
