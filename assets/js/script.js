@@ -92,6 +92,16 @@ $(document).ready(function () {
     );
   });
 
+  $(".deal_option_visibility_trigger").on("change", function () {
+    $(".option_visibility_target").find("input[type='checkbox']").prop("checked", false);
+    $(".option_visibility_target").find("input[type='number']").val("");
+    if($(this).val() == "PE Fund" || $(this).val() == "VC Fund" || $(this).val() == "Asset Management"){
+      $(".option_visibility_target").fadeIn(0);
+    }else{
+      $(".option_visibility_target").fadeOut(0);
+    }
+  });
+
   $(".listing-add-post1 li a").click(function () {
     var target_temp = $(this).attr("href");
     $(".listing-add-post1 li a").each(function () {

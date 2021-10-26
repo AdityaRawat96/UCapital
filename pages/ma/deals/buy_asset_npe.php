@@ -169,7 +169,7 @@
       <span>Who I am</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <select class="form-control default_currency npe_who_i_am" name="who_i_am">
+      <select class="form-control deal_option_visibility_trigger npe_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
         <option value="Individual">Individual</option>
         <option value="Corporation">Corporation</option>
@@ -179,12 +179,14 @@
       </select>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3 col-sm-12 deal-heading">
-      <span>AUM</span>
-    </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
-      <input type="number" name="aum" value="" class="form-control npe_aum_buy" placeholder="Enter a value">
+  <div class="option_visibility_target">
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>AUM</span>
+      </div>
+      <div class="col-md-4 col-sm-12 input-container input-group">
+        <input type="number" name="aum" value="" class="form-control npe_aum_buy" placeholder="Enter a value">
+      </div>
     </div>
   </div>
 </div>
