@@ -1498,17 +1498,44 @@ if (isset($_SESSION['email'])) {
       url: "../../assets/php/getCountries.php",
       dataType: 'json',
       success: function(data) {
-        country_data = data;
-        $.each(country_data, function(index, element) {
-          $(".scalability_area").append($('<option>', {
-            value: element.id,
-            text: element.country,
-            selected: element.country == scalability_area ? true : false
-          }));
-          $(".area_of_activity").append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
+        country_data = data.reduce(function(result, current) {
+          result[current.area] = result[current.area] || [];
+          result[current.area].push(current);
+          return result;
+        }, {});
+        var keys = Object.keys(country_data).forEach(key => {
+          if (key != "null") {
+            $('.scalability_area').append('<optgroup label="' + key + '">');
+            $('.area_of_activity').append('<optgroup label="' + key + '">');
+
+            $.each(country_data[key], function(index, element) {
+              $(".scalability_area").append($('<option>', {
+                value: element.id,
+                text: element.country,
+                selected: element.country == scalability_area ? true : false
+              }));
+              $(".area_of_activity").append($('<option>', {
+                value: element.id,
+                text: element.country
+              }));
+
+              if (index === country_data[key].length - 1) {
+                $('.scalability_area').append('</optgroup>');
+                $('.area_of_activity').append('</optgroup>');
+              }
+            });
+          } else {
+            $(".scalability_area").append($('<option>', {
+              value: 0,
+              text: "All",
+              selected: "All" == scalability_area ? true : false
+            }));
+            $(".area_of_activity").append($('<option>', {
+              value: 0,
+              text: "All"
+            }));
+          }
+
         });
 
         var values = "<?= $row["AREA_OF_ACTIVITY"] ?>";
@@ -1526,14 +1553,30 @@ if (isset($_SESSION['email'])) {
         cityArr = cityVal.split("|");
         var location_container = $(".location_container");
         countryArr.forEach(function(element, index) {
+          var curr_country = element;
+          console.log(curr_country)
           var countryId = "";
           location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-          country_data.forEach(country_data => {
-            location_container.find('.hq_country').last().append($('<option>', {
-              value: country_data.id,
-              text: country_data.country,
-              selected: country_data.country == element ? true : false
-            }));
+          var keys = Object.keys(country_data).forEach(key => {
+            if (key != "null") {
+              location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+              $.each(country_data[key], function(index, element) {
+                location_container.find('.hq_country').last().append($('<option>', {
+                  value: element.id,
+                  text: element.country,
+                  selected: "All" == curr_country ? true : false
+                }));
+                if (index === country_data[key].length - 1) {
+                  location_container.find('.hq_country').last().append('</optgroup>');
+                }
+              });
+            } else {
+              location_container.find('.hq_country').last().append($('<option>', {
+                value: "0",
+                text: "All",
+                selected: country_data.country == curr_country ? true : false
+              }));
+            }
           });
           countryId = location_container.find('.hq_country').last().val();
           syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
@@ -1580,11 +1623,24 @@ if (isset($_SESSION['email'])) {
     } else {
       current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
     }
-    $.each(country_data, function(index, element) {
-      current_location_container.find('.hq_country').last().append($('<option>', {
-        value: element.id,
-        text: element.country
-      }));
+    var keys = Object.keys(country_data).forEach(key => {
+      if (key != "null") {
+        current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+        $.each(country_data[key], function(index, element) {
+          current_location_container.find('.hq_country').last().append($('<option>', {
+            value: element.id,
+            text: element.country
+          }));
+          if (index === country_data[key].length - 1) {
+            current_location_container.find('.hq_country').last().append('</optgroup>');
+          }
+        });
+      } else {
+        current_location_container.find('.hq_country').last().append($('<option>', {
+          value: "0",
+          text: "All"
+        }));
+      }
     });
   });
 
