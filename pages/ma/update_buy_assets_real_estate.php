@@ -123,12 +123,9 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <div class="row location_holder">
                     <div class="col-md-8 col-sm-12 location_container">
-                      <select class="form-control hq_country re_hq_country_buy" name="hq_country" id="country">
-                        <option value="" selected disabled>Choose a country</option>
-                      </select>
-                      <select class="form-control hq_city re_hq_city_buy" name="hq_city" id="city">
-                        <option value="" selected disabled>Choose a city</option>
-                      </select>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                      <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
                     </div>
                   </div>
                 </div>
@@ -478,8 +475,24 @@ if (isset($_SESSION['email'])) {
     response['re_asset_status'] = $(".re_asset_status_buy").val();
     response['re_condition_status'] = $(".re_condition_status_buy").val();
     response['re_surface_area'] = $(".re_surface_area_buy").val();
-    response['re_hq_country'] = $(".re_hq_country_buy option:selected").text();
-    response['re_hq_city'] = $(".re_hq_city_buy").val();
+    var countryVal = "";
+    var cityVal = "";
+    var countrySetted = false;
+    var citySetted = false;
+    $(".hq_country").each(function() {
+      countrySetted = true;
+      countryVal += $(this).find("option:selected").text() + "|";
+    });
+    $(".hq_city").each(function() {
+      citySetted = true;
+      cityVal += $(this).find("option:selected").val() + "|";
+    });
+
+    if (countrySetted)
+      response['re_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    if (citySetted)
+      response['re_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
     response['default_currency'] = $(".re_default_currency_buy").val();
     response['re_asset_value'] = $(".re_asset_value_buy:checked").val();
     if ($(".re_asset_value_buy:checked").val() === "undisclosed") {
@@ -561,8 +574,8 @@ if (isset($_SESSION['email'])) {
       document.getElementById("asset_value_range").value = "<?= $row["ASSET_VAL_MIN"] . '|' . $row["ASSET_VAL_MAX"] ?>";
     }
     $(".span-currency-icon").html(
-        $(".default_currency").find("option:selected").data("value")
-      );
+      $(".default_currency").find("option:selected").data("value")
+    );
   }
 </script>
 
@@ -575,65 +588,77 @@ if (isset($_SESSION['email'])) {
       url: "../../assets/php/getCountries.php",
       dataType: 'json',
       success: function(data) {
-        country_data = data.reduce(function(result, current) {
-          result[current.area] = result[current.area] || [];
-          result[current.area].push(current);
-          return result;
-        }, {});
-        var keys = Object.keys(country_data).forEach(key => {
-          if (key != "null") {
-            $('.hq_country').append('<optgroup label="' + key + '">');
-            $.each(country_data[key], function(index, element) {
-              $('.hq_country').append($('<option>', {
-                value: element.id,
-                text: element.country
-              }));
-              if (index === country_data[key].length - 1) {
-                $('.hq_country').append('</optgroup>');
-              }
-            });
-          } else {
-            $('.hq_country').append($('<option>', {
-              value: "0",
-              text: "All"
+        country_data = data;
+        var countryVal = "<?= $row['COUNTRY'] ?>";
+        var cityVal = "<?= $row['CITY'] ?>";
+        countryArr = countryVal.split("|");
+        cityArr = cityVal.split("|");
+        var location_container = $(".location_container");
+        countryArr.forEach(function(element, index) {
+          var countryId = "";
+          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+          country_data.forEach(country_data => {
+            location_container.find('.hq_country').last().append($('<option>', {
+              value: country_data.id,
+              text: country_data.country,
+              selected: country_data.country == element ? true : false
             }));
-          }
-        });
-        var countryVal = "";
-        $(".hq_country option").each(function() {
-          if ($(this).text() == "<?= $row['COUNTRY'] ?>") {
-            $(this).attr('selected', 'selected');
-            countryVal = $(this).val();
-          }
-        });
-
-        $.ajax({
-          type: 'POST',
-          url: "../../assets/php/getCities.php",
-          dataType: 'json',
-          data: {
-            country_id: countryVal
-          },
-          success: function(data) {
-            $('.hq_city').html("");
-            $('.hq_city').append($('<option>', {
-              value: "",
-              text: "Choose a city",
-              selected: true,
-              disabled: true
-            }));
-            $.each(data, function(index, element) {
-              $('.hq_city').append($('<option>', {
-                value: element.city,
-                text: element.city
-              }));
-            });
-            document.getElementById("city").value = "<?= $row['CITY'] ?>";
-          }
+          });
+          countryId = location_container.find('.hq_country').last().val();
+          syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+            console.log(err);
+          })
         });
       }
     });
+  });
 
+  function syncLoadCity(countryId, cityVal, domElem) {
+    console.log(cityVal);
+    return new Promise(function(resolve, reject) {
+      $.ajax({
+        type: 'POST',
+        url: "../../assets/php/getCities.php",
+        dataType: 'json',
+        data: {
+          country_id: countryId
+        },
+        success: function(data) {
+          data.forEach(element => {
+            domElem.append($('<option>', {
+              value: element.city,
+              text: element.city,
+              selected: element.city == cityVal ? true : false
+            }));
+          });
+
+          resolve()
+        },
+        error: function(err) {
+          reject(err)
+        }
+      });
+    });
+  }
+
+  $(".add-location").on('click', function() {
+    var deal_type = $(".deal_type:checked").val();
+    var current_location_container = $(this).parent().parent();
+    if (deal_type == "sell") {
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+    } else {
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+    }
+    $.each(country_data, function(index, element) {
+      current_location_container.find('.hq_country').last().append($('<option>', {
+        value: element.id,
+        text: element.country
+      }));
+    });
+  });
+
+  $(".location_holder").on("click", ".btn-location-remove", function() {
+    $(this).parent().remove();
   });
 
   $("body").on("change", ".hq_country", function() {
