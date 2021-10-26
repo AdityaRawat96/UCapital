@@ -651,7 +651,7 @@ if (isset($_SESSION['email'])) {
     }
     $.each(country_data, function(index, element) {
       current_location_container.find('.hq_country').last().append($('<option>', {
-        value: element.city,
+        value: element.id,
         text: element.country
       }));
     });
