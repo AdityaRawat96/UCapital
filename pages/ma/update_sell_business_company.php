@@ -1272,7 +1272,7 @@ if (isset($_SESSION['email'])) {
     var industry = '';
     $(".bc_industry_sel").each(function() {
       isIndustrySetted = true;
-      industry += $(this).val() + "|";
+      industry += $(this).val() + ",";
     });
     if (isIndustrySetted)
       response['industry_sel'] = industry.substring(0, industry.length - 1);
@@ -1394,12 +1394,12 @@ if (isset($_SESSION['email'])) {
     document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
     $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
     document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
-    $("input[name=forcast_revenue_1_sell][value=<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>]").attr('checked', 'checked');
-    $("input[name=forcast_revenue_2_sell][value=<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>]").attr('checked', 'checked');
-    $("input[name=forcast_revenue_3_sell][value=<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>]").attr('checked', 'checked');
-    $("input[name=forcast_ebitda_1_sell][value=<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>]").attr('checked', 'checked');
-    $("input[name=forcast_ebitda_2_sell][value=<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>]").attr('checked', 'checked');
-    $("input[name=forcast_ebitda_3_sell][value=<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>]").attr('checked', 'checked');
+    $("input[name=forcast_revenue_1_sell][value='<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>']").attr('checked', 'checked');
+    $("input[name=forcast_revenue_2_sell][value='<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>']").attr('checked', 'checked');
+    $("input[name=forcast_revenue_3_sell][value='<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>']").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_1_sell][value='<?= $row['FORECAST_EBITDA_Y1_SEL'] ?>']").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_2_sell][value='<?= $row['FORECAST_EBITDA_Y2_SEL'] ?>']").attr('checked', 'checked');
+    $("input[name=forcast_ebitda_3_sell][value='<?= $row['FORECAST_EBITDA_Y3_SEL'] ?>']").attr('checked', 'checked');
 
     if ('<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>' == "fixed") {
       document.getElementById("rev_y1y_n").value = "<?= $row["FORECAST_REVENUE_Y1"] ?>";
@@ -1431,28 +1431,28 @@ if (isset($_SESSION['email'])) {
     } else {
       document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     }
-    $("input[name=company_value][value=<?= $row["COMPANY_VAL_TYPE"] ?>]").attr('checked', 'checked');
+    $("input[name=company_value][value='<?= $row["COMPANY_VAL_TYPE"] ?>']").attr('checked', 'checked');
     if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "fixed") {
       document.getElementById("company_value_val").value = "<?= $row["COMPANY_VAL_MIN"] ?>";
     } else if ("<?= $row["COMPANY_VAL_TYPE"] ?>" == "range") {
       document.getElementById("company_value_sel").value = "<?= $row["COMPANY_VAL_MIN"] . '|' . $row["COMPANY_VAL_MAX"] ?>";
     }
 
-    $("input[name=investment_required][value=<?= $row["INVESTMENT_TYPE"] ?>]").attr('checked', 'checked');
+    $("input[name=investment_required][value='<?= $row["INVESTMENT_TYPE"] ?>']").attr('checked', 'checked');
     if ("<?= $row["INVESTMENT_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "fixed") {
       document.getElementById("investment_required_value").value = "<?= $row["INVESTMENT_MIN"] ?>";
     } else if ("<?= $row["INVESTMENT_TYPE"] ?>" == "range") {
       document.getElementById("investment_required_sel").value = "<?= $row["INVESTMENT_MIN"] . '|' . $row["INVESTMENT_MAX"] ?>";
     }
 
-    $("input[name=bc_pref_ebitda][value=<?= $row["EBITDA_MARGIN_TYPE"] ?>]").attr('checked', 'checked');
+    $("input[name=bc_pref_ebitda][value='<?= $row["EBITDA_MARGIN_TYPE"] ?>']").attr('checked', 'checked');
     if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "fixed") {
       document.getElementById("bc_pref_ebitda_val").value = "<?= $row["EBIDTA_MARGIN"] ?>";
     } else if ("<?= $row["EBITDA_MARGIN_TYPE"] ?>" == "range") {
       document.getElementById("bc_pref_ebitda_range").value = "<?= $row["EBIDTA_MARGIN"] . '|' . $row["EBITDA_MARGIN_MAX"] ?>";
     }
 
-    $("input[name=actual_revenue_required][value=<?= $row["ACTUAL_REVENUE_TYPE"] ?>]").attr('checked', 'checked');
+    $("input[name=actual_revenue_required][value='<?= $row["ACTUAL_REVENUE_TYPE"] ?>']").attr('checked', 'checked');
     if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "fixed") {
       document.getElementById("actual_revenue_val").value = "<?= $row["ACTUAL_REVENUE_MIN"] ?>";
     } else if ("<?= $row["ACTUAL_REVENUE_TYPE"] ?>" == "range") {
@@ -1463,7 +1463,7 @@ if (isset($_SESSION['email'])) {
     );
 
     var values = "<?= $row["INDUSTRY"] ?>";
-    $.each(values.split("|"), function(i, e) {
+    $.each(values.split(","), function(i, e) {
       $("#industry option[value='" + e + "']").prop("selected", true);
     });
     $("#industry").trigger('change');
@@ -1554,9 +1554,8 @@ if (isset($_SESSION['email'])) {
         var location_container = $(".location_container");
         countryArr.forEach(function(element, index) {
           var curr_country = element;
-          console.log(curr_country)
           var countryId = "";
-          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
           var keys = Object.keys(country_data).forEach(key => {
             if (key != "null") {
               location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
@@ -1564,7 +1563,7 @@ if (isset($_SESSION['email'])) {
                 location_container.find('.hq_country').last().append($('<option>', {
                   value: element.id,
                   text: element.country,
-                  selected: "All" == curr_country ? true : false
+                  selected: element.country == curr_country ? true : false
                 }));
                 if (index === country_data[key].length - 1) {
                   location_container.find('.hq_country').last().append('</optgroup>');
@@ -1574,13 +1573,13 @@ if (isset($_SESSION['email'])) {
               location_container.find('.hq_country').last().append($('<option>', {
                 value: "0",
                 text: "All",
-                selected: country_data.country == curr_country ? true : false
+                selected: "All" == curr_country ? true : false
               }));
             }
           });
           countryId = location_container.find('.hq_country').last().val();
           syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
-            console.log(err)
+            console.log(err);
           })
         });
       }
@@ -1618,11 +1617,7 @@ if (isset($_SESSION['email'])) {
   $(".add-location").on('click', function() {
     var deal_type = $(".deal_type:checked").val();
     var current_location_container = $(this).parent().parent();
-    if (deal_type == "sell") {
-      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-    } else {
-      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-    }
+    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
     var keys = Object.keys(country_data).forEach(key => {
       if (key != "null") {
         current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');

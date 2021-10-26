@@ -619,7 +619,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Actual Ebitda Margin</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">

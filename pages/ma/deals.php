@@ -1113,8 +1113,6 @@ if (isset($_SESSION['email'])) {
       response = {};
       response['credit_type'] = $(".npec_type_buy").val();
       response['credit_product_type'] = $(".npec_product_type_buy").val();
-      // response['credit_hq_country'] = $(".npec_hq_country_buy option:selected").text();
-      // response['credit_hq_city'] = $(".npec_hq_city_buy").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -1132,6 +1130,7 @@ if (isset($_SESSION['email'])) {
         response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
         response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+
       response['credit_description'] = $(".npec_description_buy").val();
       response['credit_default_currency'] = $(".npec_default_currency_buy").val();
       response['credit_value'] = $(".npec_value_buy:checked").val();
@@ -1178,7 +1177,7 @@ if (isset($_SESSION['email'])) {
       var industry = '';
       $(".bc_industry_sel_buy").each(function() {
         isIndustrySetted = true;
-        industry += $(this).val() + "|";
+        industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
         response['industry_sel'] = industry.substring(0, industry.length - 1);
@@ -1256,12 +1255,12 @@ if (isset($_SESSION['email'])) {
       var investmentSize = "";
       $(".bc_investment_required_value_buy").each(function() {
         if ($(this).prop("checked")) {
-          investmentSize += $(this).val() + "|";
+          investmentSize += $(this).val() + ",";
         }
       });
       $(".bc_investment_amount_buy").each(function() {
         if ($(this).prop("checked")) {
-          investmentAmount += $(this).val() + "|";
+          investmentAmount += $(this).val() + ",";
         }
       });
       investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
@@ -1296,7 +1295,7 @@ if (isset($_SESSION['email'])) {
       var industry = '';
       $(".su_industry_sel_buy").each(function() {
         isIndustrySetted = true;
-        industry += $(this).val() + "|";
+        industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
         response['industry_sel'] = industry.substring(0, industry.length - 1);
@@ -1375,12 +1374,12 @@ if (isset($_SESSION['email'])) {
       var investmentSize = "";
       $(".su_investment_required_value_buy").each(function() {
         if ($(this).prop("checked")) {
-          investmentSize += $(this).val() + "|";
+          investmentSize += $(this).val() + ",";
         }
       });
       $(".su_investment_amount_buy").each(function() {
         if ($(this).prop("checked")) {
-          investmentAmount += $(this).val() + "|";
+          investmentAmount += $(this).val() + ",";
         }
       });
       investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
@@ -1533,7 +1532,7 @@ if (isset($_SESSION['email'])) {
       var industry = '';
       $(".bc_industry_sel").each(function() {
         isIndustrySetted = true;
-        industry += $(this).val() + "|";
+        industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
         response['industry_sel'] = industry.substring(0, industry.length - 1);
@@ -1551,7 +1550,6 @@ if (isset($_SESSION['email'])) {
       response['scalability'] = $(".bc_scalability").val();
       response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
       response['market_share'] = $(".bc_market_share").val();
-      console.log($(".bc_number_of_employees:checked").val());
       if (null != $(".bc_number_of_employees:checked").val()) {
         var numOfEmp = $(".bc_number_of_employees:checked").val();
         index = numOfEmp.lastIndexOf("|");
@@ -1667,7 +1665,7 @@ if (isset($_SESSION['email'])) {
       var industry = '';
       $(".su_industry_sel").each(function() {
         isIndustrySetted = true;
-        industry += $(this).val() + "|";
+        industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
         response['industry_sel'] = industry.substring(0, industry.length - 1);
