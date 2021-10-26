@@ -158,7 +158,7 @@
           <input type="number" class="form-control re_asset_value_val_buy" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">

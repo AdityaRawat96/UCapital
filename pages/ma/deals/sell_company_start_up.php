@@ -105,7 +105,7 @@
           <input type="number" class="form-control su_company_value_val" name="company_value_input" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">

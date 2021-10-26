@@ -182,7 +182,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control re_asset_value_val" id="asset_value" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -259,7 +259,7 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="number" name="yearly_return" class="form-control re_yearly_return" id="yearly_return" placeholder="Insert a value">
+                      <input type="number" name="yearly_return" min="0" max="100" class="form-control re_yearly_return" id="yearly_return" placeholder="Insert a value">
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">%</span>
