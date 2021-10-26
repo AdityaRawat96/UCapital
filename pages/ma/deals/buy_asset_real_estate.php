@@ -76,7 +76,7 @@
           <span class="input-group-text">Min.</span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control re_surface_area_buy" placeholder="Type a value" name="total_surface_area_min">
+          <input type="number" class="form-control re_surface_area_buy_min" placeholder="Type a value" name="total_surface_area_min">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">sqm</span>
@@ -87,7 +87,7 @@
           <span class="input-group-text">Max.</span>
         </div>
         <div class="custom-file">
-          <input type="number" class="form-control re_surface_area_buy" placeholder="Type a value" name="total_surface_area_max">
+          <input type="number" class="form-control re_surface_area_buy_max" placeholder="Type a value" name="total_surface_area_max">
         </div>
         <div class="input-group-append">
           <span class="input-group-text">sqm</span>
