@@ -110,7 +110,8 @@
             <option value="500000|1000000">from 500k to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
-            <option value="50000000|1000000000">over 50 million</option>
+            <option value="50000000|250000000">from 50 to 250 million</option>
+            <option value="250000000|1000000000">over 250 million</option>
           </select>
         </div>
       </div>

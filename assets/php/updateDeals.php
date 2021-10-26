@@ -13,6 +13,7 @@ if ($asset_type == "RE") {
     $re_asset_status = array_key_exists('re_asset_status', $data) ? $data['re_asset_status'] : "";
     $re_condition_status = array_key_exists('re_condition_status', $data) ? $data['re_condition_status'] : "";
     $re_surface_area = (array_key_exists('re_surface_area', $data) && $data['re_surface_area'] != "") ? $data['re_surface_area'] : 0;
+    $re_surface_area_max = (array_key_exists('re_surface_area_max', $data) && $data['re_surface_area_max'] != "") ? $data['re_surface_area_max'] : 0;
     $re_hq_country = array_key_exists('re_hq_country', $data) ?  $data['re_hq_country'] : "";
     $re_hq_city = array_key_exists('re_hq_city', $data) ? mysqli_real_escape_string($con, $data['re_hq_city']) : "";
     $default_currency = array_key_exists('default_currency', $data) ? $data['default_currency'] : "";
