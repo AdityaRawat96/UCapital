@@ -27,42 +27,50 @@ function formatDealValue(type, min, max, currency){
     formatted_currency = "Undisclosed";
   }else if(type == "fixed"){
     var tier = Math.log10(Math.abs(min)) / 3 | 0;
-    if(tier == 0) return min;
+    var scaled = min;
     var suffix = SI_SYMBOL[tier];
     var scale = Math.pow(10, tier * 3);
-    var scaled = min / scale;
-    formatted_currency = scaled.toFixed(1) + " " + suffix + " " + currency_symbol;
+    if(tier != 0){
+      scaled = min / scale;
+      scaled = scaled.toFixed(1);
+    }
+    formatted_currency = scaled + " " + suffix + " " + currency_symbol;
   }else if(type == "range"){
     if(min == 0){
       var scaled1 = 0;
       var suffix1 = "";
 
       var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
-      if(tier2 == 0) return max;
+      var scaled2 = max;
       var suffix2 = SI_SYMBOL[tier2];
       var scale2 = Math.pow(10, tier2 * 3);
-      var scaled2 = max / scale2;
-
-      formatted_currency = scaled1 + " - " + scaled2.toFixed(1) + " " + suffix2 + " " + currency_symbol;
+      if(tier2 != 0){
+        scaled2 = max / scale2;
+        scaled2 = scaled2.toFixed(1)
+      }
+      formatted_currency = scaled1 + " - " + scaled2 + " " + suffix2 + " " + currency_symbol;
     }else{
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
-      if(tier1 == 0) return min;
+      var scaled1 = min;
       var suffix1 = SI_SYMBOL[tier1];
       var scale1 = Math.pow(10, tier1 * 3);
-      var scaled1 = min / scale1;
-
+      if(tier1 != 0){
+        scaled1 = min / scale1;
+        scaled1 = scaled1.toFixed(1);
+      }
       var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
-      if(tier2 == 0) return max;
+      var scaled2 = max;
       var suffix2 = SI_SYMBOL[tier2];
       var scale2 = Math.pow(10, tier2 * 3);
-      var scaled2 = max / scale2;
-      formatted_currency = scaled1.toFixed(1) + " " + suffix1 + " - " + scaled2.toFixed(1) + " " + suffix2 + " " + currency_symbol;
+      if(tier2 != 0){
+        scaled2 = max / scale2;
+        scaled2 = scaled2.toFixed(1);
+      }
+      formatted_currency = scaled1 + " " + suffix1 + " - " + scaled2 + " " + suffix2 + " " + currency_symbol;
     }
   }
 
   formatted_currency = formatted_currency.replace(".", ",");
-
-
 
   return formatted_currency;
 }
