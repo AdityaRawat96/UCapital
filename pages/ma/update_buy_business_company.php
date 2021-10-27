@@ -1247,8 +1247,6 @@ if (isset($_SESSION['email'])) {
   function setValues() {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
-    document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
-    document.getElementById("aum").value = "<?= $row["AUM"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
@@ -1291,20 +1289,27 @@ if (isset($_SESSION['email'])) {
       document.getElementById("ebd_y3y").value = "<?= $row["FORECAST_EBITDA_Y3"] ?>";
     }
     var investmentSize = "<?= $row["INVESTMENT_SIZE"] ?>";
-    var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
     $(".span-currency-icon").html(
       $(".default_currency").find("option:selected").data("value")
     );
 
     var investmentSizeArr = investmentSize.split(",");
-    var investmentAmountArr = investmentAmount.split(",");
+
+
+    if ("<?= $row["AUM"] ?>" != "NULL") {
+      $(".option_visibility_target").fadeIn(0);
+      document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+      var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
+      var investmentAmountArr = investmentAmount.split(",");
+      $(".option_visibility_target").fadeIn(0);
+      for (var i = 0; i < investmentAmountArr.length; i++) {
+        $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
+      }
+    }
 
     for (var i = 0; i < investmentSizeArr.length; i++) {
       $('input[name="investment_size"][value="' + investmentSizeArr[i].toString() + '"]').prop("checked", true);
-    }
-
-    for (var i = 0; i < investmentAmountArr.length; i++) {
-      $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
     }
 
     var values = "<?= $row["INDUSTRY"] ?>";

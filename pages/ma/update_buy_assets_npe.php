@@ -586,8 +586,8 @@ if (isset($_SESSION['email'])) {
     document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAIL"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    $(".option_visibility_target").fadeIn(0);
-    if ("<?= $row["AUM"] ?>" != "") {
+    if ("<?= $row["AUM"] ?>" != "NULL") {
+      $(".option_visibility_target").fadeIn(0);
       document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
