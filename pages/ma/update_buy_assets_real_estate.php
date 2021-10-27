@@ -215,7 +215,7 @@ if (isset($_SESSION['email'])) {
                 <span>Who I am</span>
               </div>
               <div class="col-md-9 col-sm-12 input-container input-group">
-                <select class="form-control default_currency re_who_i_am_buy" name="who_i_am" id="who_i_am">
+                <select class="form-control deal_option_visibility_trigger default_currency re_who_i_am_buy" name="who_i_am" id="who_i_am">
                   <option value="" selected disabled>Select an option</option>
                   <option value="Individual">Individual</option>
                   <option value="Corporation">Corporation</option>
@@ -225,12 +225,34 @@ if (isset($_SESSION['email'])) {
                 </select>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-3 col-sm-12 deal-heading">
-                <span>AUM</span>
+            <div class="option_visibility_target">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>AUM</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <input type="number" name="aum" id="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
+                </div>
               </div>
-              <div class="col-md-4 col-sm-12 input-container input-group">
-                <input type="number" name="aum" value="" id="aum" class="form-control re_aum_buy" placeholder="Enter a value">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Number of Investments</span>
+                </div>
+                <div class="col-md-4 col-sm-12 input-container input-group">
+                  <input type="number" name="number_of_investments" id="number_of_investments" value="" class="form-control re_number_of_investments_buy" placeholder="Enter a value">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Preferred Investment Amount</span>
+                  <span class="deal-subhead">(Multiple Choice)</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container">
+                  <input type="checkbox" name="investment_amount" class="re_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
+                  <input type="checkbox" name="investment_amount" class="re_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
+                  <input type="checkbox" name="investment_amount" class="re_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
+                  <input type="checkbox" name="investment_amount" class="re_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -525,6 +547,15 @@ if (isset($_SESSION['email'])) {
     }
     response['re_who_i_am'] = $(".re_who_i_am_buy").val();
     response['re_aum'] = $(".re_aum_buy").val();
+    response['number_of_investments'] = $(".re_number_of_investments_buy").val();
+    var investmentAmount = "";
+    $(".re_investment_amount_buy").each(function() {
+      if ($(this).prop("checked")) {
+        investmentAmount += $(this).val() + ",";
+      }
+    });
+    investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+    response['investment_amount'] = investmentAmount;
     response['re_general_description'] = $(".re_general_description_buy").val();
     response['asset_type'] = "RE";
 
@@ -581,7 +612,16 @@ if (isset($_SESSION['email'])) {
     document.getElementById("re_surface_area_buy_max").value = "<?= $row["TOTAL_SURFACE_MAX"] ?>";
     document.getElementById("default_currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+    $(".option_visibility_target").fadeIn(0);
+    if ("<?= $row["AUM"] ?>" != "") {
+      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+      document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+      var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
+      var investmentAmountArr = investmentAmount.split(",");
+      for (var i = 0; i < investmentAmountArr.length; i++) {
+        $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
+      }
+    }
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     $("input[name=asset_value][value=<?= $row["ASSET_VAL_TYPE"] ?>]").attr('checked', 'checked');
     if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "fixed") {
@@ -760,4 +800,14 @@ if (isset($_SESSION['email'])) {
       $(".type_category_container").fadeOut();
     }
   })
+
+  $(".deal_option_visibility_trigger").on("change", function() {
+    $(".option_visibility_target").find("input[type='checkbox']").prop("checked", false);
+    $(".option_visibility_target").find("input[type='number']").val("");
+    if ($(this).val() == "PE Fund" || $(this).val() == "VC Fund" || $(this).val() == "Asset Management") {
+      $(".option_visibility_target").fadeIn(0);
+    } else {
+      $(".option_visibility_target").fadeOut(0);
+    }
+  });
 </script>

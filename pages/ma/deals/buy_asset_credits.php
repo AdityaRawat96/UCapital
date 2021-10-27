@@ -189,5 +189,25 @@
         <input type="number" name="aum" value="" class="form-control npec_aum_buy" placeholder="Enter a value">
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Number of Investments</span>
+      </div>
+      <div class="col-md-4 col-sm-12 input-container input-group">
+        <input type="number" name="number_of_investments" value="" class="form-control npec_number_of_investments_buy" placeholder="Enter a value">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Preferred Investment Amount</span>
+        <span class="deal-subhead">(Multiple Choice)</span>
+      </div>
+      <div class="col-md-9 col-sm-12 input-container">
+        <input type="checkbox" name="investment_size" class="npec_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
+        <input type="checkbox" name="investment_size" class="npec_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
+        <input type="checkbox" name="investment_size" class="npec_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
+        <input type="checkbox" name="investment_size" class="npec_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+      </div>
+    </div>
   </div>
 </div>

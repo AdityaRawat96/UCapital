@@ -900,6 +900,15 @@ if (isset($_SESSION['email'])) {
       }
       response['re_who_i_am'] = $(".re_who_i_am_buy").val();
       response['re_aum'] = $(".re_aum_buy").val();
+      response['number_of_investments'] = $(".re_number_of_investments_buy").val();
+      var investmentAmount = "";
+      $(".re_investment_amount_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      response['investment_amount'] = investmentAmount;
       response['re_general_description'] = $(".re_general_description_buy").val();
       return response;
     }
@@ -924,8 +933,6 @@ if (isset($_SESSION['email'])) {
       if (isProductTypeSetted)
         response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
 
-      // response['npe_hq_country'] = $(".npe_hq_country_buy option:selected").text();
-      // response['npe_hq_city'] = $(".npe_hq_city_buy").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -960,10 +967,18 @@ if (isset($_SESSION['email'])) {
       response['npe_borrower_details'] = $(".npe_borrower_details_buy").val();
       response['npe_who_i_am'] = $(".npe_who_i_am").val();
       response['npe_aum'] = $(".npe_aum_buy").val();
+      response['number_of_investments'] = $(".npe_number_of_investments_buy").val();
+      var investmentAmount = "";
+      $(".npe_investment_amount_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      response['investment_amount'] = investmentAmount;
       response['npe_ratio'] = $(".npe_ratio_buy").val();
       return response;
     }
-
 
     function getSellRealEstateData() {
       response = {};
@@ -974,8 +989,6 @@ if (isset($_SESSION['email'])) {
       response['re_condition_status'] = $(".re_condition_status").val();
       response['re_construction_year'] = $(".re_construction_year").val();
       response['re_surface_area'] = $(".re_surface_area").val();
-      // response['re_hq_country'] = $(".re_hq_country option:selected").text();
-      // response['re_hq_city'] = $(".re_hq_city").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -1153,6 +1166,15 @@ if (isset($_SESSION['email'])) {
       response['credit_borrower_details'] = $(".npec_borrower_details_buy").val();
       response['credit_who_i_am'] = $(".npec_who_i_am").val();
       response['credit_aum'] = $(".npec_aum_buy").val();
+      response['number_of_investments'] = $(".npec_number_of_investments_buy").val();
+      var investmentAmount = "";
+      $(".npec_investment_amount_buy").each(function() {
+        if ($(this).prop("checked")) {
+          investmentAmount += $(this).val() + ",";
+        }
+      });
+      investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
+      response['investment_amount'] = investmentAmount;
       response['credit_ratio'] = $(".npec_ratio_buy").val();
       return response;
     }
