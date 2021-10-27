@@ -792,3 +792,12 @@ optgroup li {
 .option_visibility_target{
   display: none;
 }
+
+.location-tag-span{
+  border-radius: 5px;
+  display: inline-block;
+  padding: 3px 10px;
+  background-color: #EEEEEE;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}

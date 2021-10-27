@@ -19,7 +19,7 @@
       <div class="card-body-investor-details2">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <span> <i class="fas fa-map-marker-alt"></i> <?=$row['COUNTRY'].", ".$row['CITY']; ?> </span><br>
+            <span> <i class="fas fa-map-marker-alt"></i> <?=generateLocationTags($row['COUNTRY'], $row['CITY']); ?> </span><br>
           </div>
           <div class="col-md-6 col-sm-12">
             <span class="float-right"> </span><br>
@@ -29,28 +29,16 @@
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
               <h3><b><?=$row['WANT_TO_DO']; ?> <?=$row['ASSET_TYPE']; ?></b></h3><br>
-              <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment required:
-                <?php
-                if($row['INVESTMENT_TYPE'] == "undisclosed"){
-                  echo "Undisclosed";
-                }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                  echo number_shorten($row['INVESTMENT_MIN']);
-                }else if($row['INVESTMENT_TYPE'] == "range"){
-                  if($row['INVESTMENT_MAX'] == 1000000000){
-                    echo "Over ".number_shorten($row['INVESTMENT_MIN']);
-                  }else{
-                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
-                  }
-                }
-                ?>
+              <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment size:
+                <?=number_shorten($row['INVESTMENT_SIZE']); ?>
               </span><hr><br>
               <h3>General description</h3><hr>
               <p class="p-desc10">
                 <?=$row['DESCRIPTION']; ?>
               </p><br><br><br>
-              <h3>Company business</h3><hr>
+              <h3>Typology of operation</h3><hr>
               <p class="p-desc10">
-                <?=$row['COMPANY_BUSINESS']; ?>
+                <?=$row['WANT_TO_DO']; ?>
               </p><br><br><br>
               <h3>Sector</h3><hr>
               <?php
@@ -87,25 +75,7 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Company Value: </td>
-                    <td>
-                      <?php
-                      if($row['COMPANY_VAL_TYPE'] == "undisclosed"){
-                        echo "Undisclosed";
-                      }else if($row['COMPANY_VAL_TYPE'] == "fixed"){
-                        echo number_shorten($row['COMPANY_VAL_MIN']);
-                      }else if($row['COMPANY_VAL_TYPE'] == "range"){
-                        if($row['COMPANY_VAL_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['COMPANY_VAL_MIN']);
-                        }else{
-                          echo "From ".number_shorten($row['COMPANY_VAL_MIN'])." To ".number_shorten($row['COMPANY_VAL_MAX']);
-                        }
-                      }
-                      ?>
-                    </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Revenue: </td>
+                    <td> Preferred Revenue: </td>
                     <td>
                       <?php
                       if($row['ACTUAL_REVENUE_TYPE'] == "undisclosed"){
@@ -123,20 +93,8 @@
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> EBITDA Margin: </td>
+                    <td> Preferred EBITDA Margin: </td>
                     <td> <?=$row['EBIDTA_MARGIN'] ? $row['EBIDTA_MARGIN']."%" : "-"; ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Scalability: </td>
-                    <td>
-                      <?php
-                      if($row['SCALABILITY'] == "Yes"){
-                        echo "Yes, Area - ".$row['SCALABILITY_AREA'];
-                      }else{
-                        echo "NO, Market Share - ".$row['MARKET_SHARE']."%";
-                      }
-                      ?>
-                    </td>
                   </tr>
                 </table>
               </div>
@@ -149,20 +107,8 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Foundation Year: </td>
-                    <td> <?=$row['FOUNDATION_YEAR'] ? $row['FOUNDATION_YEAR'] : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Number of Employees: </td>
-                    <td>
-                      <?php
-                      echo "From ".$row['NUM_OF_EMPLOYEE_MIN']." To ".$row['NUM_OF_EMPLOYEE_MAX'];
-                      ?>
-                    </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Area of activity: </td>
-                    <td> <?=$row['AREA_OF_ACTIVITY'] ? $row['AREA_OF_ACTIVITY'] : "-";  ?> </td>
+                    <td> Who is looking for: </td>
+                    <td> <?=$row['WHO_I_AM'] ? $row['WHO_I_AM'] : "-";  ?> </td>
                   </tr>
                 </table>
               </div>
@@ -175,27 +121,27 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Estimate Reneue (1 Year): </td>
+                    <td> Preferred Reveue Forecast (1 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (1 Year): </td>
+                    <td> Preferred Ebitda Forecast (1 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y1'] ? number_shorten($row['FORECAST_EBITDA_Y1'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Reneue (2 Year): </td>
+                    <td> Preferred Revenue Forecast (2 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (2 Year): </td>
+                    <td> Preferred Ebitda Forecast (2 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y2'] ? number_shorten($row['FORECAST_EBITDA_Y2'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Reneue (3 Year): </td>
+                    <td> Preferred Revenue Forecast (3 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (3 Year): </td>
+                    <td> Preferred Ebitda Forecast (3 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y3'] ? number_shorten($row['FORECAST_EBITDA_Y3'])."%" : "-";  ?> </td>
                   </tr>
                 </table>

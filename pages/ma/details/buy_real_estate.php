@@ -28,27 +28,11 @@
         <div class="row">
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
-              <h3><b><?=$row['DEAL_SUBJECT']; ?> <?=$row['REAL_ESTATE_TYP']; ?></b></h3><br>
-              <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment required:
-                <?php
-                if($row['INVESTMENT_TYPE'] == "undisclosed"){
-                  echo "Undisclosed";
-                }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                  echo $row['INVESTMENT_MIN'];
-                }else if($row['INVESTMENT_TYPE'] == "range"){
-                  if($row['INVESTMENT_MAX'] == 1000000000){
-                    echo "Over ".$row['INVESTMENT_MIN'];
-                  }else{
-                    echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
-                  }
-                }
-                ?>
-              </span><hr><br>
+              <h3 style="text-transform: capitalize;"><b><?=$row['DEAL_SUBJECT']; ?> <?=$row['REAL_ESTATE_TYP']; ?></b></h3><br><br><br>
               <h3>General asset description</h3><hr>
               <p class="p-desc10">
                 <?=$row['DESCRIPTION']; ?>
-              </p><br><br>
-              <h3>Looking For</h3><hr>
+              </p>
               <br><br><br>
             </div>
           </div>
@@ -87,48 +71,28 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Yearly Return (in %): </td>
-                    <td> <?=$row['REAL_ESTATE_SUB_CAT_TYPE'] ? ($row['REAL_ESTATE_TYP'].", ".$row['REAL_ESTATE_SUB_CAT_TYPE']) : $row['REAL_ESTATE_TYP'];  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
                     <td> Value: </td>
                     <td>
                       <?php
                       if($row['ASSET_VAL_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['ASSET_VAL_TYPE'] == "fixed"){
-                        echo $row['ASSET_VAL_MIN'];
+                        echo number_shorten($row['ASSET_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                       }else if($row['ASSET_VAL_TYPE'] == "range"){
                         if($row['ASSET_VAL_MAX'] == 1000000000){
-                          echo "Over ".$row['ASSET_VAL_MIN'];
+                          echo "Over ".number_shorten($row['ASSET_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
-                          echo "From ".$row['ASSET_VAL_MIN']." To ".$row['ASSET_VAL_MAX'];
+                          echo "From ".number_shorten($row['ASSET_VAL_MIN'])." To ".number_shorten($row['ASSET_VAL_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }
                       }
                       ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Investment required: </td>
+                    <td> Vendor Type </td>
                     <td>
-                      <?php
-                      if($row['INVESTMENT_TYPE'] == "undisclosed"){
-                        echo "Undisclosed";
-                      }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                        echo $row['INVESTMENT_MIN'];
-                      }else if($row['INVESTMENT_TYPE'] == "range"){
-                        if($row['INVESTMENT_MAX'] == 1000000000){
-                          echo "Over ".$row['INVESTMENT_MIN'];
-                        }else{
-                          echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
-                        }
-                      }
-                      ?>
+                      <?=$row['WHO_I_AM']; ?>
                     </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Total surface approx.: </td>
-                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE'] : "-"; ?> </td>
                   </tr>
                 </table>
               </div>
@@ -141,30 +105,8 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Type: </td>
-                    <td> <?=$row['VENDOR_TYPE'] ? $row['VENDOR_TYPE'] : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
                     <td> AUM: </td>
                     <td> <?=$row['AUM'] ? $row['AUM'] : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Preferred investment amount.: </td>
-                    <td>
-                      <?php
-                      if($row['INVESTMENT_TYPE'] == "undisclosed"){
-                        echo "Undisclosed";
-                      }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                        echo $row['INVESTMENT_MIN'];
-                      }else if($row['INVESTMENT_TYPE'] == "range"){
-                        if($row['INVESTMENT_MAX'] == 1000000000){
-                          echo "Over ".$row['INVESTMENT_MIN'];
-                        }else{
-                          echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
-                        }
-                      }
-                      ?>
-                    </td>
                   </tr>
                 </table>
               </div>

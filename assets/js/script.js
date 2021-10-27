@@ -1,5 +1,23 @@
 var tempItemList = [];
 
+function generateLocationTags(countries, cities){
+  var country_list = countries.split("|");
+  var city_list = cities.split("|");
+  var output_string = "";
+  for(var i = 0; i < country_list.length; i++){
+    if(country_list[i] == "All"){
+      output_string += "<span class='location-tag-span'>Global</span>";
+    }else{
+      if(city_list[i]){
+        output_string += "<span class='location-tag-span'>"+city_list[i] + " - " + country_list[i]+"</span>";
+      }else{
+        output_string += "<span class='location-tag-span'>"+ country_list[i]+"</span>";
+      }
+    }
+  }
+  return output_string;
+}
+
 function formatDealValue(type, min, max, currency){
   var SI_SYMBOL = ["", "k", "mln", "G", "T", "P", "E"];
   var formatted_currency = "";
