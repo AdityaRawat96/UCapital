@@ -255,8 +255,6 @@
                   return false;
                 }
                 table_data.push($(this).data("search"));
-                console.log($(this).data("search"))
-
               });
               $($(this).attr("href")).find("input:checked").each(function() {
                 if ($(this).val() == "All") {
@@ -293,37 +291,39 @@
             },
             success: function(data) {
               $(".itemsList").html("");
-              obj = jQuery.parseJSON(data);
-              for (var i = 0; i < obj.length; i++) {
-                var elementData = "";
-                if(obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up"){
-                  elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                  if(company_ids.includes(obj[i].ID)){
-                    elementData += " bookmark-active";
+              if (data != "") {
+                obj = jQuery.parseJSON(data);
+                for (var i = 0; i < obj.length; i++) {
+                  var elementData = "";
+                  if (obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (company_ids.includes(obj[i].ID)) {
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Industry: ' + obj[i].DETAIL_2 + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "real estate") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (npe_ids.includes(obj[i].ID)) {
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Status: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Surface: From ' + obj[i].DETAIL_2 + ' To ' + obj[i].DETAIL_3 + ' smq</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "credits") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (credits_ids.includes(obj[i].ID)) {
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: ' + formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY) + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "npe") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (re_ids.includes(obj[i].ID)) {
+                      elementData += " bookmark-active";
+                    }
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: ' + formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY) + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
+                    $(".itemsList").append(elementData);
                   }
-                  elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Industry: '+obj[i].DETAIL_2+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
-                  $(".itemsList").append(elementData);
-                }else if(obj[i].ASSET_TYPE.toLowerCase() == "real estate"){
-                  elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                  if(npe_ids.includes(obj[i].ID)){
-                    elementData += " bookmark-active";
-                  }
-                  elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Status: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Surface: From '+obj[i].DETAIL_2+' To '+obj[i].DETAIL_3+' smq</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
-                  $(".itemsList").append(elementData);
-                }else if(obj[i].ASSET_TYPE.toLowerCase() == "credits"){
-                  elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                  if(credits_ids.includes(obj[i].ID)){
-                    elementData += " bookmark-active";
-                  }
-                  elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: '+formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY)+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
-                  $(".itemsList").append(elementData);
-                }else if(obj[i].ASSET_TYPE.toLowerCase() == "npe"){
-                  elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                  if(re_ids.includes(obj[i].ID)){
-                    elementData += " bookmark-active";
-                  }
-                  elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: '+formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY)+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
-                  $(".itemsList").append(elementData);
                 }
               }
             },

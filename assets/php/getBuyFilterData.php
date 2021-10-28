@@ -297,14 +297,14 @@ function addLocation($query, $arr)
     $counter = 0;
     foreach ($arr as $value) {
         $query = $query . "(";
-        $query = $query . " FIND_IN_SET('" . $value . "',COUNTRY)";
+        $query = $query . " FIND_IN_SET('" . $value . "',replace(COUNTRY,'|',','))";
         $query = $query . ")";
         $counter++;
         if ($counter < sizeof($arr)) {
             $query = $query . " OR ";
         } else {
             $query = $query . "OR (";
-            $query = $query . " FIND_IN_SET('All',COUNTRY)";
+            $query = $query . " FIND_IN_SET('All',replace(COUNTRY,'|',','))";
             $query = $query . ")";
         }
     }
