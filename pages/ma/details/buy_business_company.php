@@ -110,6 +110,18 @@
                     <td> Who is looking for: </td>
                     <td> <?=$row['WHO_I_AM'] ? $row['WHO_I_AM'] : "-";  ?> </td>
                   </tr>
+                  <tr class="profile-investor-heading">
+                    <td> AUM: </td>
+                    <td> <?=$row['AUM'] ? $row['AUM'] : "-";  ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Number of investments: </td>
+                    <td> <?=$row['NUM_OF_INVESTMENT'] ? $row['NUM_OF_INVESTMENT'] : "-";  ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Preferred investment amount: </td>
+                    <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                  </tr>
                 </table>
               </div>
             </div>

@@ -58,7 +58,7 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Total surface approx.: </td>
-                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE'] : "-"; ?> </td>
+                    <td> <?=$row['TOTAL_SURFACE'] ? "From ".$row['TOTAL_SURFACE']." To ".$row['TOTAL_SURFACE_MAX']." sqm" : "-"; ?> </td>
                   </tr>
                 </table>
               </div>
@@ -107,6 +107,14 @@
                   <tr class="profile-investor-heading">
                     <td> AUM: </td>
                     <td> <?=$row['AUM'] ? $row['AUM'] : "-";  ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Number of investments: </td>
+                    <td> <?=$row['NUM_OF_INVESTMENT'] ? $row['NUM_OF_INVESTMENT'] : "-";  ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Preferred investment amount: </td>
+                    <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                 </table>
               </div>

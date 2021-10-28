@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index.html" class="brand-link">
+  <a href="<?=BASE_URL; ?>" class="brand-link">
     <img src="../../dist/img/logo.png" alt="AdminLTE Logo" class="brand-image logo-custom">
   </a>
 

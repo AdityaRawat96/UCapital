@@ -15,6 +15,7 @@ if($action == "buy"){
   real_estate.REAL_ESTATE_TYP AS TITLE_2,
   real_estate.ASSET_STATUS AS DETAIL_1,
   real_estate.TOTAL_SURFACE AS DETAIL_2,
+  real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
   real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
   real_estate.ASSET_VAL_MIN AS VALUE_MIN,
   real_estate.ASSET_VAL_MAX AS VALUE_MAX,
@@ -35,9 +36,10 @@ if($action == "buy"){
   'NPE' AS TITLE_2,
   npe.NPE_TYPE AS DETAIL_1,
   npe.MARKET_VALUE AS DETAIL_2,
-  'fixed' AS VALUE_TYPE,
-  npe.ASKING_PRICE AS VALUE_MIN,
-  npe.ASKING_PRICE AS VALUE_MAX,
+  '-' AS DETAIL_3,
+  npe.VALUE_TYPE AS VALUE_TYPE,
+  npe.VALUE_MIN AS VALUE_MIN,
+  npe.VALUE_MAX AS VALUE_MAX,
   npe.CURRENCY AS CURRENCY,
   npe.COUNTRY,
   npe.CITY,
@@ -55,6 +57,7 @@ if($action == "buy"){
   'Credit' AS TITLE_2,
   credit.CREDIT_TYPE AS DETAIL_1,
   '-' AS DETAIL_2,
+  '-' AS DETAIL_3,
   credit.VALUE_TYPE AS VALUE_TYPE,
   credit.VALUE_MIN AS VALUE_MIN,
   credit.VALUE_MAX AS VALUE_MAX,
@@ -75,6 +78,7 @@ if($action == "buy"){
   business_company.ASSET_TYPE AS TITLE_2,
   business_company.SECTOR AS DETAIL_1,
   business_company.INDUSTRY AS DETAIL_2,
+  '-' AS DETAIL_3,
   business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
   business_company.COMPANY_VAL_MIN AS VALUE_MIN,
   business_company.COMPANY_VAL_MAX AS VALUE_MAX,
@@ -170,7 +174,7 @@ if($action == "buy"){
   FROM business_company where business_company.DEAL = '$action' LIMIT $limit)";
 }
 $result = mysqli_query($con, $sql)
-  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
 if (mysqli_num_rows($result) > 0) {
   $response = array();

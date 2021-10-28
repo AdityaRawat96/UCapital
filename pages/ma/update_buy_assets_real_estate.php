@@ -215,7 +215,7 @@ if (isset($_SESSION['email'])) {
                 <span>Who I am</span>
               </div>
               <div class="col-md-9 col-sm-12 input-container input-group">
-                <select class="form-control deal_option_visibility_trigger default_currency re_who_i_am_buy" name="who_i_am" id="who_i_am">
+                <select class="form-control deal_option_visibility_trigger re_who_i_am_buy" name="who_i_am" id="who_i_am">
                   <option value="" selected disabled>Select an option</option>
                   <option value="Individual">Individual</option>
                   <option value="Corporation">Corporation</option>
@@ -612,15 +612,17 @@ if (isset($_SESSION['email'])) {
     document.getElementById("re_surface_area_buy_max").value = "<?= $row["TOTAL_SURFACE_MAX"] ?>";
     document.getElementById("default_currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if ("<?= $row["AUM"] ?>" != "NULL") {
-      $(".option_visibility_target").fadeIn(0);
-      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
       var investmentAmountArr = investmentAmount.split(",");
       for (var i = 0; i < investmentAmountArr.length; i++) {
         $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
       }
+      $(".option_visibility_target").fadeIn(0);
+    }else{
+      $(".option_visibility_target").fadeOut(0);
     }
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     $("input[name=asset_value][value=<?= $row["ASSET_VAL_TYPE"] ?>]").attr('checked', 'checked');
@@ -800,14 +802,4 @@ if (isset($_SESSION['email'])) {
       $(".type_category_container").fadeOut();
     }
   })
-
-  $(".deal_option_visibility_trigger").on("change", function() {
-    $(".option_visibility_target").find("input[type='checkbox']").prop("checked", false);
-    $(".option_visibility_target").find("input[type='number']").val("");
-    if ($(this).val() == "PE Fund" || $(this).val() == "VC Fund" || $(this).val() == "Asset Management") {
-      $(".option_visibility_target").fadeIn(0);
-    } else {
-      $(".option_visibility_target").fadeOut(0);
-    }
-  });
 </script>

@@ -29,8 +29,11 @@ function number_shorten($number, $precision = 0, $divisors = null) {
     // Either way, use the last defined value for $divisor.
     return number_format($number / $divisor, $precision) ." ". $shorthand;
   }else{
-    $numbers = explode("|", $number);
+    $numbers_temp = preg_split("/[\s,|]+/", $number);
     $generatedString = "";
+
+    $numbers[0] = min($numbers_temp);
+    $numbers[1] = max($numbers_temp);
 
     foreach ($numbers as $number){
       // Setup default $divisors if not provided

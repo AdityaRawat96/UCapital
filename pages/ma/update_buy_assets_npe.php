@@ -198,7 +198,7 @@ if (isset($_SESSION['email'])) {
                   <span>Who I am</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control deal_option_visibility_trigger default_currency npe_who_i_am" id="who_i_am" name="who_i_am">
+                  <select class="form-control deal_option_visibility_trigger npe_who_i_am" id="who_i_am" name="who_i_am">
                     <option value="" selected disabled>Select an option</option>
                     <option value="Individual">Individual</option>
                     <option value="Corporation">Corporation</option>
@@ -586,15 +586,17 @@ if (isset($_SESSION['email'])) {
     document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAIL"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if ("<?= $row["AUM"] ?>" != "NULL") {
-      $(".option_visibility_target").fadeIn(0);
-      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
       var investmentAmountArr = investmentAmount.split(",");
       for (var i = 0; i < investmentAmountArr.length; i++) {
         $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
       }
+      $(".option_visibility_target").fadeIn(0);
+    }else{
+      $(".option_visibility_target").fadeOut(0);
     }
     $("input[name=asset_value][value=<?= $row["VALUE_TYPE"] ?>]").attr('checked', 'checked');
     if ("<?= $row["VALUE_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["VALUE_TYPE"] ?>" == "fixed") {
@@ -749,13 +751,4 @@ if (isset($_SESSION['email'])) {
     });
   }
 
-  $(".deal_option_visibility_trigger").on("change", function() {
-    $(".option_visibility_target").find("input[type='checkbox']").prop("checked", false);
-    $(".option_visibility_target").find("input[type='number']").val("");
-    if ($(this).val() == "PE Fund" || $(this).val() == "VC Fund" || $(this).val() == "Asset Management") {
-      $(".option_visibility_target").fadeIn(0);
-    } else {
-      $(".option_visibility_target").fadeOut(0);
-    }
-  });
 </script>

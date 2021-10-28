@@ -11,7 +11,7 @@ if (isset($_SESSION['email'])) {
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
   }
-?>
+  ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -772,7 +772,7 @@ if (isset($_SESSION['email'])) {
                   <span>Who I am</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <select class="form-control default_currency bc_who_i_am" name="who_i_am" id="who_i_am">
+                  <select class="form-control deal_option_visibility_trigger bc_who_i_am" name="who_i_am" id="who_i_am">
                     <option value="" selected disabled>Select an option</option>
                     <option value="Individual">Individual</option>
                     <option value="Corporation">Corporation</option>
@@ -782,34 +782,37 @@ if (isset($_SESSION['email'])) {
                   </select>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>AUM</span>
+              <div class="option_visibility_target">
+                <div class="row">
+                  <div class="col-md-3 col-sm-12 deal-heading">
+                    <span>AUM</span>
+                  </div>
+                  <div class="col-md-4 col-sm-12 input-container input-group">
+                    <input type="number" id="aum" name="aum" value="" class="form-control bc_aum" placeholder="Enter a value">
+                  </div>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" id="aum" name="aum" value="" class="form-control bc_aum" placeholder="Enter a value">
+                <div class="row">
+                  <div class="col-md-3 col-sm-12 deal-heading">
+                    <span>Number of Investments</span>
+                  </div>
+                  <div class="col-md-4 col-sm-12 input-container input-group">
+                    <input type="number" name="number_of_investments" id="number_of_investments" value="" class="form-control bc_number_of_investments" placeholder="Enter a value">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-12 deal-heading">
+                    <span>Preferred Investment Amount</span>
+                    <span class="deal-subhead">(Multiple Choice)</span>
+                  </div>
+                  <div class="col-md-9 col-sm-12 input-container">
+                    <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
+                    <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
+                    <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
+                    <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Number of Investments</span>
-                </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="number_of_investments" id="number_of_investments" value="" class="form-control bc_number_of_investments" placeholder="Enter a value">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Preferred Investment Amount</span>
-                  <span class="deal-subhead">(Multiple Choice)</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container">
-                  <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
-                  <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
-                  <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
-                  <input type="checkbox" name="investment_amount" class="bc_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
-                </div>
-              </div>
+
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>What I want to do</span>
@@ -869,33 +872,33 @@ if (isset($_SESSION['email'])) {
           </form><br>
         </div>
         <!-- container-fluid -->
-    </section>
-    <!-- content -->
-  </div>
-  <!-- content-wrapper -->
-  <?php
-  include '../elements/footer.php';
-  ?>
+      </section>
+      <!-- content -->
+    </div>
+    <!-- content-wrapper -->
+    <?php
+    include '../elements/footer.php';
+    ?>
 
-<?php
-} else {
-?>
-  <script>
+    <?php
+  } else {
+    ?>
+    <script>
     window.open('../../', '_self')
-  </script>
-<?php
-}
-?>
-<link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-<link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    </script>
+    <?php
+  }
+  ?>
+  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-<!-- jquery-validation -->
-<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<script src="../../plugins/filer/js/jquery.filer.min.js"></script>
-<script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+  <script>
   $(document).ready(function() {
     $('.ad-form').validate({
       submitHandler: function() {
@@ -1121,9 +1124,9 @@ if (isset($_SESSION['email'])) {
     });
 
     if (countrySetted)
-      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
     if (citySetted)
-      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+    response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
     response['sector_sel'] = $(".bc_sector_sel_buy").val();
 
@@ -1134,7 +1137,7 @@ if (isset($_SESSION['email'])) {
       industry += $(this).val() + ",";
     });
     if (true)
-      response['industry_sel'] = industry.substring(0, industry.length - 1);
+    response['industry_sel'] = industry.substring(0, industry.length - 1);
 
     response['default_currency'] = $(".bc_default_currency_buy").val();
 
@@ -1234,9 +1237,9 @@ if (isset($_SESSION['email'])) {
         console.log(data);
         if (data.trim() == "success") {
           swal("Success!", "Deal Updated!", "success")
-            .then((value) => {
-              location.reload();
-            });
+          .then((value) => {
+            location.reload();
+          });
         } else {
           swal("Error!", "An unexpected error occurred, please try again!", "error");
         }
@@ -1248,6 +1251,18 @@ if (isset($_SESSION['email'])) {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
+    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
+      document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
+      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
+      var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
+      var investmentAmountArr = investmentAmount.split(",");
+      for (var i = 0; i < investmentAmountArr.length; i++) {
+        $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
+      }
+      $(".option_visibility_target").fadeIn(0);
+    }else{
+      $(".option_visibility_target").fadeOut(0);
+    }
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("what_i_want").value = "<?= $row["WANT_TO_DO"] ?>";
     document.getElementById("looking_for").value = "<?= $row["LOOKING_FOR"] ?>";
@@ -1294,20 +1309,6 @@ if (isset($_SESSION['email'])) {
     );
 
     var investmentSizeArr = investmentSize.split(",");
-
-
-    if ("<?= $row["AUM"] ?>" != "NULL") {
-      $(".option_visibility_target").fadeIn(0);
-      document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
-      document.getElementById("aum").value = "<?= $row["AUM"] ?>";
-      var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
-      var investmentAmountArr = investmentAmount.split(",");
-      $(".option_visibility_target").fadeIn(0);
-      for (var i = 0; i < investmentAmountArr.length; i++) {
-        $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
-      }
-    }
-
     for (var i = 0; i < investmentSizeArr.length; i++) {
       $('input[name="investment_size"][value="' + investmentSizeArr[i].toString() + '"]').prop("checked", true);
     }
@@ -1352,160 +1353,160 @@ if (isset($_SESSION['email'])) {
 </script>
 
 <script>
-  var country_data;
-  $(document).ready(function() {
-    setValues();
-    $.ajax({
-      type: 'POST',
-      url: "../../assets/php/getCountries.php",
-      dataType: 'json',
-      success: function(data) {
-        country_data = data.reduce(function(result, current) {
-          result[current.area] = result[current.area] || [];
-          result[current.area].push(current);
-          return result;
-        }, {});
-        var countryVal = "<?= $row['COUNTRY'] ?>";
-        var cityVal = "<?= $row['CITY'] ?>";
-        countryArr = countryVal.split("|");
-        cityArr = cityVal.split("|");
-        var location_container = $(".location_container");
-        countryArr.forEach(function(element, index) {
-          var curr_country = element;
-          var countryId = "";
-          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-          var keys = Object.keys(country_data).forEach(key => {
-            if (key != "null") {
-              location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
-              $.each(country_data[key], function(index, element) {
-                location_container.find('.hq_country').last().append($('<option>', {
-                  value: element.id,
-                  text: element.country,
-                  selected: element.country == curr_country ? true : false
-                }));
-                if (index === country_data[key].length - 1) {
-                  location_container.find('.hq_country').last().append('</optgroup>');
-                }
-              });
-            } else {
+var country_data;
+$(document).ready(function() {
+  setValues();
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCountries.php",
+    dataType: 'json',
+    success: function(data) {
+      country_data = data.reduce(function(result, current) {
+        result[current.area] = result[current.area] || [];
+        result[current.area].push(current);
+        return result;
+      }, {});
+      var countryVal = "<?= $row['COUNTRY'] ?>";
+      var cityVal = "<?= $row['CITY'] ?>";
+      countryArr = countryVal.split("|");
+      cityArr = cityVal.split("|");
+      var location_container = $(".location_container");
+      countryArr.forEach(function(element, index) {
+        var curr_country = element;
+        var countryId = "";
+        location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+        var keys = Object.keys(country_data).forEach(key => {
+          if (key != "null") {
+            location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+            $.each(country_data[key], function(index, element) {
               location_container.find('.hq_country').last().append($('<option>', {
-                value: "0",
-                text: "All",
-                selected: "All" == curr_country ? true : false
+                value: element.id,
+                text: element.country,
+                selected: element.country == curr_country ? true : false
               }));
-            }
-          });
-          countryId = location_container.find('.hq_country').last().val();
-          syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
-            console.log(err);
-          })
-        });
-      }
-    });
-
-  });
-
-  function syncLoadCity(countryId, cityVal, domElem) {
-    console.log(cityVal);
-    return new Promise(function(resolve, reject) {
-      $.ajax({
-        type: 'POST',
-        url: "../../assets/php/getCities.php",
-        dataType: 'json',
-        data: {
-          country_id: countryId
-        },
-        success: function(data) {
-          data.forEach(element => {
-            domElem.append($('<option>', {
-              value: element.city,
-              text: element.city,
-              selected: element.city == cityVal ? true : false
+              if (index === country_data[key].length - 1) {
+                location_container.find('.hq_country').last().append('</optgroup>');
+              }
+            });
+          } else {
+            location_container.find('.hq_country').last().append($('<option>', {
+              value: "0",
+              text: "All",
+              selected: "All" == curr_country ? true : false
             }));
-          });
-
-          resolve()
-        },
-        error: function(err) {
-          reject(err)
-        }
-      });
-    });
-  }
-
-  $(".add-location").on('click', function() {
-    var deal_type = $(".deal_type:checked").val();
-    var current_location_container = $(this).parent().parent();
-    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-    var keys = Object.keys(country_data).forEach(key => {
-      if (key != "null") {
-        current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
-        $.each(country_data[key], function(index, element) {
-          current_location_container.find('.hq_country').last().append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
-          if (index === country_data[key].length - 1) {
-            current_location_container.find('.hq_country').last().append('</optgroup>');
           }
         });
-      } else {
-        current_location_container.find('.hq_country').last().append($('<option>', {
-          value: "0",
-          text: "All"
-        }));
-      }
-    });
+        countryId = location_container.find('.hq_country').last().val();
+        syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+          console.log(err);
+        })
+      });
+    }
   });
 
-  $(".location_holder").on("click", ".btn-location-remove", function() {
-    $(this).parent().remove();
-  });
+});
 
-  $("body").on("change", ".hq_country", function() {
-    loadCities($(this));
-  });
-
-  function loadCities(elem) {
+function syncLoadCity(countryId, cityVal, domElem) {
+  console.log(cityVal);
+  return new Promise(function(resolve, reject) {
     $.ajax({
       type: 'POST',
       url: "../../assets/php/getCities.php",
       dataType: 'json',
       data: {
-        country_id: elem.val()
+        country_id: countryId
       },
       success: function(data) {
-        var city_selector = elem.siblings('.hq_city');
-        city_selector.html("");
-        city_selector.append($('<option>', {
-          value: "",
-          text: "Choose a city",
-          selected: true,
-          disabled: true
-        }));
-        $.each(data, function(index, element) {
-          city_selector.append($('<option>', {
+        data.forEach(element => {
+          domElem.append($('<option>', {
             value: element.city,
-            text: element.city
+            text: element.city,
+            selected: element.city == cityVal ? true : false
           }));
         });
+
+        resolve()
+      },
+      error: function(err) {
+        reject(err)
       }
     });
-  }
+  });
+}
 
-  function addFiles(filerID, fileDetails, fileAttachmentNames) {
-    var uploadedFiles = fileAttachmentNames;
-    $("#" + filerID).filer({
-      limit: 1,
-      maxSize: 5,
-      extensions: null,
-      changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
-      showThumbs: true,
-      theme: "dragdropbox",
-      files: fileDetails,
-      templates: {
-        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-        item: '<li class="jFiler-item">\
+$(".add-location").on('click', function() {
+  var deal_type = $(".deal_type:checked").val();
+  var current_location_container = $(this).parent().parent();
+  current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+  var keys = Object.keys(country_data).forEach(key => {
+    if (key != "null") {
+      current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+      $.each(country_data[key], function(index, element) {
+        current_location_container.find('.hq_country').last().append($('<option>', {
+          value: element.id,
+          text: element.country
+        }));
+        if (index === country_data[key].length - 1) {
+          current_location_container.find('.hq_country').last().append('</optgroup>');
+        }
+      });
+    } else {
+      current_location_container.find('.hq_country').last().append($('<option>', {
+        value: "0",
+        text: "All"
+      }));
+    }
+  });
+});
+
+$(".location_holder").on("click", ".btn-location-remove", function() {
+  $(this).parent().remove();
+});
+
+$("body").on("change", ".hq_country", function() {
+  loadCities($(this));
+});
+
+function loadCities(elem) {
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCities.php",
+    dataType: 'json',
+    data: {
+      country_id: elem.val()
+    },
+    success: function(data) {
+      var city_selector = elem.siblings('.hq_city');
+      city_selector.html("");
+      city_selector.append($('<option>', {
+        value: "",
+        text: "Choose a city",
+        selected: true,
+        disabled: true
+      }));
+      $.each(data, function(index, element) {
+        city_selector.append($('<option>', {
+          value: element.city,
+          text: element.city
+        }));
+      });
+    }
+  });
+}
+
+function addFiles(filerID, fileDetails, fileAttachmentNames) {
+  var uploadedFiles = fileAttachmentNames;
+  $("#" + filerID).filer({
+    limit: 1,
+    maxSize: 5,
+    extensions: null,
+    changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+    showThumbs: true,
+    theme: "dragdropbox",
+    files: fileDetails,
+    templates: {
+      box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+      item: '<li class="jFiler-item">\
       <div class="jFiler-item-container">\
       <div class="jFiler-item-inner">\
       <div class="jFiler-item-thumb">\
@@ -1531,7 +1532,7 @@ if (isset($_SESSION['email'])) {
       </div>\
       </div>\
       </li>',
-        itemAppend: '<li class="jFiler-item">\
+      itemAppend: '<li class="jFiler-item">\
       <div class="jFiler-item-container">\
       <div class="jFiler-item-inner">\
       <div class="jFiler-item-thumb">\
@@ -1557,101 +1558,101 @@ if (isset($_SESSION['email'])) {
       </div>\
       </div>\
       </li>',
-        progressBar: '<div class="bar"></div>',
-        itemAppendToEnd: false,
-        canvasImage: true,
-        removeConfirmation: true,
-        _selectors: {
-          list: '.jFiler-items-list',
-          item: '.jFiler-item',
-          progressBar: '.bar',
-          remove: '.jFiler-item-trash-action'
-        }
-      },
-      dragDrop: {
-        dragEnter: null,
-        dragLeave: null,
-        drop: null,
-        dragContainer: null,
-      },
-      uploadFile: {
-        url: "../../plugins/filer/php/ajax_upload_file.php",
-        data: {
-          folderName: folderName,
-        },
-        type: 'POST',
-        enctype: 'multipart/form-data',
-        synchron: true,
-        beforeSend: function() {},
-        success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
-          var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-            new_file_name = JSON.parse(data),
-            filerKit = inputEl.prop("jFiler");
-          filerKit.files_list[id].name = new_file_name;
-          uploadedFiles.push(new_file_name);
-          $("#" + filerID + "-list").val(folderName + "/" + new_file_name)
-          itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
-            $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
-          });
-        },
-        error: function(el) {
-          var parent = el.find(".jFiler-jProgressBar").parent();
-          el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
-            $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
-          });
-        },
-        statusCode: null,
-        onProgress: null,
-        onComplete: null
-      },
-      allowDuplicates: false,
-      clipBoardPaste: true,
-      excludeName: null,
-      beforeRender: null,
-      afterRender: null,
-      beforeShow: null,
-      beforeSelect: null,
-      onSelect: null,
-      afterShow: null,
-      onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
-        var filerKit = inputEl.prop("jFiler"),
-          file_name = filerKit.files_list[id].name;
-        if (file_name == undefined) {
-          file_name = filerKit.files_list[id].file.name;
-        }
-        uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
-          return value != file_name;
-        });
-        $("#" + filerID + "-list").val("")
-        if (folderName.split("/")[0] == "MergerAcquisition") {
-          $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
-            file: file_name
-          });
-        }
-      },
-      onEmpty: null,
-      options: null,
-      dialogs: {
-        alert: function(text) {
-          return alert(text);
-        },
-        confirm: function(text, callback) {
-          confirm(text) ? callback() : null;
-        }
-      },
-      captions: {
-        button: "Choose Files",
-        feedback: "Choose files To Upload",
-        feedback2: "files were chosen",
-        drop: "Drop file here to Upload",
-        removeConfirmation: "Are you sure you want to remove this file?",
-        errors: {
-          filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
-          filesType: "Only Images are allowed to be uploaded.",
-          filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
-          filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
-        }
+      progressBar: '<div class="bar"></div>',
+      itemAppendToEnd: false,
+      canvasImage: true,
+      removeConfirmation: true,
+      _selectors: {
+        list: '.jFiler-items-list',
+        item: '.jFiler-item',
+        progressBar: '.bar',
+        remove: '.jFiler-item-trash-action'
       }
-    });
-  }
+    },
+    dragDrop: {
+      dragEnter: null,
+      dragLeave: null,
+      drop: null,
+      dragContainer: null,
+    },
+    uploadFile: {
+      url: "../../plugins/filer/php/ajax_upload_file.php",
+      data: {
+        folderName: folderName,
+      },
+      type: 'POST',
+      enctype: 'multipart/form-data',
+      synchron: true,
+      beforeSend: function() {},
+      success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
+        var parent = itemEl.find(".jFiler-jProgressBar").parent(),
+        new_file_name = JSON.parse(data),
+        filerKit = inputEl.prop("jFiler");
+        filerKit.files_list[id].name = new_file_name;
+        uploadedFiles.push(new_file_name);
+        $("#" + filerID + "-list").val(folderName + "/" + new_file_name)
+        itemEl.find(".jFiler-jProgressBar").fadeOut("slow", function() {
+          $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
+        });
+      },
+      error: function(el) {
+        var parent = el.find(".jFiler-jProgressBar").parent();
+        el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
+          $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
+        });
+      },
+      statusCode: null,
+      onProgress: null,
+      onComplete: null
+    },
+    allowDuplicates: false,
+    clipBoardPaste: true,
+    excludeName: null,
+    beforeRender: null,
+    afterRender: null,
+    beforeShow: null,
+    beforeSelect: null,
+    onSelect: null,
+    afterShow: null,
+    onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
+      var filerKit = inputEl.prop("jFiler"),
+      file_name = filerKit.files_list[id].name;
+      if (file_name == undefined) {
+        file_name = filerKit.files_list[id].file.name;
+      }
+      uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
+        return value != file_name;
+      });
+      $("#" + filerID + "-list").val("")
+      if (folderName.split("/")[0] == "MergerAcquisition") {
+        $.post('../../vendor/plugins/filer/php/ajax_remove_file.php?folderName=' + folderName, {
+          file: file_name
+        });
+      }
+    },
+    onEmpty: null,
+    options: null,
+    dialogs: {
+      alert: function(text) {
+        return alert(text);
+      },
+      confirm: function(text, callback) {
+        confirm(text) ? callback() : null;
+      }
+    },
+    captions: {
+      button: "Choose Files",
+      feedback: "Choose files To Upload",
+      feedback2: "files were chosen",
+      drop: "Drop file here to Upload",
+      removeConfirmation: "Are you sure you want to remove this file?",
+      errors: {
+        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+        filesType: "Only Images are allowed to be uploaded.",
+        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+      }
+    }
+  });
+}
 </script>

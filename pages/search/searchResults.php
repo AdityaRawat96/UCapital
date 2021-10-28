@@ -49,7 +49,10 @@ if(isset($_SESSION['email'])){
                       <?php
 
                       $investor_ids;
-                      $ma_ids;
+                      $company_ids = array();
+                      $npe_ids = array();
+                      $credits_ids = array();
+                      $re_ids = array();
                       $advisor_ids;
                       $user_id = $_SESSION['id'];
                       $result= mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
@@ -61,10 +64,29 @@ if(isset($_SESSION['email'])){
                           }else{
                             $investor_ids = json_decode($row['investor_id']);
                           }
-                          if($row['ma_id'] == "" || $row['ma_id'] == null){
-                            $ma_ids = array();
+                          if($row['company_id'] != null && $row['company_id'] != '' && $row['company_id'] != '[]'){
+                            $company_ids = json_decode($row['company_id']);
+                            $company_ids_search = implode(',', array_map('intval', $company_ids));
                           }else{
-                            $ma_ids = json_decode($row['ma_id']);
+                            $company_ids_search = 0;
+                          }
+                          if($row['npe_id'] != null && $row['npe_id'] != '' && $row['npe_id'] != '[]'){
+                            $npe_ids = json_decode($row['npe_id']);
+                            $npe_ids_search = implode(',', array_map('intval', $npe_ids));
+                          }else{
+                            $npe_ids_search = 0;
+                          }
+                          if($row['credits_id'] != null && $row['credits_id'] != '' && $row['credits_id'] != '[]'){
+                            $credits_ids = json_decode($row['credits_id']);
+                            $credits_ids_search = implode(',', array_map('intval', $credits_ids));
+                          }else{
+                            $credits_ids_search = 0;
+                          }
+                          if($row['re_id'] != null && $row['re_id'] != '' && $row['re_id'] != '[]'){
+                            $re_ids = json_decode($row['re_id']);
+                            $re_ids_search = implode(',', array_map('intval', $re_ids));
+                          }else{
+                            $re_ids_search = 0;
                           }
                           if($row['advisor_id'] == "" || $row['advisor_id'] == null){
                             $advisor_ids = array();
@@ -74,59 +96,300 @@ if(isset($_SESSION['email'])){
                         }
                       }
 
-                      $sql = "SELECT * FROM merger_acquisition WHERE title LIKE '%$search_query%'";
-                      $result= mysqli_query($con, $sql)
-                      or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+                      $published_buy_deal = array();
+                      $published_sell_deal = array();
+                      $sql_buy = "(SELECT
+                      real_estate.ID,
+                      real_estate.DEAL,
+                      real_estate.ASSET_TYPE,
+                      real_estate.DEAL_SUBJECT AS TITLE_1,
+                      real_estate.REAL_ESTATE_TYP AS TITLE_2,
+                      real_estate.ASSET_STATUS AS DETAIL_1,
+                      real_estate.TOTAL_SURFACE AS DETAIL_2,
+                      real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
+                      real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
+                      real_estate.ASSET_VAL_MIN AS VALUE_MIN,
+                      real_estate.ASSET_VAL_MAX AS VALUE_MAX,
+                      real_estate.CURRENCY AS CURRENCY,
+                      real_estate.COUNTRY,
+                      real_estate.CITY,
+                      real_estate.OFFER,
+                      real_estate.IMAGE,
+                      real_estate.KEY_ELEMENTS,
+                      real_estate.ASSET_TYPE
+                      FROM real_estate where DEAL = 'buy' AND (real_estate.DEAL_SUBJECT LIKE '%$search_query%' OR real_estate.REAL_ESTATE_TYP LIKE '%$search_query%'))
+                      UNION ALL( SELECT
+                      npe.ID,
+                      npe.DEAL,
+                      npe.ASSET_TYPE,
+                      npe.DEAL AS TITLE_1,
+                      'NPE' AS TITLE_2,
+                      npe.NPE_TYPE AS DETAIL_1,
+                      npe.MARKET_VALUE AS DETAIL_2,
+                      '-' AS DETAIL_3,
+                      'fixed' AS VALUE_TYPE,
+                      npe.ASKING_PRICE AS VALUE_MIN,
+                      npe.ASKING_PRICE AS VALUE_MAX,
+                      npe.CURRENCY AS CURRENCY,
+                      npe.COUNTRY,
+                      npe.CITY,
+                      npe.OFFER,
+                      npe.IMAGE,
+                      '-' AS KEY_ELEMENTS,
+                      npe.ASSET_TYPE
+                      FROM npe where DEAL = 'buy' AND (npe.DEAL LIKE '%$search_query%' OR npe.ASSET_TYPE LIKE '%$search_query%'))
+                      UNION ALL( SELECT
+                      credit.ID,
+                      credit.DEAL,
+                      credit.ASSET_TYPE,
+                      credit.DEAL AS TITLE_1,
+                      'Credit' AS TITLE_2,
+                      credit.CREDIT_TYPE AS DETAIL_1,
+                      '-' AS DETAIL_2,
+                      '-' AS DETAIL_3,
+                      credit.VALUE_TYPE AS VALUE_TYPE,
+                      credit.VALUE_MIN AS VALUE_MIN,
+                      credit.VALUE_MAX AS VALUE_MAX,
+                      credit.CURRENCY AS CURRENCY,
+                      credit.COUNTRY,
+                      credit.CITY,
+                      credit.OFFER,
+                      credit.IMAGE,
+                      '-' AS KEY_ELEMENTS,
+                      credit.ASSET_TYPE
+                      FROM credit where DEAL = 'buy' AND (credit.DEAL LIKE '%$search_query%' OR credit.ASSET_TYPE LIKE '%$search_query%'))
+                      UNION ALL ( SELECT
+                      business_company.ID,
+                      business_company.DEAL,
+                      business_company.ASSET_TYPE,
+                      business_company.WANT_TO_DO AS TITLE_1,
+                      business_company.ASSET_TYPE AS TITLE_2,
+                      business_company.SECTOR AS DETAIL_1,
+                      business_company.INDUSTRY AS DETAIL_2,
+                      '-' AS DETAIL_3,
+                      business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
+                      business_company.COMPANY_VAL_MIN AS VALUE_MIN,
+                      business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+                      business_company.CURRENCY AS CURRENCY,
+                      business_company.COUNTRY,
+                      business_company.CITY,
+                      business_company.OFFER,
+                      business_company.IMAGE,
+                      business_company.KEY_ELEMENTS,
+                      business_company.ASSET_TYPE
+                      FROM business_company where DEAL = 'buy' AND (business_company.WANT_TO_DO LIKE '%$search_query%' OR business_company.ASSET_TYPE LIKE '%$search_query%'))";
 
-                      if(mysqli_num_rows($result) > 0 ){
-                        while($row = mysqli_fetch_array($result)){
 
+                      $sql_sell = "(SELECT
+                      real_estate.ID,
+                      real_estate.DEAL,
+                      real_estate.ASSET_TYPE,
+                      real_estate.DEAL_SUBJECT AS TITLE_1,
+                      real_estate.REAL_ESTATE_TYP AS TITLE_2,
+                      real_estate.ASSET_STATUS AS DETAIL_1,
+                      real_estate.TOTAL_SURFACE AS DETAIL_2,
+                      real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
+                      real_estate.ASSET_VAL_MIN AS VALUE_MIN,
+                      real_estate.ASSET_VAL_MAX AS VALUE_MAX,
+                      real_estate.CURRENCY AS CURRENCY,
+                      real_estate.COUNTRY,
+                      real_estate.CITY,
+                      real_estate.OFFER,
+                      real_estate.IMAGE,
+                      real_estate.KEY_ELEMENTS,
+                      real_estate.ASSET_TYPE
+                      FROM real_estate where DEAL = 'sell' AND (real_estate.DEAL_SUBJECT LIKE '%$search_query%' OR real_estate.REAL_ESTATE_TYP LIKE '%$search_query%'))
+                      UNION ALL( SELECT
+                      npe.ID,
+                      npe.DEAL,
+                      npe.ASSET_TYPE,
+                      npe.DEAL AS TITLE_1,
+                      'NPE' AS TITLE_2,
+                      npe.NPE_TYPE AS DETAIL_1,
+                      npe.MARKET_VALUE AS DETAIL_2,
+                      'fixed' AS VALUE_TYPE,
+                      npe.ASKING_PRICE AS VALUE_MIN,
+                      npe.ASKING_PRICE AS VALUE_MAX,
+                      npe.CURRENCY AS CURRENCY,
+                      npe.COUNTRY,
+                      npe.CITY,
+                      npe.OFFER,
+                      npe.IMAGE,
+                      '-' AS KEY_ELEMENTS,
+                      npe.ASSET_TYPE
+                      FROM npe where DEAL = 'sell' AND (npe.DEAL LIKE '%$search_query%' OR npe.ASSET_TYPE LIKE '%$search_query%'))
+                      UNION ALL( SELECT
+                      credit.ID,
+                      credit.DEAL,
+                      credit.ASSET_TYPE,
+                      credit.DEAL AS TITLE_1,
+                      'Credit' AS TITLE_2,
+                      credit.CREDIT_TYPE AS DETAIL_1,
+                      credit.MATURITY AS DETAIL_2,
+                      'fixed' AS VALUE_TYPE,
+                      credit.VALUE_MIN AS ASKING_PRICE,
+                      credit.VALUE_MAX AS ASKING_PRICE,
+                      credit.CURRENCY AS CURRENCY,
+                      credit.COUNTRY,
+                      credit.CITY,
+                      credit.OFFER,
+                      credit.IMAGE,
+                      '-' AS KEY_ELEMENTS,
+                      credit.ASSET_TYPE
+                      FROM credit where DEAL = 'sell' AND (credit.DEAL LIKE '%$search_query%' OR credit.ASSET_TYPE LIKE '%$search_query%'))
+                      UNION ALL ( SELECT
+                      business_company.ID,
+                      business_company.DEAL,
+                      business_company.ASSET_TYPE,
+                      business_company.COMPANY_TYPE AS TITLE_1,
+                      business_company.ASSET_TYPE AS TITLE_2,
+                      business_company.SECTOR AS DETAIL_1,
+                      business_company.INDUSTRY AS DETAIL_2,
+                      business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
+                      business_company.COMPANY_VAL_MIN AS VALUE_MIN,
+                      business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+                      business_company.CURRENCY AS CURRENCY,
+                      business_company.COUNTRY,
+                      business_company.CITY,
+                      business_company.OFFER,
+                      business_company.IMAGE,
+                      business_company.KEY_ELEMENTS,
+                      business_company.ASSET_TYPE
+                      FROM business_company where DEAL = 'sell' AND (business_company.COMPANY_TYPE LIKE '%$search_query%' OR business_company.ASSET_TYPE LIKE '%$search_query%'))";
+                      $result_buy = mysqli_query($con, $sql_buy);
+                      if (mysqli_num_rows($result_buy) > 0) {
+                        while ($deal = mysqli_fetch_array($result_buy)) {
                           ?>
-                          <div class="col-md-3 col-sm-5 inline-block ma-card-<?=$row['id']?>">
-                            <div class="card mb-4 cart-custom-redious our-shadow">
-                              <img class="card-img-top ma-img" src="../../assets/uploads/mergeracquisition/<?=$row['image_folder'].'/'.json_decode($row['image'])[0]; ?>" alt="image">
-                              <span class="left-tag-card our-back"> <?=$row['type']; ?> </span>
-                              <span class="right-tag-batch">
-                                <span class="bookmark bookmark-ma <?php if(in_array($row['id'], $ma_ids)){echo 'bookmark-active';} ?>" data-id="<?=$row['id']?>">
-                                  <i class="fas fa-bookmark fa-2x"></i>
+                          <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
+                            <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
+                              <div class="card mb-4 cart-custom-redious our-shadow">
+                                <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
+                                <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                                <span class="right-tag-batch">
+                                  <span class="bookmark
+                                  <?php
+                                  $deatil_1_title = "";
+                                  $deatil_2_title = "";
+                                  if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                                    $deatil_1_title = "Sector: ";
+                                    $deatil_2_title = "Industry: ";
+                                    if (in_array($deal['ID'], $company_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                                    $deatil_1_title = "Status: ";
+                                    $deatil_2_title = "Surface: ";
+                                    if (in_array($deal['ID'], $re_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                                    $deatil_1_title = "Type: ";
+                                    $deatil_2_title = "Value: ";
+                                    if (in_array($deal['ID'], $credits_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                                    $deatil_1_title = "Type: ";
+                                    $deatil_2_title = "Value: ";
+                                    if (in_array($deal['ID'], $npe_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  }
+                                  ?>
+                                  bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
                                 </span>
-                              </span>
-                              <div class="d-flex flex-column justify-content-end p-2">
-                                <h5 class="card-heading text-dark"> <?=$row['title']; ?> </h5>
-                                <p class="card-descripatoin pb-1 pt-1"> <?=$row['description']; ?> </p>
-                                <div class="listing">
-                                  <a class="our-color listing-card-tag1">
-                                    <span> <i class="fas fa-map-marker-alt"></i> <?=$row['location']; ?> </span>
-                                  </a>
-                                  <a class="our-color listing-card-tag1">
-                                    <span><i class="fas fa-dollar-sign"></i> <?=$row['value']; ?> </span>
-                                  </a>
-                                  <a class="our-color listing-card-tag1">
-                                    <span><i class="fas fa-chart-pie"></i>
+                                <div class="d-flex flex-column justify-content-end p-2">
+                                  <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
+                                  <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
+                                  <div class="listing">
+                                    <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                                    <span><i class="fas fa-chart-line"></i> &nbsp;
                                       <?php
-                                      $industries = json_decode($row['industry']);
-                                      sort($industries);
-                                      echo $industries[0];
-                                      ?>
+                                      if($deal['DETAIL_3'] != "-"){
+                                        echo ($deatil_2_title."From ".$deal['DETAIL_2']." To ".$deal['DETAIL_3']." sqm");
+                                      }else{
+                                        echo ($deatil_2_title.$deal['DETAIL_2']);
+                                      } ?>
                                     </span>
-                                  </a>
-                                  <a class="our-color listing-card-tag1">
-                                    <span><i class="fas fa-chart-line"></i> <?=$row['category']; ?> </span>
-                                  </a>
-                                  <a href="../ma/ma-detail.php?ma=<?=$row['id']; ?>" class="contact-here-sectin564"> Contact here  <i class="fas fa-chevron-right"></i></a>
+                                    <hr>
+                                    <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </a>
                           </div>
                           <?php
                         }
-                      }else{
+                      }
+                      $result_sell = mysqli_query($con, $sql_sell);
+                      if (mysqli_num_rows($result_sell) > 0) {
+                        while ($deal = mysqli_fetch_array($result_sell)) {
+                          ?>
+                          <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
+                            <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
+                              <div class="card mb-4 cart-custom-redious our-shadow">
+                                <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
+                                <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                                <span class="right-tag-batch">
+                                  <span class="bookmark
+                                  <?php
+                                  $deatil_1_title = "";
+                                  $deatil_2_title = "";
+                                  $deatil_2_title_end = "";
+                                  if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                                    $deatil_1_title = "Sector: ";
+                                    $deatil_2_title = "Industry: ";
+                                    if (in_array($deal['ID'], $company_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                                    $deatil_1_title = "Status: ";
+                                    $deatil_2_title = "Surface: ";
+                                    $deatil_2_title_end = " sqm";
+                                    if (in_array($deal['ID'], $re_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                                    $deatil_1_title = "Type: ";
+                                    $deatil_2_title = "Maturity: ";
+                                    if (in_array($deal['ID'], $credits_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                                    $deatil_1_title = "Type: ";
+                                    $deatil_2_title = "Value: ";
+                                    if (in_array($deal['ID'], $npe_ids)) {
+                                      echo " bookmark-active ";
+                                    }
+                                  }
+                                  ?>
+                                  bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
+                                </span>
+                                <div class="d-flex flex-column justify-content-end p-2">
+                                  <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
+                                  <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
+                                  <div class="listing">
+                                    <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                                    <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deatil_2_title.$deal['DETAIL_2'].$deatil_2_title_end; ?></span>
+                                    <hr>
+                                    <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                          <?php
+                        }
+                      }/*
+else{
                         ?>
                         <center><br>
                           <h4>No results found!</h4>
                         </center>
                         <?php
-                      }
+                      }*/
+
+
                       ?>
                     </div>
                   </div>

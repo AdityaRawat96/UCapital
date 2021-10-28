@@ -1,83 +1,182 @@
 <?php
 $published_buy_deal = array();
 $published_sell_deal = array();
-$sql = "(SELECT
+$sql_buy = "(SELECT
 real_estate.ID,
 real_estate.DEAL,
 real_estate.ASSET_TYPE,
-real_estate.DEAL_SUBJECT AS SUBJECT,
-real_estate.REAL_ESTATE_TYP AS SUBJECT_TYPE,
-'-' AS SECTOR,
-'-' AS INDUSTRY,
+real_estate.DEAL_SUBJECT AS TITLE_1,
+real_estate.REAL_ESTATE_TYP AS TITLE_2,
+real_estate.ASSET_STATUS AS DETAIL_1,
+real_estate.TOTAL_SURFACE AS DETAIL_2,
+real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
+real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
+real_estate.ASSET_VAL_MIN AS VALUE_MIN,
+real_estate.ASSET_VAL_MAX AS VALUE_MAX,
+real_estate.CURRENCY AS CURRENCY,
 real_estate.COUNTRY,
 real_estate.CITY,
 real_estate.OFFER,
 real_estate.IMAGE,
 real_estate.KEY_ELEMENTS,
 real_estate.ASSET_TYPE
-FROM real_estate where USER_ID = $user_id)
+FROM real_estate where DEAL = 'buy' AND USER_ID = $user_id)
 UNION ALL( SELECT
 npe.ID,
 npe.DEAL,
 npe.ASSET_TYPE,
-npe.DEAL AS SUBJECT,
-'NPE' AS SUBJECT_TYPE,
-'-' AS SECTOR,
-'-' AS INDUSTRY,
+npe.DEAL AS TITLE_1,
+'NPE' AS TITLE_2,
+npe.NPE_TYPE AS DETAIL_1,
+npe.MARKET_VALUE AS DETAIL_2,
+'-' AS DETAIL_3,
+'fixed' AS VALUE_TYPE,
+npe.ASKING_PRICE AS VALUE_MIN,
+npe.ASKING_PRICE AS VALUE_MAX,
+npe.CURRENCY AS CURRENCY,
 npe.COUNTRY,
 npe.CITY,
 npe.OFFER,
 npe.IMAGE,
 '-' AS KEY_ELEMENTS,
 npe.ASSET_TYPE
-FROM npe where USER_ID = $user_id)
+FROM npe where DEAL = 'buy' AND USER_ID = $user_id)
 UNION ALL( SELECT
 credit.ID,
 credit.DEAL,
 credit.ASSET_TYPE,
-credit.DEAL AS SUBJECT,
-'Credit' AS SUBJECT_TYPE,
-'-' AS SECTOR,
-'-' AS INDUSTRY,
+credit.DEAL AS TITLE_1,
+'Credit' AS TITLE_2,
+credit.CREDIT_TYPE AS DETAIL_1,
+'-' AS DETAIL_2,
+'-' AS DETAIL_3,
+credit.VALUE_TYPE AS VALUE_TYPE,
+credit.VALUE_MIN AS VALUE_MIN,
+credit.VALUE_MAX AS VALUE_MAX,
+credit.CURRENCY AS CURRENCY,
 credit.COUNTRY,
 credit.CITY,
 credit.OFFER,
 credit.IMAGE,
 '-' AS KEY_ELEMENTS,
 credit.ASSET_TYPE
-FROM credit where USER_ID = $user_id)
+FROM credit where DEAL = 'buy' AND USER_ID = $user_id)
 UNION ALL ( SELECT
 business_company.ID,
 business_company.DEAL,
 business_company.ASSET_TYPE,
-business_company.COMPANY_TYPE AS SUBJECT,
-business_company.ASSET_TYPE AS SUBJECT_TYPE,
-business_company.SECTOR,
-business_company.INDUSTRY,
+business_company.WANT_TO_DO AS TITLE_1,
+business_company.ASSET_TYPE AS TITLE_2,
+business_company.SECTOR AS DETAIL_1,
+business_company.INDUSTRY AS DETAIL_2,
+'-' AS DETAIL_3,
+business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
+business_company.COMPANY_VAL_MIN AS VALUE_MIN,
+business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+business_company.CURRENCY AS CURRENCY,
 business_company.COUNTRY,
 business_company.CITY,
 business_company.OFFER,
 business_company.IMAGE,
 business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE
-FROM business_company where USER_ID = $user_id)";
-$result = mysqli_query($con, $sql);
-if (mysqli_num_rows($result) > 0) {
-  while ($row = mysqli_fetch_array($result)) {
-    if ($row["DEAL"] == "buy") {
-      array_push($published_buy_deal, $row);
-    } else {
-      array_push($published_sell_deal, $row);
-    }
+FROM business_company where DEAL = 'buy' AND USER_ID = $user_id)";
+
+
+$sql_sell = "(SELECT
+real_estate.ID,
+real_estate.DEAL,
+real_estate.ASSET_TYPE,
+real_estate.DEAL_SUBJECT AS TITLE_1,
+real_estate.REAL_ESTATE_TYP AS TITLE_2,
+real_estate.ASSET_STATUS AS DETAIL_1,
+real_estate.TOTAL_SURFACE AS DETAIL_2,
+real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
+real_estate.ASSET_VAL_MIN AS VALUE_MIN,
+real_estate.ASSET_VAL_MAX AS VALUE_MAX,
+real_estate.CURRENCY AS CURRENCY,
+real_estate.COUNTRY,
+real_estate.CITY,
+real_estate.OFFER,
+real_estate.IMAGE,
+real_estate.KEY_ELEMENTS,
+real_estate.ASSET_TYPE
+FROM real_estate where DEAL = 'sell' AND USER_ID = $user_id)
+UNION ALL( SELECT
+npe.ID,
+npe.DEAL,
+npe.ASSET_TYPE,
+npe.DEAL AS TITLE_1,
+'NPE' AS TITLE_2,
+npe.NPE_TYPE AS DETAIL_1,
+npe.MARKET_VALUE AS DETAIL_2,
+'fixed' AS VALUE_TYPE,
+npe.ASKING_PRICE AS VALUE_MIN,
+npe.ASKING_PRICE AS VALUE_MAX,
+npe.CURRENCY AS CURRENCY,
+npe.COUNTRY,
+npe.CITY,
+npe.OFFER,
+npe.IMAGE,
+'-' AS KEY_ELEMENTS,
+npe.ASSET_TYPE
+FROM npe where DEAL = 'sell' AND USER_ID = $user_id)
+UNION ALL( SELECT
+credit.ID,
+credit.DEAL,
+credit.ASSET_TYPE,
+credit.DEAL AS TITLE_1,
+'Credit' AS TITLE_2,
+credit.CREDIT_TYPE AS DETAIL_1,
+credit.MATURITY AS DETAIL_2,
+'fixed' AS VALUE_TYPE,
+credit.VALUE_MIN AS ASKING_PRICE,
+credit.VALUE_MAX AS ASKING_PRICE,
+credit.CURRENCY AS CURRENCY,
+credit.COUNTRY,
+credit.CITY,
+credit.OFFER,
+credit.IMAGE,
+'-' AS KEY_ELEMENTS,
+credit.ASSET_TYPE
+FROM credit where DEAL = 'sell' AND USER_ID = $user_id)
+UNION ALL ( SELECT
+business_company.ID,
+business_company.DEAL,
+business_company.ASSET_TYPE,
+business_company.COMPANY_TYPE AS TITLE_1,
+business_company.ASSET_TYPE AS TITLE_2,
+business_company.SECTOR AS DETAIL_1,
+business_company.INDUSTRY AS DETAIL_2,
+business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
+business_company.COMPANY_VAL_MIN AS VALUE_MIN,
+business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+business_company.CURRENCY AS CURRENCY,
+business_company.COUNTRY,
+business_company.CITY,
+business_company.OFFER,
+business_company.IMAGE,
+business_company.KEY_ELEMENTS,
+business_company.ASSET_TYPE
+FROM business_company where DEAL = 'sell' AND USER_ID = $user_id)";
+$result_buy = mysqli_query($con, $sql_buy);
+if (mysqli_num_rows($result_buy) > 0) {
+  while ($row_buy = mysqli_fetch_array($result_buy)) {
+    array_push($published_buy_deal, $row_buy);
   }
 }
-
+$result_sell = mysqli_query($con, $sql_sell);
+if (mysqli_num_rows($result_sell) > 0) {
+  while ($row_sell = mysqli_fetch_array($result_sell)) {
+    array_push($published_sell_deal, $row_sell);
+  }
+}
 $company_ids = array();
 $npe_ids = array();
 $credits_ids = array();
 $re_ids = array();
 $result = mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
-  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
     if ($row['company_id'] != null && $row['company_id'] != '') {
@@ -162,24 +261,24 @@ if (mysqli_num_rows($result) > 0) {
                     <?php
                     if ($_SESSION['user_type'] == 2) {
                       $result = mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                        <?php
+                          <?php
                         }
                       }
                     } else {
                       $result = mysqli_query($con, " SELECT *  FROM users WHERE id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                        ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                    <?php
+                          <?php
                         }
                       }
                     }
@@ -212,7 +311,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="row">
                   <?php
                   foreach ($published_sell_deal as $deal) {
-                  ?>
+                    ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
                       <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
@@ -221,19 +320,32 @@ if (mysqli_num_rows($result) > 0) {
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
+                            $deatil_1_title = "";
+                            $deatil_2_title = "";
+                            $deatil_2_value= "";
+                            $deatil_2_title_end = "";
                             if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                              $deatil_1_title = "Sector: ";
+                              $deatil_2_title = "Industry: ";
                               if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                              $deatil_1_title = "Status: ";
+                              $deatil_2_title = "Surface: ";
+                              $deatil_2_title_end = " sqm";
                               if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                              $deatil_1_title = "Type: ";
+                              $deatil_2_title = "Maturity: ";
                               if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                              $deatil_1_title = "Type: ";
+                              $deatil_2_title = "Value: ";
                               if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
@@ -242,11 +354,11 @@ if (mysqli_num_rows($result) > 0) {
                             bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
                           </span>
                           <div class="d-flex flex-column justify-content-end p-2">
-                            <span><i> <?= $deal['COUNTRY'] . ", " . $deal['CITY']; ?> </i></span>
-                            <span class="deal-card-heading"><?= $deal['SUBJECT']; ?> <b><?= $deal['SUBJECT_TYPE']; ?></b></span>
+                            <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
+                            <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deatil_2_title.$deal['DETAIL_2'].$deatil_2_title_end; ?></span>
                               <hr>
                               <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
@@ -262,7 +374,7 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                       </a>
                     </div>
-                  <?php
+                    <?php
                   }
                   ?>
                 </div>
@@ -271,7 +383,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="row">
                   <?php
                   foreach ($published_buy_deal as $deal) {
-                  ?>
+                    ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item">
                       <a href="ma-detail.php?ma=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
@@ -280,19 +392,29 @@ if (mysqli_num_rows($result) > 0) {
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
+                            $deatil_1_title = "";
+                            $deatil_2_title = "";
                             if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                              $deatil_1_title = "Sector: ";
+                              $deatil_2_title = "Industry: ";
                               if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
+                              $deatil_1_title = "Status: ";
+                              $deatil_2_title = "Surface: ";
                               if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
+                              $deatil_1_title = "Type: ";
+                              $deatil_2_title = "Value: ";
                               if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
+                              $deatil_1_title = "Type: ";
+                              $deatil_2_title = "Value: ";
                               if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
@@ -301,11 +423,18 @@ if (mysqli_num_rows($result) > 0) {
                             bookmark-<?= strtolower(str_replace(" ", "_", $deal['ASSET_TYPE'])); ?>" data-id="<?= $deal['ID']; ?>"> <i class="fas fa-bookmark fa-2x"></i> </span>
                           </span>
                           <div class="d-flex flex-column justify-content-end p-2">
-                            <span><i> <?= $deal['COUNTRY'] . ", " . $deal['CITY']; ?> </i></span>
-                            <span class="deal-card-heading"><?= $deal['SUBJECT']; ?> <b><?= $deal['SUBJECT_TYPE']; ?></b></span>
+                            <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
+                            <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: <?= $deal['SECTOR']; ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deal['INDUSTRY']; ?></span>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp;
+                                <?php
+                                if($deal['DETAIL_3'] != "-"){
+                                  echo ($deatil_2_title."From ".$deal['DETAIL_2']." To ".$deal['DETAIL_3']." sqm");
+                                }else{
+                                  echo ($deatil_2_title.$deal['DETAIL_2']);
+                                } ?>
+                              </span>
                               <hr>
                               <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
@@ -321,7 +450,7 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                       </a>
                     </div>
-                  <?php
+                    <?php
                   }
                   ?>
                 </div>
@@ -338,51 +467,51 @@ if (mysqli_num_rows($result) > 0) {
 <!-- content-wrapper -->
 
 <script>
-  function editAd(id, asset, deal) {
-    if (deal == "buy") {
-      if (asset == "Real Estate") {
-        url = "./../ma/update_buy_assets_real_estate.php";
-      } else if (asset == "NPE") {
-        url = "./../ma/update_buy_assets_npe.php";
-      } else if (asset == "Credits") {
-        url = "./../ma/update_buy_assets_credits.php";
-      } else if (asset == "Business Company") {
-        url = "./../ma/update_buy_business_company.php";
-      } else if (asset == "Start Up") {
-        url = "./../ma/update_buy_start_up.php";
-      }
-    } else {
-      if (asset == "Real Estate") {
-        url = "./../ma/update_sell_assets_real_estate.php";
-      } else if (asset == "NPE") {
-        url = "./../ma/update_sell_assets_npe.php";
-      } else if (asset == "Credits") {
-        console.log("Credits");
-        url = "./../ma/update_sell_assets_credits.php";
-      } else if (asset == "Business Company") {
-        url = "./../ma/update_sell_business_company.php";
-      } else if (asset == "Start Up") {
-        url = "./../ma/update_sell_start_up.php";
-      }
+function editAd(id, asset, deal) {
+  if (deal == "buy") {
+    if (asset == "Real Estate") {
+      url = "./../ma/update_buy_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      url = "./../ma/update_buy_assets_npe.php";
+    } else if (asset == "Credits") {
+      url = "./../ma/update_buy_assets_credits.php";
+    } else if (asset == "Business Company") {
+      url = "./../ma/update_buy_business_company.php";
+    } else if (asset == "Start Up") {
+      url = "./../ma/update_buy_start_up.php";
     }
-    let p = new URLSearchParams();
-    p.set("id", id);
-    url += "?" + p.toString();
-    window.open(url);
+  } else {
+    if (asset == "Real Estate") {
+      url = "./../ma/update_sell_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      url = "./../ma/update_sell_assets_npe.php";
+    } else if (asset == "Credits") {
+      console.log("Credits");
+      url = "./../ma/update_sell_assets_credits.php";
+    } else if (asset == "Business Company") {
+      url = "./../ma/update_sell_business_company.php";
+    } else if (asset == "Start Up") {
+      url = "./../ma/update_sell_start_up.php";
+    }
   }
+  let p = new URLSearchParams();
+  p.set("id", id);
+  url += "?" + p.toString();
+  window.open(url);
+}
 
-  function deleteAd(id, asset, deal) {
-    $.ajax({
-      type: 'POST',
-      url: "./../../assets/php/deleteAd.php",
-      data: {
-        id: id,
-        asset: asset,
-        deal: deal
-      },
-      success: function(data) {
-        alert("deleted");
-      }
-    });
-  }
+function deleteAd(id, asset, deal) {
+  $.ajax({
+    type: 'POST',
+    url: "./../../assets/php/deleteAd.php",
+    data: {
+      id: id,
+      asset: asset,
+      deal: deal
+    },
+    success: function(data) {
+      alert("deleted");
+    }
+  });
+}
 </script>

@@ -67,6 +67,16 @@ function formatDealValue(type, min, max, currency){
         scaled2 = scaled2.toFixed(1)
       }
       formatted_currency = scaled1 + " - " + scaled2 + " " + suffix2 + " " + currency_symbol;
+    }else if(max == 1000000000){
+      var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
+      var scaled1 = min;
+      var suffix1 = SI_SYMBOL[tier1];
+      var scale1 = Math.pow(10, tier1 * 3);
+      if(tier1 != 0){
+        scaled1 = min / scale1;
+        scaled1 = scaled1.toFixed(1);
+      }
+      formatted_currency = "Above " + scaled1 + " " + suffix1 + " " + currency_symbol;
     }else{
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
       var scaled1 = min;

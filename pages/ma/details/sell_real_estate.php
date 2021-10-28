@@ -34,12 +34,12 @@
                 if($row['INVESTMENT_TYPE'] == "undisclosed"){
                   echo "Undisclosed";
                 }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                  echo $row['INVESTMENT_MIN'];
+                  echo number_shorten($row['INVESTMENT_MIN']);
                 }else if($row['INVESTMENT_TYPE'] == "range"){
                   if($row['INVESTMENT_MAX'] == 1000000000){
-                    echo "Over ".$row['INVESTMENT_MIN'];
+                    echo "Over ".number_shorten($row['INVESTMENT_MIN']);
                   }else{
-                    echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
+                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
                   }
                 }
                 ?>
@@ -88,7 +88,7 @@
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
                     <td> Yearly Return (in %): </td>
-                    <td> <?=$row['REAL_ESTATE_SUB_CAT_TYPE'] ? ($row['REAL_ESTATE_TYP'].", ".$row['REAL_ESTATE_SUB_CAT_TYPE']) : $row['REAL_ESTATE_TYP'];  ?> </td>
+                    <td> <?=$row['YEARLY_RETURN'] ? $row['YEARLY_RETURN'] : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Value: </td>
@@ -97,12 +97,12 @@
                       if($row['ASSET_VAL_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['ASSET_VAL_TYPE'] == "fixed"){
-                        echo $row['ASSET_VAL_MIN'];
+                        echo number_shorten($row['ASSET_VAL_MIN']);
                       }else if($row['ASSET_VAL_TYPE'] == "range"){
                         if($row['ASSET_VAL_MAX'] == 1000000000){
-                          echo "Over ".$row['ASSET_VAL_MIN'];
+                          echo "Over ".number_shorten($row['ASSET_VAL_MIN']);
                         }else{
-                          echo "From ".$row['ASSET_VAL_MIN']." To ".$row['ASSET_VAL_MAX'];
+                          echo "From ".number_shorten($row['ASSET_VAL_MIN'])." To ".number_shorten($row['ASSET_VAL_MAX']);
                         }
                       }
                       ?>
@@ -115,20 +115,16 @@
                       if($row['INVESTMENT_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                        echo $row['INVESTMENT_MIN'];
+                        echo number_shorten($row['INVESTMENT_MIN']);
                       }else if($row['INVESTMENT_TYPE'] == "range"){
                         if($row['INVESTMENT_MAX'] == 1000000000){
-                          echo "Over ".$row['INVESTMENT_MIN'];
+                          echo "Over ".number_shorten($row['INVESTMENT_MIN']);
                         }else{
-                          echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
+                          echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
                         }
                       }
                       ?>
                     </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Total surface approx.: </td>
-                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE'] : "-"; ?> </td>
                   </tr>
                 </table>
               </div>

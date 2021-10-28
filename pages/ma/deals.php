@@ -720,10 +720,10 @@ if (isset($_SESSION['email'])) {
     }
 
     initFiler('sell_bc_image');
-    initFiler('sell_startup_image');
+    initFiler('sell_su_image');
     initFiler('sell_re_image');
     initFiler('buy_bc_image');
-    initFiler('buy_startup_image');
+    initFiler('buy_su_image');
   </script>
 
   <!-- Real Estate Sell -->
