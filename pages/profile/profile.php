@@ -30,9 +30,9 @@ npe.DEAL AS TITLE_1,
 npe.NPE_TYPE AS DETAIL_1,
 npe.MARKET_VALUE AS DETAIL_2,
 '-' AS DETAIL_3,
-'fixed' AS VALUE_TYPE,
-npe.ASKING_PRICE AS VALUE_MIN,
-npe.ASKING_PRICE AS VALUE_MAX,
+npe.VALUE_TYPE AS VALUE_TYPE,
+npe.VALUE_MIN AS VALUE_MIN,
+npe.VALUE_MAX AS VALUE_MAX,
 npe.CURRENCY AS CURRENCY,
 npe.COUNTRY,
 npe.CITY,
@@ -320,32 +320,36 @@ if (mysqli_num_rows($result) > 0) {
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
-                            $deatil_1_title = "";
-                            $deatil_2_title = "";
-                            $deatil_2_value= "";
-                            $deatil_2_title_end = "";
+                            $detail_1_title = "";
+                            $detail_2_title = "";
+                            $detail_2_value= "";
+                            $detail_2_title_end = "";
                             if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
-                              $deatil_1_title = "Sector: ";
-                              $deatil_2_title = "Industry: ";
+                              $detail_1_title = "Sector: ";
+                              $detail_2_title = "Industry: ";
+                              $detail_2_value= $deal['DETAIL_2'];
                               if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
-                              $deatil_1_title = "Status: ";
-                              $deatil_2_title = "Surface: ";
-                              $deatil_2_title_end = " sqm";
+                              $detail_1_title = "Status: ";
+                              $detail_2_title = "Surface: ";
+                              $detail_2_title_end = " sqm";
+                              $detail_2_value= $deal['DETAIL_2'];
                               if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
-                              $deatil_1_title = "Type: ";
-                              $deatil_2_title = "Maturity: ";
+                              $detail_1_title = "Type: ";
+                              $detail_2_title = "Maturity: ";
+                              $detail_2_value= $deal['DETAIL_2'];
                               if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
-                              $deatil_1_title = "Type: ";
-                              $deatil_2_title = "Value: ";
+                              $detail_1_title = "Type: ";
+                              $detail_2_title = "Market Value: ";
+                              $detail_2_value= number_shorten($deal['DETAIL_2'])." ".add_currency_symbol($deal['CURRENCY']);
                               if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
@@ -357,8 +361,8 @@ if (mysqli_num_rows($result) > 0) {
                             <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
                             <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $deatil_2_title.$deal['DETAIL_2'].$deatil_2_title_end; ?></span>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $detail_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $detail_2_title.$detail_2_value.$detail_2_title_end; ?></span>
                               <hr>
                               <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">
@@ -392,29 +396,40 @@ if (mysqli_num_rows($result) > 0) {
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?php
-                            $deatil_1_title = "";
-                            $deatil_2_title = "";
+                            $detail_1_title = "";
+                            $detail_2_title = "";
+                            $detail_2_value= "";
+                            $detail_2_title_end = "";
                             if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
-                              $deatil_1_title = "Sector: ";
-                              $deatil_2_title = "Industry: ";
+                              $detail_1_title = "Sector: ";
+                              $detail_2_title = "Industry: ";
+                              $detail_2_value= $deal['DETAIL_2'];
                               if (in_array($deal['ID'], $company_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "real estate") {
-                              $deatil_1_title = "Status: ";
-                              $deatil_2_title = "Surface: ";
+                              $detail_1_title = "Status: ";
+                              $detail_2_title = "Surface: ";
+                              $detail_2_title_end = " sqm";
+                              if($deal['DETAIL_3'] != "-"){
+                                $detail_2_value= "From ".$deal['DETAIL_2']." To ".$deal['DETAIL_3'];
+                              }else{
+                                $detail_2_value = $deal['DETAIL_2'];
+                              }
                               if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
-                              $deatil_1_title = "Type: ";
-                              $deatil_2_title = "Value: ";
+                              $detail_1_title = "Type: ";
+                              $detail_2_title = "Value: ";
+                              $detail_2_value= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX'])." ".add_currency_symbol($deal['CURRENCY']);
                               if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
-                              $deatil_1_title = "Type: ";
-                              $deatil_2_title = "Value: ";
+                              $detail_1_title = "Type: ";
+                              $detail_2_title = "Value: ";
+                              $detail_2_value= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX'])." ".add_currency_symbol($deal['CURRENCY']);
                               if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }
@@ -426,15 +441,8 @@ if (mysqli_num_rows($result) > 0) {
                             <span><i> <?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?> </i></span>
                             <span class="deal-card-heading"><?= $deal['TITLE_1']; ?> <b><?= $deal['TITLE_2']; ?></b></span>
                             <div class="listing">
-                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $deatil_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                              <span><i class="fas fa-chart-line"></i> &nbsp;
-                                <?php
-                                if($deal['DETAIL_3'] != "-"){
-                                  echo ($deatil_2_title."From ".$deal['DETAIL_2']." To ".$deal['DETAIL_3']." sqm");
-                                }else{
-                                  echo ($deatil_2_title.$deal['DETAIL_2']);
-                                } ?>
-                              </span>
+                              <span><i class="fas fa-chart-pie"></i> &nbsp; <?= $detail_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                              <span><i class="fas fa-chart-line"></i> &nbsp; <?= $detail_2_title.$detail_2_value.$detail_2_title_end; ?></span>
                               <hr>
                               <span ><b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?></span><br><br>
                               <div class="row">

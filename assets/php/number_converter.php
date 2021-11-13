@@ -1,6 +1,6 @@
 <?php
 // Shortens a number and attaches K, M, B, etc. accordingly
-function number_shorten($number, $precision = 0, $divisors = null) {
+function number_shorten($number, $precision = 2, $divisors = null) {
 
   if (strpos($number, '|') == false) {
     // Setup default $divisors if not provided
@@ -109,6 +109,133 @@ function generateLocationTags($countries, $cities){
     }
   }
   return $output_string;
+}
+
+function shorten_number_range($type, $min, $max, $precision = 2, $divisors = null){
+  $formatted_currency = "";
+  if($type == "undisclosed"){
+    $formatted_currency = "Undisclosed";
+  }else if($type == "fixed"){
+    // Setup default $divisors if not provided
+    if (!isset($divisors)) {
+      $divisors = array(
+        pow(1000, 0) => '', // 1000^0 == 1
+        pow(1000, 1) => 'k', // Thousand
+        pow(1000, 2) => 'mln', // Million
+        pow(1000, 3) => 'B', // Billion
+        pow(1000, 4) => 'T', // Trillion
+        pow(1000, 5) => 'Qa', // Quadrillion
+        pow(1000, 6) => 'Qi', // Quintillion
+      );
+    }
+
+    // Loop through each $divisor and find the
+    // lowest amount that matches
+    foreach ($divisors as $divisor => $shorthand) {
+      if (abs($min) < ($divisor * 1000)) {
+        // We found a match!
+        break;
+      }
+    }
+
+    // We found our match, or there were no matches.
+    // Either way, use the last defined value for $divisor.
+    return number_format($min / $divisor, $precision) ." ". $shorthand;
+  }else if($type == "range"){
+    if($min == 0){
+      // Setup default $divisors if not provided
+      if (!isset($divisors)) {
+        $divisors = array(
+          pow(1000, 0) => '', // 1000^0 == 1
+          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 2) => 'mln', // Million
+          pow(1000, 3) => 'B', // Billion
+          pow(1000, 4) => 'T', // Trillion
+          pow(1000, 5) => 'Qa', // Quadrillion
+          pow(1000, 6) => 'Qi', // Quintillion
+        );
+      }
+
+      // Loop through each $divisor and find the
+      // lowest amount that matches
+      foreach ($divisors as $divisor => $shorthand) {
+        if (abs($max) < ($divisor * 1000)) {
+          // We found a match!
+          break;
+        }
+      }
+
+      // We found our match, or there were no matches.
+      // Either way, use the last defined value for $divisor.
+      return "From 0 To ".number_format($max / $divisor, $precision) ." ". $shorthand;
+    }else if($max == 1000000000){
+      // Setup default $divisors if not provided
+      if (!isset($divisors)) {
+        $divisors = array(
+          pow(1000, 0) => '', // 1000^0 == 1
+          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 2) => 'mln', // Million
+          pow(1000, 3) => 'B', // Billion
+          pow(1000, 4) => 'T', // Trillion
+          pow(1000, 5) => 'Qa', // Quadrillion
+          pow(1000, 6) => 'Qi', // Quintillion
+        );
+      }
+
+      // Loop through each $divisor and find the
+      // lowest amount that matches
+      foreach ($divisors as $divisor => $shorthand) {
+        if (abs($min) < ($divisor * 1000)) {
+          // We found a match!
+          break;
+        }
+      }
+
+      // We found our match, or there were no matches.
+      // Either way, use the last defined value for $divisor.
+      return "Above ".number_format($min / $divisor, $precision) ." ". $shorthand;
+    }else{
+      $generatedString = "";
+
+      $numbers[0] = $min;
+      $numbers[1] = $max;
+
+      foreach ($numbers as $number){
+        // Setup default $divisors if not provided
+        if (!isset($divisors)) {
+          $divisors = array(
+            pow(1000, 0) => '', // 1000^0 == 1
+            pow(1000, 1) => 'k', // Thousand
+            pow(1000, 2) => 'mln', // Million
+            pow(1000, 3) => 'B', // Billion
+            pow(1000, 4) => 'T', // Trillion
+            pow(1000, 5) => 'Qa', // Quadrillion
+            pow(1000, 6) => 'Qi', // Quintillion
+          );
+        }
+
+        // Loop through each $divisor and find the
+        // lowest amount that matches
+        foreach ($divisors as $divisor => $shorthand) {
+          if (abs($number) < ($divisor * 1000)) {
+            // We found a match!
+            break;
+          }
+        }
+
+        // We found our match, or there were no matches.
+        // Either way, use the last defined value for $divisor.
+        $generatedString .= number_format($number / $divisor, $precision) ." ". $shorthand."  ";
+      }
+
+      $generatedString = trim($generatedString);
+      $generatedString = str_replace("  ", " To ", $generatedString);
+      $generatedString = "From " . $generatedString;
+
+      return $generatedString;
+    }
+  }
+
 }
 
 
