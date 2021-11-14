@@ -33,7 +33,7 @@ if(isset($_SESSION['user_type'])){
               <div class="card">
                 <div class="card-body">
                   <table id="users_table" class="table table-hover table-bordered" style="width:100%">
-                    <thead style="background-color: #151A61; color: #FFFFFF;">
+                    <thead style="background-color: #136DAE; color: #FFFFFF;">
                       <tr>
                         <th>First Name</th>
                         <th>Last Name</th>

@@ -34,12 +34,12 @@
                 if($row['INVESTMENT_TYPE'] == "undisclosed"){
                   echo "Undisclosed";
                 }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                  echo number_shorten($row['INVESTMENT_MIN']);
+                  echo number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                 }else if($row['INVESTMENT_TYPE'] == "range"){
                   if($row['INVESTMENT_MAX'] == 1000000000){
-                    echo "Over ".number_shorten($row['INVESTMENT_MIN']);
+                    echo "Over ".number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                   }else{
-                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
+                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                   }
                 }
                 ?>
@@ -55,7 +55,7 @@
 
           <div class="col-md-5"><br><br>
             <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
+              <div class="card-header" style="background-color: #136DAE; color: white;">
                 <h5><b>DEAL INFO</b></h5>
               </div>
               <div class="card-body">
@@ -74,14 +74,22 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Total surface approx.: </td>
-                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE'] : "-"; ?> </td>
+                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE']." sqm" : "-"; ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Year of construction: </td>
+                    <td> <?=$row['YEAR_OF_CONSTRUCTION'] ? $row['YEAR_OF_CONSTRUCTION'] : "-"; ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Type: </td>
+                    <td> <?=$row['VENDOR_TYPE'] ? $row['VENDOR_TYPE'] : "-";  ?> </td>
                   </tr>
                 </table>
               </div>
             </div>
 
             <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
+              <div class="card-header" style="background-color: #136DAE; color: white;">
                 <h5><b>FINANCIAL INFO</b></h5>
               </div>
               <div class="card-body">
@@ -97,12 +105,12 @@
                       if($row['ASSET_VAL_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['ASSET_VAL_TYPE'] == "fixed"){
-                        echo number_shorten($row['ASSET_VAL_MIN']);
+                        echo number_shorten($row['ASSET_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                       }else if($row['ASSET_VAL_TYPE'] == "range"){
                         if($row['ASSET_VAL_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['ASSET_VAL_MIN']);
+                          echo "Over ".number_shorten($row['ASSET_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
-                          echo "From ".number_shorten($row['ASSET_VAL_MIN'])." To ".number_shorten($row['ASSET_VAL_MAX']);
+                          echo "From ".number_shorten($row['ASSET_VAL_MIN'])." To ".number_shorten($row['ASSET_VAL_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }
                       }
                       ?>
@@ -115,12 +123,12 @@
                       if($row['INVESTMENT_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                        echo number_shorten($row['INVESTMENT_MIN']);
+                        echo number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                       }else if($row['INVESTMENT_TYPE'] == "range"){
                         if($row['INVESTMENT_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['INVESTMENT_MIN']);
+                          echo "Over ".number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
-                          echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
+                          echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }
                       }
                       ?>
@@ -130,41 +138,6 @@
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
-                <h5><b>INVESTOR INFO</b></h5>
-              </div>
-              <div class="card-body">
-                <table class="table table-investor-pro6">
-                  <tr class="profile-investor-heading">
-                    <td> Type: </td>
-                    <td> <?=$row['VENDOR_TYPE'] ? $row['VENDOR_TYPE'] : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> AUM: </td>
-                    <td> <?=$row['AUM'] ? $row['AUM'] : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Preferred investment amount.: </td>
-                    <td>
-                      <?php
-                      if($row['INVESTMENT_TYPE'] == "undisclosed"){
-                        echo "Undisclosed";
-                      }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                        echo $row['INVESTMENT_MIN'];
-                      }else if($row['INVESTMENT_TYPE'] == "range"){
-                        if($row['INVESTMENT_MAX'] == 1000000000){
-                          echo "Over ".$row['INVESTMENT_MIN'];
-                        }else{
-                          echo "From ".$row['INVESTMENT_MIN']." To ".$row['INVESTMENT_MAX'];
-                        }
-                      }
-                      ?>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </div>

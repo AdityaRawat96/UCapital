@@ -4,7 +4,7 @@ if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
   include '../elements/sidebar.php';
-?>
+  ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -29,7 +29,7 @@ if (isset($_SESSION['email'])) {
 
           <div class="row">
             <div class="col-12"><br>
-              <h2 class="text-custom-2" style="color: #151A61;">Deal features</h2>
+              <h2 class="text-custom-2" style="color: #136DAE;">Deal features</h2>
               <hr><br>
             </div>
           </div>
@@ -118,28 +118,31 @@ if (isset($_SESSION['email'])) {
           <br><br><br><br><br><br>
 
           <!-- container-fluid -->
-    </section>
-    <!-- content -->
-    </form>
+        </section>
+        <!-- content -->
+      </form>
 
-  </div>
-  <!-- content-wrapper -->
+    </div>
+    <!-- content-wrapper -->
 
 
-  <?php
-  include '../elements/footer.php';
-  ?>
-  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <?php
+    include '../elements/footer.php';
+    ?>
+    <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <link href="../../plugins/jquery-ui/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 
-  <!-- jquery-validation -->
-  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-  <script src="../../plugins/select2/js/select2.full.min.js"></script>
-  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+    <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery.ui.touch-punch.min.js"></script>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     var folderTimestamp = '<?php echo time(); ?>';
     var folderName = 'MergerAcquisition/' + folderTimestamp;
 
@@ -447,8 +450,8 @@ if (isset($_SESSION['email'])) {
           beforeSend: function() {},
           success: function(data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
             var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-              new_file_name = JSON.parse(data),
-              filerKit = inputEl.prop("jFiler");
+            new_file_name = JSON.parse(data),
+            filerKit = inputEl.prop("jFiler");
             filerKit.files_list[id].name = new_file_name;
             uploadedFiles.push(new_file_name);
             $("." + filerID + "-list").val(folderName + "/" + new_file_name)
@@ -479,7 +482,7 @@ if (isset($_SESSION['email'])) {
         afterShow: null,
         onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
           var filerKit = inputEl.prop("jFiler"),
-            file_name = filerKit.files_list[id].name;
+          file_name = filerKit.files_list[id].name;
           uploadedFiles = jQuery.grep(uploadedFiles, function(value) {
             return value != file_name;
           });
@@ -514,11 +517,11 @@ if (isset($_SESSION['email'])) {
       });
 
     }
-  </script>
+    </script>
 
 
-  <!-- company_sell -->
-  <script type="text/javascript">
+    <!-- company_sell -->
+    <script type="text/javascript">
     var country_data;
     $(document).ready(function() {
       $.ajax({
@@ -590,9 +593,9 @@ if (isset($_SESSION['email'])) {
         var offer = $(".offer:checked").val();
         var asset_type = "";
         if (offer == "company")
-          asset_type = $(".company_type").val();
+        asset_type = $(".company_type").val();
         else
-          asset_type = $(".asset_type").val();
+        asset_type = $(".asset_type").val();
         var countryClass = "";
         var cityClass = "";
         if (deal_type == "sell") {
@@ -724,10 +727,10 @@ if (isset($_SESSION['email'])) {
     initFiler('sell_re_image');
     initFiler('buy_bc_image');
     initFiler('buy_su_image');
-  </script>
+    </script>
 
-  <!-- Real Estate Sell -->
-  <script type="text/javascript">
+    <!-- Real Estate Sell -->
+    <script type="text/javascript">
     $(".re_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".re_type_category").html("");
@@ -750,11 +753,11 @@ if (isset($_SESSION['email'])) {
         $(".re_type_category_container").fadeOut();
       }
     })
-  </script>
+    </script>
 
 
-  <!-- NPE Sell -->
-  <script type="text/javascript">
+    <!-- NPE Sell -->
+    <script type="text/javascript">
     $(".product_type").change(function() {
       if ($(this).find("option:selected").val() == "Secured") {
         $(".collateral_type_container").fadeIn();
@@ -762,10 +765,10 @@ if (isset($_SESSION['email'])) {
         $(".collateral_type_container").fadeOut();
       }
     })
-  </script>
+    </script>
 
-  <!-- Credits Sell -->
-  <script type="text/javascript">
+    <!-- Credits Sell -->
+    <script type="text/javascript">
     $(".borrower_type").change(function() {
       if ($(this).find("option:selected").data("categories")) {
         $(".borrower_type_category").html("");
@@ -788,8 +791,8 @@ if (isset($_SESSION['email'])) {
         $(".borrower_type_category_container").fadeOut();
       }
     })
-  </script>
-  <script>
+    </script>
+    <script>
     function insertDealData() {
       insertData = {};
       var deal_type = $(".deal_type:checked").val();
@@ -850,9 +853,9 @@ if (isset($_SESSION['email'])) {
           console.log(data);
           if (data.trim() == "success") {
             swal("Success!", "Deal added!", "success")
-              .then((value) => {
-                location.reload();
-              });
+            .then((value) => {
+              location.reload();
+            });
           } else {
             swal("Error!", "An unexpected error occurred, please try again!", "error");
           }
@@ -868,8 +871,8 @@ if (isset($_SESSION['email'])) {
       response['re_deal_subject'] = $(".re_deal_subject_buy").val();
       response['re_asset_status'] = $(".re_asset_status_buy").val();
       response['re_condition_status'] = $(".re_condition_status_buy").val();
-      response['re_surface_area'] = $(".re_surface_area_buy_min").val();
-      response['re_surface_area_max'] = $(".re_surface_area_buy_max").val();
+      response['re_surface_area'] = $(".re_surface_area_buy_min").text();
+      response['re_surface_area_max'] = $(".re_surface_area_buy_max").text();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -884,9 +887,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['re_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['re_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['re_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['re_hq_city'] = cityVal.substring(0, cityVal.length - 1);
       response['default_currency'] = $(".re_default_currency_buy").val();
       response['re_asset_value'] = $(".re_asset_value_buy:checked").val();
       if ($(".re_asset_value_buy:checked").val() === "undisclosed") {} else if ($(".re_asset_value_buy:checked").val() === "fixed") {
@@ -922,7 +925,7 @@ if (isset($_SESSION['email'])) {
         isNpeTypeSetted = true;
       });
       if (isNpeTypeSetted)
-        response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
 
       product_type = "";
       isProductTypeSetted = false;
@@ -931,7 +934,7 @@ if (isset($_SESSION['email'])) {
         isProductTypeSetted = true;
       });
       if (isProductTypeSetted)
-        response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
 
       var countryVal = "";
       var cityVal = "";
@@ -947,9 +950,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['npe_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['npe_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['npe_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['npe_hq_city'] = cityVal.substring(0, cityVal.length - 1);
       response['npe_description'] = $(".npe_description_buy").val();
       response['npe_default_currency'] = $(".npe_default_currency_buy").val();
       response['npe_value'] = $(".npe_value_buy:checked").val();
@@ -1003,9 +1006,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['re_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['re_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['re_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['re_hq_city'] = cityVal.substring(0, cityVal.length - 1);
       response['default_currency'] = $(".re_default_currency").val();
       response['re_asset_value'] = $(".re_asset_value:checked").val();
       if ($(".re_asset_value:checked").val() === "undisclosed") {} else if ($(".re_asset_value:checked").val() === "fixed") {
@@ -1044,7 +1047,7 @@ if (isset($_SESSION['email'])) {
         isNpeTypeSetted = true;
       });
       if (isNpeTypeSetted)
-        response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
+      response['npe_type'] = npe_type.substring(0, npe_type.length - 1);
 
       product_type = "";
       isProductTypeSetted = false;
@@ -1053,7 +1056,7 @@ if (isset($_SESSION['email'])) {
         isProductTypeSetted = true;
       });
       if (isProductTypeSetted)
-        response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
+      response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
 
       response['npe_collateral_type'] = $(".npe_collateral_type").val();
       response['npe_hq_country'] = $(".npe_hq_country option:selected").text();
@@ -1072,9 +1075,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['npe_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['npe_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['npe_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['npe_hq_city'] = cityVal.substring(0, cityVal.length - 1);
       response['npe_description'] = $(".npe_description").val();
       response['npe_default_currency'] = $(".npe_default_currency").val();
       response['npe_original_amount'] = $(".npe_original_amount").val();
@@ -1110,9 +1113,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
       response['credit_lien_position'] = $(".credit_lien_position").val();
       response['credit_description'] = $(".credit_description").val();
       response['credit_default_currency'] = $(".credit_default_currency").val();
@@ -1145,9 +1148,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['credit_description'] = $(".npec_description_buy").val();
       response['credit_default_currency'] = $(".npec_default_currency_buy").val();
@@ -1195,9 +1198,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['sector_sel'] = $(".bc_sector_sel_buy").val();
       var isIndustrySetted = false;
@@ -1207,7 +1210,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".bc_default_currency_buy").val();
 
@@ -1313,9 +1316,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['sector_sel'] = $(".su_sector_sel_buy").val();
       var isIndustrySetted = false;
@@ -1325,7 +1328,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['default_currency'] = $(".su_default_currency_buy").val();
       response['startup_type'] = $(".su_startup_type_buy").val();
@@ -1512,9 +1515,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['company_type'] = $(".bc_company_type").val();
       response['foundation_year'] = $(".bc_foundation_year").val();
@@ -1562,7 +1565,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['company_business'] = $(".bc_company_business").val();
       var isAreaSetted = false;
@@ -1572,7 +1575,7 @@ if (isset($_SESSION['email'])) {
         areaOfActivity += $(this).text() + "|";
       });
       if (isAreaSetted)
-        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".bc_scalability").val();
       response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
@@ -1655,9 +1658,9 @@ if (isset($_SESSION['email'])) {
       });
 
       if (countrySetted)
-        response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
+      response['hq_country'] = countryVal.substring(0, countryVal.length - 1);
       if (citySetted)
-        response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
+      response['hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['startup_type'] = $(".su_startup_type").val();
       response['company_type'] = $(".su_company_type").val();
@@ -1695,7 +1698,7 @@ if (isset($_SESSION['email'])) {
         industry += $(this).val() + ",";
       });
       if (isIndustrySetted)
-        response['industry_sel'] = industry.substring(0, industry.length - 1);
+      response['industry_sel'] = industry.substring(0, industry.length - 1);
 
       response['company_business'] = $(".su_company_business").val();
       var isAreaSetted = false;
@@ -1705,7 +1708,7 @@ if (isset($_SESSION['email'])) {
         areaOfActivity += $(this).text() + "|";
       });
       if (isAreaSetted)
-        response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
+      response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
       response['scalability'] = $(".su_scalability").val();
       response['scalability_area'] = $(".su_scalability_area option:selected").val() == "" ? "" : $(".su_scalability_area option:selected").text();
@@ -1864,13 +1867,27 @@ if (isset($_SESSION['email'])) {
     //   return response;
 
     // }
-  </script>
-<?php
-} else {
-?>
-  <script>
+    </script>
+
+    <script type="text/javascript">
+    $("#slider-range").slider({
+      range: true,
+      min: 0,
+      max: 10000,
+      step: 100,
+      slide: function( event, ui ) {
+        $( "#min-price").html(ui.values[ 0 ]);
+        $( "#max-price").html(ui.values[ 1 ]);
+      }
+    });
+
+    </script>
+    <?php
+  } else {
+    ?>
+    <script>
     window.open('../../', '_self')
-  </script>
-<?php
-}
-?>
+    </script>
+    <?php
+  }
+  ?>

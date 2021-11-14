@@ -39,7 +39,7 @@
 
           <div class="col-md-5"><br><br>
             <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
+              <div class="card-header" style="background-color: #136DAE; color: white;">
                 <h5><b>DEAL INFO</b></h5>
               </div>
               <div class="card-body">
@@ -60,16 +60,6 @@
                     <td> Total surface approx.: </td>
                     <td> <?=$row['TOTAL_SURFACE'] ? "From ".$row['TOTAL_SURFACE']." To ".$row['TOTAL_SURFACE_MAX']." sqm" : "-"; ?> </td>
                   </tr>
-                </table>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
-                <h5><b>FINANCIAL INFO</b></h5>
-              </div>
-              <div class="card-body">
-                <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
                     <td> Value: </td>
                     <td>
@@ -88,18 +78,12 @@
                       ?>
                     </td>
                   </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Vendor Type </td>
-                    <td>
-                      <?=$row['WHO_I_AM']; ?>
-                    </td>
-                  </tr>
                 </table>
               </div>
             </div>
 
             <div class="card">
-              <div class="card-header" style="background-color: #151A61; color: white;">
+              <div class="card-header" style="background-color: #136DAE; color: white;">
                 <h5><b>INVESTOR INFO</b></h5>
               </div>
               <div class="card-body">
@@ -115,6 +99,12 @@
                   <tr class="profile-investor-heading">
                     <td> Preferred investment amount: </td>
                     <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Investor Type </td>
+                    <td>
+                      <?=$row['WHO_I_AM']; ?>
+                    </td>
                   </tr>
                 </table>
               </div>
