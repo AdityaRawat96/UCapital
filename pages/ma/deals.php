@@ -142,7 +142,7 @@ if (isset($_SESSION['email'])) {
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery.ui.touch-punch.min.js"></script>
 
-
+    <!-- bootstrap-datepicker -->
     <link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
     <script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
