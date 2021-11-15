@@ -40,10 +40,11 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="credit_type">
-                    <option value="" selected disabled>Choose type of NPE</option>
-                    <option value="Past due">Past due</option>
-                    <option value="Unlikely to pay">Unlikely to pay</option>
-                    <option value="NPL">NPL</option>
+                    <option value="" selected disabled>Choose type of Credit</option>
+                    <option value="All">All</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Public Administration Receivables">Public Administration Receivables</option>
+                    <option value="Invoices">Invoices</option>
                   </select>
                 </div>
               </div>
@@ -101,7 +102,7 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Value</span>
+                  <span>Preferred Credit Value</span>
                   <span class="deal-subhead">(Choose one)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -174,14 +175,6 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Borrower Details</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details_buy" id="borrower_details" placeholder="Type borrower details"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Ratio</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
@@ -201,11 +194,11 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control deal_option_visibility_trigger npe_who_i_am" id="who_i_am" name="who_i_am">
                     <option value="" selected disabled>Select an option</option>
-                    <option value="Individual">Individual</option>
+                    <option value="Professional">Professional</option>
                     <option value="Corporation">Corporation</option>
-                    <option value="PE Fund">PE Fund</option>
-                    <option value="VC Fund">VC Fund</option>
-                    <option value="Asset Management">Asset Management</option>
+                    <option value="Private Equity">Private Equity</option>
+                    <option value="Venture Capital">Venture Capital</option>
+                    <option value="Financial Institution">Financial Institution</option>
                   </select>
                 </div>
               </div>
@@ -402,9 +395,6 @@ if (isset($_SESSION['email'])) {
         judicialized: {
           required: true,
         },
-        borrower_details: {
-          required: true,
-        },
         ratio: {
           required: true,
         },
@@ -518,7 +508,6 @@ if (isset($_SESSION['email'])) {
     }
     response['credit_lien_position'] = $(".npe_lien_position_buy").val();
     response['credit_judicialized'] = $(".npe_judicialized_buy").val();
-    response['credit_borrower_details'] = $(".npe_borrower_details_buy").val();
     response['credit_who_i_am'] = $(".npe_who_i_am").val();
     response['credit_aum'] = $(".npec_aum_buy").val();
     response['number_of_investments'] = $(".npec_number_of_investments_buy").val();
@@ -561,10 +550,9 @@ if (isset($_SESSION['email'])) {
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
     document.getElementById("judicialized").value = "<?= $row["JUDICIALIZED"] ?>";
-    document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAILS"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
+    if ("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management") {
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
       document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
@@ -573,7 +561,7 @@ if (isset($_SESSION['email'])) {
         $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
       }
       $(".option_visibility_target").fadeIn(0);
-    }else{
+    } else {
       $(".option_visibility_target").fadeOut(0);
     }
     $("input[name=asset_value][value=<?= $row["VALUE_TYPE"] ?>]").attr('checked', 'checked');
@@ -728,5 +716,4 @@ if (isset($_SESSION['email'])) {
       }
     });
   }
-
 </script>

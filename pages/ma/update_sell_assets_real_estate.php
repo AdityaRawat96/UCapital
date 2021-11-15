@@ -114,10 +114,24 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Total surface approx.</span></span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
+                <div class="col-md-4 col-sm-12 input-container">
                   <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Min.</span>
+                    </div>
                     <div class="custom-file">
-                      <input name="total_surface_area" type="number" class="form-control re_surface_area" id="surface_area" placeholder="Type a value">
+                      <input type="number" class="form-control surface_area" id="surface_area" placeholder="Type a value" name="surface_area">
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">sqm</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Max.</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control surface_area_max" id="surface_area_max" placeholder="Type a value" name="surface_area_max">
                     </div>
                     <div class="input-group-append">
                       <span class="input-group-text">sqm</span>
@@ -561,7 +575,8 @@ if (isset($_SESSION['email'])) {
     response['re_asset_status'] = $(".re_asset_status").val();
     response['re_condition_status'] = $(".re_condition_status").val();
     response['re_construction_year'] = $(".re_construction_year").val();
-    response['re_surface_area'] = $(".re_surface_area").val();
+    response['re_surface_area'] = $(".re_surface_area_buy_min").text();
+    response['re_surface_area_max'] = $(".re_surface_area_buy_max").text();
     var countryVal = "";
     var cityVal = "";
     var countrySetted = false;
@@ -657,6 +672,7 @@ if (isset($_SESSION['email'])) {
     document.getElementById("asset_status").value = "<?= $row["ASSET_STATUS"] ?>";
     document.getElementById("asset_condition").value = "<?= $row["ASSET_CONDITION"] ?>";
     document.getElementById("surface_area").value = "<?= $row["TOTAL_SURFACE"] ?>";
+    document.getElementById("surface_area_max").value = "<?= $row["TOTAL_SURFACE_MAX"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("yearly_return").value = "<?= $row["YEARLY_RETURN"] ?>";

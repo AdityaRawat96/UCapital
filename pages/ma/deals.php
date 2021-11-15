@@ -296,9 +296,6 @@ if (isset($_SESSION['email'])) {
             min: 0,
             max: 100
           },
-          rate: {
-            required: true,
-          },
           discounted_ratio: {
             min: 0,
             max: 100
@@ -992,7 +989,8 @@ if (isset($_SESSION['email'])) {
       response['re_asset_status'] = $(".re_asset_status").val();
       response['re_condition_status'] = $(".re_condition_status").val();
       response['re_construction_year'] = $(".re_construction_year").val();
-      response['re_surface_area'] = $(".re_surface_area").val();
+      response['re_surface_area'] = $(".re_surface_area_buy_min").text();
+      response['re_surface_area_max'] = $(".re_surface_area_buy_max").text();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -1166,7 +1164,6 @@ if (isset($_SESSION['email'])) {
       }
       response['credit_lien_position'] = $(".npec_lien_position_buy").val();
       response['credit_judicialized'] = $(".npec_judicialized_buy").val();
-      response['credit_borrower_details'] = $(".npec_borrower_details_buy").val();
       response['credit_who_i_am'] = $(".npec_who_i_am").val();
       response['credit_aum'] = $(".npec_aum_buy").val();
       response['number_of_investments'] = $(".npec_number_of_investments_buy").val();

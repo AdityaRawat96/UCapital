@@ -511,8 +511,8 @@ if (isset($_SESSION['email'])) {
     response['re_deal_subject'] = $(".re_deal_subject_buy").val();
     response['re_asset_status'] = $(".re_asset_status_buy").val();
     response['re_condition_status'] = $(".re_condition_status_buy").val();
-    response['re_surface_area'] = $(".re_surface_area_buy_min").val();
-    response['re_surface_area_max'] = $(".re_surface_area_buy_max").val();
+    response['re_surface_area'] = $(".re_surface_area_buy_min").text();
+    response['re_surface_area_max'] = $(".re_surface_area_buy_max").text();
     var countryVal = "";
     var cityVal = "";
     var countrySetted = false;

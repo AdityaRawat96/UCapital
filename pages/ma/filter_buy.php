@@ -22,7 +22,7 @@
                 <li> <a href="#Where_company" data-toggle="tab"> Location </a> </li>
                 <li> <a href="#Sector_company" data-toggle="tab"> Preferred Sector </a> </li>
                 <li> <a href="#Industry_company" data-toggle="tab"> Preferred Industry </a> </li>
-                <li> <a href="#TechnologyOperation_company" data-toggle="tab"> Objective </a> </li>
+                <li> <a href="#TechnologyOperation_company" data-toggle="tab"> Goal </a> </li>
                 <li> <a href="#InvestmentRequired_company" data-toggle="tab"> Investment Size </a> </li>
                 <li> <a href="#Revenue_company" data-toggle="tab"> Preferred Revenue </a> </li>
                 <li> <a href="#EbitdaMargin_company" data-toggle="tab"> Ebitda Margin </a> </li>
@@ -34,13 +34,13 @@
 
               <!--Asset -->
               <div class="asset_tabs hidden_tab_head">
-                <li> <a href="#Where_asset" data-toggle="tab"> HQ Location </a> </li>
-                <li> <a href="#Subject_asset" data-toggle="tab"> Subject </a> </li>
+                <li> <a href="#Where_asset" data-toggle="tab"> Location </a> </li>
+                <li> <a href="#Subject_asset" data-toggle="tab"> Subject of deal </a> </li>
                 <li> <a href="#Status_asset" data-toggle="tab"> Status </a> </li>
                 <li> <a href="#Condition_asset" data-toggle="tab"> Condition </a> </li>
                 <li> <a href="#TotalSurface_asset" data-toggle="tab"> Total surface approx. </a> </li>
-                <li> <a href="#Value_asset" data-toggle="tab"> Value </a> </li>
-                <li> <a href="#Publisher_asset" data-toggle="tab"> Publisher </a> </li>
+                <li> <a href="#Value_asset" data-toggle="tab"> Asset Value </a> </li>
+                <li> <a href="#Publisher_asset" data-toggle="tab"> Investor Type </a> </li>
                 <li> <a href="#AUM_asset" data-toggle="tab"> AUM </a> </li>
                 <!-- <li> <a href="#Investments_asset" data-toggle="tab"> Investments </a> </li> -->
               </div>
@@ -295,33 +295,33 @@
                 obj = jQuery.parseJSON(data);
                 for (var i = 0; i < obj.length; i++) {
                   var elementData = "";
-                  if(obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up"){
-                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                    if(company_ids.includes(obj[i].ID)){
+                  if (obj[i].ASSET_TYPE.toLowerCase() == "business company" || obj[i].ASSET_TYPE.toLowerCase() == "start up") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (company_ids.includes(obj[i].ID)) {
                       elementData += " bookmark-active";
                     }
-                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Industry: '+obj[i].DETAIL_2+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Sector: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Industry: ' + obj[i].DETAIL_2 + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
                     $(".itemsList").append(elementData);
-                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "real estate"){
-                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                    if(npe_ids.includes(obj[i].ID)){
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "real estate") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (npe_ids.includes(obj[i].ID)) {
                       elementData += " bookmark-active";
                     }
-                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Status: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Surface: From '+obj[i].DETAIL_2+' To '+obj[i].DETAIL_3+' smq</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Status: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Surface: From ' + obj[i].DETAIL_2 + ' To ' + obj[i].DETAIL_3 + ' smq</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
                     $(".itemsList").append(elementData);
-                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "credits"){
-                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                    if(credits_ids.includes(obj[i].ID)){
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "credits") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (credits_ids.includes(obj[i].ID)) {
                       elementData += " bookmark-active";
                     }
-                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: '+formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY)+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: ' + formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY) + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
                     $(".itemsList").append(elementData);
-                  }else if(obj[i].ASSET_TYPE.toLowerCase() == "npe"){
-                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type='+obj[i].ASSET_TYPE.toLowerCase()+'&id='+obj[i].ID+'"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/'+obj[i].IMAGE+'" alt="image"> <span class="left-tag-card our-back"> '+obj[i].OFFER+' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-'+obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
-                    if(re_ids.includes(obj[i].ID)){
+                  } else if (obj[i].ASSET_TYPE.toLowerCase() == "npe") {
+                    elementData += '<div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item"> <a href="ma-detail.php?type=' + obj[i].ASSET_TYPE.toLowerCase() + '&id=' + obj[i].ID + '"> <div class="card mb-4 cart-custom-redious our-shadow"> <div class="card-img-contain"><img class="card-img-top ma-img" src="../../assets/uploads/' + obj[i].IMAGE + '" alt="image"> <span class="left-tag-card our-back"> ' + obj[i].OFFER + ' </span> <span class="right-tag-batch"> <span class="bookmark bookmark-' + obj[i].ASSET_TYPE.replace(" ", "_").toLowerCase();
+                    if (re_ids.includes(obj[i].ID)) {
                       elementData += " bookmark-active";
                     }
-                    elementData += '" data-id="'+obj[i].ID+'"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> '+generateLocationTags(obj[i].COUNTRY, obj[i].CITY)+' </i></span> <span class="deal-card-heading">'+obj[i].TITLE_1+' <b>'+obj[i].TITLE_2+'</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: '+obj[i].DETAIL_1.replaceAll("|", ", ")+' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: '+formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY)+'</span><hr> <span ><b>Key Elements:</b> '+obj[i].KEY_ELEMENTS+'</span><br></div></div></div></a> </div>';
+                    elementData += '" data-id="' + obj[i].ID + '"> <i class="fas fa-bookmark fa-2x"></i> </span> </span> </div><div class="d-flex flex-column justify-content-end p-2"> <span><i> ' + generateLocationTags(obj[i].COUNTRY, obj[i].CITY) + ' </i></span> <span class="deal-card-heading">' + obj[i].TITLE_1 + ' <b>' + obj[i].TITLE_2 + '</b></span> <div class="listing"> <span><i class="fas fa-chart-pie"></i> &nbsp; Type: ' + obj[i].DETAIL_1.replaceAll("|", ", ") + ' </span><br><span class="deal-card-subhead"><i class="fas fa-industry"></i> &nbsp;  Value: ' + formatDealValue(obj[i].VALUE_TYPE, obj[i].VALUE_MIN, obj[i].VALUE_MAX, obj[i].CURRENCY) + '</span><hr> <span ><b>Key Elements:</b> ' + obj[i].KEY_ELEMENTS + '</span><br></div></div></div></a> </div>';
                     $(".itemsList").append(elementData);
                   }
                 }

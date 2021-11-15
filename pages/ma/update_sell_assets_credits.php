@@ -232,12 +232,12 @@ if (isset($_SESSION['email'])) {
                   <span>Rate</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="text" name="rate" id="rate" value="" class="form-control credit_rate" placeholder="Enter a value">
+                  <input type="number" name="rate" id="rate" min=0 max=100 class="form-control credit_rate" placeholder="Enter a value">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Dicounted Ratio %</span>
+                  <span>Discounted Ratio %</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
                   <input type="number" name="discounted_ratio" id="discounted_ratio" value="" class="form-control credit_discounted_ratio" placeholder="Enter a value between 0 and 100">
@@ -429,9 +429,6 @@ if (isset($_SESSION['email'])) {
         ratio_ob: {
           min: 0,
           max: 100
-        },
-        rate: {
-          required: true,
         },
         discounted_ratio: {
           min: 0,

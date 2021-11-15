@@ -6,12 +6,17 @@
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control npec_type npec_type_buy" name="credit_type">
         <option value="" selected disabled>Choose type of Credit</option>
-        <option value="Past due">Past due</option>
-        <option value="Unlikely to pay">Unlikely to pay</option>
-        <option value="NPL">NPL</option>
+        <option value="All">All</option>
+        <option value="Commercial">Commercial</option>
+        <option value="Public Administration Receivables">Public Administration Receivables</option>
+        <option value="Invoices">Invoices</option>
       </select>
     </div>
   </div>
+
+
+
+
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
@@ -72,7 +77,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Value</span>
+      <span>Preferred Credit Value</span>
       <span class="deal-subhead">(Choose one)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -145,14 +150,6 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Borrower Details</span>
-    </div>
-    <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="borrower_details" rows="3" class="form-control npec_borrower_details_buy" placeholder="Type borrower details"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 col-sm-12 deal-heading">
       <span>Ratio</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
@@ -172,11 +169,11 @@
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control deal_option_visibility_trigger npec_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
-        <option value="Individual">Individual</option>
+        <option value="Professional">Professional</option>
         <option value="Corporation">Corporation</option>
-        <option value="PE Fund">PE Fund</option>
-        <option value="VC Fund">VC Fund</option>
-        <option value="Asset Management">Asset Management</option>
+        <option value="Private Equity">Private Equity</option>
+        <option value="Venture Capital">Venture Capital</option>
+        <option value="Financial Institution">Financial Institution</option>
       </select>
     </div>
   </div>
