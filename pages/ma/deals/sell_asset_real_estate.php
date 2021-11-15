@@ -79,13 +79,17 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Total surface approx.</span></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="number" name="total_surface_area" class="form-control re_surface_area" placeholder="Type a value">
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text">sqm</span>
+    <div class="col-md-9 col-sm-12 input-container">
+      <div class="selector">
+        <div class="price-slider">
+          <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+          </div>
+          <span id="min-price" data-currency="sqm" class="slider-price re_surface_area_min">0</span>
+          <span class="seperator">-</span>
+          <span id="max-price" data-currency="sqm" data-max="10000" class="slider-price re_surface_area_max">0</span>
         </div>
       </div>
     </div>

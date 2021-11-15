@@ -71,30 +71,6 @@
       <span>Total surface approx.</span></span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <!-- <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Min.</span>
-        </div>
-        <div class="custom-file">
-          <input type="number" class="form-control re_surface_area_buy_min" placeholder="Type a value" name="total_surface_area_min">
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text">sqm</span>
-        </div>
-      </div>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Max.</span>
-        </div>
-        <div class="custom-file">
-          <input type="number" class="form-control re_surface_area_buy_max" placeholder="Type a value" name="total_surface_area_max">
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text">sqm</span>
-        </div>
-      </div> -->
-
-
       <div class="selector">
         <div class="price-slider">
           <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">

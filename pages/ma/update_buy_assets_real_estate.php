@@ -105,27 +105,17 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Total surface approx.</span></span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Min.</span>
-                    </div>
-                    <div class="custom-file">
-                      <input type="number" class="form-control re_surface_area_buy_min" id="re_surface_area_buy_min" placeholder="Type a value" name="total_surface_area_min">
-                    </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text">sqm</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Max.</span>
-                    </div>
-                    <div class="custom-file">
-                      <input type="number" class="form-control re_surface_area_buy_max" id="re_surface_area_buy_max" placeholder="Type a value" name="total_surface_area_max">
-                    </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text">sqm</span>
+                <div class="col-md-9 col-sm-12 input-container">
+                  <div class="selector">
+                    <div class="price-slider">
+                      <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                        <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                      </div>
+                      <span id="min-price" data-currency="sqm" class="slider-price re_surface_area_buy_min">0</span>
+                      <span class="seperator">-</span>
+                      <span id="max-price" data-currency="sqm" data-max="10000" class="slider-price re_surface_area_buy_max">0</span>
                     </div>
                   </div>
                 </div>
@@ -303,6 +293,25 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<link href="../../plugins/jquery-ui/jquery-ui.min.css" type="text/css" rel="stylesheet" />
+<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="../../plugins/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+
+<!-- bootstrap-datepicker -->
+<link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
+<script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+  $("#slider-range").slider({
+    range: true,
+    min: 0,
+    max: 10000,
+    step: 100,
+    slide: function(event, ui) {
+      $("#min-price").html(ui.values[0]);
+      $("#max-price").html(ui.values[1]);
+    }
+  });
+</script>
 <script>
   $(document).ready(function() {
     $('.ad-form').validate({
@@ -471,7 +480,11 @@ if (isset($_SESSION['email'])) {
         $(element).removeClass('is-invalid');
       }
     });
-
+    $("#foundation_year").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
   });
 
 
@@ -609,9 +622,9 @@ if (isset($_SESSION['email'])) {
     document.getElementById("deal_subject").value = "<?= $row["DEAL_SUBJECT"] ?>";
     document.getElementById("asset_status").value = "<?= $row["ASSET_STATUS"] ?>";
     document.getElementById("asset_condition").value = "<?= $row["ASSET_CONDITION"] ?>";
-    document.getElementById("re_surface_area_buy_min").value = "<?= $row["TOTAL_SURFACE"] ?>";
-    document.getElementById("re_surface_area_buy_max").value = "<?= $row["TOTAL_SURFACE_MAX"] ?>";
     document.getElementById("default_currency").value = "<?= $row["CURRENCY"] ?>";
+    $("#min-price").html(<?= $row["TOTAL_SURFACE"] ?>);
+    $("#max-price").html(<?= $row["TOTAL_SURFACE_MAX"] ?>);
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
     if ("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management") {
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
