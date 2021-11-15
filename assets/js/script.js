@@ -1,5 +1,68 @@
 var tempItemList = [];
 
+function generateCardTitle(type, deal, title_1, title_2, title3 = null){
+  var generated_title = "";
+  if(deal == "sell"){
+    if(type == "business company" || type == "start up"){
+      if(title_1 == "Fundraising"){
+        generated_title += title_1 + " for a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Sell minority"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Sell majority"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Sell totality"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "IPO"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Partnership"){
+        generated_title += title_1 + " for a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Collaboration"){
+        generated_title += title_1 + " for a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Joint venture"){
+        generated_title += title_1 + " for a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Debt Raising"){
+        generated_title += title_1 + " for a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }
+    }else if(type == "real estate"){
+      if(title_1 == "Totality Selling"){
+        generated_title += title_1 + " of a <b>" + title_2 + "</b>";
+      }else if(title_1 == "Looking for Co-Investors"){
+        generated_title += title_1 + " for a <b>" + title_2 + "</b>";
+      }else if(title_1 == "Looking for Investors"){
+        generated_title += title_1 + " <b>" + title_2 + "</b>";
+      }
+    }else if(type == "credits"){
+      generated_title += title_1 + " <b>" + title_2 + "</b>";
+    }else if(type == "npe"){
+      generated_title += title_1 + " <b>" + title_2 + "</b>";
+    }
+  }else{
+    if(type == "business company" || type == "start up"){
+      if(title_1 == "Buy majority"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Buy totality"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Partnership"){
+        generated_title += title_1 + " with a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Collaboration"){
+        generated_title += title_1 + " with a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Joint venture"){
+        generated_title += title_1 + " with a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Lending"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }
+    }else if(type == "real estate"){
+      generated_title += title_1.substr(0,1).toUpperCase()+title_1.substr(1) + " of a <b>" + title_2 + "</b>";
+    }else if(type == "credits"){
+      generated_title += title_1 + " <b>" + title_2 + ", " + title3 + "</b>";
+    }else if(type == "npe"){
+      generated_title += title_1 + " <b>" + title_2 + "</b>";
+    }
+  }
+
+  return generated_title;
+}
+
 function generateLocationTags(countries, cities){
   var country_list = countries.split("|");
   var city_list = cities.split("|");
@@ -18,8 +81,24 @@ function generateLocationTags(countries, cities){
   return output_string;
 }
 
+function generateLocationTitle(who_i_am, countries, cities){
+  var country_list = countries.split("|");
+  var city_list = cities.split("|");
+  var output_string = "<span class='location-card-subheading'><b>" + who_i_am + "</b> searching in ";
+  if(country_list[0] == "All"){
+    output_string += "<b>Global</b></span>";
+  }else{
+    if(city_list[0]){
+      output_string += "<b>"+city_list[0] + ", " + country_list[0]+"</b></span>";
+    }else{
+      output_string += "<b>"+ country_list[0]+"</b></span>";
+    }
+  }
+  return output_string;
+}
+
 function formatDealValue(type, min, max, currency){
-  var SI_SYMBOL = ["", "k", "mln", "G", "T", "P", "E"];
+  var SI_SYMBOL = ["", ",000", "mln", "B", "G", "T", "P", "E"];
   var formatted_currency = "";
 
   var currency_symbol = "";
@@ -50,9 +129,8 @@ function formatDealValue(type, min, max, currency){
     var scale = Math.pow(10, tier * 3);
     if(tier != 0){
       scaled = min / scale;
-      scaled = scaled.toFixed(1);
     }
-    formatted_currency = scaled + " " + suffix + " " + currency_symbol;
+    formatted_currency = scaled + suffix + " " + currency_symbol;
   }else if(type == "range"){
     if(min == 0){
       var scaled1 = 0;
@@ -64,9 +142,8 @@ function formatDealValue(type, min, max, currency){
       var scale2 = Math.pow(10, tier2 * 3);
       if(tier2 != 0){
         scaled2 = max / scale2;
-        scaled2 = scaled2.toFixed(1)
       }
-      formatted_currency = scaled1 + " - " + scaled2 + " " + suffix2 + " " + currency_symbol;
+      formatted_currency = scaled1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
     }else if(max == 1000000000){
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
       var scaled1 = min;
@@ -74,9 +151,8 @@ function formatDealValue(type, min, max, currency){
       var scale1 = Math.pow(10, tier1 * 3);
       if(tier1 != 0){
         scaled1 = min / scale1;
-        scaled1 = scaled1.toFixed(1);
       }
-      formatted_currency = "Above " + scaled1 + " " + suffix1 + " " + currency_symbol;
+      formatted_currency = "Above " + scaled1 + suffix1 + " " + currency_symbol;
     }else{
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
       var scaled1 = min;
@@ -84,7 +160,6 @@ function formatDealValue(type, min, max, currency){
       var scale1 = Math.pow(10, tier1 * 3);
       if(tier1 != 0){
         scaled1 = min / scale1;
-        scaled1 = scaled1.toFixed(1);
       }
       var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
       var scaled2 = max;
@@ -92,9 +167,8 @@ function formatDealValue(type, min, max, currency){
       var scale2 = Math.pow(10, tier2 * 3);
       if(tier2 != 0){
         scaled2 = max / scale2;
-        scaled2 = scaled2.toFixed(1);
       }
-      formatted_currency = scaled1 + " " + suffix1 + " - " + scaled2 + " " + suffix2 + " " + currency_symbol;
+      formatted_currency = scaled1 +  suffix1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
     }
   }
 

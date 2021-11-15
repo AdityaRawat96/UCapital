@@ -704,10 +704,15 @@ svg {
 }
 
 .deal-card-heading {
-  text-transform: capitalize;
   font-size: 25px;
   padding-top: 10px;
   padding-bottom: 15px;
+}
+
+.location-card-subheading{
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: -5px;
 }
 
 .ma_card a {

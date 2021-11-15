@@ -34,12 +34,12 @@
                 if($row['INVESTMENT_TYPE'] == "undisclosed"){
                   echo "Undisclosed";
                 }else if($row['INVESTMENT_TYPE'] == "fixed"){
-                  echo number_shorten($row['INVESTMENT_MIN']);
+                  echo number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                 }else if($row['INVESTMENT_TYPE'] == "range"){
                   if($row['INVESTMENT_MAX'] == 1000000000){
-                    echo "Over ".number_shorten($row['INVESTMENT_MIN']);
+                    echo "Over ".number_shorten($row['INVESTMENT_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                   }else{
-                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX']);
+                    echo "From ".number_shorten($row['INVESTMENT_MIN'])." To ".number_shorten($row['INVESTMENT_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                   }
                 }
                 ?>
@@ -93,12 +93,12 @@
                       if($row['COMPANY_VAL_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['COMPANY_VAL_TYPE'] == "fixed"){
-                        echo number_shorten($row['COMPANY_VAL_MIN']);
+                        echo number_shorten($row['COMPANY_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                       }else if($row['COMPANY_VAL_TYPE'] == "range"){
                         if($row['COMPANY_VAL_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['COMPANY_VAL_MIN']);
+                          echo "Over ".number_shorten($row['COMPANY_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
-                          echo "From ".number_shorten($row['COMPANY_VAL_MIN'])." To ".number_shorten($row['COMPANY_VAL_MAX']);
+                          echo "From ".number_shorten($row['COMPANY_VAL_MIN'])." To ".number_shorten($row['COMPANY_VAL_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }
                       }
                       ?>
@@ -111,12 +111,12 @@
                       if($row['ACTUAL_REVENUE_TYPE'] == "undisclosed"){
                         echo "Undisclosed";
                       }else if($row['ACTUAL_REVENUE_TYPE'] == "fixed"){
-                        echo number_shorten($row['ACTUAL_REVENUE_MIN']);
+                        echo number_shorten($row['ACTUAL_REVENUE_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                       }else if($row['ACTUAL_REVENUE_TYPE'] == "range"){
                         if($row['ACTUAL_REVENUE_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['ACTUAL_REVENUE_MIN']);
+                          echo "Over ".number_shorten($row['ACTUAL_REVENUE_MIN'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
-                          echo "From ".number_shorten($row['ACTUAL_REVENUE_MIN'])." To ".number_shorten($row['ACTUAL_REVENUE_MAX']);
+                          echo "From ".number_shorten($row['ACTUAL_REVENUE_MIN'])." To ".number_shorten($row['ACTUAL_REVENUE_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }
                       }
                       ?>
@@ -175,27 +175,27 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Estimate Revenue (1 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    <td> Revenue Estimate (1 Year): </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (1 Year): </td>
+                    <td> Ebitda margin Estimates (1 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y1'] ? number_shorten($row['FORECAST_EBITDA_Y1'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Revenue (2 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    <td> Revenue Estimate (2 Year): </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (2 Year): </td>
+                    <td> Ebitda margin Estimates (2 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y2'] ? number_shorten($row['FORECAST_EBITDA_Y2'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Revenue (3 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    <td> Revenue Estimate (3 Year): </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Estimate Ebitda (3 Year): </td>
+                    <td> Ebitda margin Estimates (3 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y3'] ? number_shorten($row['FORECAST_EBITDA_Y3'])."%" : "-";  ?> </td>
                   </tr>
                 </table>

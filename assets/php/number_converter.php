@@ -7,7 +7,7 @@ function number_shorten($number, $precision = 2, $divisors = null) {
     if (!isset($divisors)) {
       $divisors = array(
         pow(1000, 0) => '', // 1000^0 == 1
-        pow(1000, 1) => 'k', // Thousand
+        pow(1000, 1) => ',000', // Thousand
         pow(1000, 2) => 'mln', // Million
         pow(1000, 3) => 'B', // Billion
         pow(1000, 4) => 'T', // Trillion
@@ -27,7 +27,7 @@ function number_shorten($number, $precision = 2, $divisors = null) {
 
     // We found our match, or there were no matches.
     // Either way, use the last defined value for $divisor.
-    return floatval(number_format($number / $divisor, $precision)) ." ". $shorthand;
+    return floatval(number_format($number / $divisor, $precision)) . $shorthand;
   }else{
     $numbers_temp = preg_split("/[\s,|]+/", $number);
     $generatedString = "";
@@ -40,7 +40,7 @@ function number_shorten($number, $precision = 2, $divisors = null) {
       if (!isset($divisors)) {
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
-          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 1) => ',000', // Thousand
           pow(1000, 2) => 'mln', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
@@ -60,7 +60,7 @@ function number_shorten($number, $precision = 2, $divisors = null) {
 
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
-      $generatedString .= floatval(number_format($number / $divisor, $precision)) ." ". $shorthand."  ";
+      $generatedString .= floatval(number_format($number / $divisor, $precision)) . $shorthand."  ";
     }
 
     $generatedString = trim($generatedString);
@@ -120,7 +120,7 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
     if (!isset($divisors)) {
       $divisors = array(
         pow(1000, 0) => '', // 1000^0 == 1
-        pow(1000, 1) => 'k', // Thousand
+        pow(1000, 1) => ',000', // Thousand
         pow(1000, 2) => 'mln', // Million
         pow(1000, 3) => 'B', // Billion
         pow(1000, 4) => 'T', // Trillion
@@ -140,14 +140,14 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
 
     // We found our match, or there were no matches.
     // Either way, use the last defined value for $divisor.
-    return floatval(number_format($min / $divisor, $precision)) ." ". $shorthand;
+    return floatval(number_format($min / $divisor, $precision)) . $shorthand;
   }else if($type == "range"){
     if($min == 0){
       // Setup default $divisors if not provided
       if (!isset($divisors)) {
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
-          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 1) => ',000', // Thousand
           pow(1000, 2) => 'mln', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
@@ -167,13 +167,13 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
 
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
-      return "From 0 To ".floatval(number_format($max / $divisor, $precision)) ." ". $shorthand;
+      return "From 0 To ".floatval(number_format($max / $divisor, $precision)) . $shorthand;
     }else if($max == 1000000000){
       // Setup default $divisors if not provided
       if (!isset($divisors)) {
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
-          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 1) => ',000', // Thousand
           pow(1000, 2) => 'mln', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
@@ -193,7 +193,7 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
 
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
-      return "Above ".floatval(number_format($min / $divisor, $precision)) ." ". $shorthand;
+      return "Above ".floatval(number_format($min / $divisor, $precision)) . $shorthand;
     }else{
       $generatedString = "";
 
@@ -205,7 +205,7 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
         if (!isset($divisors)) {
           $divisors = array(
             pow(1000, 0) => '', // 1000^0 == 1
-            pow(1000, 1) => 'k', // Thousand
+            pow(1000, 1) => ',000', // Thousand
             pow(1000, 2) => 'mln', // Million
             pow(1000, 3) => 'B', // Billion
             pow(1000, 4) => 'T', // Trillion
@@ -225,7 +225,7 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
 
         // We found our match, or there were no matches.
         // Either way, use the last defined value for $divisor.
-        $generatedString .= floatval(number_format($number / $divisor, $precision)) ." ". $shorthand."  ";
+        $generatedString .= floatval(number_format($number / $divisor, $precision)) . $shorthand."  ";
       }
 
       $generatedString = trim($generatedString);

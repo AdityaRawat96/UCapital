@@ -30,15 +30,15 @@
             <div class="investor-details-founded">
               <h3><b><?=$row['WANT_TO_DO']; ?> <?=$row['ASSET_TYPE']; ?></b></h3><br>
               <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment size:
-                <?=number_shorten($row['INVESTMENT_SIZE']); ?>
+                <?=number_shorten($row['INVESTMENT_SIZE'])." ".add_currency_symbol($row['CURRENCY']); ?>
               </span><hr><br>
               <h3>General description</h3><hr>
               <p class="p-desc10">
                 <?=$row['DESCRIPTION']; ?>
               </p><br><br><br>
-              <h3>Typology of operation</h3><hr>
+              <h3>What are we looking for</h3><hr>
               <p class="p-desc10">
-                <?=$row['WANT_TO_DO']; ?>
+                <?=$row['LOOKING_FOR']; ?>
               </p><br><br><br>
               <h3>Sector</h3><hr>
               <?php
@@ -68,41 +68,10 @@
           </div>
 
           <div class="col-md-5"><br><br>
-            <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
-                <h5><b>FINANCIAL DATA</b></h5>
-              </div>
-              <div class="card-body">
-                <table class="table table-investor-pro6">
-                  <tr class="profile-investor-heading">
-                    <td> Preferred Revenue: </td>
-                    <td>
-                      <?php
-                      if($row['ACTUAL_REVENUE_TYPE'] == "undisclosed"){
-                        echo "Undisclosed";
-                      }else if($row['ACTUAL_REVENUE_TYPE'] == "fixed"){
-                        echo number_shorten($row['ACTUAL_REVENUE_MIN']);
-                      }else if($row['ACTUAL_REVENUE_TYPE'] == "range"){
-                        if($row['ACTUAL_REVENUE_MAX'] == 1000000000){
-                          echo "Over ".number_shorten($row['ACTUAL_REVENUE_MIN']);
-                        }else{
-                          echo "From ".number_shorten($row['ACTUAL_REVENUE_MIN'])." To ".number_shorten($row['ACTUAL_REVENUE_MAX']);
-                        }
-                      }
-                      ?>
-                    </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Preferred EBITDA Margin: </td>
-                    <td> <?=$row['EBIDTA_MARGIN'] ? $row['EBIDTA_MARGIN']."%" : "-"; ?> </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
 
             <div class="card">
               <div class="card-header" style="background-color: #136DAE; color: white;">
-                <h5><b>COMPANY INFO</b></h5>
+                <h5><b>INVESTOR INFO</b></h5>
               </div>
               <div class="card-body">
                 <table class="table table-investor-pro6">
@@ -126,34 +95,67 @@
               </div>
             </div>
 
+
             <div class="card">
               <div class="card-header" style="background-color: #136DAE; color: white;">
-                <h5><b>FORECAST PER YEAR</b></h5>
+                <h5><b>FINANCIAL PREFERRED</b></h5>
               </div>
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Preferred Reveue Forecast (1 Year): </td>
+                    <td> Preferred Revenue: </td>
+                    <td>
+                      <?php
+                      if($row['ACTUAL_REVENUE_TYPE'] == "undisclosed"){
+                        echo "Undisclosed";
+                      }else if($row['ACTUAL_REVENUE_TYPE'] == "fixed"){
+                        echo number_shorten($row['ACTUAL_REVENUE_MIN'])." ".add_currency_symbol($row['CURRENCY']);
+                      }else if($row['ACTUAL_REVENUE_TYPE'] == "range"){
+                        if($row['ACTUAL_REVENUE_MAX'] == 1000000000){
+                          echo "Over ".number_shorten($row['ACTUAL_REVENUE_MIN'])." ".add_currency_symbol($row['CURRENCY']);
+                        }else{
+                          echo "From ".number_shorten($row['ACTUAL_REVENUE_MIN'])." To ".number_shorten($row['ACTUAL_REVENUE_MAX'])." ".add_currency_symbol($row['CURRENCY']);
+                        }
+                      }
+                      ?>
+                    </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Preferred EBITDA Margin: </td>
+                    <td> <?=$row['EBIDTA_MARGIN'] ? $row['EBIDTA_MARGIN']."%" : "-"; ?> </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" style="background-color: #136DAE; color: white;">
+                <h5><b>FINANCIAL PROJECTIONS</b></h5>
+              </div>
+              <div class="card-body">
+                <table class="table table-investor-pro6">
+                  <tr class="profile-investor-heading">
+                    <td> Preferred Revenue Estimates (1 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Forecast (1 Year): </td>
+                    <td> Preferred Ebitda Margin Estimates (1 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y1'] ? number_shorten($row['FORECAST_EBITDA_Y1'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Revenue Forecast (2 Year): </td>
+                    <td> Preferred Revenue Estimates (2 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Forecast (2 Year): </td>
+                    <td> Preferred Ebitda Margin Estimates (2 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y2'] ? number_shorten($row['FORECAST_EBITDA_Y2'])."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Revenue Forecast (3 Year): </td>
+                    <td> Preferred Revenue Estimates (3 Year): </td>
                     <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Forecast (3 Year): </td>
+                    <td> Preferred Ebitda Margin Estimates (3 Year): </td>
                     <td> <?=$row['FORECAST_EBITDA_Y3'] ? number_shorten($row['FORECAST_EBITDA_Y3'])."%" : "-";  ?> </td>
                   </tr>
                 </table>
