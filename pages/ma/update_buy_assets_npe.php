@@ -77,7 +77,7 @@ if (isset($_SESSION['email'])) {
                   <span>Description</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="general_description" rows="3" class="form-control npe_description_buy" id="description" placeholder="Type a description"></textarea>
+                  <textarea name="general_description" rows="3" class="form-control npe_description_buy" maxlength="124" id="description" placeholder="Type a description"></textarea>
                 </div>
               </div>
               <div class="row">
@@ -123,7 +123,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control npe_value_val_buy" id="npe_value_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -135,8 +135,8 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control npe_value_sel_buy" id="npe_value_sel" name="asset_value_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500k</option>
-                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="0|500000">from 0 to 500'000</option>
+                        <option value="500000|1000000">from 500'000 to 1 million</option>
                         <option value="1000000|10000000">from 1 to 10 million</option>
                         <option value="10000000|50000000">from 10 to 50 million</option>
                         <option value="50000000|250000000">from 50 to 250 million</option>
@@ -173,14 +173,6 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Borrower Details</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details_buy" id="borrower_details" placeholder="Type borrower details"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Ratio</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
@@ -200,11 +192,11 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control deal_option_visibility_trigger npe_who_i_am" id="who_i_am" name="who_i_am">
                     <option value="" selected disabled>Select an option</option>
-                    <option value="Individual">Individual</option>
+                    <option value="Professional">Professional</option>
                     <option value="Corporation">Corporation</option>
-                    <option value="PE Fund">PE Fund</option>
-                    <option value="VC Fund">VC Fund</option>
-                    <option value="Asset Management">Asset Management</option>
+                    <option value="Private Equity">Private Equity</option>
+                    <option value="Venture Capital">Venture Capital</option>
+                    <option value="Financial Institution">Financial Institution</option>
                   </select>
                 </div>
               </div>
@@ -396,16 +388,7 @@ if (isset($_SESSION['email'])) {
         collateral_type: {
           required: true,
         },
-        lien_position: {
-          required: true,
-        },
-        judicialized: {
-          required: true,
-        },
         borrower_details: {
-          required: true,
-        },
-        ratio: {
           required: true,
         },
         borrower_type: {
@@ -532,7 +515,6 @@ if (isset($_SESSION['email'])) {
     }
     response['npe_lien_position'] = $(".npe_lien_position_buy").val();
     response['npe_judicialized'] = $(".npe_judicialized_buy").val();
-    response['npe_borrower_details'] = $(".npe_borrower_details_buy").val();
     response['npe_who_i_am'] = $(".npe_who_i_am").val();
     response['npe_aum'] = $(".npe_aum_buy").val();
     response['number_of_investments'] = $(".npe_number_of_investments_buy").val();
@@ -583,10 +565,9 @@ if (isset($_SESSION['email'])) {
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
     document.getElementById("judicialized").value = "<?= $row["JUDICIALIZED"] ?>";
-    document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAIL"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
+    if ("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management") {
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
       document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
@@ -595,7 +576,7 @@ if (isset($_SESSION['email'])) {
         $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
       }
       $(".option_visibility_target").fadeIn(0);
-    }else{
+    } else {
       $(".option_visibility_target").fadeOut(0);
     }
     $("input[name=asset_value][value=<?= $row["VALUE_TYPE"] ?>]").attr('checked', 'checked');
@@ -750,5 +731,4 @@ if (isset($_SESSION['email'])) {
       }
     });
   }
-
 </script>

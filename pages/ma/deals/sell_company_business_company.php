@@ -101,11 +101,12 @@
         <div class="custom-file">
           <select class="form-control bc_company_value_sel" name="company_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500k</option>
-            <option value="500000|1000000">from 500k to 1 million</option>
+            <option value="0|500000">from 0 to 500'000</option>
+            <option value="500000|1000000">from 500'000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
-            <option value="50000000|1000000000">over 50 million</option>
+            <option value="50000000|250000000">from 50 to 250 million</option>
+            <option value="250000000|1000000000">over 250 million</option>
           </select>
         </div>
       </div>
@@ -149,11 +150,12 @@
         <div class="custom-file">
           <select class="form-control bc_investment_required_value_sel" name="investment_required_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500k</option>
-            <option value="500000|1000000">from 500k to 1 million</option>
+            <option value="0|500000">from 0 to 500'000</option>
+            <option value="500000|1000000">from 500'000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
-            <option value="50000000|1000000000">over 50 million</option>
+            <option value="50000000|250000000">from 50 to 250 million</option>
+            <option value="250000000|1000000000">over 250 million</option>
           </select>
         </div>
       </div>
@@ -578,7 +580,7 @@
           <input type="number" class="form-control bc_actual_revenue_val" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">
@@ -604,7 +606,7 @@
       <span>Actual Ebitda Margin</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
-      <div class="input-group">
+      <!-- <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <input type="radio" value="undisclosed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda">
@@ -613,7 +615,7 @@
         <div class="custom-file">
           <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
         </div>
-      </div>
+      </div> -->
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -624,7 +626,7 @@
           <input type="number" class="form-control bc_preferred_ebitda_val" min="-100" max="100" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text">%</span>
         </div>
       </div>
       <div class="input-group">
@@ -653,7 +655,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Estimate Revenue</span>
+      <span>Revenue Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
@@ -693,7 +695,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Ebitda Margin Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -737,7 +739,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Revenue Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
@@ -777,7 +779,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Ebitda Margin Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
@@ -821,7 +823,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Revenue Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
@@ -861,7 +863,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Ebitda Margin Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">

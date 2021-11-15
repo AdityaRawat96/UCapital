@@ -130,11 +130,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500k</option>
-                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="0|500000">from 0 to 500'000</option>
+                        <option value="500000|1000000">from 500'000 to 1 million</option>
                         <option value="1000000|10000000">from 1 to 10 million</option>
                         <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|1000000000">over 50 million</option>
+                        <option value="50000000|250000000">from 50 to 250 million</option>
+                        <option value="250000000|1000000000">over 250 million</option>
                       </select>
                     </div>
                   </div>
@@ -178,11 +179,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500k</option>
-                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="0|500000">from 0 to 500'000</option>
+                        <option value="500000|1000000">from 500'000 to 1 million</option>
                         <option value="1000000|10000000">from 1 to 10 million</option>
                         <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|1000000000">over 50 million</option>
+                        <option value="50000000|250000000">from 50 to 250 million</option>
+                        <option value="250000000|1000000000">over 250 million</option>
                       </select>
                     </div>
                   </div>
@@ -607,7 +609,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -633,7 +635,7 @@ if (isset($_SESSION['email'])) {
                   <span>Actual Ebitda Margin</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
                         <input type="radio" value="undisclosed" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
@@ -642,7 +644,7 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
                     </div>
-                  </div>
+                  </div> -->
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -653,7 +655,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control bc_preferred_ebitda_val" min="-100" max="100" placeholder="Type a value" id="bc_pref_ebitda_val">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text">%</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -683,7 +685,7 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
@@ -723,7 +725,7 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
@@ -767,7 +769,7 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
@@ -807,7 +809,7 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
@@ -851,7 +853,7 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
@@ -891,7 +893,7 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">

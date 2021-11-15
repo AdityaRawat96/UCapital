@@ -401,7 +401,7 @@
           <input type="number" class="form-control bc_actual_revenue_val_buy" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">
@@ -427,7 +427,7 @@
       <span>Preferred Ebitda Margin</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
-      <div class="input-group">
+      <!-- <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <input type="radio" value="undisclosed" name="preferred_ebitda" class="deal-radio bc_pref_ebitda_buy">
@@ -436,7 +436,7 @@
         <div class="custom-file">
           <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
         </div>
-      </div>
+      </div> -->
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -447,7 +447,7 @@
           <input type="number" class="form-control bc_preferred_ebitda_val_buy" min="-100" max="100" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text">%</span>
         </div>
       </div>
       <div class="input-group">
@@ -474,7 +474,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -514,7 +514,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -558,7 +558,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -598,7 +598,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -642,7 +642,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -682,7 +682,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
@@ -730,8 +730,8 @@
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|500000"> Less than 500k<br>
-      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="500000|1000000"> From 500k to 1 mln<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|500000"> Less than 500'000<br>
+      <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="500000|1000000"> From 500'000 to 1 mln<br>
       <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
       <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
     </div>
@@ -743,11 +743,11 @@
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control deal_option_visibility_trigger bc_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
-        <option value="Individual">Individual</option>
+        <option value="Professional">Professional</option>
         <option value="Corporation">Corporation</option>
-        <option value="PE Fund">PE Fund</option>
-        <option value="VC Fund">VC Fund</option>
-        <option value="Asset Management">Asset Management</option>
+        <option value="Private Equity">Private Equity</option>
+        <option value="Venture Capital">Venture Capital</option>
+        <option value="Financial Institution">Financial Institution</option>
       </select>
     </div>
   </div>

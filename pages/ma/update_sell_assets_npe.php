@@ -166,14 +166,6 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Borrower Details</span>
-                </div>
-                <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="borrower_details" id="borrower_details" rows="3" class="form-control npe_borrower_details" placeholder="Type borrower details"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Ratio</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
@@ -344,16 +336,7 @@ if (isset($_SESSION['email'])) {
         collateral_type: {
           required: true,
         },
-        lien_position: {
-          required: true,
-        },
-        judicialized: {
-          required: true,
-        },
         borrower_details: {
-          required: true,
-        },
-        ratio: {
           required: true,
         },
         borrower_type: {
@@ -474,7 +457,6 @@ if (isset($_SESSION['email'])) {
     response['npe_market_value'] = $(".npe_market_value").val();
     response['npe_lien_position'] = $(".npe_lien_position").val();
     response['npe_judicialized'] = $(".npe_judicialized").val();
-    response['npe_borrower_details'] = $(".npe_borrower_details").val();
     response['npe_ratio'] = $(".npe_ratio").val();
     response['asset_type'] = "NPE";
 
@@ -520,7 +502,6 @@ if (isset($_SESSION['email'])) {
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
     document.getElementById("judicialized").value = "<?= $row["JUDICIALIZED"] ?>";
-    document.getElementById("borrower_details").value = "<?= $row["BORROWER_DETAIL"] ?>";
     document.getElementById("original_amount").value = "<?= $row["ORG_AMOUNT"] ?>";
     document.getElementById("asking_price").value = "<?= $row["ASKING_PRICE"] ?>";
     document.getElementById("market_value").value = "<?= $row["MARKET_VALUE"] ?>";

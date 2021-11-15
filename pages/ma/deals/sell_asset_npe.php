@@ -136,14 +136,6 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Borrower Details</span>
-    </div>
-    <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details" placeholder="Type borrower details"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 col-sm-12 deal-heading">
       <span>Ratio</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">

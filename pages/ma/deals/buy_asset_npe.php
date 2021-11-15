@@ -48,7 +48,7 @@
       <span>Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="general_description" rows="3" class="form-control npe_description_buy" placeholder="Type a description"></textarea>
+      <textarea name="general_description" rows="3" class="form-control npe_description_buy" maxlength="124" placeholder="Type a description"></textarea>
     </div>
   </div>
   <div class="row">
@@ -94,7 +94,7 @@
           <input type="number" class="form-control npe_value_val_buy" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">
@@ -106,8 +106,8 @@
         <div class="custom-file">
           <select class="form-control npe_value_sel_buy" name="asset_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500k</option>
-            <option value="500000|1000000">from 500k to 1 million</option>
+            <option value="0|500000">from 0 to 500'000</option>
+            <option value="500000|1000000">from 500'000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
             <option value="50000000|250000000">from 50 to 250 million</option>
@@ -144,14 +144,6 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Borrower Details</span>
-    </div>
-    <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="borrower_details" rows="3" class="form-control npe_borrower_details_buy" placeholder="Type borrower details"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 col-sm-12 deal-heading">
       <span>Ratio</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
@@ -171,11 +163,11 @@
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control deal_option_visibility_trigger npe_who_i_am" name="who_i_am">
         <option value="" selected disabled>Select an option</option>
-        <option value="Individual">Individual</option>
+        <option value="Professional">Professional</option>
         <option value="Corporation">Corporation</option>
-        <option value="PE Fund">PE Fund</option>
-        <option value="VC Fund">VC Fund</option>
-        <option value="Asset Management">Asset Management</option>
+        <option value="Private Equity">Private Equity</option>
+        <option value="Venture Capital">Venture Capital</option>
+        <option value="Financial Institution">Financial Institution</option>
       </select>
     </div>
   </div>
