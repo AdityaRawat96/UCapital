@@ -142,12 +142,23 @@ if (isset($_SESSION['email'])) {
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery.ui.touch-punch.min.js"></script>
 
+
+    <link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
+    <script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
     <script type="text/javascript">
     var folderTimestamp = '<?php echo time(); ?>';
     var folderName = 'MergerAcquisition/' + folderTimestamp;
 
 
     $(document).ready(function() {
+      $("#datepicker").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+      });
+
+
       $('.deal-form').validate({
         submitHandler: function() {
           validateAdditionalFields();
