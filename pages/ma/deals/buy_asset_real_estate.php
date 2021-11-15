@@ -104,147 +104,148 @@
           </div>
           <span id="min-price" data-currency="sqm" class="slider-price re_surface_area_buy_min">0</span>
           <span class="seperator">-</span>
-          <span id="max-price" data-currency="sqm" data-max="10000"  class="slider-price re_surface_area_buy_max">0</span>
+          <span id="max-price" data-currency="sqm" data-max="10000" class="slider-price re_surface_area_buy_max">0</span>
         </div>
       </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-sm-12 deal-heading">
-    <span>Location</span>
-  </div>
-  <div class="col-md-9 col-sm-12 input-container input-group">
-    <div class="row location_holder">
-      <div class="col-md-8 col-sm-12 location_container">
-        <select class="form-control hq_country re_hq_country_buy" name="hq_country">
-          <option value="" selected disabled>Choose a country</option>
-        </select>
-        <select class="form-control hq_city re_hq_city_buy" name="hq_city">
-          <option value="" selected disabled>Choose a city</option>
-        </select>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
-      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-sm-12 deal-heading">
-    <span>Default Currency</span>
-  </div>
-  <div class="col-md-4 col-sm-12 input-container input-group">
-    <select class="form-control default_currency re_default_currency_buy" name="company_type">
-      <option data-value="€" selected value='Euro'>Euro</option>
-      <option data-value="$" value='Dollar'>Dollar</option>
-      <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
-      <option data-value="£" value='Pound'>Pound</option>
-      <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
-      <option data-value="¥" value='Yen'>Yen</option>
-      <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
-      <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
-    </select>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-sm-12 deal-heading">
-    <span>Asset value</span>
-    <span class="deal-subhead">(Choose one)</span>
-  </div>
-  <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          <input type="radio" name="asset_value" value="undisclosed" class="deal-radio re_asset_value_buy">
-        </span>
-      </div>
-      <div class="custom-file">
-        <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          <input type="radio" name="asset_value" value="fixed" class="deal-radio re_asset_value_buy">
-        </span>
-      </div>
-      <div class="custom-file">
-        <input type="number" class="form-control re_asset_value_val_buy" placeholder="Type a value">
-      </div>
-      <div class="input-group-append">
-        <span class="input-group-text span-currency-icon">€</span>
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          <input type="radio" name="asset_value" value="range" class="deal-radio re_asset_value_buy">
-        </span>
-      </div>
-      <div class="custom-file">
-        <select class="form-control re_asset_value_sel_buy" name="asset_value_range">
-          <option value="" selected disabled>Select a range</option>
-          <option value="0|500000">from 0 to 500k</option>
-          <option value="500000|1000000">from 500k to 1 million</option>
-          <option value="1000000|10000000">from 1 to 10 million</option>
-          <option value="10000000|50000000">from 10 to 50 million</option>
-          <option value="50000000|1000000000">over 50 million</option>
-        </select>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-sm-12 deal-heading">
-    <span>Who I am</span>
-  </div>
-  <div class="col-md-9 col-sm-12 input-container input-group">
-    <select class="form-control deal_option_visibility_trigger re_who_i_am_buy" name="who_i_am">
-      <option value="" selected disabled>Select an option</option>
-      <option value="Individual">Individual</option>
-      <option value="Corporation">Corporation</option>
-      <option value="PE Fund">PE Fund</option>
-      <option value="VC Fund">VC Fund</option>
-      <option value="Asset Management">Asset Management</option>
-    </select>
-  </div>
-</div>
-<div class="option_visibility_target">
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>AUM</span>
+      <span>Location</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <div class="row location_holder">
+        <div class="col-md-8 col-sm-12 location_container">
+          <select class="form-control hq_country re_hq_country_buy" name="hq_country">
+            <option value="" selected disabled>Choose a country</option>
+          </select>
+          <select class="form-control hq_city re_hq_city_buy" name="hq_city">
+            <option value="" selected disabled>Choose a city</option>
+          </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Default Currency</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
-      <input type="number" name="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
+      <select class="form-control default_currency re_default_currency_buy" name="company_type">
+        <option data-value="€" selected value='Euro'>Euro</option>
+        <option data-value="$" value='Dollar'>Dollar</option>
+        <option data-value="C$" value='Canadian Dollar'>Canadian Dollar</option>
+        <option data-value="£" value='Pound'>Pound</option>
+        <option data-value="A$" value='Australian Dollar'>Australian Dollar</option>
+        <option data-value="¥" value='Yen'>Yen</option>
+        <option data-value="SEK" value='Swedish Krona'>Swedish Krona</option>
+        <option data-value="DKK" value='Danish Krona'>Danish Krona</option>
+      </select>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Number of Investments</span>
+      <span>Asset value</span>
+      <span class="deal-subhead">(Choose one)</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container input-group">
-      <input type="number" name="number_of_investments" value="" class="form-control re_number_of_investments_buy" placeholder="Enter a value">
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" name="asset_value" value="undisclosed" class="deal-radio re_asset_value_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Undisclosed" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" name="asset_value" value="fixed" class="deal-radio re_asset_value_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control re_asset_value_val_buy" placeholder="Type a value">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" name="asset_value" value="range" class="deal-radio re_asset_value_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <select class="form-control re_asset_value_sel_buy" name="asset_value_range">
+            <option value="" selected disabled>Select a range</option>
+            <option value="0|500000">from 0 to 500'000</option>
+            <option value="500000|1000000">from 500'000 to 1 million</option>
+            <option value="1000000|10000000">from 1 to 10 million</option>
+            <option value="10000000|50000000">from 10 to 50 million</option>
+            <option value="50000000|250000000">from 50 to 250 million</option>
+            <option value="250000000|1000000000">over 250 million</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Investment Amount</span>
-      <span class="deal-subhead">(Multiple Choice)</span>
+      <span>Who I am</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
-      <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
-      <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
-      <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <select class="form-control deal_option_visibility_trigger re_who_i_am_buy" name="who_i_am">
+        <option value="" selected disabled>Select an option</option>
+        <option value="Professional">Professional</option>
+        <option value="Corporation">Corporation</option>
+        <option value="Private Equity">Private Equity</option>
+        <option value="Venture Capital">Venture Capital</option>
+        <option value="Financial Institution">Financial Institution</option>
+      </select>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-sm-12 deal-heading">
-    <span>General Description</span>
+  <div class="option_visibility_target">
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>AUM</span>
+      </div>
+      <div class="col-md-4 col-sm-12 input-container input-group">
+        <input type="number" name="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Number of Investments</span>
+      </div>
+      <div class="col-md-4 col-sm-12 input-container input-group">
+        <input type="number" name="number_of_investments" value="" class="form-control re_number_of_investments_buy" placeholder="Enter a value">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Preferred Investment Amount</span>
+        <span class="deal-subhead">(Multiple Choice)</span>
+      </div>
+      <div class="col-md-9 col-sm-12 input-container">
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+      </div>
+    </div>
   </div>
-  <div class="col-md-9 col-sm-12 input-container input-group">
-    <textarea name="general_description" rows="3" class="form-control re_general_description_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
+      <span>General Description</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" maxlength="124" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+    </div>
   </div>
-</div>
 </div>

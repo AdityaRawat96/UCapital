@@ -200,11 +200,12 @@ if (isset($_SESSION['email'])) {
                   <div class="custom-file">
                     <select class="form-control re_asset_value_sel_buy" name="asset_value_range" id="asset_value_range">
                       <option value="" selected disabled>Select a range</option>
-                      <option value="0|500000">from 0 to 500k</option>
-                      <option value="500000|1000000">from 500k to 1 million</option>
+                      <option value="0|500000">from 0 to 500'000</option>
+                      <option value="500000|1000000">from 500'000 to 1 million</option>
                       <option value="1000000|10000000">from 1 to 10 million</option>
                       <option value="10000000|50000000">from 10 to 50 million</option>
-                      <option value="50000000|1000000000">over 50 million</option>
+                      <option value="50000000|250000000">from 50 to 250 million</option>
+                      <option value="250000000|1000000000">over 250 million</option>
                     </select>
                   </div>
                 </div>
@@ -217,11 +218,11 @@ if (isset($_SESSION['email'])) {
               <div class="col-md-9 col-sm-12 input-container input-group">
                 <select class="form-control deal_option_visibility_trigger re_who_i_am_buy" name="who_i_am" id="who_i_am">
                   <option value="" selected disabled>Select an option</option>
-                  <option value="Individual">Individual</option>
+                  <option value="Professional">Professional</option>
                   <option value="Corporation">Corporation</option>
-                  <option value="PE Fund">PE Fund</option>
-                  <option value="VC Fund">VC Fund</option>
-                  <option value="Asset Management">Asset Management</option>
+                  <option value="Private Equity">Private Equity</option>
+                  <option value="Venture Capital">Venture Capital</option>
+                  <option value="Financial Institution">Financial Institution</option>
                 </select>
               </div>
             </div>
@@ -260,7 +261,7 @@ if (isset($_SESSION['email'])) {
                 <span>General Description</span>
               </div>
               <div class="col-md-9 col-sm-12 input-container input-group">
-                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" maxlength="124" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
               </div>
             </div>
         </div>
@@ -612,7 +613,7 @@ if (isset($_SESSION['email'])) {
     document.getElementById("re_surface_area_buy_max").value = "<?= $row["TOTAL_SURFACE_MAX"] ?>";
     document.getElementById("default_currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
+    if ("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management") {
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
       document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";
@@ -621,7 +622,7 @@ if (isset($_SESSION['email'])) {
         $('input[name="investment_amount"][value="' + investmentAmountArr[i].toString() + '"]').prop("checked", true);
       }
       $(".option_visibility_target").fadeIn(0);
-    }else{
+    } else {
       $(".option_visibility_target").fadeOut(0);
     }
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
