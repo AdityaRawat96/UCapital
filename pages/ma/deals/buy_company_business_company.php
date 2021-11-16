@@ -481,6 +481,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_1_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_1_sel" class="deal-radio">
           </span>
         </div>
@@ -518,6 +528,16 @@
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_1_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -565,6 +585,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_2_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_2_sel" class="deal-radio">
           </span>
         </div>
@@ -602,6 +632,16 @@
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_2_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -649,6 +689,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_3_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_3_sel" class="deal-radio">
           </span>
         </div>
@@ -686,6 +736,16 @@
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_3_sel" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">

@@ -511,6 +511,16 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_1_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
                         <input type="radio" value="fixed" name="forcast_revenue_1_sel" class="deal-radio">
                       </span>
                     </div>
@@ -549,6 +559,16 @@ if (isset($_SESSION['email'])) {
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_1_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -596,6 +616,16 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_2_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
                         <input type="radio" value="fixed" name="forcast_revenue_2_sel" class="deal-radio">
                       </span>
                     </div>
@@ -633,6 +663,16 @@ if (isset($_SESSION['email'])) {
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_2_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -680,6 +720,16 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_3_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
                         <input type="radio" value="fixed" name="forcast_revenue_3_sel" class="deal-radio">
                       </span>
                     </div>
@@ -717,6 +767,16 @@ if (isset($_SESSION['email'])) {
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_3_sel" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -1094,11 +1154,15 @@ if (isset($_SESSION['email'])) {
         if ($(this).find("small").length == 0) {
           var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
           if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
-            $(this).append("<small style='color: red'>This field is required</small>");
-            all_validated = false;
-            $([document.documentElement, document.body]).animate({
-              scrollTop: $(this).offset().top
-            }, 0);
+            var checkedVal = $(this).find("input[type='radio']:checked").val();
+            console.log(checkedVal);
+            if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
+              $(this).append("<small style='color: red'>This field is required</small>");
+              all_validated = false;
+              $([document.documentElement, document.body]).animate({
+                scrollTop: $(this).offset().top
+              }, 0);
+            }
           }
         }
       }

@@ -710,10 +710,9 @@
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="0|10"><span class="category_checkbox_label">Less than 10</span><br><br>
-      <input type="checkbox" value="10|50"><span class="category_checkbox_label">From 10 to 50</span><br><br>
       <input type="checkbox" value="50|500"><span class="category_checkbox_label">From 50 to 500</span><br><br>
-      <input type="checkbox" value="500|1000000000"><span class="category_checkbox_label">Over 500</span><br><br>
+      <input type="checkbox" value="500|1000"><span class="category_checkbox_label">From 500 to 1000</span><br><br>
+      <input type="checkbox" value="1000|1000000000"><span class="category_checkbox_label">Over 1000</span><br><br>
     </div>
   </div>
 </div>

@@ -43,7 +43,7 @@
       <span>Foundation year</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
-      <input type="number" name="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year from 1900 to current year">
+      <input type="number" name="foundation_year" class="form-control bc_foundation_year datepicker" placeholder="Type a year from 1900 to current year">
     </div>
   </div>
   <div class="row">
@@ -204,7 +204,7 @@
         <option value="Application Specific Semiconductors">Application Specific Semiconductors</option>
         <option value="Aquaculture">Aquaculture</option>
         <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
-        <option value="Financial Institution">Financial Institution</option>
+        <option value="Asset Management">Asset Management</option>
         <option value="AudioTech">AudioTech</option>
         <option value="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</option>
         <option value="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</option>
@@ -559,9 +559,8 @@
       <span>Number of employees</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
-      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
-      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
+      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|500"> From 50 to 500<br>
+      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="500|1000"> From 500 to 1000<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
     </div>
   </div>
@@ -606,16 +605,6 @@
       <span>Actual Ebitda Margin</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
-      <!-- <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <input type="radio" value="undisclosed" name="preferred_ebitda_sel" class="deal-radio bc_pref_ebitda">
-          </span>
-        </div>
-        <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
-        </div>
-      </div> -->
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -662,6 +651,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_1_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_1_sell" class="deal-radio">
           </span>
         </div>
@@ -699,6 +698,16 @@
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_1_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -746,6 +755,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_2_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_2_sell" class="deal-radio">
           </span>
         </div>
@@ -783,6 +802,16 @@
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_2_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -830,6 +859,16 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_3_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
             <input type="radio" value="fixed" name="forcast_revenue_3_sell" class="deal-radio">
           </span>
         </div>
@@ -867,6 +906,16 @@
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_3_sell" class="deal-radio">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">

@@ -72,7 +72,7 @@
       <span>Year of construction</span></span>
     </div>
     <div class="col-md-2 col-sm-12 input-container input-group">
-      <input id="datepicker" type="number" name="construction_year" class="form-control re_construction_year" placeholder="Type a year">
+      <input id="datepicker" type="number" name="construction_year" class="form-control re_construction_year datepicker" placeholder="Type a year">
     </div>
   </div>
   <div class="row">
