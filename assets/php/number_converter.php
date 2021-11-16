@@ -239,4 +239,86 @@ function shorten_number_range($type, $min, $max, $precision = 2, $divisors = nul
 }
 
 
+function generateCardTitle($type, $deal, $title_1, $title_2, $title3 = null){
+  $type = strtolower($type);
+  $generated_title = "";
+  if($deal == "sell"){
+    if($type == "business company" || $type == "start up"){
+      if($title_1 == "Fundraising"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Sell minority"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Sell majority"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Sell totality"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "IPO"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Partnership"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Collaboration"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Joint venture"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Debt Raising"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }
+    }else if($type == "real estate"){
+      if($title_1 == "Totality Selling"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . "</b>";
+      }else if($title_1 == "Looking for Co-Investors"){
+        $generated_title .= $title_1 . " for a <b>" . $title_2 . "</b>";
+      }else if($title_1 == "Looking for Investors"){
+        $generated_title .= $title_1 . " <b>" . $title_2 . "</b>";
+      }
+    }else if($type == "credits"){
+      $generated_title .= $title_1 . " <b>" . $title_2 . "</b>";
+    }else if($type == "npe"){
+      $generated_title .= $title_1 . " <b>" . $title_2 . "</b>";
+    }
+  }else{
+    if($type == "business company" || $type == "start up"){
+      if($title_1 == "Buy majority"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Buy totality"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Partnership"){
+        $generated_title .= $title_1 . " with a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Collaboration"){
+        $generated_title .= $title_1 . " with a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Joint venture"){
+        $generated_title .= $title_1 . " with a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Lending"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }
+    }else if($type == "real estate"){
+      $generated_title .= ucfirst($title_1) . " of a <b>" . $title_2 . "</b>";
+    }else if($type == "credits"){
+      $generated_title .= $title_1 . " <b>" . $title_2 . ", " . $title3 . "</b>";
+    }else if($type == "npe"){
+      $generated_title .= $title_1 . " <b>" . $title_2 . "</b>";
+    }
+  }
+
+  return $generated_title;
+}
+
+
+function generateLocationTitle($who_i_am, $countries, $cities){
+  $country_list = explode("|", $countries);
+  $city_list = explode("|", $cities);
+  $output_string = "<span class='location-card-subheading'><b>" . $who_i_am . "</b> searching in ";
+  if($country_list[0] == "All"){
+    $output_string .= "<b>Global</b></span>";
+  }else{
+    if($city_list[0]){
+      $output_string .= "<b>".$city_list[0] . ", " . $country_list[0]."</b></span>";
+    }else{
+      $output_string .= "<b>". $country_list[0]."</b></span>";
+    }
+  }
+  return $output_string;
+}
+
+
 ?>

@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
-              <h3><b>Sell <?=$row['CREDIT_TYPE']; ?></b></h3><br>
+              <h3><b><?=generateCardTitle($row['ASSET_TYPE'], $row['DEAL'], 'Selling', $row['CREDIT_TYPE'], '-'); ?></b></h3><br>
               <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Asking Price:
                 <?=number_shorten($row['ASKING_PRICE'])." ".add_currency_symbol($row['CURRENCY']); ?>
               </span><hr><br>

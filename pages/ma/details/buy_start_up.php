@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
-              <h3><b><?=$row['WANT_TO_DO']; ?> <?=$row['ASSET_TYPE']; ?></b></h3><br>
+              <h3><b><?=generateCardTitle($row['ASSET_TYPE'], $row['DEAL'], $row['WANT_TO_DO'], $row['ASSET_TYPE'], $row['SUB_COMPANY_TYPE']); ?></b></h3><br>
               <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment size:
                 <?=number_shorten($row['INVESTMENT_SIZE']); ?>
               </span><hr><br>

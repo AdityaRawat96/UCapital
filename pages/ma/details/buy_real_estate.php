@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
-              <h3 style="text-transform: capitalize;"><b><?=$row['DEAL_SUBJECT']; ?> <?=$row['REAL_ESTATE_TYP']; ?></b></h3><br><br><br>
+              <h3><b><?=generateCardTitle($row['ASSET_TYPE'], $row['DEAL'], $row['DEAL_SUBJECT'], $row['REAL_ESTATE_TYP'], $row['TOTAL_SURFACE_MAX']); ?></b></h3><br><br><br>
               <h3>General asset description</h3><hr>
               <p class="p-desc10">
                 <?=$row['DESCRIPTION']; ?>

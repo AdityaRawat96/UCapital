@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-7"><br><br>
             <div class="investor-details-founded">
-              <h3><b><?=$row['WHO_I_AM']; ?> <?=$row['CREDIT_TYPE']; ?></b></h3><br>
+              <h3><b><?=generateCardTitle($row['ASSET_TYPE'], $row['DEAL'], 'Buying', $row['CREDIT_TYPE'], $row['PRODUCT_TYPE']); ?></b></h3><br>
               <span class="blue-box-rounded" style="background-color: #D7DBEC; color: black; font-weight: bold;"> Investment Size:
                 <?=shorten_number_range($row['VALUE_TYPE'], $row['VALUE_MIN'], $row['VALUE_MAX'])." ".add_currency_symbol($row['CURRENCY']); ?>
               </span><hr><br>
