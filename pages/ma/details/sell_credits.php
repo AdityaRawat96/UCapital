@@ -67,6 +67,16 @@
                     <td> Loan/Product Type: </td>
                     <td> <?=$row['PRODUCT_TYPE'] ? $row['PRODUCT_TYPE'] : "-";  ?> </td>
                   </tr>
+                  <?php
+                  if (strpos($row['PRODUCT_TYPE'], "Secured") !== false) {
+                    ?>
+                    <tr class="profile-investor-heading">
+                      <td> Collateral Type: </td>
+                      <td> <?=$row['COLLATERAL_TYPE'] ? $row['COLLATERAL_TYPE'] : "-";  ?> </td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
                   <tr class="profile-investor-heading">
                     <td> Original Amount: </td>
                     <td> <?=$row['ORIGINAL_AMOUNT'] ? number_shorten($row['ORIGINAL_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>

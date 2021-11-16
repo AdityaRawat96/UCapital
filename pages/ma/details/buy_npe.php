@@ -72,18 +72,24 @@
                     <td> Who i am: </td>
                     <td> <?=$row['WHO_I_AM'] ? $row['WHO_I_AM'] : "-";  ?> </td>
                   </tr>
-                  <tr class="profile-investor-heading">
-                    <td> AUM: </td>
-                    <td> <?=$row['AUM'] ? number_shorten($row['AUM'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Number of Investments: </td>
-                    <td> <?=$row['NUM_OF_INVESTMENT'] ? number_shorten($row['NUM_OF_INVESTMENT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Preferred Investment Amount: </td>
-                    <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
+                  <?php
+                  if ($row['WHO_I_AM'] == "Private Equity" || $row['WHO_I_AM'] == "Venture Capital" || $row['WHO_I_AM'] == "Financial Institution") {
+                    ?>
+                    <tr class="profile-investor-heading">
+                      <td> AUM: </td>
+                      <td> <?=$row['AUM'] ? number_shorten($row['AUM'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    </tr>
+                    <tr class="profile-investor-heading">
+                      <td> Number of Investments: </td>
+                      <td> <?=$row['NUM_OF_INVESTMENT'] ? number_shorten($row['NUM_OF_INVESTMENT']) : "-";  ?> </td>
+                    </tr>
+                    <tr class="profile-investor-heading">
+                      <td> Preferred Investment Amount: </td>
+                      <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
                 </table>
               </div>
             </div>

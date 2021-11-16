@@ -47,6 +47,18 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
+                    <td> Type of credit: </td>
+                    <td> <?=$row['CREDIT_TYPE'] ? $row['CREDIT_TYPE'] : "-"; ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Maturity: </td>
+                    <td> <?=$row['MATURITY'] ? $row['MATURITY'] : "-"; ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
+                    <td> Loan/product Type: </td>
+                    <td> <?=$row['PRODUCT_TYPE'] ? $row['PRODUCT_TYPE'] : "-"; ?> </td>
+                  </tr>
+                  <tr class="profile-investor-heading">
                     <td> Lien Position: </td>
                     <td> <?=$row['LIEN_POSITION'] ? $row['LIEN_POSITION'] : "-"; ?> </td>
                   </tr>
@@ -64,7 +76,7 @@
 
             <div class="card">
               <div class="card-header" style="background-color: #136DAE; color: white;">
-                <h5><b>WHO IS LOOKING FOR</b></h5>
+                <h5><b>INVESTOR TYPE</b></h5>
               </div>
               <div class="card-body">
                 <table class="table table-investor-pro6">
@@ -72,18 +84,24 @@
                     <td> Who i am: </td>
                     <td> <?=$row['WHO_I_AM'] ? $row['WHO_I_AM'] : "-";  ?> </td>
                   </tr>
-                  <tr class="profile-investor-heading">
-                    <td> AUM: </td>
-                    <td> <?=$row['AUM'] ? number_shorten($row['AUM'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Number of Investments: </td>
-                    <td> <?=$row['NUM_OF_INVESTMENT'] ? number_shorten($row['NUM_OF_INVESTMENT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
-                  <tr class="profile-investor-heading">
-                    <td> Preferred Investment Amount: </td>
-                    <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
-                  </tr>
+                  <?php
+                  if ($row['WHO_I_AM'] == "Private Equity" || $row['WHO_I_AM'] == "Venture Capital" || $row['WHO_I_AM'] == "Financial Institution") {
+                    ?>
+                    <tr class="profile-investor-heading">
+                      <td> AUM: </td>
+                      <td> <?=$row['AUM'] ? number_shorten($row['AUM'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    </tr>
+                    <tr class="profile-investor-heading">
+                      <td> Number of Investments: </td>
+                      <td> <?=$row['NUM_OF_INVESTMENT'] ? number_shorten($row['NUM_OF_INVESTMENT']) : "-";  ?> </td>
+                    </tr>
+                    <tr class="profile-investor-heading">
+                      <td> Preferred Investment Amount: </td>
+                      <td> <?=$row['PREF_INVESTMENT_AMOUNT'] ? number_shorten($row['PREF_INVESTMENT_AMOUNT'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
                 </table>
               </div>
             </div>
