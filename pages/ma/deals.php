@@ -1867,14 +1867,14 @@ if (isset($_SESSION['email'])) {
   </script>
 
   <script type="text/javascript">
-    $("#slider-range").slider({
+    $(".slider-range").slider({
       range: true,
       min: 0,
       max: 10000,
       step: 100,
       slide: function(event, ui) {
-        $("#min-price").html(ui.values[0]);
-        $("#max-price").html(ui.values[1]);
+        $(this).siblings(".min-price").html(ui.values[0]);
+        $(this).siblings(".max-price").html(ui.values[1]);
       }
     });
   </script>

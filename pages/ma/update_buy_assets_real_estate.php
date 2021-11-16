@@ -108,14 +108,14 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container">
                   <div class="selector">
                     <div class="price-slider">
-                      <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                      <div class="slider-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                         <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                         <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                         <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                       </div>
-                      <span id="min-price" data-currency="sqm" class="slider-price re_surface_area_buy_min">0</span>
+                      <span data-currency="sqm" class="min-price slider-price re_surface_area_buy_min">0</span>
                       <span class="seperator">-</span>
-                      <span id="max-price" data-currency="sqm" data-max="10000" class="slider-price re_surface_area_buy_max">0</span>
+                      <span data-currency="sqm" data-max="10000" class="max-price slider-price re_surface_area_buy_max">0</span>
                     </div>
                   </div>
                 </div>
@@ -300,18 +300,6 @@ if (isset($_SESSION['email'])) {
 <!-- bootstrap-datepicker -->
 <link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
 <script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-<script type="text/javascript">
-  $("#slider-range").slider({
-    range: true,
-    min: 0,
-    max: 10000,
-    step: 100,
-    slide: function(event, ui) {
-      $("#min-price").html(ui.values[0]);
-      $("#max-price").html(ui.values[1]);
-    }
-  });
-</script>
 <script>
   $(document).ready(function() {
     $('.ad-form').validate({
@@ -597,6 +585,21 @@ if (isset($_SESSION['email'])) {
   function setValues() {
     console.log("inside set values")
     document.getElementById("re_type").value = "<?= $row["REAL_ESTATE_TYP"] ?>";
+
+    $(".slider-range").slider({
+      range: true,
+      min: 0,
+      max: 10000,
+      step: 100,
+      values: [<?= $row["TOTAL_SURFACE"] ?>, <?= $row["TOTAL_SURFACE_MAX"] ?>],
+      slide: function(event, ui) {
+        $(this).siblings(".min-price").html(ui.values[0]);
+        $(this).siblings(".max-price").html(ui.values[1]);
+      }
+    });
+
+    $(".min-price").html('<?= $row["TOTAL_SURFACE"] ?>');
+    $(".max-price").html('<?= $row["TOTAL_SURFACE_MAX"] ?>');
 
     if ('' != "<?= $row["REAL_ESTATE_SUB_CAT_TYPE"] ?>") {
       $(".re_type_category").html("");
