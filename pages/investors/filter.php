@@ -189,7 +189,7 @@
                     <li class="searchable" data-search="Application Specific Semiconductors">Application Specific Semiconductors</li>
                     <li class="searchable" data-search="Aquaculture">Aquaculture</li>
                     <li class="searchable" data-search="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</li>
-                    <li class="searchable" data-search="Asset Management">Asset Management</li>
+                    <li class="searchable" data-search="Financial Institution">Financial Institution</li>
                     <li class="searchable" data-search="AudioTech">AudioTech</li>
                     <li class="searchable" data-search="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</li>
                     <li class="searchable" data-search="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</li>

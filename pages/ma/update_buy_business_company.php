@@ -91,7 +91,7 @@ if (isset($_SESSION['email'])) {
                     <option value="Application Specific Semiconductors">Application Specific Semiconductors</option>
                     <option value="Aquaculture">Aquaculture</option>
                     <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
-                    <option value="Asset Management">Asset Management</option>
+                    <option value="Financial Institution">Financial Institution</option>
                     <option value="AudioTech">AudioTech</option>
                     <option value="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</option>
                     <option value="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</option>
@@ -1251,7 +1251,7 @@ if (isset($_SESSION['email'])) {
     document.getElementById("sector").value = "<?= $row["SECTOR"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-    if ("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management") {
+    if ("<?= $row["WHO_I_AM"] ?>" == "Private Equity" || "<?= $row["WHO_I_AM"] ?>" == "Venture Capital" || "<?= $row["WHO_I_AM"] ?>" == "Financial Institution") {
       document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
       document.getElementById("aum").value = "<?= $row["AUM"] ?>";
       var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";

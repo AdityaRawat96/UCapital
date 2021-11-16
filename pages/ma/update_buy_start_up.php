@@ -114,7 +114,7 @@ if (isset($_SESSION['email'])) {
                 <option value="Application Specific Semiconductors">Application Specific Semiconductors</option>
                 <option value="Aquaculture">Aquaculture</option>
                 <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
-                <option value="Asset Management">Asset Management</option>
+                <option value="Financial Institution">Financial Institution</option>
                 <option value="AudioTech">AudioTech</option>
                 <option value="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</option>
                 <option value="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</option>
@@ -797,11 +797,11 @@ if (isset($_SESSION['email'])) {
             <div class="col-md-9 col-sm-12 input-container input-group">
               <select class="form-control deal_option_visibility_trigger bc_who_i_am" name="who_i_am" id="who_i_am">
                 <option value="" selected disabled>Select an option</option>
-                <option value="Individual">Individual</option>
+                <option value="Professional">Professional</option>
                 <option value="Corporation">Corporation</option>
-                <option value="PE Fund">PE Fund</option>
-                <option value="VC Fund">VC Fund</option>
-                <option value="Asset Management">Asset Management</option>
+                <option value="Private Equity">Private Equity</option>
+                <option value="Venture Capital">Venture Capital</option>
+                <option value="Financial Institution">Financial Institution</option>
               </select>
             </div>
           </div>
@@ -1273,7 +1273,7 @@ function setValues() {
   document.getElementById("startup_type").value = "<?= $row["SUB_COMPANY_TYPE"] ?>";
   document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
   document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";
-  if("<?= $row["WHO_I_AM"] ?>" == "PE Fund" || "<?= $row["WHO_I_AM"] ?>" == "VC Fund" || "<?= $row["WHO_I_AM"] ?>" == "Asset Management"){
+  if("<?= $row["WHO_I_AM"] ?>" == "Private Equity" || "<?= $row["WHO_I_AM"] ?>" == "Venture Capital" || "<?= $row["WHO_I_AM"] ?>" == "Financial Institution"){
     document.getElementById("number_of_investments").value = "<?= $row["NUM_OF_INVESTMENT"] ?>";
     document.getElementById("aum").value = "<?= $row["AUM"] ?>";
     var investmentAmount = "<?= $row["PREF_INVESTMENT_AMOUNT"] ?>";

@@ -238,11 +238,11 @@
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" value="Individual"><span class="category_checkbox_label">Individual</span><br><br>
+      <input type="checkbox" value="Professional"><span class="category_checkbox_label">Professional</span><br><br>
       <input type="checkbox" value="Corporation"><span class="category_checkbox_label">Corporation</span><br><br>
-      <input type="checkbox" value="PE Fund"><span class="category_checkbox_label">PE Fund</span><br><br>
-      <input type="checkbox" value="VC Fund"><span class="category_checkbox_label">VC Fund</span><br><br>
-      <input type="checkbox" value="Asset Management"><span class="category_checkbox_label">Asset Management</span><br><br>
+      <input type="checkbox" value="Private Equity"><span class="category_checkbox_label">Private Equity</span><br><br>
+      <input type="checkbox" value="Venture Capital"><span class="category_checkbox_label">Venture Capital</span><br><br>
+      <input type="checkbox" value="Financial Institution"><span class="category_checkbox_label">Financial Institution</span><br><br>
     </div>
   </div>
 </div>

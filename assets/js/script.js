@@ -197,7 +197,7 @@ $(document).ready(function () {
   $(".deal_option_visibility_trigger").on("change", function () {
     $(".option_visibility_target").find("input[type='checkbox']").prop("checked", false);
     $(".option_visibility_target").find("input[type='number']").val("");
-    if($(this).val() == "PE Fund" || $(this).val() == "VC Fund" || $(this).val() == "Asset Management"){
+    if($(this).val() == "Private Equity" || $(this).val() == "Venture Capital" || $(this).val() == "Financial Institution"){
       $(".option_visibility_target").fadeIn(0);
     }else{
       $(".option_visibility_target").fadeOut(0);

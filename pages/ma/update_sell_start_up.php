@@ -247,7 +247,7 @@ if (isset($_SESSION['email'])) {
                     <option value="Application Specific Semiconductors">Application Specific Semiconductors</option>
                     <option value="Aquaculture">Aquaculture</option>
                     <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
-                    <option value="Asset Management">Asset Management</option>
+                    <option value="Financial Institution">Financial Institution</option>
                     <option value="AudioTech">AudioTech</option>
                     <option value="Audit and Tax Services (B2B)">Audit and Tax Services (B2B)</option>
                     <option value="Audit and Tax Services (B2C)">Audit and Tax Services (B2C)</option>
