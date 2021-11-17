@@ -849,6 +849,9 @@ if (isset($_SESSION['email'])) {
                   </div>
                   <div class="col-md-4 col-sm-12 input-container input-group">
                     <input type="number" id="aum" name="aum" value="" class="form-control bc_aum" placeholder="Enter a value">
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
                   </div>
                 </div>
                 <div class="row">

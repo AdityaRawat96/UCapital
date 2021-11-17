@@ -915,6 +915,7 @@ if (isset($_SESSION['email'])) {
       });
       investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
       response['investment_amount'] = investmentAmount;
+      response['re_looking_for'] = $(".re_looking_for_buy").val();
       response['re_general_description'] = $(".re_general_description_buy").val();
       return response;
     }
@@ -1166,6 +1167,7 @@ if (isset($_SESSION['email'])) {
         response['credit_value_min'] = assetVal.substring(0, index);
         response['credit_value_max'] = assetVal.substring(index + 1);
       }
+      response['credit_typology'] = $(".credit_typology_buy").val();
       response['credit_lien_position'] = $(".npec_lien_position_buy").val();
       response['credit_judicialized'] = $(".npec_judicialized_buy").val();
       response['credit_who_i_am'] = $(".npec_who_i_am").val();

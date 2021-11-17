@@ -417,7 +417,7 @@
           <input type="number" class="form-control su_actual_revenue_val_buy" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">
@@ -446,16 +446,6 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" value="undisclosed" name="preferred_ebitda" class="deal-radio su_pref_ebitda_buy">
-          </span>
-        </div>
-        <div class="custom-file">
-          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
-        </div>
-      </div>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
             <input type="radio" value="fixed" name="preferred_ebitda" class="deal-radio su_pref_ebitda_buy">
           </span>
         </div>
@@ -463,7 +453,7 @@
           <input type="number" class="form-control su_preferred_ebitda_val_buy" min="-100" max="100" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text">%</span>
         </div>
       </div>
       <div class="input-group">
@@ -492,10 +482,20 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Preferred Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_1_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -532,10 +532,20 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(1 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_1_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -576,10 +586,20 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_2_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -616,10 +636,20 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(2 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_2_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -660,10 +690,20 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Revenue</span>
+      <span>Preferred Revenue Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_revenue_3_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -700,10 +740,20 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Estimate Ebitda Margin</span>
+      <span>Preferred Ebitda Margin Estimates</span>
       <span class="deal-subhead">(3 Year)</span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" value="undisclosed" name="forcast_ebitda_3_sel" class="deal-radio su_pref_ebitda_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -748,8 +798,8 @@
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500k<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500k to 1 mln<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500'000<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500'000 to 1 mln<br>
       <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
       <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
     </div>
@@ -776,6 +826,9 @@
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="aum" value="" class="form-control su_aum" placeholder="Enter a value">
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
       </div>
     </div>
     <div class="row">

@@ -223,6 +223,9 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
                   <input type="number" name="aum" id="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
+                  <div class="input-group-append">
+                    <span class="input-group-text span-currency-icon">€</span>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -248,10 +251,18 @@ if (isset($_SESSION['email'])) {
             </div>
             <div class="row">
               <div class="col-md-3 col-sm-12 deal-heading">
+                <span>What are we looking for</span>
+              </div>
+              <div class="col-md-9 col-sm-12 input-container input-group">
+                <textarea name="looking_for" rows="3" id="re_general_description_buy" class="form-control re_looking_for_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-12 deal-heading">
                 <span>General Description</span>
               </div>
               <div class="col-md-9 col-sm-12 input-container input-group">
-                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" maxlength="124" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+                <textarea name="general_description" rows="3" id="description" class="form-control re_general_description_buy" maxlength="124" placeholder="Type a description"></textarea>
               </div>
             </div>
         </div>
@@ -558,6 +569,7 @@ if (isset($_SESSION['email'])) {
     });
     investmentAmount = investmentAmount.length > 0 ? investmentAmount.substring(0, investmentAmount.length - 1) : investmentAmount;
     response['investment_amount'] = investmentAmount;
+    response['re_looking_for'] = $(".re_looking_for_buy").val();
     response['re_general_description'] = $(".re_general_description_buy").val();
     response['asset_type'] = "RE";
 
@@ -641,6 +653,7 @@ if (isset($_SESSION['email'])) {
     } else {
       $(".option_visibility_target").fadeOut(0);
     }
+    document.getElementById("re_general_description_buy").value = "<?= $row["LOOKING_FOR"] ?>";
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     $("input[name=asset_value][value=<?= $row["ASSET_VAL_TYPE"] ?>]").attr('checked', 'checked');
     if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "undisclosed") {} else if ("<?= $row["ASSET_VAL_TYPE"] ?>" == "fixed") {

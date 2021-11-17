@@ -88,7 +88,7 @@ if (isset($_SESSION['email'])) {
                   <span>Foundation year</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year" placeholder="Type a year">
+                  <input type="number" name="foundation_year" id="foundation_year" class="form-control bc_foundation_year datepicker" placeholder="Type a year">
                 </div>
               </div>
               <div class="row">
@@ -146,11 +146,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500k</option>
-                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="0|500000">from 0 to 500'000</option>
+                        <option value="500000|1000000">from 500'000 to 1 million</option>
                         <option value="1000000|10000000">from 1 to 10 million</option>
                         <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|1000000000">over 50 million</option>
+                        <option value="50000000|250000000">from 50 to 250 million</option>
+                        <option value="250000000|1000000000">over 250 million</option>
                       </select>
                     </div>
                   </div>
@@ -194,11 +195,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500k</option>
-                        <option value="500000|1000000">from 500k to 1 million</option>
+                        <option value="0|500000">from 0 to 500'000</option>
+                        <option value="500000|1000000">from 500'000 to 1 million</option>
                         <option value="1000000|10000000">from 1 to 10 million</option>
                         <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|1000000000">over 50 million</option>
+                        <option value="50000000|250000000">from 50 to 250 million</option>
+                        <option value="250000000|1000000000">over 250 million</option>
                       </select>
                     </div>
                   </div>
@@ -601,10 +603,9 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Number of employees</span>
                 </div>
-                <div class="col-md-9 col-sm-12 input-containera">
-                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
-                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
-                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
+                <div class="col-md-9 col-sm-12 input-container">
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|500"> From 50 to 500<br>
+                  <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="500|1000"> From 500 to 1000<br>
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>
                 </div>
               </div>
@@ -622,8 +623,8 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <input type="number" class="form-control bc_actual_revenue_val" id="actual_revenue_val" placeholder="Type a value">
                     </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                    <div class="custom-file">
+                      <input type="number" class="form-control su_actual_revenue_val" placeholder="Type a value">
                     </div>
                   </div>
                   <div class="input-group">
@@ -652,16 +653,6 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <input type="radio" value="undisclosed" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
-                      </span>
-                    </div>
-                    <div class="custom-file">
-                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
                         <input type="radio" value="fixed" name="bc_pref_ebitda" class="deal-radio bc_pref_ebitda" id="bc_pref_ebitda">
                       </span>
                     </div>
@@ -669,7 +660,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control bc_preferred_ebitda_val" min="-100" max="100" placeholder="Type a value" id="bc_pref_ebitda_val">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text">%</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -698,10 +689,20 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_1_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -738,10 +739,20 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_1_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -782,10 +793,20 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_2_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -822,10 +843,20 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_2_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -866,10 +897,20 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Revenue</span>
+                  <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_revenue_3_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -906,10 +947,20 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Forcast Ebitda</span>
+                  <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <input type="radio" value="undisclosed" name="forcast_ebitda_3_sell" class="deal-radio">
+                      </span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+                    </div>
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -1016,8 +1067,15 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+<link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
+<script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script>
   $(document).ready(function() {
+    $(".datepicker").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
     $('.ad-form').validate({
       submitHandler: function() {
         validateAdditionalFields();

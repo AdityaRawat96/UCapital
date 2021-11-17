@@ -178,6 +178,9 @@
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="aum" value="" class="form-control npe_aum_buy" placeholder="Enter a value">
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
       </div>
     </div>
     <div class="row">

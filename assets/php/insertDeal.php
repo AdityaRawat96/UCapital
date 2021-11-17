@@ -21,6 +21,7 @@ if ($asset_type == "Real Estate") {
   $re_asset_value = array_key_exists('re_asset_value', $data) ? $data['re_asset_value'] : "";
   $re_asset_value_min = (array_key_exists('re_asset_value_min', $data) && $data['re_asset_value_min'] != "") ? $data['re_asset_value_min'] : "NULL";
   $re_asset_value_max = (array_key_exists('re_asset_value_max', $data) && $data['re_asset_value_max'] != "") ? $data['re_asset_value_max'] : "NULL";
+  $re_looking_for = array_key_exists('re_looking_for', $data) ? $data['re_looking_for'] : "";
   $re_general_description = array_key_exists('re_general_description', $data) ? $data['re_general_description'] : "";
   $re_who_i_am = array_key_exists('re_who_i_am', $data) ? $data['re_who_i_am'] : "";
   $re_aum = (array_key_exists('re_aum', $data)  && $data['re_aum'] != "")  ? $data['re_aum'] : "NULL";
@@ -37,7 +38,7 @@ if ($asset_type == "Real Estate") {
   $userId = $_SESSION['id'];
 
   $sql = "INSERT INTO `real_estate` (
-    `USER_ID`,`DEAL`,`OFFER`,`ASSET_TYPE`,`REAL_ESTATE_TYP`,`REAL_ESTATE_SUB_CAT_TYPE`,`DEAL_SUBJECT`, `ASSET_STATUS`,`ASSET_CONDITION`,`TOTAL_SURFACE`,`TOTAL_SURFACE_MAX`,`COUNTRY`,`CITY`,`CURRENCY`,`ASSET_VAL_TYPE`, `ASSET_VAL_MIN`,`ASSET_VAL_MAX`,`WHO_I_AM`,`AUM`,`NUM_OF_INVESTMENT`, `PREF_INVESTMENT_AMOUNT`,`DESCRIPTION`,`YEAR_OF_CONSTRUCTION`, `VENDOR_TYPE`,`INVESTMENT_TYPE`,`INVESTMENT_MIN`,`INVESTMENT_MAX`,`YEARLY_RETURN`,`KEY_ELEMENTS`, `IMAGE`) VALUES ($userId,'$deal_type','$offer','$asset_type','$re_type','$re_type_category','$re_deal_subject','$re_asset_status','$re_condition_status', $re_surface_area, $re_surface_area_max,'$re_hq_country','$re_hq_city','$default_currency','$re_asset_value',  $re_asset_value_min,$re_asset_value_max,'$re_who_i_am',$re_aum, $number_of_investments, '$investment_amount','$re_general_description',  $re_construction_year,'$re_vendor_type','$re_investment_type',$re_investment_value_min, $re_investment_value_max,$re_yearly_return,'$re_key_elements','$re_image')";
+    `USER_ID`,`DEAL`,`OFFER`,`ASSET_TYPE`,`REAL_ESTATE_TYP`,`REAL_ESTATE_SUB_CAT_TYPE`,`DEAL_SUBJECT`, `ASSET_STATUS`,`ASSET_CONDITION`,`TOTAL_SURFACE`,`TOTAL_SURFACE_MAX`,`COUNTRY`,`CITY`,`CURRENCY`,`ASSET_VAL_TYPE`, `ASSET_VAL_MIN`,`ASSET_VAL_MAX`,`WHO_I_AM`,`AUM`,`NUM_OF_INVESTMENT`, `PREF_INVESTMENT_AMOUNT`,`DESCRIPTION`,`LOOKING_FOR`,`YEAR_OF_CONSTRUCTION`, `VENDOR_TYPE`,`INVESTMENT_TYPE`,`INVESTMENT_MIN`,`INVESTMENT_MAX`,`YEARLY_RETURN`,`KEY_ELEMENTS`, `IMAGE`) VALUES ($userId,'$deal_type','$offer','$asset_type','$re_type','$re_type_category','$re_deal_subject','$re_asset_status','$re_condition_status', $re_surface_area, $re_surface_area_max,'$re_hq_country','$re_hq_city','$default_currency','$re_asset_value',  $re_asset_value_min,$re_asset_value_max,'$re_who_i_am',$re_aum, $number_of_investments, '$investment_amount','$re_general_description', '$re_looking_for',  $re_construction_year,'$re_vendor_type','$re_investment_type',$re_investment_value_min, $re_investment_value_max,$re_yearly_return,'$re_key_elements','$re_image')";
 } else if ($asset_type == "NPE") {
   $deal_type = array_key_exists('deal_type', $data) ? $data['deal_type'] : "";
   $offer = array_key_exists('offer', $data) ? $data['offer'] : "";

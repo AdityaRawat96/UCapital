@@ -51,6 +51,20 @@ if (isset($_SESSION['email'])) {
 
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
+                  <span>Typology</span>
+                </div>
+                <div class="col-md-9 col-sm-12 input-container">
+                  <select class="form-control typology credit_typology_buy" id="credit_typology_buy" name="typology">
+                    <option value="" selected disabled>Choose Typology</option>
+                    <option value="Any">Any</option>
+                    <option value="Recourse">Recourse</option>
+                    <option value="Non-recourse">Non-recourse</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Loan/Product type</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
@@ -209,6 +223,9 @@ if (isset($_SESSION['email'])) {
                   </div>
                   <div class="col-md-4 col-sm-12 input-container input-group">
                     <input type="number" name="aum" value="" id="aum" class="form-control npec_aum_buy" placeholder="Enter a value">
+                    <div class="input-group-append">
+                      <span class="input-group-text span-currency-icon">€</span>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -475,6 +492,7 @@ if (isset($_SESSION['email'])) {
     response = {};
     response['credit_type'] = $(".npe_type_buy").val();
     response['credit_product_type'] = $(".npe_product_type_buy").val();
+    response['credit_typology'] = $(".credit_typology_buy").val();
     response['credit_hq_country'] = $(".npe_hq_country_buy option:selected").text();
     response['credit_hq_city'] = $(".npe_hq_city_buy").val();
     var countryVal = "";
@@ -522,6 +540,7 @@ if (isset($_SESSION['email'])) {
     response['credit_ratio'] = $(".npe_ratio_buy").val();
     response['asset_type'] = "Credit";
 
+    console.log(response);
     $.ajax({
       type: 'POST',
       url: '../../assets/php/updateDeals.php',
@@ -549,6 +568,7 @@ if (isset($_SESSION['email'])) {
     document.getElementById("description").value = "<?= $row["DESCRIPTION"] ?>";
     document.getElementById("currency").value = "<?= $row["CURRENCY"] ?>";
     document.getElementById("lien_position").value = "<?= $row["LIEN_POSITION"] ?>";
+    document.getElementById("credit_typology_buy").value = "<?= $row["TYPOLOGY"] ?>";
     document.getElementById("judicialized").value = "<?= $row["JUDICIALIZED"] ?>";
     document.getElementById("ratio").value = "<?= $row["RATIO"] ?>";
     document.getElementById("who_i_am").value = "<?= $row["WHO_I_AM"] ?>";

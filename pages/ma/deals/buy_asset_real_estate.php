@@ -193,6 +193,9 @@
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
+        <div class="input-group-append">
+          <span class="input-group-text span-currency-icon">€</span>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -218,10 +221,18 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
+      <span>What are we looking for</span>
+    </div>
+    <div class="col-md-9 col-sm-12 input-container input-group">
+      <textarea name="looking_for" rows="3" class="form-control re_looking_for_buy" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
       <span>General Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" maxlength="124" placeholder="co-investor, Institutional investor, individual, corporation"></textarea>
+      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" maxlength="124" placeholder="Type a description"></textarea>
     </div>
   </div>
 </div>
