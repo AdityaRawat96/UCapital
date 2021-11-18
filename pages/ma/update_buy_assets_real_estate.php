@@ -502,11 +502,15 @@ if (isset($_SESSION['email'])) {
         if ($(this).find("small").length == 0) {
           var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
           if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
-            $(this).append("<small style='color: red'>This field is required</small>");
-            all_validated = false;
-            $([document.documentElement, document.body]).animate({
-              scrollTop: $(this).offset().top
-            }, 0);
+            var checkedVal = $(this).find("input[type='radio']:checked").val();
+            console.log(checkedVal);
+            if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
+              $(this).append("<small style='color: red'>This field is required</small>");
+              all_validated = false;
+              $([document.documentElement, document.body]).animate({
+                scrollTop: $(this).offset().top
+              }, 0);
+            }
           }
         }
       }

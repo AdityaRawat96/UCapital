@@ -1169,9 +1169,9 @@ if (isset($_SESSION['email'])) {
       } else {
         if ($(this).find("small").length == 0) {
           var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
-          var checkedVal = $(this).find("input[type='radio']:checked").val();
-          console.log(checkedVal);
           if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
+            var checkedVal = $(this).find("input[type='radio']:checked").val();
+            console.log(checkedVal);
             if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
               $(this).append("<small style='color: red'>This field is required</small>");
               all_validated = false;

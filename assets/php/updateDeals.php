@@ -81,8 +81,11 @@ if ($asset_type == "RE") {
     $credit_borrower_details = array_key_exists('credit_borrower_details', $data)  ? $data['credit_borrower_details'] : "";
     $credit_borrower_type_category = array_key_exists('credit_borrower_type_category', $data)  ? $data['credit_borrower_type_category'] : "";
     $credit_typology = array_key_exists('credit_typology', $data)  ? $data['credit_typology'] : "";
+    $credit_maturity_type = array_key_exists('credit_maturity_type', $data) ? $data['credit_maturity_type'] : "";
     $credit_maturity = (array_key_exists('credit_maturity', $data) && $data['credit_maturity'] != '')
-        ? $data['credit_maturity'] : NULL;
+        ? $data['credit_maturity'] : "";
+    $credit_maturity_to = (array_key_exists('credit_maturity_to', $data) && $data['credit_maturity_to'] != '')
+        ? $data['credit_maturity_to'] : "";
     $credit_borrower_type = array_key_exists('credit_borrower_type', $data) ? $data['credit_borrower_type'] : "";
     $credit_ratio_ob = (array_key_exists('credit_ratio_ob', $data) && $data['credit_ratio_ob'] != "") ? $data['credit_ratio_ob'] : "NULL";
     $credit_rate = (array_key_exists('credit_rate', $data) && $data['credit_rate'] != "") ? $data['credit_rate'] : "NULL";
@@ -96,11 +99,7 @@ if ($asset_type == "RE") {
     $number_of_investments = (array_key_exists('number_of_investments', $data) && $data['number_of_investments'] != "") ? $data['number_of_investments'] : "NULL";
     $investment_amount = (array_key_exists('investment_amount', $data) && $data['investment_amount'] != "") ? $data['investment_amount'] : "";
 
-    if ($credit_maturity == NULL) {
-        $sql = "UPDATE `credit` SET `CREDIT_TYPE`='$credit_type',`BORROWER`='$credit_borrower_type',`BORROWER_SUBCAT`='$credit_borrower_type_category',`CURRENCY`='$credit_default_currency',`TYPOLOGY`='$credit_typology',`PRODUCT_TYPE`='$credit_product_type',`COLLATERAL_TYPE`='$credit_collateral_type',`COUNTRY`='$credit_hq_country',`CITY`='$credit_hq_city',`STATE`='$credit_state',`POSTAL_CODE`='$credit_post_code',`LIEN_POSITION`='$credit_lien_position',`DESCRIPTION`='$credit_description',`ORIGINAL_AMOUNT`=$credit_original_amount,`ASKING_PRICE`=$credit_asking_price,`MARKET_VALUE`=$credit_market_value,`JUDICIALIZED`='$credit_judicialized',`BORROWER_DETAILS`='$credit_borrower_details',`RATIO_OB`=$credit_ratio_ob,`RATE`=$credit_rate,`DISCOUNTED_RATIO`=$credit_discounted_ratio,`WHO_I_AM`='$credit_who_i_am',`AUM`=$credit_aum,`NUM_OF_INVESTMENT`=$number_of_investments,`PREF_INVESTMENT_AMOUNT`='$investment_amount', `RATIO`='$credit_ratio', `VALUE_TYPE`='$credit_value', `VALUE_MIN`=$credit_value_min, `VALUE_MAX`=$credit_value_max WHERE ID = '$id'";
-    } else {
-        $sql = "UPDATE `credit` SET `CREDIT_TYPE`='$credit_type',`BORROWER`='$credit_borrower_type',`BORROWER_SUBCAT`='$credit_borrower_type_category',`CURRENCY`='$credit_default_currency',`TYPOLOGY`='$credit_typology',`PRODUCT_TYPE`='$credit_product_type',`COLLATERAL_TYPE`='$credit_collateral_type',`COUNTRY`='$credit_hq_country',`CITY`='$credit_hq_city',`STATE`='$credit_state',`POSTAL_CODE`='$credit_post_code',`LIEN_POSITION`='$credit_lien_position',`DESCRIPTION`='$credit_description',`ORIGINAL_AMOUNT`=$credit_original_amount,`ASKING_PRICE`=$credit_asking_price,`MARKET_VALUE`=$credit_market_value,`JUDICIALIZED`='$credit_judicialized',`BORROWER_DETAILS`='$credit_borrower_details',`RATIO_OB`='$credit_ratio_ob',`RATE`=$credit_rate,`DISCOUNTED_RATIO`=$credit_discounted_ratio,`WHO_I_AM`='$credit_who_i_am',`AUM`=$credit_aum, `NUM_OF_INVESTMENT`=$number_of_investments,`PREF_INVESTMENT_AMOUNT`='$investment_amount', `RATIO`='$credit_ratio', `VALUE_TYPE`='$credit_value', `VALUE_MIN`=$credit_value_min, `VALUE_MAX`=$credit_value_max WHERE ID = '$id'";
-    }
+    $sql = "UPDATE `credit` SET `CREDIT_TYPE`='$credit_type',`BORROWER`='$credit_borrower_type',`BORROWER_SUBCAT`='$credit_borrower_type_category',`CURRENCY`='$credit_default_currency',`TYPOLOGY`='$credit_typology',`PRODUCT_TYPE`='$credit_product_type',`COLLATERAL_TYPE`='$credit_collateral_type',`COUNTRY`='$credit_hq_country',`CITY`='$credit_hq_city',`STATE`='$credit_state',`POSTAL_CODE`='$credit_post_code',`LIEN_POSITION`='$credit_lien_position',`DESCRIPTION`='$credit_description',`ORIGINAL_AMOUNT`=$credit_original_amount,`ASKING_PRICE`=$credit_asking_price,`MARKET_VALUE`=$credit_market_value,`JUDICIALIZED`='$credit_judicialized',`BORROWER_DETAILS`='$credit_borrower_details',`RATIO_OB`=$credit_ratio_ob,`RATE`=$credit_rate,`DISCOUNTED_RATIO`=$credit_discounted_ratio,`WHO_I_AM`='$credit_who_i_am',`AUM`=$credit_aum, `NUM_OF_INVESTMENT`=$number_of_investments,`PREF_INVESTMENT_AMOUNT`='$investment_amount', `RATIO`='$credit_ratio', `VALUE_TYPE`='$credit_value', `VALUE_MIN`=$credit_value_min, `VALUE_MAX`=$credit_value_max WHERE ID = '$id'";
 } else if ($asset_type == "BC" || $asset_type == "SU") {
     $startup_type = array_key_exists('startup_type', $data) ? $data['startup_type'] : "";
     $country = array_key_exists('hq_country', $data) ? $data['hq_country'] : "";

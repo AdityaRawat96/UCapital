@@ -28,14 +28,65 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
+      <span>Maturity</span>
+    </div>
+    <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" name="credit_maturity_buy" value="undisclosed" class="deal-radio credit_maturity_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <input type="number" class="form-control" placeholder="Any" disabled style="background-color: white !important;">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <input type="radio" name="credit_maturity_buy" value="fixed" class="deal-radio credit_maturity_buy">
+          </span>
+        </div>
+        <div class="custom-file">
+          <div class="col-md-6 col-sm-12 input-container">
+            <input type="date" name="maturity_buy" value="" class="form-control credit_maturity_from_buy">
+          </div>
+          <div class="col-md-6 col-sm-12 input-container">
+            <input type="date" name="maturity_buy" value="" class="form-control credit_maturity_to_buy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12 deal-heading">
       <span>Loan/Product type</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control product_type npec_product_type_buy" name="product_type">
         <option value="" selected disabled>Choose type of Loan/Product</option>
+        <option value="Any">Any</option>
         <option value="Secured">Secured</option>
         <option value="Unsecured">Unsecured</option>
+        <option value="Enforceable">Enforceable</option>
       </select>
+    </div>
+  </div>
+  <div class="collateral_type_container">
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Collateral</span>
+      </div>
+      <div class="col-md-9 col-sm-12 input-container">
+        <select class="form-control collateral_type credit_collateral_type_buy" name="collateral_type">
+          <option value="" selected disabled>Choose type of Collateral</option>
+          <option value="Real Estate">Real Estate</option>
+          <option value="Cash">Cash</option>
+          <option value="Inventory">Inventory</option>
+          <option value="Invoice">Invoice</option>
+          <option value="Blanket liens">Blanket liens</option>
+        </select>
+      </div>
     </div>
   </div>
   <div class="row">

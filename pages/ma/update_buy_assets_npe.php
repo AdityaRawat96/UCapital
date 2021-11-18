@@ -58,6 +58,25 @@ if (isset($_SESSION['email'])) {
                   </select>
                 </div>
               </div>
+
+              <div class="collateral_type">
+                <div class="row">
+                  <div class="col-md-3 col-sm-12 deal-heading">
+                    <span>Collateral</span>
+                  </div>
+                  <div class="col-md-9 col-sm-12 input-container input-group">
+                    <select class="form-control collateral_type npe_collateral_type" name="collateral_type" id="collateral_type">
+                      <option value="" selected disabled>Choose type of Collateral</option>
+                      <option value="Real Estate">Real Estate</option>
+                      <option value="Cash">Cash</option>
+                      <option value="Inventory">Inventory</option>
+                      <option value="Invoice">Invoice</option>
+                      <option value="Blanket liens">Blanket liens</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Location</span>
@@ -452,11 +471,15 @@ if (isset($_SESSION['email'])) {
         if ($(this).find("small").length == 0) {
           var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
           if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
-            $(this).append("<small style='color: red'>This field is required</small>");
-            all_validated = false;
-            $([document.documentElement, document.body]).animate({
-              scrollTop: $(this).offset().top
-            }, 0);
+            var checkedVal = $(this).find("input[type='radio']:checked").val();
+            console.log(checkedVal);
+            if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
+              $(this).append("<small style='color: red'>This field is required</small>");
+              all_validated = false;
+              $([document.documentElement, document.body]).animate({
+                scrollTop: $(this).offset().top
+              }, 0);
+            }
           }
         }
       }
@@ -485,7 +508,7 @@ if (isset($_SESSION['email'])) {
     });
     if (isProductTypeSetted)
       response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
-
+    response['npe_collateral_type'] = $(".npe_collateral_type").val();
     var countryVal = "";
     var cityVal = "";
     var countrySetted = false;
@@ -587,6 +610,13 @@ if (isset($_SESSION['email'])) {
       document.getElementById("npe_value_val").value = "<?= $row["VALUE_MIN"] ?>";
     } else if ("<?= $row["VALUE_TYPE"] ?>" == "range") {
       document.getElementById("npe_value_sel").value = "<?= $row["VALUE_MIN"] . '|' . $row["VALUE_MAX"] ?>";
+    }
+    $("#product_type").trigger('change');
+    if ('' != "<?= $row["COLLATERAL_TYPE"] ?>") {
+      document.getElementById("collateral_type").value = "<?= $row["COLLATERAL_TYPE"] ?>";
+
+    } else {
+      $(".collateral_type").hide();
     }
     $(".span-currency-icon").html(
       $(".default_currency").find("option:selected").data("value")
@@ -734,4 +764,15 @@ if (isset($_SESSION['email'])) {
       }
     });
   }
+</script>
+
+<script type="text/javascript">
+  $(".product_type").change(function() {
+    document.getElementById("collateral_type").value = "";
+    if ($(this).find("option:selected").val() == "Secured") {
+      $(".collateral_type").fadeIn();
+    } else {
+      $(".collateral_type").fadeOut();
+    }
+  })
 </script>

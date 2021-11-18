@@ -23,6 +23,23 @@
       </select>
     </div>
   </div>
+  <div class="collateral_type_container">
+    <div class="row">
+      <div class="col-md-3 col-sm-12 deal-heading">
+        <span>Collateral</span>
+      </div>
+      <div class="col-md-9 col-sm-12 input-container input-group">
+        <select class="form-control collateral_type npe_collateral_type_buy" name="collateral_type">
+          <option value="" selected disabled>Choose type of Collateral</option>
+          <option value="Real Estate">Real Estate</option>
+          <option value="Cash">Cash</option>
+          <option value="Inventory">Inventory</option>
+          <option value="Invoice">Invoice</option>
+          <option value="Blanket liens">Blanket liens</option>
+        </select>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>

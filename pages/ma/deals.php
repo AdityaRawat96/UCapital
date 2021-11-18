@@ -939,7 +939,7 @@ if (isset($_SESSION['email'])) {
       });
       if (isProductTypeSetted)
         response['npe_product_type'] = product_type.substring(0, product_type.length - 1);
-
+      response['npe_collateral_type'] = $(".npe_collateral_type_buy").val();
       var countryVal = "";
       var cityVal = "";
       var countrySetted = false;
@@ -1156,6 +1156,12 @@ if (isset($_SESSION['email'])) {
         response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
 
       response['credit_description'] = $(".npec_description_buy").val();
+      response['credit_collateral_type'] = $(".credit_collateral_type_buy").val();
+      response['credit_maturity_type'] = $(".credit_maturity_buy:checked").val();
+      if ($(".credit_maturity_buy:checked").val() === "fixed") {
+        response['credit_maturity'] = $(".credit_maturity_from_buy").val();
+        response['credit_maturity_to'] = $(".credit_maturity_to_buy").val();
+      }
       response['credit_default_currency'] = $(".npec_default_currency_buy").val();
       response['credit_value'] = $(".npec_value_buy:checked").val();
       if ($(".npec_value_buy:checked").val() === "undisclosed") {} else if ($(".npec_value_buy:checked").val() === "fixed") {
