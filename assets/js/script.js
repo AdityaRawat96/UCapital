@@ -697,6 +697,7 @@ function applyFilter() {
 
   var investorname_filter = true;
   var preferredinvestmenttype_filter = true;
+  var preferredinvestmentamount_filter = true;
   var preferredverticals_filter = true;
   var primaryinvestortype_filter = true;
   var preferredindustrytype_filter = true;
@@ -710,6 +711,7 @@ function applyFilter() {
   var primary_investor_type = [];
   var preferrerd_industry_type = [];
   var location = [];
+  var preferredinvestmentamount = "";
   var aumcondition = "";
   var investmentprofessionals = "";
 
@@ -759,6 +761,13 @@ function applyFilter() {
     }
   });
 
+  $("#preferredInvestmentAmountType li").each(function () {
+    if ($(this).hasClass("selected")) {
+      preferredinvestmentamount += $(this).data("count").trim() + " || ";
+    }
+  });
+
+
   if (investorname.length === 0) {
     investorname_filter = false;
   }
@@ -783,6 +792,9 @@ function applyFilter() {
   if (investmentprofessionals == "") {
     investmentprofessionals_filter = false;
   }
+  if (preferredinvestmentamount == "") {
+    preferredinvestmentamount_filter = false;
+  }
 
   if (
     !investorname_filter &&
@@ -792,7 +804,8 @@ function applyFilter() {
     !preferredindustrytype_filter &&
     !location_filter &&
     !aum_filter &&
-    !investmentprofessionals_filter
+    !investmentprofessionals_filter &&
+    !preferredinvestmentamount
   ) {
     refreshFilters();
     showResults();
@@ -806,6 +819,7 @@ function applyFilter() {
       var cond6 = true;
       var cond7 = true;
       var cond8 = true;
+      var cond9 = true;
 
       if (investorname_filter) {
         if ($.inArray(obj[i].name.trim().toLowerCase(), investorname) == -1) {
@@ -871,17 +885,7 @@ function applyFilter() {
         cond7 = false;
       }
     }
-    if (
-      investmentprofessionals_filter &&
-      cond1 &&
-      cond2 &&
-      cond3 &&
-      cond4 &&
-      cond5 &&
-      cond6 &&
-      cond7 &&
-      cond8
-    ) {
+    if (investmentprofessionals_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7) {
       if (
         obj[i].investmentprofessionals != null &&
         obj[i].investmentprofessionals != ""
@@ -901,6 +905,19 @@ function applyFilter() {
         cond8 = false;
       }
     }
+    if (preferredinvestmentamount_filter && cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
+      if (obj[i].preferredinvestmentamount != null && obj[i].preferredinvestmentamount != "") {
+        var preferredinvestmentamount_temp = preferredinvestmentamount.substring(0,preferredinvestmentamount.length - 3);
+        obj[i].preferredinvestmentamount.split("-").each(function(){
+          preferredinvestmentamount_temp = preferredinvestmentamount_temp.replace(/\X/g, $(this).trim());
+          if (!eval(preferredinvestmentamount_temp)) {
+            cond9 = false;
+          }
+        });
+      } else {
+        cond9 = false;
+      }
+    }
 
     if (
       cond1 &&
@@ -910,7 +927,8 @@ function applyFilter() {
       cond5 &&
       cond6 &&
       cond7 &&
-      cond8
+      cond8 &&
+      cond9
     ) {
       var elementData = "";
       elementData +=
@@ -1198,6 +1216,55 @@ $(document).ready(function () {
       .find(".searchable")
       .each(function () {
         $(this).removeClass("hide_search");
+      });
+    }
+  });
+
+  $("#Publisher_company input").on('change', function(){
+    var disable_depndencies_counter = 0;
+    var checked_counter = 0;
+    $("#Publisher_company input:checked").each(function(){
+      checked_counter++;
+      if($(this).val() == "Professional" || $(this).val() == "Corporation"){
+        disable_depndencies_counter++;
+      }
+    });
+    if(checked_counter == disable_depndencies_counter){
+      $("#AUM_company input").each(function(){
+        $(this).prop("checked", false);
+        $(this).prop("disabled", true);
+      });
+      $("#PreferredInvestmentAmount_company input").each(function(){
+        $(this).prop("checked", false);
+        $(this).prop("disabled", true);
+      });
+    }else{
+      $("#AUM_company input").each(function(){
+        $(this).prop("disabled", false);
+      });
+      $("#PreferredInvestmentAmount_company input").each(function(){
+        $(this).prop("disabled", false);
+      });
+    }
+  });
+
+  $("#Publisher_asset input").on('change', function(){
+    var disable_depndencies_counter = 0;
+    var checked_counter = 0;
+    $("#Publisher_asset input:checked").each(function(){
+      checked_counter++;
+      if($(this).val() == "Professional" || $(this).val() == "Corporation"){
+        disable_depndencies_counter++;
+      }
+    });
+    if(checked_counter == disable_depndencies_counter){
+      $("#AUM_asset input").each(function(){
+        $(this).prop("checked", false);
+        $(this).prop("disabled", true);
+      });
+    }else{
+      $("#AUM_asset input").each(function(){
+        $(this).prop("disabled", false);
       });
     }
   });

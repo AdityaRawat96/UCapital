@@ -18,7 +18,7 @@ if(mysqli_num_rows($result) > 0 ){
   $investor_ids = array();
 }
 
-$result= mysqli_query($con, " SELECT Primary_Investor_Type, Preferred_Investment_Types, _of_Investment_Professionals, AUM, Preferred_Industry, Preferred_Verticals, HQ_Country, id, Investor_Name, HQ_Location FROM investors")
+$result= mysqli_query($con, " SELECT Primary_Investor_Type, Preferred_Investment_Amount, Preferred_Investment_Types, _of_Investment_Professionals, AUM, Preferred_Industry, Preferred_Verticals, HQ_Country, id, Investor_Name, HQ_Location FROM investors")
 or die('An error occurred! Unable to process this request. '. mysqli_error($con));
 
 $investors = array();
@@ -34,6 +34,7 @@ if(mysqli_num_rows($result) > 0 ){
     $investor->location = utf8_encode($row['HQ_Location']);
     $investor->primaryinvestortype = strtolower($row['Primary_Investor_Type']);
     $investor->preferredinvestmenttypes = strtolower($row['Preferred_Investment_Types']);
+    $investor->preferredinvestmentamount = strtolower($row['Preferred_Investment_Amount']);
     $investor->aum = $row['AUM'];
     $investor->preferredindustry = strtolower($row['Preferred_Industry']);
     $investor->Preferred_Verticals = strtolower($row['Preferred_Verticals']);

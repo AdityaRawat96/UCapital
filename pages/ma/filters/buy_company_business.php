@@ -573,7 +573,7 @@
 </div>
 
 <div class="tab-pane" id="Publisher_company" data-column="publisher">
-  <h1>Publisher</h1><br>
+  <h1>Investor Type</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>

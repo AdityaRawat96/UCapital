@@ -18,6 +18,7 @@
               <li> <a href="#investorName" data-toggle="tab" class="add-active active"> Name of the investor </a> </li>
               <li> <a href="#PrimaryInvestor" data-toggle="tab"> Primary Investor Type </a> </li>
               <li> <a href="#preferredInvestment" data-toggle="tab"> Preferred Investment Type </a> </li>
+              <li> <a href="#preferredInvestmentAmount" data-toggle="tab"> Preferred Investment Amount </a> </li>
               <li> <a href="#AUM" data-toggle="tab"> A.U.M. </a> </li>
               <li> <a href="#Preferredindustry" data-toggle="tab"> Preferred industry </a> </li>
               <li> <a href="#PreferredVerticals" data-toggle="tab"> Preferred Verticals </a> </li>
@@ -58,6 +59,14 @@
                 </div>
               </div>
 
+              <div class="tab-pane" id="preferredInvestmentAmount">
+                <div class="form-group mt-1 mb-4" id="preferredInvestmentAmountType">
+                  <ul class="engery654 subcategories">
+                    <li class="searchable" data-search="1 million &#x3c; preferred investment amount &#x3c; 10 million" data-count="(X >= 1000000 && X < 10000000)">1 million &#x3c; preferred investment amount &#x3c; 10 million</li>
+                  </ul>
+                </div>
+              </div>
+
               <div class="tab-pane" id="PreferredVerticals">
                 <div class="input-group">
                   <input type="text" class="form-control filter_search_query" placeholder="Search..">
@@ -91,13 +100,14 @@
                 <div class="form-group mt-1 mb-4 subcategories_container" id="venturecapital">
                   <label class="font-name"> Venture Capital Types: </label>
                   <ul class="engery654 subcategories">
-                    <li class="primary_investor_sub searchable" data-search="Venture Capital" data-container="venturecapital_container"> Venture Capital </li>
                     <li class="primary_investor_sub searchable" data-search="Accelleretor/incubator" data-container="venturecapital_container"> Accelleretor/incubator </li>
                     <li class="primary_investor_sub searchable" data-search="Angel Group" data-container="venturecapital_container"> Angel Group </li>
-                    <li class="primary_investor_sub searchable" data-search="Corporate V. E." data-container="venturecapital_container"> Corporate V. E. </li>
-                    <li class="primary_investor_sub searchable" data-search="Corporate V. E." data-container="venturecapital_container"> Corporate V. E. </li>
-                    <li class="primary_investor_sub searchable" data-search="Lender/ Debt provider" data-container="venturecapital_container"> Lender/ Debt provider </li>
-                    <li class="primary_investor_sub searchable" data-search="Mezzanine" data-container="venturecapital_container"> Mezzanine </li>
+                    <li class="primary_investor_sub searchable" data-search="Corporate V. E." data-container="venturecapital_container"> Corporate Venture Capital </li>
+                    <li class="primary_investor_sub searchable" data-search="Not-for-profit Venture Capital" data-container="venturecapital_container"> Not-for-profit Venture Capital </li>
+                    <li class="primary_investor_sub searchable" data-search="Angel (individual)" data-container="venturecapital_container"> Angel (individual) </li>
+                    <li class="primary_investor_sub searchable" data-search="Business Development Company" data-container="venturecapital_container"> Business Development Company </li>
+                    <li class="primary_investor_sub searchable" data-search="Corporate Development" data-container="venturecapital_container"> Corporate Development </li>
+                    <li class="primary_investor_sub searchable" data-search="SBIC" data-container="venturecapital_container"> SBIC </li>
                   </ul>
                 </div>
 
@@ -150,8 +160,9 @@
                 <div class="form-group mt-1 mb-4" id="aumType">
                   <ul class="engery654 subcategories">
                     <li class="searchable" data-search="AUM Less than 10 million" data-count="(X < 10000000)">AUM Less than 10 million</li>
-                    <li class="searchable" data-search="10 million &#x3c; AUM &#x3c; 100 million" data-count="(X >= 10000000 && X < 100000000)">10 million &#x3c; AUM &#x3c; 100 million</li>
-                    <li class="searchable" data-search="100 million &#x3c; AUM &#x3c; 1 billion" data-count="(X >= 100000000 && X < 1000000000)">100 million &#x3c; AUM &#x3c; 1 billion</li>
+                    <li class="searchable" data-search="10 million &#x3c; AUM &#x3c; 50 million" data-count="(X >= 10000000 && X < 50000000)">10 million &#x3c; AUM &#x3c; 50 million</li>
+                    <li class="searchable" data-search="50 million &#x3c; AUM &#x3c; 200 million" data-count="(X >= 50000000 && X < 200000000)">50 million &#x3c; AUM &#x3c; 200 million</li>
+                    <li class="searchable" data-search="200 million &#x3c; AUM &#x3c; 1 billion" data-count="(X >= 200000000 && X < 1000000000)">200 million &#x3c; AUM &#x3c; 1 billion</li>
                     <li class="searchable" data-search="AUM &#x3e; 1 billion" data-count="(X >= 1000000000)">AUM &#x3e; 1 billion</li>
                   </ul>
                 </div>
@@ -490,9 +501,9 @@
               <div class="tab-pane" id="investmentProfessionals">
                 <div class="form-group mt-1 mb-4" id="investmentProfessionalsType">
                   <ul class="engery654 subcategories">
-                    <li class="searchable" data-search="Investment Professionals Less than 10" data-count="(X < 10)">Less than 10</li>
-                    <li class="searchable" data-search="10 &#x3c; Investment Professionals &#x3c; 50" data-count="(X >= 10 && X <= 50)">From 10 to 50</li>
-                    <li class="searchable" data-search="Investment Professionals &#x3e; 50" data-count="(X > 50)">Above 50</li>
+                    <li class="searchable" data-search="No. of Investment Professionals Less than 10" data-count="(X < 10)">Less than 10</li>
+                    <li class="searchable" data-search="10 &#x3c; No. of Investment Professionals &#x3c; 50" data-count="(X >= 10 && X <= 50)">From 10 to 50</li>
+                    <li class="searchable" data-search="No. of Investment Professionals &#x3e; 50" data-count="(X > 50)">Above 50</li>
                   </ul>
                 </div>
               </div>
