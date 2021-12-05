@@ -24,7 +24,7 @@
       <select class="form-control borrower_type credit_borrower_type" name="borrower_type">
         <option value="" selected disabled>Choose type of Borrower</option>
         <option value="Household" data-categories="Super Prime, Prime, Subprime">Household</option>
-        <option value="Corporate" data-categories="Investment Grade, High Yeild, Leveraged Loans">Corporate</option>
+        <option value="Corporate" data-categories="Investment Grade, High Yield, Leveraged Loans">Corporate</option>
       </select>
     </div>
   </div>

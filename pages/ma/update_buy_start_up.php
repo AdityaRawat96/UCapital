@@ -896,6 +896,7 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control what_i_want bc_what_i_want_buy" name="what_i_want" id="what_i_want">
                     <option value="" selected disabled>Select an option</option>
+                    <option value="Buy minority">Buy minority</option>
                     <option value="Buy majority">Buy majority</option>
                     <option value="Buy totality">Buy totality</option>
                     <option value="Partnership">Partnership</option>

@@ -5,8 +5,9 @@ include('../../assets/php/connection.php');
 $ma_ids;
 $limit =  $_POST['limit'];
 $action = $_POST["action"];
+$offset = $_POST["offset"];
 
-if($action == "buy"){
+if ($action == "buy") {
   $sql = "(SELECT
   real_estate.ID,
   real_estate.DEAL,
@@ -26,8 +27,9 @@ if($action == "buy"){
   real_estate.OFFER,
   real_estate.IMAGE,
   real_estate.KEY_ELEMENTS,
-  real_estate.ASSET_TYPE
-  FROM real_estate where real_estate.DEAL = '$action'  LIMIT $limit)
+  real_estate.ASSET_TYPE,
+  real_estate.INSERT_TMSTMP
+  FROM real_estate where real_estate.DEAL = '$action')
 
   UNION ALL( SELECT
   npe.ID,
@@ -48,8 +50,9 @@ if($action == "buy"){
   npe.OFFER,
   npe.IMAGE,
   '-' AS KEY_ELEMENTS,
-  npe.ASSET_TYPE
-  FROM npe where npe.DEAL = '$action' LIMIT $limit )
+  npe.ASSET_TYPE,
+  npe.INSERT_TMSTMP
+  FROM npe where npe.DEAL = '$action')
 
   UNION ALL ( SELECT
   credit.ID,
@@ -70,8 +73,9 @@ if($action == "buy"){
   credit.OFFER,
   credit.IMAGE,
   '-' AS KEY_ELEMENTS,
-  credit.ASSET_TYPE
-  FROM credit where credit.DEAL = '$action' LIMIT $limit )
+  credit.ASSET_TYPE,
+  credit.INSERT_TMSTMP
+  FROM credit where credit.DEAL = '$action')
 
   UNION ALL ( SELECT
   business_company.ID,
@@ -92,10 +96,12 @@ if($action == "buy"){
   business_company.OFFER,
   business_company.IMAGE,
   business_company.KEY_ELEMENTS,
-  business_company.ASSET_TYPE
-  FROM business_company where business_company.DEAL = '$action' LIMIT $limit)";
-
-}else if($action == "sell"){
+  business_company.ASSET_TYPE,
+  business_company.INSERT_TMSTMP
+  FROM business_company where business_company.DEAL = '$action')
+  ORDER BY  INSERT_TMSTMP DESC
+  LIMIT $offset, $limit";
+} else if ($action == "sell") {
 
   $sql = "(SELECT
   real_estate.ID,
@@ -115,8 +121,9 @@ if($action == "buy"){
   real_estate.OFFER,
   real_estate.IMAGE,
   real_estate.KEY_ELEMENTS,
-  real_estate.ASSET_TYPE
-  FROM real_estate where real_estate.DEAL = '$action'  LIMIT $limit)
+  real_estate.ASSET_TYPE,
+  real_estate.INSERT_TMSTMP
+  FROM real_estate where real_estate.DEAL = '$action')
 
   UNION ALL( SELECT
   npe.ID,
@@ -136,8 +143,9 @@ if($action == "buy"){
   npe.OFFER,
   npe.IMAGE,
   '-' AS KEY_ELEMENTS,
-  npe.ASSET_TYPE
-  FROM npe where npe.DEAL = '$action' LIMIT $limit )
+  npe.ASSET_TYPE,
+  npe.INSERT_TMSTMP
+  FROM npe where npe.DEAL = '$action')
 
   UNION ALL ( SELECT
   credit.ID,
@@ -157,8 +165,9 @@ if($action == "buy"){
   credit.OFFER,
   credit.IMAGE,
   '-' AS KEY_ELEMENTS,
-  credit.ASSET_TYPE
-  FROM credit where credit.DEAL = '$action' LIMIT $limit )
+  credit.ASSET_TYPE,
+  credit.INSERT_TMSTMP
+  FROM credit where credit.DEAL = '$action')
 
   UNION ALL ( SELECT
   business_company.ID,
@@ -178,11 +187,14 @@ if($action == "buy"){
   business_company.OFFER,
   business_company.IMAGE,
   business_company.KEY_ELEMENTS,
-  business_company.ASSET_TYPE
-  FROM business_company where business_company.DEAL = '$action' LIMIT $limit)";
+  business_company.ASSET_TYPE,
+  business_company.INSERT_TMSTMP
+  FROM business_company where business_company.DEAL = '$action')
+  ORDER BY  INSERT_TMSTMP DESC
+  LIMIT $offset, $limit";
 }
 $result = mysqli_query($con, $sql)
-or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
 if (mysqli_num_rows($result) > 0) {
   $response = array();

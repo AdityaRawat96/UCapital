@@ -138,7 +138,7 @@
           <input type="number" class="form-control bc_investment_required_value_val" placeholder="Type a value">
         </div>
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+          <span class="input-group-text span-currency-icon">€</span>
         </div>
       </div>
       <div class="input-group">
@@ -559,6 +559,9 @@
       <span>Number of employees</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container">
+      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
+      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
+      <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|500"> From 50 to 500<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="500|1000"> From 500 to 1000<br>
       <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="1000|1000000000"> More than 1000<br>

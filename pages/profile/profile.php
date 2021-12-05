@@ -3,7 +3,7 @@ $published_buy_deal = array();
 $published_sell_deal = array();
 include('../../assets/php/getProfileData.php');
 
-$result_buy = getBuyProfileData($con, $user_id, 2, 4);
+$result_buy = getBuyProfileData($con, $user_id, 0, 2);
 foreach ($result_buy as $val) {
   array_push($published_buy_deal, $val);
 }
@@ -355,36 +355,40 @@ if (mysqli_num_rows($result) > 0) {
 
 <script>
   function editAd(id, asset, deal) {
+    console.log(id);
+    console.log(asset);
+    console.log(deal);
+    let dealUrl = "";
+    let p = new URLSearchParams();
+    p.set("id", id);
     if (deal == "buy") {
       if (asset == "Real Estate") {
-        url = "./../ma/update_buy_assets_real_estate.php";
+        dealUrl = "./../ma/update_buy_assets_real_estate.php";
       } else if (asset == "NPE") {
-        url = "./../ma/update_buy_assets_npe.php";
+        dealUrl = "./../ma/update_buy_assets_npe.php";
       } else if (asset == "Credits") {
-        url = "./../ma/update_buy_assets_credits.php";
+        dealUrl = "./../ma/update_buy_assets_credits.php";
       } else if (asset == "Business Company") {
-        url = "./../ma/update_buy_business_company.php";
+        dealUrl = "./../ma/update_buy_business_company.php";
       } else if (asset == "Start Up") {
-        url = "./../ma/update_buy_start_up.php";
+        dealUrl = "./../ma/update_buy_start_up.php";
       }
     } else {
       if (asset == "Real Estate") {
-        url = "./../ma/update_sell_assets_real_estate.php";
+        dealUrl = "./../ma/update_sell_assets_real_estate.php";
       } else if (asset == "NPE") {
-        url = "./../ma/update_sell_assets_npe.php";
+        dealUrl = "./../ma/update_sell_assets_npe.php";
       } else if (asset == "Credits") {
-        url = "./../ma/update_sell_assets_credits.php";
+        dealUrl = "./../ma/update_sell_assets_credits.php";
       } else if (asset == "Business Company") {
-        url = "./../ma/update_sell_business_company.php";
+        dealUrl = "./../ma/update_sell_business_company.php";
       } else if (asset == "Start Up") {
-        url = "./../ma/update_sell_start_up.php";
+        dealUrl = "./../ma/update_sell_start_up.php";
       }
     }
-    let p = new URLSearchParams();
-    p.set("id", id);
-    url += "?" + p.toString();
-    console.log(url);
-    window.open(url);
+    if (dealUrl != "") {
+      window.open(dealUrl + "?" + p.toString());
+    }
   }
 
   function deleteAd(id, asset, deal) {

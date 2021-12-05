@@ -96,7 +96,7 @@ if (isset($_SESSION['email'])) {
                   <span>Description</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="general_description" rows="3" class="form-control npe_description_buy" maxlength="124" id="description" placeholder="Type a description"></textarea>
+                  <textarea name="general_description" rows="3" class="form-control npe_description_buy" maxlength="124" id="description" placeholder="general description of the asset"></textarea>
                 </div>
               </div>
               <div class="row">

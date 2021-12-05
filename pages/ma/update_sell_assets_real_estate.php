@@ -235,7 +235,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" class="form-control re_investment_val" id="investment_val" placeholder="Type a value">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                      <span class="input-group-text span-currency-icon">€</span>
                     </div>
                   </div>
                   <div class="input-group">

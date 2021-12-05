@@ -86,7 +86,7 @@ business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE,
 business_company.INSERT_TMSTMP
 FROM business_company where DEAL = 'sell' AND USER_ID = $user_id)
-ORDER BY INSERT_TMSTMP
+ORDER BY INSERT_TMSTMP DESC
 LIMIT $offset, $limit
 ";
     $result = mysqli_query($con, $sql_sell)
@@ -193,7 +193,7 @@ business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE,
 business_company.INSERT_TMSTMP
 FROM business_company where DEAL = 'buy' AND USER_ID = $user_id)
-ORDER BY INSERT_TMSTMP
+ORDER BY INSERT_TMSTMP DESC
 LIMIT $offset, $limit";
     $result = mysqli_query($con, $sql_buy)
         or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
