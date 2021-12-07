@@ -834,8 +834,8 @@ if (isset($_SESSION['email'])) {
                   <span class="deal-subhead">(Multiple Choice)</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container">
-                  <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|500000"> Less than 500'000<br>
-                  <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="500000|1000000"> From 500'000 to 1 mln<br>
+                  <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="0|500000"> Less than 500,000<br>
+                  <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="500000|1000000"> From 500,000 to 1 mln<br>
                   <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
                   <input type="checkbox" name="investment_size" class="bc_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
                 </div>

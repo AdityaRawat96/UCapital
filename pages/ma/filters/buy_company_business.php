@@ -172,7 +172,7 @@
 </div>
 
 <div class="tab-pane" id="TechnologyOperation_company" data-column="objective">
-  <h1>Objective</h1><br>
+  <h1>Goal</h1><br>
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
@@ -535,8 +535,8 @@
   <div class="row">
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
-      <input type="checkbox" name="investment_required" value="0|500000"><span class="category_checkbox_label">From 0 to 500'000</span><br><br>
-      <input type="checkbox" name="investment_required" value="500000|1000000"><span class="category_checkbox_label">From 500'000 to 1 million</span><br><br>
+      <input type="checkbox" name="investment_required" value="0|500000"><span class="category_checkbox_label">From 0 to 500,000</span><br><br>
+      <input type="checkbox" name="investment_required" value="500000|1000000"><span class="category_checkbox_label">From 500,000 to 1 million</span><br><br>
       <input type="checkbox" name="investment_required" value="1000000|10000000"><span class="category_checkbox_label">From 1 million to 10 million</span><br><br>
       <input type="checkbox" name="investment_required" value="10000000|1000000000"><span class="category_checkbox_label">Over 10 million</span><br><br>
     </div>

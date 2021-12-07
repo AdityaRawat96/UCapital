@@ -149,24 +149,33 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Original Amount</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <input type="number" name="original_amount" value="" class="form-control credit_original_amount" placeholder="Enter a value">
+      <div class="input-group-append">
+        <span class="input-group-text span-currency-icon">€</span>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Asking Price</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <input type="number" name="asking_price" value="" class="form-control credit_asking_price" placeholder="Enter a value">
+      <div class="input-group-append">
+        <span class="input-group-text span-currency-icon">€</span>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Market Value</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <input type="number" name="market_value" value="" class="form-control credit_market_value" placeholder="Enter a value">
+      <div class="input-group-append">
+        <span class="input-group-text span-currency-icon">€</span>
+      </div>
     </div>
   </div>
 

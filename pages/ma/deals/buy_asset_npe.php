@@ -123,8 +123,8 @@
         <div class="custom-file">
           <select class="form-control npe_value_sel_buy" name="asset_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500'000</option>
-            <option value="500000|1000000">from 500'000 to 1 million</option>
+            <option value="0|500000">from 0 to 500,000</option>
+            <option value="500000|1000000">from 500,000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
             <option value="50000000|250000000">from 50 to 250 million</option>
@@ -136,7 +136,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Lien Position</span>
+      <span>Lien Position<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container  input-group">
       <select class="form-control lien_position npe_lien_position_buy" name="lien_position">
@@ -149,7 +149,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Judicialized</span>
+      <span>Judicialized<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control judicialized npe_judicialized_buy" name="judicialized">
@@ -161,7 +161,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Ratio</span>
+      <span>Ratio<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control ratio npe_ratio_buy" name="ratio">
@@ -191,7 +191,7 @@
   <div class="option_visibility_target">
     <div class="row">
       <div class="col-md-3 col-sm-12 deal-heading">
-        <span>AUM</span>
+        <span>AUM<br><i style="font-size: 10px;">(Optional)</i></span>
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="aum" value="" class="form-control npe_aum_buy" placeholder="Enter a value">
@@ -202,7 +202,7 @@
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-12 deal-heading">
-        <span>Number of Investments</span>
+        <span>Number of Investments<br><i style="font-size: 10px;">(Optional)</i></span>
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="number_of_investments" value="" class="form-control npe_number_of_investments_buy" placeholder="Enter a value">

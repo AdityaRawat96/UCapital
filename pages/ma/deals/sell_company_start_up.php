@@ -117,8 +117,8 @@
         <div class="custom-file">
           <select class="form-control su_company_value_sel" name="company_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500'000</option>
-            <option value="500000|1000000">from 500'000 to 1 million</option>
+            <option value="0|500000">from 0 to 500,000</option>
+            <option value="500000|1000000">from 500,000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
             <option value="50000000|250000000">from 50 to 250 million</option>
@@ -166,8 +166,8 @@
         <div class="custom-file">
           <select class="form-control su_investment_required_value_sel" name="investment_required_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500'000</option>
-            <option value="500000|1000000">from 500'000 to 1 million</option>
+            <option value="0|500000">from 0 to 500,000</option>
+            <option value="500000|1000000">from 500,000 to 1 million</option>
             <option value="1000000|10000000">from 1 to 10 million</option>
             <option value="10000000|50000000">from 10 to 50 million</option>
             <option value="50000000|250000000">from 50 to 250 million</option>
