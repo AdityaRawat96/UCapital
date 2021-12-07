@@ -224,8 +224,8 @@
     <div class="col-md-12">
       <input class="all_selector_checkbox_main" type="checkbox" value="All"><span class="category_checkbox_label">All</span><br><br>
       <input type="checkbox" value="Undisclosed"><span class="category_checkbox_label">undisclosed</span><br><br>
-      <input type="checkbox" value="0|500000"><span class="category_checkbox_label">From 0 to 500k</span><br><br>
-      <input type="checkbox" value="500000|1000000"><span class="category_checkbox_label">From 500k to 1 million</span><br><br>
+      <input type="checkbox" value="0|500000"><span class="category_checkbox_label">From 0 to 500'000</span><br><br>
+      <input type="checkbox" value="500000|1000000"><span class="category_checkbox_label">From 500'000 to 1 million</span><br><br>
       <input type="checkbox" value="1000000|10000000"><span class="category_checkbox_label">From 1 to 10 million</span><br><br>
       <input type="checkbox" value="10000000|50000000"><span class="category_checkbox_label">From 10 to 50 million</span><br><br>
       <input type="checkbox" value="50000000|1000000000"><span class="category_checkbox_label">Over 50 million</span><br><br>

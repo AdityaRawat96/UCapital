@@ -190,8 +190,8 @@ if (isset($_SESSION['email'])) {
                   <div class="custom-file">
                     <select class="form-control re_asset_value_sel_buy" name="asset_value_range" id="asset_value_range">
                       <option value="" selected disabled>Select a range</option>
-                      <option value="0|500000">from 0 to 500,000</option>
-                      <option value="500000|1000000">from 500,000 to 1 million</option>
+                      <option value="0|500000">from 0 to 500'000</option>
+                      <option value="500000|1000000">from 500'000 to 1 million</option>
                       <option value="1000000|10000000">from 1 to 10 million</option>
                       <option value="10000000|50000000">from 10 to 50 million</option>
                       <option value="50000000|250000000">from 50 to 250 million</option>
