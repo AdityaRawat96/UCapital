@@ -176,7 +176,7 @@
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
                     <td> Revenue Estimate (1 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y1'] ? number_shorten($row['FORECAST_REVENUE_Y1'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Ebitda margin Estimates (1 Year): </td>
@@ -184,7 +184,7 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Revenue Estimate (2 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y2'] ? number_shorten($row['FORECAST_REVENUE_Y2'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Ebitda margin Estimates (2 Year): </td>
@@ -192,7 +192,7 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Revenue Estimate (3 Year): </td>
-                    <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol(add_currency_symbol($row['CURRENCY'])) : "-";  ?> </td>
+                    <td> <?=$row['FORECAST_REVENUE_Y3'] ? number_shorten($row['FORECAST_REVENUE_Y3'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Ebitda margin Estimates (3 Year): </td>

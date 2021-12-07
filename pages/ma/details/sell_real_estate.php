@@ -95,8 +95,8 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Yearly Return (in %): </td>
-                    <td> <?=$row['YEARLY_RETURN'] ? $row['YEARLY_RETURN'] : "-";  ?> </td>
+                    <td> Yearly Return: </td>
+                    <td> <?=$row['YEARLY_RETURN'] ? $row['YEARLY_RETURN']."%" : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Value: </td>

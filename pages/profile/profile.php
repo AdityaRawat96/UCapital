@@ -153,7 +153,7 @@ if (mysqli_num_rows($result) > 0) {
                   foreach ($published_sell_deal as $deal) {
                   ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
-                      <a href="ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
+                      <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
                           <div class="card-img-contain">
                             <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
@@ -249,7 +249,7 @@ if (mysqli_num_rows($result) > 0) {
                   foreach ($published_buy_deal as $deal) {
                   ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
-                      <a href="ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
+                      <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
                           <div class="card-img-contain">
                             <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">

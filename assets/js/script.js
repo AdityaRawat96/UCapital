@@ -98,7 +98,7 @@ function generateLocationTitle(who_i_am, countries, cities){
 }
 
 function formatDealValue(type, min, max, currency){
-  var SI_SYMBOL = ["", ",000", "mln", "B", "G", "T", "P", "E"];
+  var SI_SYMBOL = ["", "k", "mln", "B", "G", "T", "P", "E"];
   var formatted_currency = "";
 
   var currency_symbol = "";
@@ -127,10 +127,13 @@ function formatDealValue(type, min, max, currency){
     var scaled = min;
     var suffix = SI_SYMBOL[tier];
     var scale = Math.pow(10, tier * 3);
-    if(tier != 0){
+    if(tier > 1){
       scaled = min / scale;
+      scaled = Math.round((scaled + Number.EPSILON) * 10) / 10;
+      formatted_currency = scaled + suffix + " " + currency_symbol;
+    }else{
+      formatted_currency = min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
     }
-    formatted_currency = scaled + suffix + " " + currency_symbol;
   }else if(type == "range"){
     if(min == 0){
       var scaled1 = 0;
@@ -140,39 +143,52 @@ function formatDealValue(type, min, max, currency){
       var scaled2 = max;
       var suffix2 = SI_SYMBOL[tier2];
       var scale2 = Math.pow(10, tier2 * 3);
-      if(tier2 != 0){
+      if(tier2 > 1){
         scaled2 = max / scale2;
+        scaled2 = Math.round((scaled2 + Number.EPSILON) * 10) / 10;
+        formatted_currency = scaled1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
+      }else{
+        formatted_currency = scaled1 + " - " + max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
-      formatted_currency = scaled1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
     }else if(max == 1000000000){
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
       var scaled1 = min;
       var suffix1 = SI_SYMBOL[tier1];
       var scale1 = Math.pow(10, tier1 * 3);
-      if(tier1 != 0){
+      if(tier1 > 1){
         scaled1 = min / scale1;
+        scaled1 = Math.round((scaled1 + Number.EPSILON) * 10) / 10;
+        formatted_currency = "Above " + scaled1 + suffix1 + " " + currency_symbol;
+      }else {
+        formatted_currency = "Above " + min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
-      formatted_currency = "Above " + scaled1 + suffix1 + " " + currency_symbol;
     }else{
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
       var scaled1 = min;
       var suffix1 = SI_SYMBOL[tier1];
       var scale1 = Math.pow(10, tier1 * 3);
-      if(tier1 != 0){
+      if(tier1 > 1){
         scaled1 = min / scale1;
+        scaled1 = Math.round((scaled1 + Number.EPSILON) * 10) / 10;
+        formatted_currency += scaled1 +  suffix1 + " - ";
+      }else{
+        formatted_currency += min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " - ";
       }
       var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
       var scaled2 = max;
       var suffix2 = SI_SYMBOL[tier2];
       var scale2 = Math.pow(10, tier2 * 3);
-      if(tier2 != 0){
+      if(tier2 > 1){
         scaled2 = max / scale2;
+        scaled2 = Math.round((scaled2 + Number.EPSILON) * 10) / 10;
+        formatted_currency += scaled2 + suffix2 + " " + currency_symbol;
+      }else{
+        formatted_currency += max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
-      formatted_currency = scaled1 +  suffix1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
     }
   }
 
-  formatted_currency = formatted_currency.replace(".", ",");
+  formatted_currency = formatted_currency.replace(",", "'");
 
   return formatted_currency;
 }

@@ -102,7 +102,7 @@ if (isset($_SESSION['email'])) {
   <script type="text/javascript">
     var obj = [];
     var itemType = "ma";
-    var limit = 12;
+    var limit = 42;
     var offset = parseInt('<?= $offset ?>');
     var currentPage = parseInt('<?= $currentPage ?>');
 
