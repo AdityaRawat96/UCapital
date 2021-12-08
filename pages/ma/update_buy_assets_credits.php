@@ -102,8 +102,10 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control product_type npe_product_type_buy" id="npe_product_type_buy" name="product_type">
                     <option value="" selected disabled>Choose type of Loan/Product</option>
+                    <option value="Any">Any</option>
                     <option value="Secured">Secured</option>
                     <option value="Unsecured">Unsecured</option>
+                    <option value="Enforceable">Enforceable</option>
                   </select>
                 </div>
               </div>
