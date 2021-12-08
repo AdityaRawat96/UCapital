@@ -3,11 +3,11 @@ $published_buy_deal = array();
 $published_sell_deal = array();
 include('../../assets/php/getProfileData.php');
 
-$result_buy = getBuyProfileData($con, $user_id, 0, 2);
+$result_buy = getBuyProfileData($con, $user_id, 0, 12);
 foreach ($result_buy as $val) {
   array_push($published_buy_deal, $val);
 }
-$result_sell = getSellProfileData($con, $user_id, 0, 2);
+$result_sell = getSellProfileData($con, $user_id, 0, 12);
 foreach ($result_sell as $val) {
   array_push($published_sell_deal, $val);
 }

@@ -286,12 +286,7 @@ if (isset($_SESSION['email'])) {
         who_i_am: {
           required: true,
         },
-        aum: {
-          required: true,
-        },
-        number_of_investments: {
-          required: true,
-        },
+
         investment_amount: {
           required: true,
         },
