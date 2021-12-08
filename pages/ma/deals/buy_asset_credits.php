@@ -44,7 +44,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="credit_maturity_buy" value="fixed" class="deal-radio credit_maturity_buy">
+            <input type="radio" name="credit_maturity_buy" value="range" class="deal-radio credit_maturity_buy">
           </span>
         </div>
         <div class="custom-file">

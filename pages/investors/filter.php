@@ -62,7 +62,10 @@
               <div class="tab-pane" id="preferredInvestmentAmount">
                 <div class="form-group mt-1 mb-4" id="preferredInvestmentAmountType">
                   <ul class="engery654 subcategories">
+                    <li class="searchable" data-search="preferred investment amount Less than 1 million" data-count="(X < 10000000)">Preferred investment amount Less than 1 million</li>
                     <li class="searchable" data-search="1 million &#x3c; preferred investment amount &#x3c; 10 million" data-count="(X >= 1000000 && X < 10000000)">1 million &#x3c; preferred investment amount &#x3c; 10 million</li>
+                    <li class="searchable" data-search="10 million &#x3c; preferred investment amount &#x3c; 50 million" data-count="(X >= 10000000 && X < 500000000)">10 million &#x3c; preferred investment amount &#x3c; 50 million</li>
+                    <li class="searchable" data-search="preferred investment amount &#x3e; 50 million" data-count="(X >= 500000000)">preferred investment amount &#x3e; 50 million</li>
                   </ul>
                 </div>
               </div>

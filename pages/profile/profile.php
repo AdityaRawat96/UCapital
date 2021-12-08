@@ -16,7 +16,7 @@ $npe_ids = array();
 $credits_ids = array();
 $re_ids = array();
 $result = mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
-  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
     if ($row['company_id'] != null && $row['company_id'] != '') {
@@ -32,6 +32,16 @@ if (mysqli_num_rows($result) > 0) {
       $re_ids = json_decode($row['re_id']);
     }
   }
+}
+$target_tab = "sell";
+if(isset($_GET['target'])){
+  if($_GET['target'] == "buy"){
+    $target_tab = "buy";
+  }else{
+    $target_tab = "buy";
+  }
+}else{
+  $target_tab = "buy";
 }
 
 ?>
@@ -101,24 +111,24 @@ if (mysqli_num_rows($result) > 0) {
                     <?php
                     if ($_SESSION['user_type'] == 2) {
                       $result = mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                        <?php
+                          <?php
                         }
                       }
                     } else {
                       $result = mysqli_query($con, " SELECT *  FROM users WHERE id='$user_id'")
-                        or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+                      or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                        ?>
+                          ?>
                           <p class="contact-details-email-number"> <i class="fas fa-briefcase" style="color: #D7DBEC;"></i> <?= $row['role'] . ", " . $row['company']; ?> </p>
                           <p class="contact-details-email-number"> <i class="fas fa-globe" style="color: #D7DBEC;"></i> <?= $row['website'] ?> </p>
-                    <?php
+                          <?php
                         }
                       }
                     }
@@ -141,17 +151,17 @@ if (mysqli_num_rows($result) > 0) {
           <div class="card class-contact-info-settings">
 
             <ul class="listing-add-post1-profile nav nav-pills">
-              <li> <a href="#published_sell_deal" data-toggle="tab" class="active"> Published Sell deal </a> </li>
-              <li> <a href="#published_buy_deal" data-toggle="tab"> Published Buy deal </a> </li>
+              <li> <a href="#published_sell_deal" data-toggle="tab" class="<?php if($target_tab == 'sell'){echo 'active';}?>"> Published Sell deal </a> </li>
+              <li> <a href="#published_buy_deal" data-toggle="tab" class="<?php if($target_tab == 'buy'){echo 'active';}?>"> Published Buy deal </a> </li>
             </ul>
 
             <div class="tab-content">
 
-              <div class="tab-pane active" id="published_sell_deal">
+              <div class="tab-pane <?php if($target_tab == 'sell'){echo 'active';}?>" id="published_sell_deal">
                 <div class="row">
                   <?php
                   foreach ($published_sell_deal as $deal) {
-                  ?>
+                    ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
                       <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
@@ -208,54 +218,54 @@ if (mysqli_num_rows($result) > 0) {
                                 }
                               }
                               ?>" <?= ' data-id="' . $deal['ID'] . '"'; ?>>
-                                <i class="fas fa-bookmark fa-2x"></i>
-                              </span>
+                              <i class="fas fa-bookmark fa-2x"></i>
                             </span>
-                          </div>
-                          <div class="d-flex flex-column justify-content-end p-2">
+                          </span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-end p-2">
+                          <span>
+                            <i><?= generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?></i>
+                          </span>
+                          <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
+                          <div class="listing">
+                            <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                            <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
+                            <hr>
                             <span>
-                              <i><?= generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?></i>
+                              <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
                             </span>
-                            <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
-                            <div class="listing">
-                              <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                              <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
-                              <hr>
-                              <span>
-                                <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
-                              </span>
-                              <br><br>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>" onclick="editAd('<?= $deal['ID'] . ',' . $deal['ASSET_TYPE'] . ',' . $deal['DEAL'] ?>')">Edit</button>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>">Delete Ad</button>
-                                </div>
+                            <br><br>
+                            <div class="row">
+                              <div class="col-md-6 col-sm-12">
+                                <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>" onclick="editAd('<?= $deal['ID'] . ',' . $deal['ASSET_TYPE'] . ',' . $deal['DEAL'] ?>')">Edit</button>
+                              </div>
+                              <div class="col-md-6 col-sm-12">
+                                <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>">Delete Ad</button>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </a>
-                    </div>
+                      </div>
+                    </a>
+                  </div>
                   <?php
-                  }
-                  ?>
-                </div>
+                }
+                ?>
               </div>
-              <div class="tab-pane" id="published_buy_deal">
-                <div class="row">
-                  <?php
-                  foreach ($published_buy_deal as $deal) {
+            </div>
+            <div class="tab-pane <?php if($target_tab == 'buy'){echo 'active';}?>" id="published_buy_deal">
+              <div class="row">
+                <?php
+                foreach ($published_buy_deal as $deal) {
                   ?>
-                    <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
-                      <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
-                        <div class="card mb-4 cart-custom-redious our-shadow">
-                          <div class="card-img-contain">
-                            <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
-                            <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
-                            <span class="right-tag-batch">
-                              <span class="bookmark
+                  <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
+                    <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
+                      <div class="card mb-4 cart-custom-redious our-shadow">
+                        <div class="card-img-contain">
+                          <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
+                          <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                          <span class="right-tag-batch">
+                            <span class="bookmark
                             <?= " bookmark-" . str_replace(" ", "_", strtolower($deal['ASSET_TYPE'])); ?>
                             <?php
                             $detail_1_icon = "";
@@ -307,114 +317,114 @@ if (mysqli_num_rows($result) > 0) {
                               }
                             }
                             ?>" <?= ' data-id="' . $deal['ID'] . '"'; ?>>
-                                <i class="fas fa-bookmark fa-2x"></i>
-                              </span>
-                            </span>
-                          </div>
-                          <div class="d-flex flex-column justify-content-end p-2">
-                            <span>
-                              <i><?= generateLocationTitle($deal['SUB_TITLE_1'], $deal['COUNTRY'], $deal['CITY']); ?></i>
-                            </span>
-                            <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
-                            <div class="listing">
-                              <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                              <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
-                              <hr>
-                              <span>
-                                <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
-                              </span>
-                              <br><br>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>" onclick="editAd('<?= $deal['ID'] . ',' . $deal['ASSET_TYPE'] . ',' . $deal['DEAL'] ?>')">Edit</button>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                  <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>">Delete Ad</button>
-                                </div>
-                              </div>
+                            <i class="fas fa-bookmark fa-2x"></i>
+                          </span>
+                        </span>
+                      </div>
+                      <div class="d-flex flex-column justify-content-end p-2">
+                        <span>
+                          <i><?= generateLocationTitle($deal['SUB_TITLE_1'], $deal['COUNTRY'], $deal['CITY']); ?></i>
+                        </span>
+                        <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
+                        <div class="listing">
+                          <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                          <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
+                          <hr>
+                          <span>
+                            <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
+                          </span>
+                          <br><br>
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <button type="button" name="button" class="btn form-control our-back-btn edit-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>" onclick="editAd('<?= $deal['ID'] . ',' . $deal['ASSET_TYPE'] . ',' . $deal['DEAL'] ?>')">Edit</button>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <button type="button" name="button" class="btn form-control button-red-border delete-deal-profile" data-id="<?= $deal['ID'] ?>" data-type="<?= $deal['ASSET_TYPE'] ?>" data-deal="<?= $deal['DEAL'] ?>">Delete Ad</button>
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </div>
-                  <?php
-                  }
-                  ?>
+                  </a>
                 </div>
-              </div>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-    </div><!-- container-fluid -->
-  </section>
-  <!-- content -->
+</div><!-- container-fluid -->
+</section>
+<!-- content -->
 </div>
 <!-- content-wrapper -->
 
 <script>
-  function editAd(id, asset, deal) {
-    console.log(id);
-    console.log(asset);
-    console.log(deal);
-    let dealUrl = "";
-    let p = new URLSearchParams();
-    p.set("id", id);
-    if (deal == "buy") {
-      if (asset == "Real Estate") {
-        dealUrl = "./../ma/update_buy_assets_real_estate.php";
-      } else if (asset == "NPE") {
-        dealUrl = "./../ma/update_buy_assets_npe.php";
-      } else if (asset == "Credits") {
-        dealUrl = "./../ma/update_buy_assets_credits.php";
-      } else if (asset == "Business Company") {
-        dealUrl = "./../ma/update_buy_business_company.php";
-      } else if (asset == "Start Up") {
-        dealUrl = "./../ma/update_buy_start_up.php";
-      }
-    } else {
-      if (asset == "Real Estate") {
-        dealUrl = "./../ma/update_sell_assets_real_estate.php";
-      } else if (asset == "NPE") {
-        dealUrl = "./../ma/update_sell_assets_npe.php";
-      } else if (asset == "Credits") {
-        dealUrl = "./../ma/update_sell_assets_credits.php";
-      } else if (asset == "Business Company") {
-        dealUrl = "./../ma/update_sell_business_company.php";
-      } else if (asset == "Start Up") {
-        dealUrl = "./../ma/update_sell_start_up.php";
-      }
+function editAd(id, asset, deal) {
+  console.log(id);
+  console.log(asset);
+  console.log(deal);
+  let dealUrl = "";
+  let p = new URLSearchParams();
+  p.set("id", id);
+  if (deal == "buy") {
+    if (asset == "Real Estate") {
+      dealUrl = "./../ma/update_buy_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      dealUrl = "./../ma/update_buy_assets_npe.php";
+    } else if (asset == "Credits") {
+      dealUrl = "./../ma/update_buy_assets_credits.php";
+    } else if (asset == "Business Company") {
+      dealUrl = "./../ma/update_buy_business_company.php";
+    } else if (asset == "Start Up") {
+      dealUrl = "./../ma/update_buy_start_up.php";
     }
-    if (dealUrl != "") {
-      window.open(dealUrl + "?" + p.toString());
+  } else {
+    if (asset == "Real Estate") {
+      dealUrl = "./../ma/update_sell_assets_real_estate.php";
+    } else if (asset == "NPE") {
+      dealUrl = "./../ma/update_sell_assets_npe.php";
+    } else if (asset == "Credits") {
+      dealUrl = "./../ma/update_sell_assets_credits.php";
+    } else if (asset == "Business Company") {
+      dealUrl = "./../ma/update_sell_business_company.php";
+    } else if (asset == "Start Up") {
+      dealUrl = "./../ma/update_sell_start_up.php";
     }
   }
+  if (dealUrl != "") {
+    window.open(dealUrl + "?" + p.toString());
+  }
+}
 
-  function deleteAd(id, asset, deal) {
-    swal({
-      title: "Are you sure?",
-      text: "The post would be removed from the platform",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        $.ajax({
-          type: 'POST',
-          url: "./../../assets/php/deleteAd.php",
-          data: {
-            id: id,
-            asset: asset,
-            deal: deal
-          },
-          success: function(data) {
-            swal("Success!", "Post removed!", "success").then((value) => {
-              $(".ma-card-" + id + "-" + asset + "-" + deal).remove();
-            });
-          }
-        });
-      }
-    });
-  }
+function deleteAd(id, asset, deal) {
+  swal({
+    title: "Are you sure?",
+    text: "The post would be removed from the platform",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      $.ajax({
+        type: 'POST',
+        url: "./../../assets/php/deleteAd.php",
+        data: {
+          id: id,
+          asset: asset,
+          deal: deal
+        },
+        success: function(data) {
+          swal("Success!", "Post removed!", "success").then((value) => {
+            $(".ma-card-" + id + "-" + asset + "-" + deal).remove();
+          });
+        }
+      });
+    }
+  });
+}
 </script>

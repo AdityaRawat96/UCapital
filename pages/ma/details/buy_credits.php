@@ -52,7 +52,17 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Maturity: </td>
-                    <td> <?=$row['MATURITY'] ? $row['MATURITY'] : "-"; ?> </td>
+                    <td>
+                      <?php
+                      if($row['MATURITY_TYPE'] == "range"){
+                        echo "From ".($row['MATURITY'] ? $row['MATURITY'] : "-")." To ".($row['MATURITY_TO'] ? $row['MATURITY_TO'] : "-");
+                      }else if($row['MATURITY_TYPE'] == "fixed"){
+                        echo $row['MATURITY'] ? $row['MATURITY'] : "-";
+                      }else if($row['MATURITY_TYPE'] == "undisclosed"){
+                        echo "Undisclosed";
+                      }
+                      ?>
+                    </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Loan/product Type: </td>

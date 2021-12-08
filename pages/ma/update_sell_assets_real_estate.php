@@ -1,5 +1,6 @@
 <?php
 session_start();
+$redirect_target="sell";
 if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
@@ -640,7 +641,7 @@ if (isset($_SESSION['email'])) {
         if (data.trim() == "success") {
           swal("Success!", "Deal Updated!", "success")
             .then((value) => {
-              location.reload();
+              window.location.href = "../profile/index.php?message=success&target=<?=$redirect_target;?>";
             });
         } else {
           swal("Error!", "An unexpected error occurred, please try again!", "error");

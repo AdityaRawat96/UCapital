@@ -4,7 +4,7 @@ $offset = 0;
 $currentPage = 1;
 if (isset($_GET['offset'])) {
   $offset = $_GET['offset'];
-  $currentPage = ($offset / 48) + 1;
+  $currentPage = ($offset / 9) + 1;
 }
 if (isset($_SESSION['email'])) {
   include '../elements/header.php';
@@ -102,7 +102,7 @@ if (isset($_SESSION['email'])) {
   <script type="text/javascript">
     var obj = [];
     var itemType = "ma";
-    var limit = 42;
+    var limit = 9;
     var offset = parseInt('<?= $offset ?>');
     var currentPage = parseInt('<?= $currentPage ?>');
 
@@ -174,6 +174,16 @@ if (isset($_SESSION['email'])) {
             searchableElements.push($(this).data("search").toString().trim());
           });
           autocomplete(document.getElementById("searchIndicators"), searchableElements);
+
+
+          $(".paginationList").rpmPagination({
+            domElement: ".pagination-item",
+            limit: 9,
+            currentPage: currentPage,
+            total: 400,
+            link: "buy.php",
+            refresh: true,
+          });
         }
       });
     });

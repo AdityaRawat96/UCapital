@@ -1152,7 +1152,7 @@ if (isset($_SESSION['email'])) {
       response['credit_description'] = $(".npec_description_buy").val();
       response['credit_collateral_type'] = $(".credit_collateral_type_buy").val();
       response['credit_maturity_type'] = $(".credit_maturity_buy:checked").val();
-      if ($(".credit_maturity_buy:checked").val() === "fixed") {
+      if ($(".credit_maturity_buy:checked").val() === "range") {
         response['credit_maturity'] = $(".credit_maturity_from_buy").val();
         response['credit_maturity_to'] = $(".credit_maturity_to_buy").val();
       }

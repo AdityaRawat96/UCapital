@@ -1,5 +1,6 @@
 <?php
 session_start();
+$redirect_target="buy";
 if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
@@ -36,7 +37,7 @@ if (isset($_SESSION['email'])) {
             <div class="buy_asset_npe">
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Type of NPE</span>
+                  <span>Type of Credit</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
                   <select class="form-control npe_type npe_type_buy" id="npe_type_buy" name="credit_type">
@@ -80,7 +81,7 @@ if (isset($_SESSION['email'])) {
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <input type="radio" name="credit_maturity_type" value="fixed" class="deal-radio credit_maturity_buy">
+                        <input type="radio" name="credit_maturity_type" value="range" class="deal-radio credit_maturity_buy">
                       </span>
                     </div>
                     <div class="custom-file">
@@ -566,7 +567,7 @@ if (isset($_SESSION['email'])) {
       response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
     response['credit_description'] = $(".npe_description_buy").val();
     response['credit_maturity_type'] = $(".credit_maturity_buy:checked").val();
-    if ($(".credit_maturity_buy:checked").val() === "fixed") {
+    if ($(".credit_maturity_buy:checked").val() === "range") {
       response['credit_maturity'] = $(".credit_maturity_from_buy").val();
       response['credit_maturity_to'] = $(".credit_maturity_to_buy").val();
     }
@@ -611,7 +612,7 @@ if (isset($_SESSION['email'])) {
         if (data.trim() == "success") {
           swal("Success!", "Deal Updated!", "success")
             .then((value) => {
-              location.reload();
+              window.location.href = "../profile/index.php?message=success&target=<?=$redirect_target;?>";
             });
         } else {
           swal("Error!", "An unexpected error occurred, please try again!", "error");
@@ -649,7 +650,7 @@ if (isset($_SESSION['email'])) {
       document.getElementById("npe_value_sel").value = "<?= $row["VALUE_MIN"] . '|' . $row["VALUE_MAX"] ?>";
     }
     $("input[name=credit_maturity_type][value=<?= $row["MATURITY_TYPE"] ?>]").attr('checked', 'checked');
-    if ("<?= $row["MATURITY_TYPE"] ?>" == "fixed") {
+    if ("<?= $row["MATURITY_TYPE"] ?>" == "range") {
       document.getElementById("credit_maturity_from_buy").value = "<?= $row["MATURITY"] ?>";
       document.getElementById("credit_maturity_to_buy").value = "<?= $row["MATURITY_TO"] ?>";
     }
