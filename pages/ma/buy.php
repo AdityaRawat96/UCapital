@@ -15,6 +15,16 @@ if (isset($_SESSION['email'])) {
   $npe_ids = "";
   $credits_ids = "";
   $re_ids = "";
+
+  $countResult = mysqli_query($con, "Select COUNT(*) as total from (
+    (SELECT ID FROM real_estate where DEAL = 'buy')
+    UNION ALL (SELECT ID FROM npe where DEAL = 'buy') 
+    UNION ALL (SELECT ID FROM credit where DEAL = 'buy')
+    UNION ALL (SELECT ID FROM business_company where DEAL = 'buy')) AS D");
+
+  while ($row = mysqli_fetch_array($countResult)) {
+    $totalcount = $row['total'];
+  }
   $result = mysqli_query($con, " SELECT * FROM favorites WHERE user_id = '$user_id' ")
     or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
   if (mysqli_num_rows($result) > 0) {
@@ -180,7 +190,7 @@ if (isset($_SESSION['email'])) {
             domElement: ".pagination-item",
             limit: 9,
             currentPage: currentPage,
-            total: 400,
+            total: <?= $totalcount ?>,
             link: "buy.php",
             refresh: true,
           });
