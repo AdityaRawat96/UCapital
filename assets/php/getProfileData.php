@@ -86,9 +86,7 @@ business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE,
 business_company.INSERT_TMSTMP
 FROM business_company where DEAL = 'sell' AND USER_ID = $user_id)
-ORDER BY INSERT_TMSTMP DESC
-LIMIT $offset, $limit
-";
+ORDER BY INSERT_TMSTMP DESC";
     $result = mysqli_query($con, $sql_sell)
         or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
@@ -103,7 +101,7 @@ LIMIT $offset, $limit
     }
 }
 
-function getBuyProfileData($con, $user_id, $offset, $limit)
+function getBuyProfileData($con, $user_id)
 {
     $sql_buy = "(SELECT
 real_estate.ID,
@@ -193,8 +191,7 @@ business_company.KEY_ELEMENTS,
 business_company.ASSET_TYPE,
 business_company.INSERT_TMSTMP
 FROM business_company where DEAL = 'buy' AND USER_ID = $user_id)
-ORDER BY INSERT_TMSTMP DESC
-LIMIT $offset, $limit";
+ORDER BY INSERT_TMSTMP DESC";
     $result = mysqli_query($con, $sql_buy)
         or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
