@@ -1580,9 +1580,8 @@ if (isset($_SESSION['email'])) {
       if (isAreaSetted)
         response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-      response['scalability'] = $(".bc_scalability").val();
+      response['scalability'] = $(".bc_scalability:checked").val();
       response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
-      response['market_share'] = $(".bc_market_share").val();
       if (null != $(".bc_number_of_employees:checked").val()) {
         var numOfEmp = $(".bc_number_of_employees:checked").val();
         index = numOfEmp.lastIndexOf("|");
@@ -1713,9 +1712,8 @@ if (isset($_SESSION['email'])) {
       if (isAreaSetted)
         response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-      response['scalability'] = $(".su_scalability").val();
+      response['scalability'] = $(".su_scalability:checked").val();
       response['scalability_area'] = $(".su_scalability_area option:selected").val() == "" ? "" : $(".su_scalability_area option:selected").text();
-      response['market_share'] = $(".su_market_share").val();
       console.log($(".su_number_of_employees:checked").val());
       if (null != $(".su_number_of_employees:checked").val()) {
         var numOfEmp = $(".su_number_of_employees:checked").val();

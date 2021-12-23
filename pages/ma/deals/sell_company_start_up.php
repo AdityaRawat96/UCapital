@@ -557,7 +557,7 @@
             <input type="radio" name="scalability" value="No" class="deal-radio su_scalability"> No
           </button>
         </div>
-        <div class="col-md-8 col-sm-12">
+        <!-- <div class="col-md-8 col-sm-12">
           <div class="input-group input-group-nomargin">
             <div class="custom-file">
               <input type="number" class="form-control su_market_share" placeholder="Enter market share">
@@ -566,7 +566,7 @@
               <span class="input-group-text">%</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

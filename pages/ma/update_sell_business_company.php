@@ -1,6 +1,6 @@
 <?php
 session_start();
-$redirect_target="sell";
+$redirect_target = "sell";
 if (isset($_SESSION['email'])) {
   include '../elements/header.php';
   include '../elements/navbar.php';
@@ -571,7 +571,7 @@ if (isset($_SESSION['email'])) {
                         <input type="radio" name="scalability" value="No" class="deal-radio bc_scalability"> No
                       </button>
                     </div>
-                    <div class="col-md-8 col-sm-12">
+                    <!-- <div class="col-md-8 col-sm-12">
                       <div class="input-group input-group-nomargin">
                         <div class="custom-file">
                           <input type="number" class="form-control bc_market_share" placeholder="Enter market share" id="market_share">
@@ -580,7 +580,7 @@ if (isset($_SESSION['email'])) {
                           <span class="input-group-text">%</span>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -1349,9 +1349,8 @@ if (isset($_SESSION['email'])) {
     if (isAreaSetted)
       response['area_of_activity'] = areaOfActivity.substring(0, areaOfActivity.length - 1);
 
-    response['scalability'] = $(".bc_scalability").val();
+    response['scalability'] = $(".bc_scalability:checked").val();
     response['scalability_area'] = $(".bc_scalability_area option:selected").val() == "" ? "" : $(".bc_scalability_area option:selected").text();
-    response['market_share'] = $(".bc_market_share").val();
     console.log($(".bc_number_of_employees:checked").val());
     if (null != $(".bc_number_of_employees:checked").val()) {
       var numOfEmp = $(".bc_number_of_employees:checked").val();
@@ -1435,7 +1434,7 @@ if (isset($_SESSION['email'])) {
         if (data.trim() == "success") {
           swal("Success!", "Deal Updated!", "success")
             .then((value) => {
-              window.location.href = "../profile/index.php?message=success&target=<?=$redirect_target;?>";
+              window.location.href = "../profile/index.php?message=success&target=<?= $redirect_target; ?>";
             });
         } else {
           swal("Error!", "An unexpected error occurred, please try again!", "error");
