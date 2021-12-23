@@ -156,7 +156,7 @@
                     <td> Number of Employees: </td>
                     <td>
                       <?php
-                      echo "From ".$row['NUM_OF_EMPLOYEE_MIN']." To ".$row['NUM_OF_EMPLOYEE_MAX'];
+                      echo shorten_number_range("range", $row['NUM_OF_EMPLOYEE_MIN'], $row['NUM_OF_EMPLOYEE_MAX']);
                       ?>
                     </td>
                   </tr>

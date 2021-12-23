@@ -40,6 +40,8 @@ function generateCardTitle(type, deal, title_1, title_2, title3 = null){
     if(type == "business company" || type == "start up"){
       if(title_1 == "Buy majority"){
         generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
+      }else if(title_1 == "Buy minority"){
+        generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
       }else if(title_1 == "Buy totality"){
         generated_title += title_1 + " of a <b>" + title_2 + (title3 ? (", " + title3) : "") + "</b>";
       }else if(title_1 == "Partnership"){
@@ -98,7 +100,7 @@ function generateLocationTitle(who_i_am, countries, cities){
 }
 
 function formatDealValue(type, min, max, currency){
-  var SI_SYMBOL = ["", "k", "mln", "B", "G", "T", "P", "E"];
+  var SI_SYMBOL = ["", "k", "M", "B", "G", "T", "P", "E"];
   var formatted_currency = "";
 
   var currency_symbol = "";
@@ -187,8 +189,6 @@ function formatDealValue(type, min, max, currency){
       }
     }
   }
-
-  formatted_currency = formatted_currency.replace(",", "'");
 
   return formatted_currency;
 }

@@ -4,7 +4,7 @@ $offset = 0;
 $currentPage = 1;
 if (isset($_GET['offset'])) {
   $offset = $_GET['offset'];
-  $currentPage = ($offset / 9) + 1;
+  $currentPage = ($offset / 48) + 1;
 }
 if (isset($_SESSION['email'])) {
   include '../elements/header.php';
@@ -18,7 +18,7 @@ if (isset($_SESSION['email'])) {
 
   $countResult = mysqli_query($con, "Select COUNT(*) as total from (
     (SELECT ID FROM real_estate where DEAL = 'buy')
-    UNION ALL (SELECT ID FROM npe where DEAL = 'buy') 
+    UNION ALL (SELECT ID FROM npe where DEAL = 'buy')
     UNION ALL (SELECT ID FROM credit where DEAL = 'buy')
     UNION ALL (SELECT ID FROM business_company where DEAL = 'buy')) AS D");
 
@@ -51,7 +51,7 @@ if (isset($_SESSION['email'])) {
           </div><!-- /.col -->
           <div class="col-sm-6">
             <div class="float-sm-right">
-              <a href="deals.php" class="post-add our-back-btn"> <img src="../../dist/img/new/post-your-add.svg"> Post Your Add </a>
+              <a href="deals.php" class="post-add our-back-btn"> <img src="../../dist/img/new/post-your-add.svg"> Post Your Ad </a>
             </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -112,7 +112,7 @@ if (isset($_SESSION['email'])) {
   <script type="text/javascript">
     var obj = [];
     var itemType = "ma";
-    var limit = 9;
+    var limit = 48;
     var offset = parseInt('<?= $offset ?>');
     var currentPage = parseInt('<?= $currentPage ?>');
 
@@ -188,7 +188,7 @@ if (isset($_SESSION['email'])) {
 
           $(".paginationList").rpmPagination({
             domElement: ".pagination-item",
-            limit: 9,
+            limit: 48,
             currentPage: currentPage,
             total: <?= $totalcount ?>,
             link: "buy.php",

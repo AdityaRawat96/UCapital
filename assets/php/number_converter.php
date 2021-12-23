@@ -8,7 +8,7 @@ function number_shorten($number, $precision = 1, $divisors = null) {
       $divisors = array(
         pow(1000, 0) => '', // 1000^0 == 1
         pow(1000, 1) => 'k', // Thousand
-        pow(1000, 2) => 'mln', // Million
+        pow(1000, 2) => 'M', // Million
         pow(1000, 3) => 'B', // Billion
         pow(1000, 4) => 'T', // Trillion
         pow(1000, 5) => 'Qa', // Quadrillion
@@ -45,7 +45,7 @@ function number_shorten($number, $precision = 1, $divisors = null) {
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
           pow(1000, 1) => 'k', // Thousand
-          pow(1000, 2) => 'mln', // Million
+          pow(1000, 2) => 'M', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
           pow(1000, 5) => 'Qa', // Quadrillion
@@ -129,7 +129,7 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
       $divisors = array(
         pow(1000, 0) => '', // 1000^0 == 1
         pow(1000, 1) => 'k', // Thousand
-        pow(1000, 2) => 'mln', // Million
+        pow(1000, 2) => 'M', // Million
         pow(1000, 3) => 'B', // Billion
         pow(1000, 4) => 'T', // Trillion
         pow(1000, 5) => 'Qa', // Quadrillion
@@ -160,7 +160,7 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
           pow(1000, 1) => 'k', // Thousand
-          pow(1000, 2) => 'mln', // Million
+          pow(1000, 2) => 'M', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
           pow(1000, 5) => 'Qa', // Quadrillion
@@ -180,9 +180,9 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
       if($shorthand == 'k'){
-        return "From 0 To ".number_format($max, 0);
+        return "Less than ".number_format($max, 0);
       }else{
-        return "From 0 To ".floatval(number_format($max / $divisor, $precision)) . $shorthand;
+        return "Less than ".floatval(number_format($max / $divisor, $precision)) . $shorthand;
       }
     }else if($max == 1000000000){
       // Setup default $divisors if not provided
@@ -190,7 +190,7 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
         $divisors = array(
           pow(1000, 0) => '', // 1000^0 == 1
           pow(1000, 1) => 'k', // Thousand
-          pow(1000, 2) => 'mln', // Million
+          pow(1000, 2) => 'M', // Million
           pow(1000, 3) => 'B', // Billion
           pow(1000, 4) => 'T', // Trillion
           pow(1000, 5) => 'Qa', // Quadrillion
@@ -226,7 +226,7 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
           $divisors = array(
             pow(1000, 0) => '', // 1000^0 == 1
             pow(1000, 1) => 'k', // Thousand
-            pow(1000, 2) => 'mln', // Million
+            pow(1000, 2) => 'M', // Million
             pow(1000, 3) => 'B', // Billion
             pow(1000, 4) => 'T', // Trillion
             pow(1000, 5) => 'Qa', // Quadrillion
@@ -303,6 +303,8 @@ function generateCardTitle($type, $deal, $title_1, $title_2, $title3 = null){
   }else{
     if($type == "business company" || $type == "start up"){
       if($title_1 == "Buy majority"){
+        $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
+      }else if($title_1 == "Buy minority"){
         $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";
       }else if($title_1 == "Buy totality"){
         $generated_title .= $title_1 . " of a <b>" . $title_2 . ($title3 ? (", " . $title3) : "") . "</b>";

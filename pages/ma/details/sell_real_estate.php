@@ -47,9 +47,7 @@
               <h3>General asset description</h3><hr>
               <p class="p-desc10">
                 <?=$row['DESCRIPTION']; ?>
-              </p><br><br>
-              <h3>Looking For</h3><hr>
-              <br><br><br>
+              </p><br><br><br>
             </div>
           </div>
 
