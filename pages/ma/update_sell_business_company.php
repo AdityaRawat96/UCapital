@@ -588,7 +588,7 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Number of employees</span>
                 </div>
-                <div class="col-md-9 col-sm-12 input-container input-group-multiple-radio">
+                <div class="col-md-9 col-sm-12 input-container input-group-multiple-checkbox">
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
@@ -1061,21 +1061,21 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script>
   $(document).ready(function() {
-        $(".form_submit_button").click(function(){
-          validateAdditionalFields();
-        });
+    $(".form_submit_button").click(function() {
+      validateAdditionalFields();
+    });
 
-        $(".input-group-multiple-radio").on("click", "input", function() {
-          $(this).parent().parent().parent().parent().find("small").remove();
-          $(this).parent().parent().find("input[type=radio]").prop("checked", true);
-        });
-        $(".input-group-multiple-radio").on("click", "select", function() {
-          $(this).parent().parent().parent().parent().find("small").remove();
-          $(this).parent().parent().find("input[type=radio]").prop("checked", true);
-        });
-        $(".input-group-multiple-checkbox").on("click", "input", function() {
-          $(this).parent().parent().parent().parent().find("small").remove();
-        });
+    $(".input-group-multiple-radio").on("click", "input", function() {
+      $(this).parent().parent().parent().parent().find("small").remove();
+      $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+    });
+    $(".input-group-multiple-radio").on("click", "select", function() {
+      $(this).parent().parent().parent().parent().find("small").remove();
+      $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+    });
+    $(".input-group-multiple-checkbox").on("click", "input", function() {
+      $(this).parent().parent().parent().parent().find("small").remove();
+    });
 
     $(".datepicker").datepicker({
       format: "yyyy",
@@ -1084,7 +1084,7 @@ if (isset($_SESSION['email'])) {
     });
     $('.ad-form').validate({
       submitHandler: function() {
-        if(validateAdditionalFields()){
+        if (validateAdditionalFields()) {
           update();
         }
       },
@@ -1259,7 +1259,7 @@ if (isset($_SESSION['email'])) {
         formatSelectionTooBig: function(limit) {
           return 'Only 5 selections are allowed!';
         }
-      }).on("change", function (e) {
+      }).on("change", function(e) {
         $(this).valid();
       });
     });
@@ -1270,7 +1270,7 @@ if (isset($_SESSION['email'])) {
         formatSelectionTooBig: function(limit) {
           return 'Only 5 selections are allowed!';
         }
-      }).on("change", function (e) {
+      }).on("change", function(e) {
         $(this).valid();
       });
     });
@@ -1658,9 +1658,9 @@ if (isset($_SESSION['email'])) {
         countryArr.forEach(function(element, index) {
           var curr_country = element;
           var countryId = "";
-          if(index == 0){
+          if (index == 0) {
             location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div> </div>');
-          }else{
+          } else {
             location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div>  <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
           }
           var keys = Object.keys(country_data).forEach(key => {

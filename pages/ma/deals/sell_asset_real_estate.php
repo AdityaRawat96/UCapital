@@ -153,7 +153,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <input type="radio" name="asset_value" class="deal-radio re_asset_value">
+            <input type="radio" name="asset_value" value="fixed" class="deal-radio re_asset_value">
           </span>
         </div>
         <div class="custom-file">
