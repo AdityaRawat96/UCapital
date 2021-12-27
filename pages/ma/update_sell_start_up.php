@@ -1783,7 +1783,7 @@ if (isset($_SESSION['email'])) {
         country_id: elem.val()
       },
       success: function(data) {
-        var city_selector = elem.siblings('.hq_city');
+        var city_selector = elem.siblings('.location_container_city').find(".hq_city");
         city_selector.html("");
         city_selector.append($('<option>', {
           value: "",
