@@ -95,9 +95,12 @@
           <select class="form-control hq_country re_hq_country_buy" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city re_hq_city_buy" name="hq_city">
-            <option value="" selected disabled>Choose a city</option>
-          </select>
+          <div class="location_container_city">
+            <select class="form-control hq_city re_hq_city_buy" name="hq_city">
+              <option value="" selected disabled>Choose a city</option>
+            </select>
+            <i style="font-size: 10px;">(Optional)</i></span>
+          </div>
         </div>
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
@@ -189,7 +192,7 @@
   <div class="option_visibility_target">
     <div class="row">
       <div class="col-md-3 col-sm-12 deal-heading">
-        <span>AUM</span>
+        <span>AUM<br><i style="font-size: 10px;">(Optional)</i></span>
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="aum" value="" class="form-control re_aum_buy" placeholder="Enter a value">
@@ -200,7 +203,7 @@
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-12 deal-heading">
-        <span>Number of Investments</span>
+        <span>Number of Investments<br><i style="font-size: 10px;">(Optional)</i></span>
       </div>
       <div class="col-md-4 col-sm-12 input-container input-group">
         <input type="number" name="number_of_investments" value="" class="form-control re_number_of_investments_buy" placeholder="Enter a value">
@@ -208,7 +211,7 @@
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-12 deal-heading">
-        <span>Preferred Investment Amount</span>
+        <span>Preferred Investment Amount<br><i style="font-size: 10px;">(Optional)</i></span>
         <span class="deal-subhead">(Multiple Choice)</span>
       </div>
       <div class="col-md-9 col-sm-12 input-container">

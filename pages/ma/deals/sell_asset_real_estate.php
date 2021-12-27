@@ -104,9 +104,12 @@
           <select class="form-control hq_country re_hq_country" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city re_hq_city" name="hq_city">
-            <option value="" selected disabled>Choose a city</option>
-          </select>
+          <div class="location_container_city">
+            <select class="form-control hq_city re_hq_city" name="hq_city">
+              <option value="" selected disabled>Choose a city</option>
+            </select>
+            <i style="font-size: 10px;">(Optional)</i></span>
+          </div>
         </div>
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>

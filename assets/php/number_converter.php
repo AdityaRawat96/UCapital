@@ -1,4 +1,29 @@
 <?php
+function formatPipeValue($pipedValue){
+  $values_array = explode(",", join(",", explode("|", $pipedValue)));
+  sort($values_array);
+  $output_string_1 = "";
+  $output_string_2 = "";
+  if($values_array[0] == "0"){
+    $output_string_1 = "Less than " . number_shorten($values_array[1]);
+  }else{
+    $output_string_1 = "From " . number_shorten($values_array[0]);
+  }
+  if($values_array[sizeof($values_array) -1] == "1000000000"){
+    $output_string_2 = "To More than " . number_shorten($values_array[sizeof($values_array) -2]);
+  }else{
+    $output_string_2 = "To " . number_shorten($values_array[sizeof($values_array) -1]);
+  }
+  if($values_array[0] == "0" && sizeof($values_array) == 2){
+    $output_string_1 = "Less than " . number_shorten($values_array[1]);
+    $output_string_2 = "";
+  }
+  if($values_array[sizeof($values_array) -1] == "1000000000" && sizeof($values_array) == 2){
+    $output_string_1 = "";
+    $output_string_2 = "More than " . number_shorten($values_array[1]);
+  }
+  return $output_string_1 . " " . $output_string_2;
+}
 // Shortens a number and attaches K, M, B, etc. accordingly
 function number_shorten($number, $precision = 1, $divisors = null) {
 
@@ -119,6 +144,17 @@ function generateLocationTags($countries, $cities){
   return $output_string;
 }
 
+
+function generateSurfaceArea($min, $max){
+  $output_string = "";
+  if($min === $max){
+    $output_string = $min . " sqm";
+  }else{
+    $output_string = "From " . $min . " To " . $max . " sqm";
+  }
+  return $output_string;
+}
+
 function shorten_number_range($type, $min, $max, $precision = 1, $divisors = null){
   $formatted_currency = "";
   if($type == "undisclosed"){
@@ -210,9 +246,9 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
       if($shorthand == 'k'){
-        return "Above ".number_format($min, 0);
+        return "More than ".number_format($min, 0);
       }else{
-        return "Above ".floatval(number_format($min / $divisor, $precision)) . $shorthand;
+        return "More than ".floatval(number_format($min / $divisor, $precision)) . $shorthand;
       }
     }else{
       $generatedString = "";
@@ -246,7 +282,7 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
         // We found our match, or there were no matches.
         // Either way, use the last defined value for $divisor.
         if($shorthand == 'k'){
-          $generatedString .= number_format($number, $precision)."  ";
+          $generatedString .= number_format($number, 0)."  ";
         }else{
           $generatedString .= floatval(number_format($number / $divisor, $precision)) . $shorthand."  ";
         }
@@ -347,4 +383,13 @@ function generateLocationTitle($who_i_am, $countries, $cities){
 }
 
 
+function formatMaturity($type, $min, $max){
+  $formatted_string = "";
+  if($type== "undisclosed"){
+    $formatted_string = "Undisclosed";
+  }else{
+    $formatted_string = $min . " - " . $max;
+  }
+  return $formatted_string;
+}
 ?>

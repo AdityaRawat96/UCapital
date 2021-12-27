@@ -16,7 +16,9 @@ if ($action == "buy") {
   real_estate.DEAL_SUBJECT AS TITLE_1,
   real_estate.REAL_ESTATE_TYP AS TITLE_2,
   real_estate.ASSET_STATUS AS DETAIL_1,
+  '-' AS DETAIL_2_TYPE,
   real_estate.TOTAL_SURFACE AS DETAIL_2,
+  '-' AS DETAIL_2_MAX,
   real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
   real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
   real_estate.ASSET_VAL_MIN AS VALUE_MIN,
@@ -39,7 +41,9 @@ if ($action == "buy") {
   'Buying' AS TITLE_1,
   npe.NPE_TYPE AS TITLE_2,
   npe.NPE_TYPE AS DETAIL_1,
-  npe.MARKET_VALUE AS DETAIL_2,
+  '-' AS DETAIL_2_TYPE,
+  npe.PRODUCT_TYPE AS DETAIL_2,
+  '-' AS DETAIL_2_MAX,
   '-' AS DETAIL_3,
   npe.VALUE_TYPE AS VALUE_TYPE,
   npe.VALUE_MIN AS VALUE_MIN,
@@ -62,7 +66,9 @@ if ($action == "buy") {
   'Buying' AS TITLE_1,
   credit.CREDIT_TYPE AS TITLE_2,
   credit.CREDIT_TYPE AS DETAIL_1,
-  '-' AS DETAIL_2,
+  credit.MATURITY_TYPE AS DETAIL_2_TYPE,
+  credit.MATURITY AS DETAIL_2,
+  credit.MATURITY_TO AS DETAIL_2_MAX,
   credit.PRODUCT_TYPE AS DETAIL_3,
   credit.VALUE_TYPE AS VALUE_TYPE,
   credit.VALUE_MIN AS VALUE_MIN,
@@ -85,11 +91,13 @@ if ($action == "buy") {
   business_company.WANT_TO_DO AS TITLE_1,
   business_company.ASSET_TYPE AS TITLE_2,
   business_company.SECTOR AS DETAIL_1,
+  '-' AS DETAIL_2_TYPE,
   business_company.INDUSTRY AS DETAIL_2,
+  '-' AS DETAIL_2_MAX,
   business_company.SUB_COMPANY_TYPE AS DETAIL_3,
-  business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
-  business_company.COMPANY_VAL_MIN AS VALUE_MIN,
-  business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+  '-' AS VALUE_TYPE,
+  business_company.INVESTMENT_SIZE AS VALUE_MIN,
+  '-' AS VALUE_MAX,
   business_company.CURRENCY AS CURRENCY,
   business_company.COUNTRY,
   business_company.CITY,
@@ -111,7 +119,7 @@ if ($action == "buy") {
   real_estate.REAL_ESTATE_TYP AS TITLE_2,
   real_estate.ASSET_STATUS AS DETAIL_1,
   real_estate.TOTAL_SURFACE AS DETAIL_2,
-  '-' AS DETAIL_3,
+  real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
   real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
   real_estate.ASSET_VAL_MIN AS VALUE_MIN,
   real_estate.ASSET_VAL_MAX AS VALUE_MAX,
@@ -194,7 +202,7 @@ if ($action == "buy") {
   LIMIT $offset, $limit";
 }
 $result = mysqli_query($con, $sql)
-  or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
+or die('An error occurred! Unable to process this request. ' . mysqli_error($con));
 
 if (mysqli_num_rows($result) > 0) {
   $response = array();

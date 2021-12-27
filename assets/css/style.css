@@ -604,7 +604,14 @@ svg {
   margin-bottom: 10px;
 }
 
+.location_container_city {
+  flex-direction: column;
+}
+
 .location_container select {
+  flex: 1 !important;
+}
+.location_container .location_container_city {
   flex: 1 !important;
 }
 .location_container input {
@@ -1038,4 +1045,10 @@ optgroup li {
 .is-invalid + .select2-container--default .select2-selection--multiple {
   outline: none;
   border-color: red !important;
+}
+
+.btn-location-remove{
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
 }

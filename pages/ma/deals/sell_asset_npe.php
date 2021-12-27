@@ -50,9 +50,12 @@
           <select class="form-control hq_country npe_hq_country" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city npe_hq_city" name="hq_city">
-            <option value="" selected disabled>Choose a city</option>
-          </select>
+          <div class="location_container_city">
+            <select class="form-control hq_city npe_hq_city" name="hq_city">
+              <option value="" selected disabled>Choose a city</option>
+            </select>
+            <i style="font-size: 10px;">(Optional)</i></span>
+          </div>
         </div>
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
@@ -111,7 +114,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Lien Position</span>
+      <span>Lien Position<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control lien_position npe_lien_position" name="lien_position">
@@ -124,7 +127,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Judicialized</span>
+      <span>Judicialized<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control judicialized npe_judicialized" name="judicialized">
@@ -136,12 +139,11 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Ratio</span>
+      <span>Ratio<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
     <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control ratio npe_ratio" name="ratio">
         <option value="" selected disabled>Choose an option</option>
-        <option value="OB">OB</option>
         <option value="Rate">Rate</option>
         <option value="Discounted Ratio">Discounted Ratio</option>
         <option value="Surface">Surface</option>

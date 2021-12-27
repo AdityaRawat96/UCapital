@@ -83,6 +83,16 @@ function generateLocationTags(countries, cities){
   return output_string;
 }
 
+function generateSurfaceArea(min, max){
+  var output_string = "";
+  if(min == max){
+    output_string = min + " sqm";
+  }else{
+    output_string = "From " + min + " To " + max + " sqm";
+  }
+  return output_string;
+}
+
 function generateLocationTitle(who_i_am, countries, cities){
   var country_list = countries.split("|");
   var city_list = cities.split("|");
@@ -97,6 +107,65 @@ function generateLocationTitle(who_i_am, countries, cities){
     }
   }
   return output_string;
+}
+
+function formatMaturity(type, min, max){
+  formatted_string = "";
+  if(type== "undisclosed"){
+    formatted_string = "Undisclosed";
+  }else{
+    formatted_string = min + " - " + max;
+  }
+  return formatted_string;
+}
+
+
+function formatPipeValue(pipedValue){
+  var values_array = $.map(pipedValue.split("|").join(",").split(","), function(value){
+    return parseInt(value, 10);
+    // or return +value; which handles float values as well
+  });
+  values_array.sort(function(a, b) {
+    return a - b;
+  });
+  output_string_1 = "";
+  output_string_2 = "";
+  if(values_array[0] == 0){
+    output_string_1 = "Less than " + formatNumberValueString(values_array[1]);
+  }else{
+    output_string_1 = "From " + formatNumberValueString(values_array[0]);
+  }
+  if(values_array[values_array.length -1] == 1000000000){
+    output_string_2 = "To More than " + formatNumberValueString(values_array[values_array.length -2]);
+  }else{
+    output_string_2 = "To " + formatNumberValueString(values_array[values_array.length -1]);
+  }
+  if(values_array[0] == 0 && values_array.length == 2){
+    output_string_1 = "Less than " + formatNumberValueString(values_array[1]);
+    output_string_2 = "";
+  }
+  if(values_array[values_array.length -1] == 1000000000 && values_array.length == 2){
+    output_string_1 = "";
+    output_string_2 = "More than " + formatNumberValueString(values_array[1]);
+  }
+  console.log("Values Array: "+ values_array);
+  return output_string_1 + " " + output_string_2;
+}
+
+function formatNumberValueString(format){
+  var SI_SYMBOL = ["", "k", "M", "B", "G", "T", "P", "E"];
+  var tier = Math.log10(Math.abs(format)) / 3 | 0;
+  var scaled = format;
+  var suffix = SI_SYMBOL[tier];
+  var scale = Math.pow(10, tier * 3);
+  if(tier > 1){
+    scaled = format / scale;
+    scaled = Math.round((scaled + Number.EPSILON) * 10) / 10;
+    formatted_string = scaled + suffix;
+  }else{
+    formatted_string = format.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  return formatted_string;
 }
 
 function formatDealValue(type, min, max, currency){
@@ -148,9 +217,9 @@ function formatDealValue(type, min, max, currency){
       if(tier2 > 1){
         scaled2 = max / scale2;
         scaled2 = Math.round((scaled2 + Number.EPSILON) * 10) / 10;
-        formatted_currency = scaled1 + " - " + scaled2 + suffix2 + " " + currency_symbol;
+        formatted_currency = "Less than " + scaled2 + suffix2 + " " + currency_symbol;
       }else{
-        formatted_currency = scaled1 + " - " + max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
+        formatted_currency = "Less than " + max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
     }else if(max == 1000000000){
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
@@ -160,9 +229,9 @@ function formatDealValue(type, min, max, currency){
       if(tier1 > 1){
         scaled1 = min / scale1;
         scaled1 = Math.round((scaled1 + Number.EPSILON) * 10) / 10;
-        formatted_currency = "Above " + scaled1 + suffix1 + " " + currency_symbol;
+        formatted_currency = "More than " + scaled1 + suffix1 + " " + currency_symbol;
       }else {
-        formatted_currency = "Above " + min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
+        formatted_currency = "More than " + min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
     }else{
       var tier1 = Math.log10(Math.abs(min)) / 3 | 0;
@@ -172,9 +241,9 @@ function formatDealValue(type, min, max, currency){
       if(tier1 > 1){
         scaled1 = min / scale1;
         scaled1 = Math.round((scaled1 + Number.EPSILON) * 10) / 10;
-        formatted_currency += scaled1 +  suffix1 + " - ";
+        formatted_currency += "From " + scaled1 +  suffix1;
       }else{
-        formatted_currency += min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " - ";
+        formatted_currency += "From " + min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
       var tier2 = Math.log10(Math.abs(max)) / 3 | 0;
       var scaled2 = max;
@@ -183,9 +252,9 @@ function formatDealValue(type, min, max, currency){
       if(tier2 > 1){
         scaled2 = max / scale2;
         scaled2 = Math.round((scaled2 + Number.EPSILON) * 10) / 10;
-        formatted_currency += scaled2 + suffix2 + " " + currency_symbol;
+        formatted_currency += " To " + scaled2 + suffix2 + " " + currency_symbol;
       }else{
-        formatted_currency += max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
+        formatted_currency += " To " + max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + currency_symbol;
       }
     }
   }

@@ -604,7 +604,7 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Number of employees</span>
                 </div>
-                <div class="col-md-9 col-sm-12 input-container">
+                <div class="col-md-9 col-sm-12 input-container input-group-multiple-radio">
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="0|10"> Less than 10<br>
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="10|50"> From 10 to 50<br>
                   <input type="radio" name="number_of_employees" class="bc_number_of_employees" value="50|100"> From 50 to 100<br>
@@ -653,7 +653,7 @@ if (isset($_SESSION['email'])) {
                 <div class="col-md-3 col-sm-12 deal-heading">
                   <span>Actual Ebitda Margin</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -696,7 +696,7 @@ if (isset($_SESSION['email'])) {
                   <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -746,7 +746,7 @@ if (isset($_SESSION['email'])) {
                   <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y1Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -767,7 +767,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" name="forcast_ebitda_1" class="form-control bc_for_ebd_1" placeholder="Enter a value for 1st year" id="ebd_y1y_n">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text">%</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -800,7 +800,7 @@ if (isset($_SESSION['email'])) {
                   <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -850,7 +850,7 @@ if (isset($_SESSION['email'])) {
                   <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y2Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -871,7 +871,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" name="forcast_ebitda_2" class="form-control bc_for_ebd_2" placeholder="Enter a value for 2nd year" id="ebd_y2y_n">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text">%</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -904,7 +904,7 @@ if (isset($_SESSION['email'])) {
                   <span>Revenue Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -954,7 +954,7 @@ if (isset($_SESSION['email'])) {
                   <span>Ebitda Margin Estimates</span>
                   <span class="deal-subhead">(Y3Y)</span>
                 </div>
-                <div class="col-md-4 col-sm-12 input-container">
+                <div class="col-md-4 col-sm-12 input-container input-group-multiple-radio">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -975,7 +975,7 @@ if (isset($_SESSION['email'])) {
                       <input type="number" name="forcast_ebitda_3" class="form-control bc_for_ebd_3" placeholder="Enter a value for 3rd year" id="ebd_y3y_n">
                     </div>
                     <div class="input-group-append">
-                      <span class="input-group-text span-currency-icon">€</span>
+                      <span class="input-group-text">%</span>
                     </div>
                   </div>
                   <div class="input-group">
@@ -1038,7 +1038,7 @@ if (isset($_SESSION['email'])) {
               <div class="col-md-3 col-sm-12">
               </div>
               <div class="col-md-9 col-sm-12">
-                <button type="submit" name="button" class="btn btn-success">Update</button>
+                <button type="submit" name="button" class="btn btn-success form_submit_button">Update</button>
               </div>
             </div>
             <br><br><br><br><br><br>
@@ -1075,6 +1075,22 @@ if (isset($_SESSION['email'])) {
 <script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script>
   $(document).ready(function() {
+        $(".form_submit_button").click(function(){
+          validateAdditionalFields();
+        });
+
+        $(".input-group-multiple-radio").on("click", "input", function() {
+          $(this).parent().parent().parent().parent().find("small").remove();
+          $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+        });
+        $(".input-group-multiple-radio").on("click", "select", function() {
+          $(this).parent().parent().parent().parent().find("small").remove();
+          $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+        });
+        $(".input-group-multiple-checkbox").on("click", "input", function() {
+          $(this).parent().parent().parent().parent().find("small").remove();
+        });
+
     $(".datepicker").datepicker({
       format: "yyyy",
       viewMode: "years",
@@ -1082,7 +1098,9 @@ if (isset($_SESSION['email'])) {
     });
     $('.ad-form').validate({
       submitHandler: function() {
-        validateAdditionalFields();
+        if(validateAdditionalFields()){
+          update();
+        }
       },
       rules: {
         deal_type: {
@@ -1107,7 +1125,8 @@ if (isset($_SESSION['email'])) {
           required: true
         },
         foundation_year: {
-          digits: true
+          digits: true,
+          required: true,
         },
         default_currency: {
           required: true,
@@ -1142,10 +1161,6 @@ if (isset($_SESSION['email'])) {
           required: true,
         },
         who_i_am: {
-          required: true,
-        },
-
-        investment_amount: {
           required: true,
         },
         what_i_want: {
@@ -1190,16 +1205,7 @@ if (isset($_SESSION['email'])) {
         collateral_type: {
           required: true,
         },
-        lien_position: {
-          required: true,
-        },
-        judicialized: {
-          required: true,
-        },
         borrower_details: {
-          required: true,
-        },
-        ratio: {
           required: true,
         },
         borrower_type: {
@@ -1221,13 +1227,32 @@ if (isset($_SESSION['email'])) {
           min: 0,
           max: 100
         },
-        rate: {
-          required: true,
-        },
         discounted_ratio: {
           min: 0,
           max: 100
         },
+        total_surface_area_min: {
+          required: true,
+          min: 0,
+          max: 50000
+        },
+        total_surface_area_max: {
+          required: true,
+          min: 0,
+          max: 50000
+        },
+        original_amount: {
+          digits: true,
+          required: true,
+        },
+        asking_price: {
+          digits: true,
+          required: true,
+        },
+        market_value: {
+          digits: true,
+          required: true,
+        }
       },
       errorElement: 'span',
       errorPlacement: function(error, element) {
@@ -1248,6 +1273,8 @@ if (isset($_SESSION['email'])) {
         formatSelectionTooBig: function(limit) {
           return 'Only 5 selections are allowed!';
         }
+      }).on("change", function (e) {
+        $(this).valid();
       });
     });
 
@@ -1257,6 +1284,8 @@ if (isset($_SESSION['email'])) {
         formatSelectionTooBig: function(limit) {
           return 'Only 5 selections are allowed!';
         }
+      }).on("change", function (e) {
+        $(this).valid();
       });
     });
 
@@ -1267,33 +1296,47 @@ if (isset($_SESSION['email'])) {
     var all_validated = true;
     $(".input-group-multiple-radio:visible").each(function() {
       if ($(this).find("input[type='radio']:checked").length == 0) {
-        if ($(this).find("small").length == 0) {
-          $(this).append("<small style='color: red'>Please select any one option</small>");
-          all_validated = false;
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
         }
+        $(this).append("<small style='color: #dc3545'>Please select any one option</small>");
+        all_validated = false;
         $([document.documentElement, document.body]).animate({
           scrollTop: $(this).offset().top
         }, 0);
       } else {
-        if ($(this).find("small").length == 0) {
-          var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
-          if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
-            var checkedVal = $(this).find("input[type='radio']:checked").val();
-            console.log(checkedVal);
-            if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
-              $(this).append("<small style='color: red'>This field is required</small>");
-              all_validated = false;
-              $([document.documentElement, document.body]).animate({
-                scrollTop: $(this).offset().top
-              }, 0);
-            }
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
+        }
+
+        var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
+        if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
+          var checkedVal = $(this).find("input[type='radio']:checked").val();
+          console.log(checkedVal);
+          if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
+            $(this).append("<small style='color: #dc3545'>This field is required</small>");
+            all_validated = false;
+            $([document.documentElement, document.body]).animate({
+              scrollTop: $(this).offset().top
+            }, 0);
           }
         }
       }
     });
-    if (all_validated) {
-      update();
-    }
+    $(".input-group-multiple-checkbox:visible").each(function() {
+      if ($(this).find("input[type='checkbox']:checked").length == 0) {
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
+        }
+        $(this).append("<small style='color: #dc3545'>Please select any one option</small>");
+        all_validated = false;
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $(this).offset().top
+        }, 0);
+      }
+    });
+
+    return all_validated;
   }
 
 
@@ -1469,7 +1512,6 @@ if (isset($_SESSION['email'])) {
     document.getElementById("company_business").value = "<?= $row["COMPANY_BUSINESS"] ?>";
     document.getElementById("keyElements").value = "<?= $row["KEY_ELEMENTS"] ?>";
     $("input[name=scalability][value='<?= $row["SCALABILITY"] ?>']").attr('checked', 'checked');
-    document.getElementById("market_share").value = "<?= $row["MARKET_SHARE"] ?>";
     $("input[name=forcast_revenue_1_sell][value='<?= $row['FORECAST_REVENUE_Y1_SEL'] ?>']").attr('checked', 'checked');
     $("input[name=forcast_revenue_2_sell][value='<?= $row['FORECAST_REVENUE_Y2_SEL'] ?>']").attr('checked', 'checked');
     $("input[name=forcast_revenue_3_sell][value='<?= $row['FORECAST_REVENUE_Y3_SEL'] ?>']").attr('checked', 'checked');
@@ -1632,7 +1674,11 @@ if (isset($_SESSION['email'])) {
         countryArr.forEach(function(element, index) {
           var curr_country = element;
           var countryId = "";
-          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+          if(index == 0){
+            location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div> </div>');
+          }else{
+            location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div>  <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+          }
           var keys = Object.keys(country_data).forEach(key => {
             if (key != "null") {
               location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
@@ -1695,9 +1741,9 @@ if (isset($_SESSION['email'])) {
     var deal_type = $(".deal_type:checked").val();
     var current_location_container = $(this).parent().parent();
     if (deal_type == "sell") {
-      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select><div class="location_container_city"> <select class="form-control hq_city" name="hq_city bc_hq_city"> <option value="" selected disabled>Choose a city</option> </select> <i style="font-size: 10px;">(Optional)</i></div><button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
     } else {
-      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+      current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country bc_hq_country_buy" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <div class="location_container_city"><select class="form-control hq_city bc_hq_city_buy" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <i style="font-size: 10px;">(Optional)</i></div><button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
     }
     var keys = Object.keys(country_data).forEach(key => {
       if (key != "null") {

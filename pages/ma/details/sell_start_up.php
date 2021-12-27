@@ -133,7 +133,7 @@
                       if($row['SCALABILITY'] == "Yes"){
                         echo "Yes, Area - ".$row['SCALABILITY_AREA'];
                       }else{
-                        echo "NO, Market Share - ".$row['MARKET_SHARE']."%";
+                        echo "No";
                       }
                       ?>
                     </td>

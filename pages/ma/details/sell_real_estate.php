@@ -72,7 +72,7 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Total surface approx.: </td>
-                    <td> <?=$row['TOTAL_SURFACE'] ? $row['TOTAL_SURFACE']." sqm" : "-"; ?> </td>
+                    <td> <?=generateSurfaceArea($row['TOTAL_SURFACE'], $row['TOTAL_SURFACE_MAX']); ?></td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Year of construction: </td>

@@ -87,7 +87,9 @@
                   real_estate.DEAL_SUBJECT AS TITLE_1,
                   real_estate.REAL_ESTATE_TYP AS TITLE_2,
                   real_estate.ASSET_STATUS AS DETAIL_1,
+                  '-' AS DETAIL_2_TYPE,
                   real_estate.TOTAL_SURFACE AS DETAIL_2,
+                  '-' AS DETAIL_2_MAX,
                   real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
                   real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
                   real_estate.ASSET_VAL_MIN AS VALUE_MIN,
@@ -98,7 +100,8 @@
                   real_estate.OFFER,
                   real_estate.IMAGE,
                   real_estate.KEY_ELEMENTS,
-                  real_estate.ASSET_TYPE
+                  real_estate.ASSET_TYPE,
+                  real_estate.INSERT_TMSTMP
                   FROM real_estate where DEAL = 'buy' AND  ID IN (".$re_ids_search."))
                   UNION ALL( SELECT
                   npe.ID,
@@ -108,7 +111,9 @@
                   'Buying' AS TITLE_1,
                   npe.NPE_TYPE AS TITLE_2,
                   npe.NPE_TYPE AS DETAIL_1,
-                  npe.MARKET_VALUE AS DETAIL_2,
+                  '-' AS DETAIL_2_TYPE,
+                  npe.PRODUCT_TYPE AS DETAIL_2,
+                  '-' AS DETAIL_2_MAX,
                   '-' AS DETAIL_3,
                   npe.VALUE_TYPE AS VALUE_TYPE,
                   npe.VALUE_MIN AS VALUE_MIN,
@@ -119,7 +124,8 @@
                   npe.OFFER,
                   npe.IMAGE,
                   '-' AS KEY_ELEMENTS,
-                  npe.ASSET_TYPE
+                  npe.ASSET_TYPE,
+                  npe.INSERT_TMSTMP
                   FROM npe where DEAL = 'buy' AND  ID IN (".$npe_ids_search."))
                   UNION ALL( SELECT
                   credit.ID,
@@ -129,7 +135,9 @@
                   'Buying' AS TITLE_1,
                   credit.CREDIT_TYPE AS TITLE_2,
                   credit.CREDIT_TYPE AS DETAIL_1,
-                  '-' AS DETAIL_2,
+                  credit.MATURITY_TYPE AS DETAIL_2_TYPE,
+                  credit.MATURITY AS DETAIL_2,
+                  credit.MATURITY_TO AS DETAIL_2_MAX,
                   credit.PRODUCT_TYPE AS DETAIL_3,
                   credit.VALUE_TYPE AS VALUE_TYPE,
                   credit.VALUE_MIN AS VALUE_MIN,
@@ -140,7 +148,8 @@
                   credit.OFFER,
                   credit.IMAGE,
                   '-' AS KEY_ELEMENTS,
-                  credit.ASSET_TYPE
+                  credit.ASSET_TYPE,
+                  credit.INSERT_TMSTMP
                   FROM credit where DEAL = 'buy' AND  ID IN (".$credits_ids_search."))
                   UNION ALL ( SELECT
                   business_company.ID,
@@ -150,18 +159,21 @@
                   business_company.WANT_TO_DO AS TITLE_1,
                   business_company.ASSET_TYPE AS TITLE_2,
                   business_company.SECTOR AS DETAIL_1,
+                  '-' AS DETAIL_2_TYPE,
                   business_company.INDUSTRY AS DETAIL_2,
+                  '-' AS DETAIL_2_MAX,
                   business_company.SUB_COMPANY_TYPE AS DETAIL_3,
-                  business_company.COMPANY_VAL_TYPE AS VALUE_TYPE,
-                  business_company.COMPANY_VAL_MIN AS VALUE_MIN,
-                  business_company.COMPANY_VAL_MAX AS VALUE_MAX,
+                  '-' AS VALUE_TYPE,
+                  business_company.INVESTMENT_SIZE AS VALUE_MIN,
+                  '-' AS VALUE_MAX,
                   business_company.CURRENCY AS CURRENCY,
                   business_company.COUNTRY,
                   business_company.CITY,
                   business_company.OFFER,
                   business_company.IMAGE,
                   business_company.KEY_ELEMENTS,
-                  business_company.ASSET_TYPE
+                  business_company.ASSET_TYPE,
+                  business_company.INSERT_TMSTMP
                   FROM business_company where DEAL = 'buy' AND  ID IN (".$company_ids_search."))";
 
 
@@ -173,7 +185,7 @@
                   real_estate.REAL_ESTATE_TYP AS TITLE_2,
                   real_estate.ASSET_STATUS AS DETAIL_1,
                   real_estate.TOTAL_SURFACE AS DETAIL_2,
-                  '-' AS DETAIL_3,
+                  real_estate.TOTAL_SURFACE_MAX AS DETAIL_3,
                   real_estate.ASSET_VAL_TYPE AS VALUE_TYPE,
                   real_estate.ASSET_VAL_MIN AS VALUE_MIN,
                   real_estate.ASSET_VAL_MAX AS VALUE_MAX,
@@ -183,7 +195,8 @@
                   real_estate.OFFER,
                   real_estate.IMAGE,
                   real_estate.KEY_ELEMENTS,
-                  real_estate.ASSET_TYPE
+                  real_estate.ASSET_TYPE,
+                  real_estate.INSERT_TMSTMP
                   FROM real_estate where DEAL = 'sell' AND  ID IN (".$re_ids_search."))
                   UNION ALL( SELECT
                   npe.ID,
@@ -203,7 +216,8 @@
                   npe.OFFER,
                   npe.IMAGE,
                   '-' AS KEY_ELEMENTS,
-                  npe.ASSET_TYPE
+                  npe.ASSET_TYPE,
+                  npe.INSERT_TMSTMP
                   FROM npe where DEAL = 'sell' AND ID IN (".$npe_ids_search."))
                   UNION ALL( SELECT
                   credit.ID,
@@ -223,7 +237,8 @@
                   credit.OFFER,
                   credit.IMAGE,
                   '-' AS KEY_ELEMENTS,
-                  credit.ASSET_TYPE
+                  credit.ASSET_TYPE,
+                  credit.INSERT_TMSTMP
                   FROM credit where DEAL = 'sell' AND ID IN (".$credits_ids_search."))
                   UNION ALL ( SELECT
                   business_company.ID,
@@ -243,34 +258,44 @@
                   business_company.OFFER,
                   business_company.IMAGE,
                   business_company.KEY_ELEMENTS,
-                  business_company.ASSET_TYPE
+                  business_company.ASSET_TYPE,
+                  business_company.INSERT_TMSTMP
                   FROM business_company where DEAL = 'sell' AND ID IN (".$company_ids_search."))";
                   $result_buy = mysqli_query($con, $sql_buy);
                   if (mysqli_num_rows($result_buy) > 0) {
                     while ($deal = mysqli_fetch_array($result_buy)) {
                       ?>
-                      <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?=$deal['ID']."-".$deal['ASSET_TYPE']."-".$deal['DEAL']; ?>">
-                        <a href="ma-detail.php?type=<?=strtolower($deal['ASSET_TYPE']); ?>&id=<?=$deal['ID']; ?>">
+                      <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
+                        <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
                           <div class="card mb-4 cart-custom-redious our-shadow">
                             <div class="card-img-contain">
                               <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
-                              <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                              <span class="left-tag-card our-back"> <?= $deal['ASSET_TYPE']; ?> </span>
+                              <span class="bottom-right-tag-card">
+                                <?php
+                                if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                                  echo formatPipeValue($deal['VALUE_MIN']);
+                                }else{
+                                  echo shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']);
+                                }
+                                ?>
+                              </span>
                               <span class="right-tag-batch">
                                 <span class="bookmark
-                                <?=" bookmark-".str_replace(" ","_", strtolower($deal['ASSET_TYPE'])); ?>
+                                <?= " bookmark-" . str_replace(" ", "_", strtolower($deal['ASSET_TYPE'])); ?>
                                 <?php
                                 $detail_1_icon = "";
                                 $detail_2_icon = "";
                                 $detail_1_title = "";
                                 $detail_2_title = "";
-                                $detail_2_value= "";
+                                $detail_2_value = "";
                                 $detail_2_title_end = "";
                                 if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
                                   $detail_1_icon = " fa-chart-pie";
                                   $detail_2_icon = " fa-industry";
                                   $detail_1_title = "Sector: ";
                                   $detail_2_title = "Industry: ";
-                                  $detail_2_value= $deal['DETAIL_2'];
+                                  $detail_2_value = $deal['DETAIL_2'];
                                   if (in_array($deal['ID'], $company_ids)) {
                                     echo " bookmark-active ";
                                   }
@@ -279,53 +304,47 @@
                                   $detail_2_icon = " fa-home";
                                   $detail_1_title = "Status: ";
                                   $detail_2_title = "Surface: ";
-                                  $detail_2_title_end = " sqm";
-                                  if($deal['DETAIL_3'] != "-"){
-                                    $detail_2_value= "From ".$deal['DETAIL_2']." To ".$deal['DETAIL_3'];
-                                  }else{
-                                    $detail_2_value = $deal['DETAIL_2'];
-                                  }
+                                  $detail_2_title_end = "";
+                                  $detail_2_value = generateSurfaceArea($deal['DETAIL_2'], $deal['DETAIL_3']);
                                   if (in_array($deal['ID'], $re_ids)) {
                                     echo " bookmark-active ";
                                   }
                                 } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
                                   $detail_1_icon = " fa-receipt";
-                                  $detail_2_icon = " fa-money-bill-wave";
+                                  $detail_2_icon = " fa-calendar";
                                   $detail_1_title = "Type: ";
-                                  $detail_2_title = "Value: ";
-                                  $detail_2_value= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX'])." ".add_currency_symbol($deal['CURRENCY']);
+                                  $detail_2_title = "Preferred Maturity: ";
+                                  $detail_2_value = formatMaturity($deal['DETAIL_2_TYPE'], $deal['DETAIL_2'], $deal['DETAIL_2_MAX']);
                                   if (in_array($deal['ID'], $credits_ids)) {
                                     echo " bookmark-active ";
                                   }
                                 } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
                                   $detail_1_icon = " fa-receipt";
-                                  $detail_2_icon = " fa-money-bill-wave";
+                                  $detail_2_icon = " fa-home";
                                   $detail_1_title = "Type: ";
-                                  $detail_2_title = "Value: ";
-                                  $detail_2_value= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX'])." ".add_currency_symbol($deal['CURRENCY']);
+                                  $detail_2_title = "Loan Type: ";
+                                  $detail_2_value = $deal['DETAIL_2'];
                                   if (in_array($deal['ID'], $npe_ids)) {
                                     echo " bookmark-active ";
                                   }
                                 }
-                                ?>"
-                                <?=' data-id="'.$deal['ID'].'"'; ?>>
+                                ?>" <?= ' data-id="' . $deal['ID'] . '"'; ?>>
                                 <i class="fas fa-bookmark fa-2x"></i>
                               </span>
                             </span>
                           </div>
                           <div class="d-flex flex-column justify-content-end p-2">
                             <span>
-                              <i><?=generateLocationTitle($deal['SUB_TITLE_1'], $deal['COUNTRY'], $deal['CITY']); ?></i>
+                              <i><?= generateLocationTitle($deal['SUB_TITLE_1'], $deal['COUNTRY'], $deal['CITY']); ?></i>
                             </span>
-                            <span class="deal-card-heading"><?=generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
+                            <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
                             <div class="listing">
-                              <span><i class="fas <?=$detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                              <span><i class="fas <?=$detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title.$detail_2_value.$detail_2_title_end; ?></span>
+                              <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                              <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
                               <hr>
-                              <span >
-                                <b>Key Elements:</b> <?=$deal['KEY_ELEMENTS']; ?>
+                              <span>
+                                <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
                               </span>
-                              <br>
                             </div>
                           </div>
                         </div>
@@ -338,29 +357,29 @@
                 if (mysqli_num_rows($result_sell) > 0) {
                   while ($deal = mysqli_fetch_array($result_sell)) {
                     ?>
-                    <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?=$deal['ID']."-".$deal['ASSET_TYPE']."-".$deal['DEAL']; ?>">
-                      <a href="ma-detail.php?type=<?=strtolower($deal['ASSET_TYPE']); ?>&id=<?=$deal['ID']; ?>">
+                    <div class="col-lg-4 col-md-6 col-sm-12 inline-block ma_card pagination-item ma-card-<?= $deal['ID'] . "-" . $deal['ASSET_TYPE'] . "-" . $deal['DEAL']; ?>">
+                      <a href="../ma/ma-detail.php?type=<?= strtolower($deal['ASSET_TYPE']); ?>&id=<?= $deal['ID']; ?>">
                         <div class="card mb-4 cart-custom-redious our-shadow">
                           <div class="card-img-contain">
                             <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
-                            <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
-                            <span class="bottom-right-tag-card"><?=shorten_number_range($deal['VALUE_TYPE'],$deal['VALUE_MIN'],$deal['VALUE_MAX'])." ".add_currency_symbol($deal['CURRENCY']); ?></span>
+                            <span class="left-tag-card our-back"> <?= $deal['ASSET_TYPE']; ?> </span>
+                            <span class="bottom-right-tag-card"><?= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']); ?></span>
                             <span class="right-tag-batch">
                               <span class="bookmark
-                              <?=" bookmark-".str_replace(" ","_", strtolower($deal['ASSET_TYPE'])); ?>
+                              <?= " bookmark-" . str_replace(" ", "_", strtolower($deal['ASSET_TYPE'])); ?>
                               <?php
                               $detail_1_icon = "";
                               $detail_2_icon = "";
                               $detail_1_title = "";
                               $detail_2_title = "";
-                              $detail_2_value= "";
+                              $detail_2_value = "";
                               $detail_2_title_end = "";
                               if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
                                 $detail_1_icon = " fa-chart-pie";
                                 $detail_2_icon = " fa-industry";
                                 $detail_1_title = "Sector: ";
                                 $detail_2_title = "Industry: ";
-                                $detail_2_value= $deal['DETAIL_2'];
+                                $detail_2_value = $deal['DETAIL_2'];
                                 if (in_array($deal['ID'], $company_ids)) {
                                   echo " bookmark-active ";
                                 }
@@ -369,8 +388,8 @@
                                 $detail_2_icon = " fa-home";
                                 $detail_1_title = "Status: ";
                                 $detail_2_title = "Surface: ";
-                                $detail_2_title_end = " sqm";
-                                $detail_2_value= $deal['DETAIL_2'];
+                                $detail_2_title_end = "";
+                                $detail_2_value = generateSurfaceArea($deal['DETAIL_2'], $deal['DETAIL_3']);
                                 if (in_array($deal['ID'], $re_ids)) {
                                   echo " bookmark-active ";
                                 }
@@ -379,7 +398,7 @@
                                 $detail_2_icon = " fa-calendar";
                                 $detail_1_title = "Type: ";
                                 $detail_2_title = "Maturity: ";
-                                $detail_2_value= $deal['DETAIL_2'];
+                                $detail_2_value = $deal['DETAIL_2'];
                                 if (in_array($deal['ID'], $credits_ids)) {
                                   echo " bookmark-active ";
                                 }
@@ -388,30 +407,28 @@
                                 $detail_2_icon = " fa-money-bill-wave";
                                 $detail_1_title = "Type: ";
                                 $detail_2_title = "Market Value: ";
-                                $detail_2_value= number_shorten($deal['DETAIL_2'])." ".add_currency_symbol($deal['CURRENCY']);
+                                $detail_2_value = number_shorten($deal['DETAIL_2']) . " " . add_currency_symbol($deal['CURRENCY']);
                                 if (in_array($deal['ID'], $npe_ids)) {
                                   echo " bookmark-active ";
                                 }
                               }
-                              ?>"
-                              <?=' data-id="'.$deal['ID'].'"'; ?>>
+                              ?>" <?= ' data-id="' . $deal['ID'] . '"'; ?>>
                               <i class="fas fa-bookmark fa-2x"></i>
                             </span>
                           </span>
                         </div>
                         <div class="d-flex flex-column justify-content-end p-2">
                           <span>
-                            <i><?=generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?></i>
+                            <i><?= generateLocationTags($deal['COUNTRY'], $deal['CITY']); ?></i>
                           </span>
-                          <span class="deal-card-heading"><?=generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
+                          <span class="deal-card-heading"><?= generateCardTitle(strtolower($deal['ASSET_TYPE']), $deal['DEAL'], $deal['TITLE_1'], $deal['TITLE_2'], $deal['DETAIL_3']); ?></span>
                           <div class="listing">
-                            <span><i class="fas <?=$detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title.str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
-                            <span><i class="fas <?=$detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title.$detail_2_value.$detail_2_title_end; ?></span>
+                            <span><i class="fas <?= $detail_1_icon; ?>"></i> &nbsp; <?= $detail_1_title . str_replace("|", ", ", $deal['DETAIL_1']); ?> </span><br>
+                            <span><i class="fas <?= $detail_2_icon; ?>"></i> &nbsp; <?= $detail_2_title . $detail_2_value . $detail_2_title_end; ?></span>
                             <hr>
-                            <span >
-                              <b>Key Elements:</b> <?=$deal['KEY_ELEMENTS']; ?>
+                            <span>
+                              <b>Key Elements:</b> <?= $deal['KEY_ELEMENTS']; ?>
                             </span>
-                            <br>
                           </div>
                         </div>
                       </div>

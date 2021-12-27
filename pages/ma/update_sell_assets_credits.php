@@ -12,7 +12,7 @@ if (isset($_SESSION['email'])) {
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
   }
-?>
+  ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -231,26 +231,28 @@ if (isset($_SESSION['email'])) {
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Ratio OB %</span>
+                  <span>Interest Rate</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="ratio_ob" id="ratio_ob" value="" class="form-control credit_ratio_ob" placeholder="Enter a value between 0 and 100">
+                  <div class="input-group">
+                    <input type="number" name="rate" id="rate" min=0 max=100 class="form-control credit_rate" placeholder="Enter a value">
+                    <div class="input-group-append">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Rate</span>
+                  <span>Discounted Rate</span>
                 </div>
                 <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="rate" id="rate" min=0 max=100 class="form-control credit_rate" placeholder="Enter a value">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-12 deal-heading">
-                  <span>Discounted Ratio %</span>
-                </div>
-                <div class="col-md-4 col-sm-12 input-container input-group">
-                  <input type="number" name="discounted_ratio" id="discounted_ratio" value="" class="form-control credit_discounted_ratio" placeholder="Enter a value between 0 and 100">
+                  <div class="input-group">
+                    <input type="number" name="discounted_ratio" id="discounted_ratio" value="" class="form-control credit_discounted_ratio" placeholder="Enter a value between 0 and 100">
+                    <div class="input-group-append">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,44 +261,63 @@ if (isset($_SESSION['email'])) {
               <div class="col-md-3 col-sm-12">
               </div>
               <div class="col-md-9 col-sm-12">
-                <button type="submit" name="button" class="btn btn-success">Update</button>
+                <button type="submit" name="button" class="btn btn-success form_submit_button">Update</button>
               </div>
             </div>
             <br><br><br><br><br><br>
           </form><br>
         </div>
         <!-- container-fluid -->
-    </section>
-    <!-- content -->
-  </div>
-  <!-- content-wrapper -->
-  <?php
-  include '../elements/footer.php';
-  ?>
+      </section>
+      <!-- content -->
+    </div>
+    <!-- content-wrapper -->
+    <?php
+    include '../elements/footer.php';
+    ?>
 
-<?php
-} else {
-?>
-  <script>
+    <?php
+  } else {
+    ?>
+    <script>
     window.open('../../', '_self')
-  </script>
-<?php
-}
-?>
-<link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-<link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    </script>
+    <?php
+  }
+  ?>
+  <link href="../../plugins/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="../../plugins/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
 
-<!-- jquery-validation -->
-<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<script src="../../plugins/filer/js/jquery.filer.min.js"></script>
-<script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <script src="../../plugins/filer/js/jquery.filer.min.js"></script>
+  <script>
   $(document).ready(function() {
+
+      $(".form_submit_button").click(function(){
+        validateAdditionalFields();
+      });
+
+      $(".input-group-multiple-radio").on("click", "input", function() {
+        $(this).parent().parent().parent().parent().find("small").remove();
+        $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+      });
+      $(".input-group-multiple-radio").on("click", "select", function() {
+        $(this).parent().parent().parent().parent().find("small").remove();
+        $(this).parent().parent().find("input[type=radio]").prop("checked", true);
+      });
+      $(".input-group-multiple-checkbox").on("click", "input", function() {
+        $(this).parent().parent().parent().parent().find("small").remove();
+      });
+
     $('.ad-form').validate({
       submitHandler: function() {
-        validateAdditionalFields();
+        if(validateAdditionalFields()){
+          update();
+        }
       },
       rules: {
         deal_type: {
@@ -321,7 +342,8 @@ if (isset($_SESSION['email'])) {
           required: true
         },
         foundation_year: {
-          digits: true
+          digits: true,
+          required: true,
         },
         default_currency: {
           required: true,
@@ -356,10 +378,6 @@ if (isset($_SESSION['email'])) {
           required: true,
         },
         who_i_am: {
-          required: true,
-        },
-
-        investment_amount: {
           required: true,
         },
         what_i_want: {
@@ -404,16 +422,7 @@ if (isset($_SESSION['email'])) {
         collateral_type: {
           required: true,
         },
-        lien_position: {
-          required: true,
-        },
-        judicialized: {
-          required: true,
-        },
         borrower_details: {
-          required: true,
-        },
-        ratio: {
           required: true,
         },
         borrower_type: {
@@ -439,6 +448,28 @@ if (isset($_SESSION['email'])) {
           min: 0,
           max: 100
         },
+        total_surface_area_min: {
+          required: true,
+          min: 0,
+          max: 50000
+        },
+        total_surface_area_max: {
+          required: true,
+          min: 0,
+          max: 50000
+        },
+        original_amount: {
+          digits: true,
+          required: true,
+        },
+        asking_price: {
+          digits: true,
+          required: true,
+        },
+        market_value: {
+          digits: true,
+          required: true,
+        }
       },
       errorElement: 'span',
       errorPlacement: function(error, element) {
@@ -460,33 +491,47 @@ if (isset($_SESSION['email'])) {
     var all_validated = true;
     $(".input-group-multiple-radio:visible").each(function() {
       if ($(this).find("input[type='radio']:checked").length == 0) {
-        if ($(this).find("small").length == 0) {
-          $(this).append("<small style='color: red'>Please select any one option</small>");
-          all_validated = false;
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
         }
+        $(this).append("<small style='color: #dc3545'>Please select any one option</small>");
+        all_validated = false;
         $([document.documentElement, document.body]).animate({
           scrollTop: $(this).offset().top
         }, 0);
       } else {
-        if ($(this).find("small").length == 0) {
-          var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
-          if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
-            var checkedVal = $(this).find("input[type='radio']:checked").val();
-            console.log(checkedVal);
-            if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
-              $(this).append("<small style='color: red'>This field is required</small>");
-              all_validated = false;
-              $([document.documentElement, document.body]).animate({
-                scrollTop: $(this).offset().top
-              }, 0);
-            }
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
+        }
+
+        var input_parent = $(this).find("input[type='radio']:checked").parent().parent().parent();
+        if (input_parent.find("input[type='number']").val() == "" || input_parent.find("option:selected").val() == "") {
+          var checkedVal = $(this).find("input[type='radio']:checked").val();
+          console.log(checkedVal);
+          if (!(checkedVal == "undisclosed" || checkedVal == "Undisclosed" || checkedVal == "any" || checkedVal == "Any")) {
+            $(this).append("<small style='color: #dc3545'>This field is required</small>");
+            all_validated = false;
+            $([document.documentElement, document.body]).animate({
+              scrollTop: $(this).offset().top
+            }, 0);
           }
         }
       }
     });
-    if (all_validated) {
-      update();
-    }
+    $(".input-group-multiple-checkbox:visible").each(function() {
+      if ($(this).find("input[type='checkbox']:checked").length == 0) {
+        if ($(this).find("small").length > 0) {
+          $(this).find("small").remove();
+        }
+        $(this).append("<small style='color: #dc3545'>Please select any one option</small>");
+        all_validated = false;
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $(this).offset().top
+        }, 0);
+      }
+    });
+
+    return all_validated;
   }
 
   function update() {
@@ -512,9 +557,9 @@ if (isset($_SESSION['email'])) {
     });
 
     if (countrySetted)
-      response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
+    response['credit_hq_country'] = countryVal.substring(0, countryVal.length - 1);
     if (citySetted)
-      response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
+    response['credit_hq_city'] = cityVal.substring(0, cityVal.length - 1);
     response['credit_state'] = $(".credit_state").val();
     response['credit_post_code'] = $(".credit_post_code").val();
     response['credit_lien_position'] = $(".credit_lien_position").val();
@@ -525,7 +570,7 @@ if (isset($_SESSION['email'])) {
     response['credit_market_value'] = $(".credit_market_value").val();
     response['credit_judicialized'] = $(".credit_judicialized").val();
     response['credit_borrower_details'] = $(".credit_borrower_details").val();
-    response['credit_ratio_ob'] = $(".credit_ratio_ob").val();
+    response['credit_ratio_ob'] = 0;
     response['credit_rate'] = $(".credit_rate").val();
     response['credit_discounted_ratio'] = $(".credit_discounted_ratio").val();
     response['asset_type'] = "Credit";
@@ -541,9 +586,9 @@ if (isset($_SESSION['email'])) {
         console.log(data);
         if (data.trim() == "success") {
           swal("Success!", "Deal Updated!", "success")
-            .then((value) => {
-              window.location.href = "../profile/index.php?message=success&target=<?=$redirect_target;?>";
-            });
+          .then((value) => {
+            window.location.href = "../profile/index.php?message=success&target=<?=$redirect_target;?>";
+          });
         } else {
           swal("Error!", "An unexpected error occurred, please try again!", "error");
         }
@@ -566,7 +611,6 @@ if (isset($_SESSION['email'])) {
     document.getElementById("original_amount").value = "<?= $row["ORIGINAL_AMOUNT"] ?>";
     document.getElementById("asking_price").value = "<?= $row["ASKING_PRICE"] ?>";
     document.getElementById("market_value").value = "<?= $row["MARKET_VALUE"] ?>";
-    document.getElementById("ratio_ob").value = "<?= $row["RATIO_OB"] ?>";
     document.getElementById("rate").value = "<?= $row["RATE"] ?>";
     document.getElementById("discounted_ratio").value = "<?= $row["DISCOUNTED_RATIO"] ?>";
     if ('' != "<?= $row["BORROWER_SUBCAT"] ?>") {
@@ -602,181 +646,185 @@ if (isset($_SESSION['email'])) {
 </script>
 
 <script>
-  var country_data;
-  $(document).ready(function() {
-    setValues();
-    $.ajax({
-      type: 'POST',
-      url: "../../assets/php/getCountries.php",
-      dataType: 'json',
-      success: function(data) {
-        country_data = data.reduce(function(result, current) {
-          result[current.area] = result[current.area] || [];
-          result[current.area].push(current);
-          return result;
-        }, {});
-        var countryVal = "<?= $row['COUNTRY'] ?>";
-        var cityVal = "<?= $row['CITY'] ?>";
-        countryArr = countryVal.split("|");
-        cityArr = cityVal.split("|");
-        var location_container = $(".location_container");
-        countryArr.forEach(function(element, index) {
-          var curr_country = element;
-          var countryId = "";
-          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-          var keys = Object.keys(country_data).forEach(key => {
-            if (key != "null") {
-              location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
-              $.each(country_data[key], function(index, element) {
-                location_container.find('.hq_country').last().append($('<option>', {
-                  value: element.id,
-                  text: element.country,
-                  selected: element.country == curr_country ? true : false
-                }));
-                if (index === country_data[key].length - 1) {
-                  location_container.find('.hq_country').last().append('</optgroup>');
-                }
-              });
-            } else {
-              location_container.find('.hq_country').last().append($('<option>', {
-                value: "0",
-                text: "All",
-                selected: "All" == curr_country ? true : false
-              }));
-            }
-          });
-          countryId = location_container.find('.hq_country').last().val();
-          syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
-            console.log(err);
-          })
-        });
-      }
-    });
-  });
-
-  function syncLoadCity(countryId, cityVal, domElem) {
-    console.log(cityVal);
-    return new Promise(function(resolve, reject) {
-      $.ajax({
-        type: 'POST',
-        url: "../../assets/php/getCities.php",
-        dataType: 'json',
-        data: {
-          country_id: countryId
-        },
-        success: function(data) {
-          data.forEach(element => {
-            domElem.append($('<option>', {
-              value: element.city,
-              text: element.city,
-              selected: element.city == cityVal ? true : false
-            }));
-          });
-
-          resolve()
-        },
-        error: function(err) {
-          reject(err)
+var country_data;
+$(document).ready(function() {
+  setValues();
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCountries.php",
+    dataType: 'json',
+    success: function(data) {
+      country_data = data.reduce(function(result, current) {
+        result[current.area] = result[current.area] || [];
+        result[current.area].push(current);
+        return result;
+      }, {});
+      var countryVal = "<?= $row['COUNTRY'] ?>";
+      var cityVal = "<?= $row['CITY'] ?>";
+      countryArr = countryVal.split("|");
+      cityArr = cityVal.split("|");
+      var location_container = $(".location_container");
+      countryArr.forEach(function(element, index) {
+        var curr_country = element;
+        var countryId = "";
+        if(index == 0){
+          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div> </div>');
+        }else{
+          location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select>  <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div>  <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
         }
-      });
-    });
-  }
-
-  $(".add-location").on('click', function() {
-    var deal_type = $(".deal_type:checked").val();
-    var current_location_container = $(this).parent().parent();
-    current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select> <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
-    var keys = Object.keys(country_data).forEach(key => {
-      if (key != "null") {
-        current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
-        $.each(country_data[key], function(index, element) {
-          current_location_container.find('.hq_country').last().append($('<option>', {
-            value: element.id,
-            text: element.country
-          }));
-          if (index === country_data[key].length - 1) {
-            current_location_container.find('.hq_country').last().append('</optgroup>');
+        var keys = Object.keys(country_data).forEach(key => {
+          if (key != "null") {
+            location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+            $.each(country_data[key], function(index, element) {
+              location_container.find('.hq_country').last().append($('<option>', {
+                value: element.id,
+                text: element.country,
+                selected: element.country == curr_country ? true : false
+              }));
+              if (index === country_data[key].length - 1) {
+                location_container.find('.hq_country').last().append('</optgroup>');
+              }
+            });
+          } else {
+            location_container.find('.hq_country').last().append($('<option>', {
+              value: "0",
+              text: "All",
+              selected: "All" == curr_country ? true : false
+            }));
           }
         });
-      } else {
-        current_location_container.find('.hq_country').last().append($('<option>', {
-          value: "0",
-          text: "All"
-        }));
-      }
-    });
+        countryId = location_container.find('.hq_country').last().val();
+        syncLoadCity(countryId, cityArr[index], location_container.find('.hq_city').last()).then(function(data) {}).catch(function(err) {
+          console.log(err);
+        })
+      });
+    }
   });
+});
 
-  $(".location_holder").on("click", ".btn-location-remove", function() {
-    $(this).parent().remove();
-  });
-
-  $("body").on("change", ".hq_country", function() {
-    loadCities($(this));
-  });
-
-  function loadCities(elem) {
+function syncLoadCity(countryId, cityVal, domElem) {
+  console.log(cityVal);
+  return new Promise(function(resolve, reject) {
     $.ajax({
       type: 'POST',
       url: "../../assets/php/getCities.php",
       dataType: 'json',
       data: {
-        country_id: elem.val()
+        country_id: countryId
       },
       success: function(data) {
-        var city_selector = elem.siblings('.hq_city');
-        city_selector.html("");
-        city_selector.append($('<option>', {
-          value: "",
-          text: "Choose a city",
-          selected: true,
-          disabled: true
-        }));
-        $.each(data, function(index, element) {
-          city_selector.append($('<option>', {
+        data.forEach(element => {
+          domElem.append($('<option>', {
             value: element.city,
-            text: element.city
+            text: element.city,
+            selected: element.city == cityVal ? true : false
           }));
         });
+
+        resolve()
+      },
+      error: function(err) {
+        reject(err)
       }
     });
-  }
+  });
+}
+
+$(".add-location").on('click', function() {
+  var deal_type = $(".deal_type:checked").val();
+  var current_location_container = $(this).parent().parent();
+  current_location_container.append('<div class="col-md-8 col-sm-12 location_container"> <select class="form-control hq_country" name="hq_country"> <option value="" selected disabled>Choose a country</option> </select> <div class="location_container_city"><select class="form-control hq_city" name="hq_city"> <option value="" selected disabled>Choose a city</option> </select><i style="font-size: 10px;">(Optional)</i></div>  <button class="btn btn-danger btn-location-remove"><i class="fas fa-times"></i></button> </div>');
+  var keys = Object.keys(country_data).forEach(key => {
+    if (key != "null") {
+      current_location_container.find('.hq_country').last().append('<optgroup label="' + key + '">');
+      $.each(country_data[key], function(index, element) {
+        current_location_container.find('.hq_country').last().append($('<option>', {
+          value: element.id,
+          text: element.country
+        }));
+        if (index === country_data[key].length - 1) {
+          current_location_container.find('.hq_country').last().append('</optgroup>');
+        }
+      });
+    } else {
+      current_location_container.find('.hq_country').last().append($('<option>', {
+        value: "0",
+        text: "All"
+      }));
+    }
+  });
+});
+
+$(".location_holder").on("click", ".btn-location-remove", function() {
+  $(this).parent().remove();
+});
+
+$("body").on("change", ".hq_country", function() {
+  loadCities($(this));
+});
+
+function loadCities(elem) {
+  $.ajax({
+    type: 'POST',
+    url: "../../assets/php/getCities.php",
+    dataType: 'json',
+    data: {
+      country_id: elem.val()
+    },
+    success: function(data) {
+      var city_selector = elem.siblings('.hq_city');
+      city_selector.html("");
+      city_selector.append($('<option>', {
+        value: "",
+        text: "Choose a city",
+        selected: true,
+        disabled: true
+      }));
+      $.each(data, function(index, element) {
+        city_selector.append($('<option>', {
+          value: element.city,
+          text: element.city
+        }));
+      });
+    }
+  });
+}
 </script>
 
 <!-- NPE Sell -->
 <script type="text/javascript">
-  $(".product_type").change(function() {
-    document.getElementById("collateral_type").value = "";
-    if ($(this).find("option:selected").val() == "Secured") {
-      $(".collateral_type").fadeIn();
-    } else {
-      $(".collateral_type").fadeOut();
-    }
-  })
+$(".product_type").change(function() {
+  document.getElementById("collateral_type").value = "";
+  if ($(this).find("option:selected").val() == "Secured") {
+    $(".collateral_type").fadeIn();
+  } else {
+    $(".collateral_type").fadeOut();
+  }
+})
 </script>
 
 <!-- Credits Sell -->
 <script type="text/javascript">
-  $(".borrower_type").change(function() {
-    if ($(this).find("option:selected").data("categories")) {
-      $(".borrower_type_category").html("");
+$(".borrower_type").change(function() {
+  if ($(this).find("option:selected").data("categories")) {
+    $(".borrower_type_category").html("");
+    $(".borrower_type_category").append($('<option>', {
+      value: "",
+      text: "Choose type of " + $(this).val(),
+      selected: true,
+      disabled: true
+    }));
+    var category_array = $(this).find("option:selected").data("categories").split(",");
+    for (var i = 0; i < category_array.length; i++) {
       $(".borrower_type_category").append($('<option>', {
-        value: "",
-        text: "Choose type of " + $(this).val(),
-        selected: true,
-        disabled: true
+        value: category_array[i].toLowerCase(),
+        text: category_array[i]
       }));
-      var category_array = $(this).find("option:selected").data("categories").split(",");
-      for (var i = 0; i < category_array.length; i++) {
-        $(".borrower_type_category").append($('<option>', {
-          value: category_array[i].toLowerCase(),
-          text: category_array[i]
-        }));
-      }
-      $(".dynamic_category_borrower").html($(this).val());
-      $(".borrower_type_category_container").fadeIn();
-    } else {
-      $(".borrower_type_category_container").fadeOut();
     }
-  })
+    $(".dynamic_category_borrower").html($(this).val());
+    $(".borrower_type_category_container").fadeIn();
+  } else {
+    $(".borrower_type_category_container").fadeOut();
+  }
+})
 </script>

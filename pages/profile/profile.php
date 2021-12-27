@@ -167,7 +167,7 @@ if(isset($_GET['target'])){
                         <div class="card mb-4 cart-custom-redious our-shadow">
                           <div class="card-img-contain">
                             <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
-                            <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                            <span class="left-tag-card our-back"> <?= $deal['ASSET_TYPE']; ?> </span>
                             <span class="bottom-right-tag-card"><?= shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']); ?></span>
                             <span class="right-tag-batch">
                               <span class="bookmark
@@ -193,8 +193,8 @@ if(isset($_GET['target'])){
                                 $detail_2_icon = " fa-home";
                                 $detail_1_title = "Status: ";
                                 $detail_2_title = "Surface: ";
-                                $detail_2_title_end = " sqm";
-                                $detail_2_value = $deal['DETAIL_2'];
+                                $detail_2_title_end = "";
+                                $detail_2_value = generateSurfaceArea($deal['DETAIL_2'], $deal['DETAIL_3']);
                                 if (in_array($deal['ID'], $re_ids)) {
                                   echo " bookmark-active ";
                                 }
@@ -263,7 +263,16 @@ if(isset($_GET['target'])){
                       <div class="card mb-4 cart-custom-redious our-shadow">
                         <div class="card-img-contain">
                           <img class="card-img-top ma-img" src="../../assets/uploads/<?= $deal['IMAGE']; ?>" alt="image">
-                          <span class="left-tag-card our-back"> <?= $deal['OFFER']; ?> </span>
+                          <span class="left-tag-card our-back"> <?= $deal['ASSET_TYPE']; ?> </span>
+                          <span class="bottom-right-tag-card">
+                            <?php
+                            if (strtolower($deal['ASSET_TYPE']) == "business company" || strtolower($deal['ASSET_TYPE']) == "start up") {
+                              echo formatPipeValue($deal['VALUE_MIN']);
+                            }else{
+                              echo shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']);
+                            }
+                            ?>
+                          </span>
                           <span class="right-tag-batch">
                             <span class="bookmark
                             <?= " bookmark-" . str_replace(" ", "_", strtolower($deal['ASSET_TYPE'])); ?>
@@ -288,30 +297,26 @@ if(isset($_GET['target'])){
                               $detail_2_icon = " fa-home";
                               $detail_1_title = "Status: ";
                               $detail_2_title = "Surface: ";
-                              $detail_2_title_end = " sqm";
-                              if ($deal['DETAIL_3'] != "-") {
-                                $detail_2_value = "From " . $deal['DETAIL_2'] . " To " . $deal['DETAIL_3'];
-                              } else {
-                                $detail_2_value = $deal['DETAIL_2'];
-                              }
+                              $detail_2_title_end = "";
+                              $detail_2_value = generateSurfaceArea($deal['DETAIL_2'], $deal['DETAIL_3']);
                               if (in_array($deal['ID'], $re_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "credits") {
                               $detail_1_icon = " fa-receipt";
-                              $detail_2_icon = " fa-money-bill-wave";
+                              $detail_2_icon = " fa-calendar";
                               $detail_1_title = "Type: ";
-                              $detail_2_title = "Value: ";
-                              $detail_2_value = shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']);
+                              $detail_2_title = "Preferred Maturity: ";
+                              $detail_2_value = formatMaturity($deal['DETAIL_2_TYPE'], $deal['DETAIL_2'], $deal['DETAIL_2_MAX']);
                               if (in_array($deal['ID'], $credits_ids)) {
                                 echo " bookmark-active ";
                               }
                             } else if (strtolower($deal['ASSET_TYPE']) == "npe") {
                               $detail_1_icon = " fa-receipt";
-                              $detail_2_icon = " fa-money-bill-wave";
+                              $detail_2_icon = " fa-home";
                               $detail_1_title = "Type: ";
-                              $detail_2_title = "Value: ";
-                              $detail_2_value = shorten_number_range($deal['VALUE_TYPE'], $deal['VALUE_MIN'], $deal['VALUE_MAX']) . " " . add_currency_symbol($deal['CURRENCY']);
+                              $detail_2_title = "Loan Type: ";
+                              $detail_2_value = $deal['DETAIL_2'];
                               if (in_array($deal['ID'], $npe_ids)) {
                                 echo " bookmark-active ";
                               }

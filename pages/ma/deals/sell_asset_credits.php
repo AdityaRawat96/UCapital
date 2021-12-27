@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Default Currency</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control default_currency credit_default_currency" name="company_type">
         <option data-value="€" selected value='Euro'>Euro</option>
         <option data-value="$" value='Dollar'>Dollar</option>
@@ -20,7 +20,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Borrower</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control borrower_type credit_borrower_type" name="borrower_type">
         <option value="" selected disabled>Choose type of Borrower</option>
         <option value="Household" data-categories="Super Prime, Prime, Subprime">Household</option>
@@ -33,7 +33,7 @@
       <div class="col-md-3 col-sm-12 deal-heading">
         <span>Type of <span class="dynamic_category_borrower"></span></span>
       </div>
-      <div class="col-md-9 col-sm-12 input-container">
+      <div class="col-md-9 col-sm-12 input-container input-group">
         <select class="form-control borrower_type_category credit_borrower_type_category" name="borrower_type_category">
           <option value="" selected disabled>Choose type of <span class="dynamic_category_borrower"></span></option>
         </select>
@@ -45,7 +45,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Type of Credit</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control credit_type" name="credit_type">
         <option value="" selected disabled>Choose type of Credit</option>
         <option value="Commercial">Commercial</option>
@@ -58,7 +58,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Typology</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control typology credit_typology" name="typology">
         <option value="" selected disabled>Choose Typology</option>
         <option value="Recourse">Recourse</option>
@@ -70,7 +70,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Maturity</span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <input type="date" name="maturity" value="" class="form-control credit_maturity">
     </div>
   </div>
@@ -78,7 +78,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Loan/Product type</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <select class="form-control product_type credit_product_type" name="product_type">
         <option value="" selected disabled>Choose type of Loan/Product</option>
         <option value="Secured">Secured</option>
@@ -92,7 +92,7 @@
       <div class="col-md-3 col-sm-12 deal-heading">
         <span>Collateral</span>
       </div>
-      <div class="col-md-9 col-sm-12 input-container">
+      <div class="col-md-9 col-sm-12 input-container input-group">
         <select class="form-control collateral_type credit_collateral_type" name="collateral_type">
           <option value="" selected disabled>Choose type of Collateral</option>
           <option value="Real Estate">Real Estate</option>
@@ -108,15 +108,18 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Location</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <div class="row location_holder">
         <div class="col-md-8 col-sm-12 location_container">
           <select class="form-control hq_country credit_hq_country" name="hq_country">
             <option value="" selected disabled>Choose a country</option>
           </select>
-          <select class="form-control hq_city credit_hq_city" name="hq_city">
-            <option value="" selected disabled>Choose a city</option>
-          </select>
+          <div class="location_container_city">
+            <select class="form-control hq_city credit_hq_city" name="hq_city">
+              <option value="" selected disabled>Choose a city</option>
+            </select>
+            <i style="font-size: 10px;">(Optional)</i></span>
+          </div>
         </div>
         <div class="col-md-4 col-sm-12">
           <button type="button" name="button" class="btn btn-add-custom form-control add-location">+ Add a location</button>
@@ -126,9 +129,9 @@
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Lien Position</span>
+      <span>Lien Position<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control lien_position credit_lien_position" name="lien_position">
         <option value="" selected disabled>Choose lien position</option>
         <option value="1st">1st</option>
@@ -141,7 +144,7 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>General Description</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="general_description" rows="3" class="form-control credit_description" placeholder="Type a description"></textarea>
     </div>
   </div>
@@ -181,9 +184,9 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Judicialized</span>
+      <span>Judicialized<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
+    <div class="col-md-4 col-sm-12 input-container input-group">
       <select class="form-control judicialized credit_judicialized" name="judicialized">
         <option value="" selected disabled>Choose an option</option>
         <option value="1">Yes</option>
@@ -195,32 +198,34 @@
     <div class="col-md-3 col-sm-12 deal-heading">
       <span>Borrower Details</span>
     </div>
-    <div class="col-md-9 col-sm-12 input-container">
+    <div class="col-md-9 col-sm-12 input-container input-group">
       <textarea name="borrower_details" rows="3" class="form-control credit_borrower_details" placeholder="Type borrower details"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Ratio OB %</span>
+      <span>Interest Rate<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="ratio_ob" value="" class="form-control credit_ratio_ob" placeholder="Enter a value between 0 and 100">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Rate</span>
-    </div>
-    <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="rate" min=0 max=100 class="form-control credit_rate" placeholder="Enter a value">
+    <div class="col-md-4 col-sm-12 input-container input-group">
+      <div class="input-group">
+        <input type="number" name="rate" min=0 max=100 class="form-control credit_rate" placeholder="Enter a value">
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-12 deal-heading">
-      <span>Discounted Ratio %</span>
+      <span>Discounted Rate<br><i style="font-size: 10px;">(Optional)</i></span>
     </div>
-    <div class="col-md-4 col-sm-12 input-container">
-      <input type="number" name="discounted_ratio" value="0" class="form-control credit_discounted_ratio" placeholder="Enter a value between 0 and 100">
+    <div class="col-md-4 col-sm-12 input-container input-group">
+      <div class="input-group">
+        <input type="number" name="discounted_ratio" class="form-control credit_discounted_ratio" placeholder="Enter a value between 0 and 100">
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
