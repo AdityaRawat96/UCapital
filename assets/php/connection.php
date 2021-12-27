@@ -7,7 +7,7 @@ define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'ucapital');
-define('DB_PORT', '3308');
+define('DB_PORT', '3306');
 
 //Email Configuration
 define('EMAIL_HOST', 'mail.structalpha.com');

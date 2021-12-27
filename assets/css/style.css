@@ -910,6 +910,12 @@ optgroup li {
   }
 }
 
+@media (max-width: 768px) {
+  .deal-heading {
+    align-items: start;
+  }
+}
+
 .selector .price-slider:before {
   position: absolute;
   top: 50%;

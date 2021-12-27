@@ -4,12 +4,16 @@ $published_sell_deal = array();
 include('../../assets/php/getProfileData.php');
 
 $result_buy = getBuyProfileData($con, $user_id, 0, 12);
-foreach ($result_buy as $val) {
-  array_push($published_buy_deal, $val);
-}
 $result_sell = getSellProfileData($con, $user_id, 0, 12);
-foreach ($result_sell as $val) {
-  array_push($published_sell_deal, $val);
+if($result_buy != "failed"){
+  foreach ($result_buy as $val) {
+    array_push($published_buy_deal, $val);
+  }
+}
+if($result_sell != "failed"){
+  foreach ($result_sell as $val) {
+    array_push($published_sell_deal, $val);
+  }
 }
 $company_ids = array();
 $npe_ids = array();

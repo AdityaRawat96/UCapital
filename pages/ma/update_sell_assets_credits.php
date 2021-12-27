@@ -374,9 +374,6 @@ if (isset($_SESSION['email'])) {
         key_elements: {
           required: true,
         },
-        investment_size: {
-          required: true,
-        },
         who_i_am: {
           required: true,
         },
