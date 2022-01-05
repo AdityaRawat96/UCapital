@@ -81,11 +81,11 @@
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> AUM: </td>
-                    <td> <?=$row['AUM'] ? $row['AUM'] : "-";  ?> </td>
+                    <td> <?=$row['AUM'] ? number_shorten($row['AUM'])." ".add_currency_symbol($row['CURRENCY']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Number of investments: </td>
-                    <td> <?=$row['NUM_OF_INVESTMENT'] ? $row['NUM_OF_INVESTMENT'] : "-";  ?> </td>
+                    <td> <?=$row['NUM_OF_INVESTMENT'] ? number_shorten($row['NUM_OF_INVESTMENT']) : "-";  ?> </td>
                   </tr>
                   <tr class="profile-investor-heading">
                     <td> Preferred investment amount: </td>

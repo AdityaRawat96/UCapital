@@ -365,7 +365,7 @@ if (isset($_SESSION['email'])) {
         }
       });
       $(".input-group-multiple-checkbox:visible").each(function() {
-        if ($(this).find("input[type='checkbox']:checked").length == 0) {
+        if ($(this).find("input[type='checkbox']:checked").length == 0 && $(this).find("input[type='radio']:checked").length == 0) {
           if ($(this).find("small").length > 0) {
             $(this).find("small").remove();
           }

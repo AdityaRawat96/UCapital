@@ -131,12 +131,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_company_value_sel" id="company_value_sel" name="company_value_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500'000</option>
-                        <option value="500000|1000000">from 500'000 to 1 million</option>
-                        <option value="1000000|10000000">from 1 to 10 million</option>
-                        <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|250000000">from 50 to 250 million</option>
-                        <option value="250000000|1000000000">over 250 million</option>
+                        <option value="0|500000">from 0 to 500,000</option>
+                        <option value="500000|1000000">from 500,000 to 1M</option>
+                        <option value="1000000|10000000">from 1 to 10M</option>
+                        <option value="10000000|50000000">from 10 to 50M</option>
+                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
                   </div>
@@ -180,12 +180,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_investment_required_value_sel" id="investment_required_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500'000</option>
-                        <option value="500000|1000000">from 500'000 to 1 million</option>
-                        <option value="1000000|10000000">from 1 to 10 million</option>
-                        <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|250000000">from 50 to 250 million</option>
-                        <option value="250000000|1000000000">over 250 million</option>
+                        <option value="0|500000">from 0 to 500,000</option>
+                        <option value="500000|1000000">from 500,000 to 1M</option>
+                        <option value="1000000|10000000">from 1 to 10M</option>
+                        <option value="10000000|50000000">from 10 to 50M</option>
+                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
                   </div>
@@ -624,10 +624,10 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|1000000">&#60; 1 million</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                        <option value="0|1000000">&#60; 1M</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
                   </div>
@@ -714,10 +714,10 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select name="forcast_revenue_1" class="form-control bc_for_rev_1" id="rev_y1y">
                         <option value="" selected disabled>Select a value for 1st year</option>
-                        <option value="0|1000000">&#60; 1 million</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                        <option value="0|1000000">&#60; 1M</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
                     <div class="input-group-append">
@@ -818,10 +818,10 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select name="forcast_revenue_2" class="form-control bc_for_rev_2" id="rev_y2y">
                         <option value="" selected disabled>Select a value for 2nd year</option>
-                        <option value="0|1000000">&#60; 1 million</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                        <option value="0|1000000">&#60; 1M</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
                     <div class="input-group-append">
@@ -922,10 +922,10 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select name="forcast_revenue_3" class="form-control bc_for_rev_3" id="rev_y3y">
                         <option value="" selected disabled>Select a value for 3rd year</option>
-                        <option value="0|1000000">&#60; 1 million</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-                        <option value="50000000|1000000000"> &#62; 50 milion</option>
+                        <option value="0|1000000">&#60; 1M</option>
+                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
                     <div class="input-group-append">
@@ -1307,7 +1307,7 @@ if (isset($_SESSION['email'])) {
       }
     });
     $(".input-group-multiple-checkbox:visible").each(function() {
-      if ($(this).find("input[type='checkbox']:checked").length == 0) {
+      if ($(this).find("input[type='checkbox']:checked").length == 0 && $(this).find("input[type='radio']:checked").length == 0) {
         if ($(this).find("small").length > 0) {
           $(this).find("small").remove();
         }

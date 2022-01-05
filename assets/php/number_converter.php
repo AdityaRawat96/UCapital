@@ -25,7 +25,7 @@ function formatPipeValue($pipedValue){
   return $output_string_1 . " " . $output_string_2;
 }
 // Shortens a number and attaches K, M, B, etc. accordingly
-function number_shorten($number, $precision = 1, $divisors = null) {
+function number_shorten($number, $precision = 2, $divisors = null) {
 
   if (strpos($number, '|') == false) {
     // Setup default $divisors if not provided
@@ -90,7 +90,7 @@ function number_shorten($number, $precision = 1, $divisors = null) {
       // We found our match, or there were no matches.
       // Either way, use the last defined value for $divisor.
       if($shorthand == 'k'){
-        $generatedString .= number_format($number, $precision)."  ";
+        $generatedString .= number_format($number, 0)."  ";
       }else{
         $generatedString .= floatval(number_format($number / $divisor, $precision)) . $shorthand."  ";
       }

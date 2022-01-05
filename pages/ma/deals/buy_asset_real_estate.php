@@ -163,12 +163,12 @@
         <div class="custom-file">
           <select class="form-control re_asset_value_sel_buy" name="asset_value_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|500000">from 0 to 500'000</option>
-            <option value="500000|1000000">from 500'000 to 1 million</option>
-            <option value="1000000|10000000">from 1 to 10 million</option>
-            <option value="10000000|50000000">from 10 to 50 million</option>
-            <option value="50000000|250000000">from 50 to 250 million</option>
-            <option value="250000000|1000000000">over 250 million</option>
+            <option value="0|500000">from 0 to 500,000</option>
+            <option value="500000|1000000">from 500,000 to 1M</option>
+            <option value="1000000|10000000">from 1 to 10M</option>
+            <option value="10000000|50000000">from 10 to 50M</option>
+            <option value="50000000|250000000">from 50 to 250M</option>
+            <option value="250000000|1000000000">over 250M</option>
           </select>
         </div>
       </div>
@@ -215,10 +215,10 @@
         <span class="deal-subhead">(Multiple Choice)</span>
       </div>
       <div class="col-md-9 col-sm-12 input-container">
-        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
-        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
-        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
-        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="0|1000000"> Less than 1M<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="1000000|10000000"> From 1 to 10M<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="10000000|50000000"> From 10M to 50M<br>
+        <input type="checkbox" name="investment_size" class="re_investment_amount_buy" value="50000000|1000000000"> More than 50M<br>
       </div>
     </div>
   </div>
@@ -235,7 +235,7 @@
       <span>General Description</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group">
-      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" maxlength="124" placeholder="Type a description"></textarea>
+      <textarea name="general_description" rows="3" class="form-control re_general_description_buy" placeholder="Type a description"></textarea>
     </div>
   </div>
 </div>

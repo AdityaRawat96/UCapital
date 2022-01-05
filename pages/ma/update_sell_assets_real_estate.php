@@ -199,12 +199,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control re_asset_value_sel" id="asset_value_range" name="asset_value_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500'000</option>
-                        <option value="500000|1000000">from 500'000 to 1 million</option>
-                        <option value="1000000|10000000">from 1 to 10 million</option>
-                        <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|250000000">from 50 to 250 million</option>
-                        <option value="250000000|1000000000">over 250 million</option>
+                        <option value="0|500000">from 0 to 500,000</option>
+                        <option value="500000|1000000">from 500,000 to 1M</option>
+                        <option value="1000000|10000000">from 1 to 10M</option>
+                        <option value="10000000|50000000">from 10 to 50M</option>
+                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
                   </div>
@@ -248,12 +248,12 @@ if (isset($_SESSION['email'])) {
                     <div class="custom-file">
                       <select class="form-control re_investment_val_sel" id="investment_val_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
-                        <option value="0|500000">from 0 to 500'000</option>
-                        <option value="500000|1000000">from 500'000 to 1 million</option>
-                        <option value="1000000|10000000">from 1 to 10 million</option>
-                        <option value="10000000|50000000">from 10 to 50 million</option>
-                        <option value="50000000|250000000">from 50 to 250 million</option>
-                        <option value="250000000|1000000000">over 250 million</option>
+                        <option value="0|500000">from 0 to 500,000</option>
+                        <option value="500000|1000000">from 500,000 to 1M</option>
+                        <option value="1000000|10000000">from 1 to 10M</option>
+                        <option value="10000000|50000000">from 10 to 50M</option>
+                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
                   </div>
@@ -294,7 +294,7 @@ if (isset($_SESSION['email'])) {
                   <span>General Description</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="general_description" rows="3" id="description" class="form-control re_general_description" maxlength="124" placeholder="Type a description"></textarea>
+                  <textarea name="general_description" rows="3" id="description" class="form-control re_general_description" placeholder="Type a description"></textarea>
                 </div>
               </div>
               <div class="row">
@@ -302,7 +302,7 @@ if (isset($_SESSION['email'])) {
                   <span>Key Elements</span>
                 </div>
                 <div class="col-md-9 col-sm-12 input-container input-group">
-                  <textarea name="key_elements" rows="3" id="keyElem" class="form-control re_key_elements" maxlength="124" placeholder="Urban Masterpiece, Modern industrial design, Newly Renovated, Luxury residence, Picking solutions..."></textarea>
+                  <textarea name="key_elements" rows="3" id="keyElem" class="form-control re_key_elements" placeholder="Urban Masterpiece, Modern industrial design, Newly Renovated, Luxury residence, Picking solutions..."></textarea>
                 </div>
               </div>
 

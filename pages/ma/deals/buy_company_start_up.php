@@ -432,10 +432,10 @@
         <div class="custom-file">
           <select class="form-control su_actual_revenue_sel_buy" name="preferred_revenue_range">
             <option value="" selected disabled>Select a range</option>
-            <option value="0|1000000">&#60; 1 million</option>
-            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000|1000000000"> &#62; 50 milion</option>
+            <option value="0|1000000">&#60; 1M</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+            <option value="50000000|1000000000"> &#62; 50M</option>
           </select>
         </div>
       </div>
@@ -521,10 +521,10 @@
         <div class="custom-file">
           <select name="forcast_revenue_1" class="form-control su_for_rev_1_buy">
             <option value="" selected disabled>Select a value for 1st year</option>
-            <option value="0|1000000">&#60; 1 million</option>
-            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000|1000000000"> &#62; 50 milion</option>
+            <option value="0|1000000">&#60; 1M</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+            <option value="50000000|1000000000"> &#62; 50M</option>
           </select>
         </div>
         <div class="input-group-append">
@@ -625,10 +625,10 @@
         <div class="custom-file">
           <select name="forcast_revenue_2" class="form-control su_for_rev_2_buy">
             <option value="" selected disabled>Select a value for 2nd year</option>
-            <option value="0|1000000">&#60; 1 million</option>
-            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000|1000000000"> &#62; 50 milion</option>
+            <option value="0|1000000">&#60; 1M</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+            <option value="50000000|1000000000"> &#62; 50M</option>
           </select>
         </div>
         <div class="input-group-append">
@@ -729,10 +729,10 @@
         <div class="custom-file">
           <select name="forcast_revenue_3" class="form-control su_for_rev_3_buy">
             <option value="" selected disabled>Select a value for 3rd year</option>
-            <option value="0|1000000">&#60; 1 million</option>
-            <option value="1000000|10000000">1 &#60; revenue &#60; 10 milion</option>
-            <option value="10000000|50000000">10 &#60; revenue &#60; 50 million</option>
-            <option value="50000000|1000000000"> &#62; 50 milion</option>
+            <option value="0|1000000">&#60; 1M</option>
+            <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
+            <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+            <option value="50000000|1000000000"> &#62; 50M</option>
           </select>
         </div>
         <div class="input-group-append">
@@ -801,10 +801,10 @@
       <span class="deal-subhead">(Multiple Choice)</span>
     </div>
     <div class="col-md-9 col-sm-12 input-container input-group-multiple-checkbox">
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500'000<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500'000 to 1 mln<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="1000000|10000000"> From 1 mln to 10 mln<br>
-      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|1000000000"> More than 10 mln<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="0|500000"> Less than 500,000<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="500000|1000000"> From 500,000 to 1M<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="1000000|10000000"> From 1M to 10M<br>
+      <input type="checkbox" name="investment_size" class="su_investment_required_value_buy" value="10000000|1000000000"> More than 10M<br>
     </div>
   </div>
   <div class="row">
@@ -848,10 +848,10 @@
         <span class="deal-subhead">(Multiple Choice)</span>
       </div>
       <div class="col-md-9 col-sm-12 input-container">
-        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="0|1000000"> Less than 1 mln<br>
-        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="1000000|10000000"> From 1 to 10 mln<br>
-        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="10000000|50000000"> From 10 mln to 50 mln<br>
-        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="50000000|1000000000"> More than 50 mln<br>
+        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="0|1000000"> Less than 1M<br>
+        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="1000000|10000000"> From 1 to 10M<br>
+        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="10000000|50000000"> From 10M to 50M<br>
+        <input type="checkbox" name="investment_size" class="su_investment_amount_buy" value="50000000|1000000000"> More than 50M<br>
       </div>
     </div>
   </div>
