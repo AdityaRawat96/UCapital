@@ -149,9 +149,9 @@ if (isset($_SESSION['email'])) {
                         <option value="" selected disabled>Select a range</option>
                         <option value="0|500000">from 0 to 500,000</option>
                         <option value="500000|1000000">from 500,000 to 1M</option>
-                        <option value="1000000|10000000">from 1 to 10M</option>
-                        <option value="10000000|50000000">from 10 to 50M</option>
-                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="1000000|10000000">from 1M to 10M</option>
+                        <option value="10000000|50000000">from 10M to 50M</option>
+                        <option value="50000000|250000000">from 50M to 250M</option>
                         <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
@@ -198,9 +198,9 @@ if (isset($_SESSION['email'])) {
                         <option value="" selected disabled>Select a range</option>
                         <option value="0|500000">from 0 to 500,000</option>
                         <option value="500000|1000000">from 500,000 to 1M</option>
-                        <option value="1000000|10000000">from 1 to 10M</option>
-                        <option value="10000000|50000000">from 10 to 50M</option>
-                        <option value="50000000|250000000">from 50 to 250M</option>
+                        <option value="1000000|10000000">from 1M to 10M</option>
+                        <option value="10000000|50000000">from 10M to 50M</option>
+                        <option value="50000000|250000000">from 50M to 250M</option>
                         <option value="250000000|1000000000">over 250M</option>
                       </select>
                     </div>
@@ -641,8 +641,8 @@ if (isset($_SESSION['email'])) {
                       <select class="form-control bc_actual_revenue_sel" id="actual_revenue_sel" name="investment_required_range">
                         <option value="" selected disabled>Select a range</option>
                         <option value="0|1000000">&#60; 1M</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="1000000|10000000">1M &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10M &#60; revenue &#60; 50M</option>
                         <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
@@ -730,8 +730,8 @@ if (isset($_SESSION['email'])) {
                       <select name="forcast_revenue_1" class="form-control bc_for_rev_1" id="rev_y1y">
                         <option value="" selected disabled>Select a value for 1st year</option>
                         <option value="0|1000000">&#60; 1M</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="1000000|10000000">1M &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10M &#60; revenue &#60; 50M</option>
                         <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
@@ -834,8 +834,8 @@ if (isset($_SESSION['email'])) {
                       <select name="forcast_revenue_2" class="form-control bc_for_rev_2" id="rev_y2y">
                         <option value="" selected disabled>Select a value for 2nd year</option>
                         <option value="0|1000000">&#60; 1M</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="1000000|10000000">1M &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10M &#60; revenue &#60; 50M</option>
                         <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>
@@ -938,8 +938,8 @@ if (isset($_SESSION['email'])) {
                       <select name="forcast_revenue_3" class="form-control bc_for_rev_3" id="rev_y3y">
                         <option value="" selected disabled>Select a value for 3rd year</option>
                         <option value="0|1000000">&#60; 1M</option>
-                        <option value="1000000|10000000">1 &#60; revenue &#60; 10M</option>
-                        <option value="10000000|50000000">10 &#60; revenue &#60; 50M</option>
+                        <option value="1000000|10000000">1M &#60; revenue &#60; 10M</option>
+                        <option value="10000000|50000000">10M &#60; revenue &#60; 50M</option>
                         <option value="50000000|1000000000"> &#62; 50M</option>
                       </select>
                     </div>

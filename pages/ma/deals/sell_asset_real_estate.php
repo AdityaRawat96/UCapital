@@ -174,9 +174,9 @@
             <option value="" selected disabled>Select a range</option>
             <option value="0|500000">from 0 to 500,000</option>
             <option value="500000|1000000">from 500,000 to 1M</option>
-            <option value="1000000|10000000">from 1 to 10M</option>
-            <option value="10000000|50000000">from 10 to 50M</option>
-            <option value="50000000|250000000">from 50 to 250M</option>
+            <option value="1000000|10000000">from 1M to 10M</option>
+            <option value="10000000|50000000">from 10M to 50M</option>
+            <option value="50000000|250000000">from 50M to 250M</option>
             <option value="250000000|1000000000">over 250M</option>
           </select>
         </div>
@@ -223,9 +223,9 @@
             <option value="" selected disabled>Select a range</option>
             <option value="0|500000">from 0 to 500,000</option>
             <option value="500000|1000000">from 500,000 to 1M</option>
-            <option value="1000000|10000000">from 1 to 10M</option>
-            <option value="10000000|50000000">from 10 to 50M</option>
-            <option value="50000000|250000000">from 50 to 250M</option>
+            <option value="1000000|10000000">from 1M to 10M</option>
+            <option value="10000000|50000000">from 10M to 50M</option>
+            <option value="50000000|250000000">from 50M to 250M</option>
             <option value="250000000|1000000000">over 250M</option>
           </select>
         </div>
