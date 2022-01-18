@@ -39,7 +39,7 @@
 
           <div class="col-md-5"><br><br>
             <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
+              <div class="card-header" style="background-color: #001F3B; color: white;">
                 <h5><b>DEAL INFO</b></h5>
               </div>
               <div class="card-body">
@@ -83,7 +83,7 @@
             </div>
 
             <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
+              <div class="card-header" style="background-color: #001F3B; color: white;">
                 <h5><b>INVESTOR INFO</b></h5>
               </div>
               <div class="card-body">

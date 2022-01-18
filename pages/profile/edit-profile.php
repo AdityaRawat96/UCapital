@@ -228,274 +228,274 @@ if(isset($_SESSION['email'])){
         </div>
       </div>
 
-        <?php
-      }
-      ?>
-
-
-
-      <div class="col-md-12">
-        <div class="card class-contact-info-settings">
-          <form class="password-form" action="#" method="post">
-            <div class="row">
-              <div class="col-md-12">
-                <h5><b>Edit your Password</b></h5><br>
-              </div>
-              <div class="col-md-12">
-                <div class="row">
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="edit-profile-labels">Current Password</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="password" class="form-control" name="current_password" id="current_password">
-                        </div>
-                        <div class="input-group-append">
-                          <div class="input-group-text password_visibility">
-                            <span class="fas fa-eye"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="edit-profile-labels">New Password</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="password" class="form-control" name="new_password" id="new_password" minlength="6">
-                        </div>
-                        <div class="input-group-append">
-                          <div class="input-group-text password_visibility">
-                            <span class="fas fa-eye"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="edit-profile-labels">Confirm Password</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="password" class="form-control" name="confirm_password" id="confirm_password" minlength="6">
-                        </div>
-                        <div class="input-group-append">
-                          <div class="input-group-text password_visibility">
-                            <span class="fas fa-eye"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="float-sm-left">
-                  <button type="submit" name="button" class="post-add-update-post our-back-btn">Confirm</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <?php
+    }
+    ?>
 
-      if($_SESSION['user_type'] == 2){
 
-        $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
-        or die('An error occurred! Unable to process this request. '. mysqli_error($con));
-        if(mysqli_num_rows($result) > 0 ){
-          while($row = mysqli_fetch_array($result)){
-            $advisor_id = $row['id'];
-            $location = $row['location'];
-            $services = $row['services'];
-            $folder_name = $row['folder_name'];
-            ?>
+
+    <div class="col-md-12">
+      <div class="card class-contact-info-settings">
+        <form class="password-form" action="#" method="post">
+          <div class="row">
             <div class="col-md-12">
-              <form id="advisor-form" method="post">
-                <div class="card class-contact-info-settings">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h6 class="edit-profile-section654654"> Edit Advisor Information </h6>
-                    </div>
-                    <div class="col-md-10">
-                      <div class="row">
-                        <div class="col-md-6 com-sm-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">First Name</label>
-                            <div class="input-group">
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="first_name" id="first_name" value="<?=$_SESSION['first_name']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 com-sm-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Last Name</label>
-                            <div class="input-group">
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="last_name" id="last_name" value="<?=$_SESSION['last_name']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12 com-sm-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Studio Name</label>
-                            <div class="input-group">
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="studio_name" id="studio_name" value="<?=$row['studio_name']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 com-sm-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Interests</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-star"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="interests" id="interests" value="<?=$row['interests']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Email</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-at"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="email" class="form-control" name="email" id="email" value="<?=$row['email']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Phone</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-phone-alt"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="phone" class="form-control" name="phone" id="phone" value="<?=$row['phone']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 com-sm-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Job Role</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-user"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="role" id="role" value="<?=$row['role']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Company</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-building"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="company" id="company" value="<?=$row['company']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Website</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <span class="fas fa-globe"></span>
-                                </div>
-                              </div>
-                              <div class="custom-file">
-                                <input type="text" class="form-control" name="website" id="website" value="<?=$row['website']; ?>">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">Description:</label>
-                            <textarea class="form-control" name="description" id="description" rows="3"><?=$row['description']; ?></textarea>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="edit-profile-labels">About:</label>
-                            <textarea class="form-control" name="about" id="about" rows="5"><?=$row['about']; ?></textarea>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <label class="edit-profile-labels">Location</label>
-                          <div class="form-group">
-                            <input
-                            name="location"
-                            onclick="$('.location-error').fadeOut();"
-                            id="pac-input"
-                            class="controls"
-                            type="text"
-                            placeholder="Location"
-                            value="<?=$row['location']; ?>"
-                            />
-                          </div>
-                          <div id="map"></div>
-                          <small class="error-span location-error">Please select a location</small>
-                        </div>
-                        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;"><br><br><br>
-                          <label class="edit-profile-labels">Services:</label>
-                        </div>
-                        <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;"><br><br><br>
-                          <button type="button" name="button" class="btn btn-info float-right" onclick="addService();">+ Add Service</button>
-                        </div>
-                        <div class="col-12 service-cards row">
-                        </div>
+              <h5><b>Edit your Password</b></h5><br>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="edit-profile-labels">Current Password</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="password" class="form-control" name="current_password" id="current_password">
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="float-sm-right">
-                        <button type="submit" name="button" class="post-add-update-post our-back-btn">Update</button>
+                      <div class="input-group-append">
+                        <div class="input-group-text password_visibility">
+                          <span class="fas fa-eye"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </form>
-
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="edit-profile-labels">New Password</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="password" class="form-control" name="new_password" id="new_password" minlength="6">
+                      </div>
+                      <div class="input-group-append">
+                        <div class="input-group-text password_visibility">
+                          <span class="fas fa-eye"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="edit-profile-labels">Confirm Password</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" minlength="6">
+                      </div>
+                      <div class="input-group-append">
+                        <div class="input-group-text password_visibility">
+                          <span class="fas fa-eye"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <?php
-          }
-        }
-      }
-
-      ?>
-
-
+            <div class="col-md-12">
+              <div class="float-sm-left">
+                <button type="submit" name="button" class="post-add-update-post our-back-btn">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
-  </div><!-- container-fluid -->
+    <?php
+
+    if($_SESSION['user_type'] == 2){
+
+      $result= mysqli_query($con, " SELECT *  FROM advisors WHERE user_id='$user_id'")
+      or die('An error occurred! Unable to process this request. '. mysqli_error($con));
+      if(mysqli_num_rows($result) > 0 ){
+        while($row = mysqli_fetch_array($result)){
+          $advisor_id = $row['id'];
+          $location = $row['location'];
+          $services = $row['services'];
+          $folder_name = $row['folder_name'];
+          ?>
+          <div class="col-md-12">
+            <form id="advisor-form" method="post">
+              <div class="card class-contact-info-settings">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="edit-profile-section654654"> Edit Advisor Information </h6>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="row">
+                      <div class="col-md-6 com-sm-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">First Name</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="first_name" id="first_name" value="<?=$_SESSION['first_name']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 com-sm-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Last Name</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="last_name" id="last_name" value="<?=$_SESSION['last_name']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 com-sm-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Studio Name</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="studio_name" id="studio_name" value="<?=$row['studio_name']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 com-sm-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Interests</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-star"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="interests" id="interests" value="<?=$row['interests']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Email</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-at"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="email" class="form-control" name="email" id="email" value="<?=$row['email']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Phone</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-phone-alt"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="phone" class="form-control" name="phone" id="phone" value="<?=$row['phone']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 com-sm-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Job Role</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="role" id="role" value="<?=$row['role']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Company</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-building"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="company" id="company" value="<?=$row['company']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Website</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <span class="fas fa-globe"></span>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input type="text" class="form-control" name="website" id="website" value="<?=$row['website']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">Description:</label>
+                          <textarea class="form-control" name="description" id="description" rows="3"><?=$row['description']; ?></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="edit-profile-labels">About:</label>
+                          <textarea class="form-control" name="about" id="about" rows="5"><?=$row['about']; ?></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <label class="edit-profile-labels">Location</label>
+                        <div class="form-group">
+                          <input
+                          name="location"
+                          onclick="$('.location-error').fadeOut();"
+                          id="pac-input"
+                          class="controls"
+                          type="text"
+                          placeholder="Location"
+                          value="<?=$row['location']; ?>"
+                          />
+                        </div>
+                        <div id="map"></div>
+                        <small class="error-span location-error">Please select a location</small>
+                      </div>
+                      <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;"><br><br><br>
+                        <label class="edit-profile-labels">Services:</label>
+                      </div>
+                      <div class="col-md-6 col-sm-12" style="margin-bottom: 20px;"><br><br><br>
+                        <button type="button" name="button" class="btn btn-info float-right" onclick="addService();">+ Add Service</button>
+                      </div>
+                      <div class="col-12 service-cards row">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="float-sm-right">
+                      <button type="submit" name="button" class="post-add-update-post our-back-btn">Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <?php
+        }
+      }
+    }
+
+    ?>
+
+
+  </div>
+
+</div><!-- container-fluid -->
 </section>
 <!-- content -->
 </div>
@@ -537,8 +537,9 @@ function updateProfile(){
     {
       console.log(data);;
       if(data == "success"){
-        swal("Success!", "Profile updated!", "success")
-
+        swal("Success!", "Profile updated!", "success").then(()=>{
+          window.location.replace("./");
+        });
       }else if(data == "email"){
         swal("Error!", "Email ID is already in use by another user!", "error");
         $("#email").focus();
@@ -563,8 +564,9 @@ function updatePassword(){
     {
       console.log(data);;
       if(data == "success"){
-        swal("Success!", "Password updated!", "success")
-
+        swal("Success!", "Password updated!", "success").then(()=>{
+          window.location.replace("./");
+        });
       }else if(data == "password"){
         swal("Error!", "Your current password is incorrect!", "error");
         $("#email").focus();

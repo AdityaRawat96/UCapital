@@ -406,7 +406,7 @@ function editAd(id, asset, deal) {
     }
   }
   if (dealUrl != "") {
-    window.open(dealUrl + "?" + p.toString());
+    window.location.replace(dealUrl + "?" + p.toString());
   }
 }
 

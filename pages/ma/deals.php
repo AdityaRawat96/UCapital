@@ -29,7 +29,7 @@ if (isset($_SESSION['email'])) {
 
           <div class="row">
             <div class="col-12"><br>
-              <h2 class="text-custom-2" style="color: #136DAE;">Deal features</h2>
+              <h2 class="text-custom-2" style="color: #001F3B;">Deal features</h2>
               <hr><br>
             </div>
           </div>

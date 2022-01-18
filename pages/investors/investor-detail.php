@@ -72,7 +72,9 @@ if(isset($_SESSION['email'])){
                               </span>
                             </span>
                             <div class="row">
-                              <p class="col-md-6 float-sm-left address-details-se7458"> <i class="fas fa-map-marker-alt"></i> <?=$row['HQ_Location']; ?> </p>
+                              <div class="col-md-6">
+                                <p class="float-sm-left address-details-se7458"> <i class="fas fa-map-marker-alt"></i> <?=$row['HQ_Location']; ?> </p><br>
+                              </div>
                               <div class="col-md-6">
                                 <a href="//<?=$row['Website']; ?>" target="_blank">
                                   <button class="float-sm-right our-back-btn contact-setting-deatils"> Visit Website </button>
@@ -193,7 +195,7 @@ if(isset($_SESSION['email'])){
 
                         <div class="col-md-5">
                           <div class="card">
-                            <div class="card-header" style="background-color: #136DAE; color: white;">
+                            <div class="card-header" style="background-color: #001F3B; color: white;">
                               <h5><b>DETAIL</b></h5>
                             </div>
                             <div class="card-body">

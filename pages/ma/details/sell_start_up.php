@@ -81,7 +81,7 @@
 
           <div class="col-md-5"><br><br>
             <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
+              <div class="card-header" style="background-color: #001F3B; color: white;">
                 <h5><b>FINANCIAL DATA</b></h5>
               </div>
               <div class="card-body">
@@ -143,7 +143,7 @@
             </div>
 
             <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
+              <div class="card-header" style="background-color: #001F3B; color: white;">
                 <h5><b>COMPANY INFO</b></h5>
               </div>
               <div class="card-body">
@@ -169,7 +169,7 @@
             </div>
 
             <div class="card">
-              <div class="card-header" style="background-color: #136DAE; color: white;">
+              <div class="card-header" style="background-color: #001F3B; color: white;">
                 <h5><b>FORECAST PER YEAR</b></h5>
               </div>
               <div class="card-body">
