@@ -20,7 +20,7 @@ if ($asset_type == "RE") {
     $re_asset_value = array_key_exists('re_asset_value', $data) ? $data['re_asset_value'] : "";
     $re_asset_value_min = (array_key_exists('re_asset_value_min', $data) && $data['re_asset_value_min'] != "") ? $data['re_asset_value_min'] : "NULL";
     $re_asset_value_max = (array_key_exists('re_asset_value_max', $data) && $data['re_asset_value_max'] != "") ? $data['re_asset_value_max'] : "NULL";
-    $re_general_description = array_key_exists('re_general_description', $data) ? $data['re_general_description'] : "";
+    $re_general_description = array_key_exists('re_general_description', $data) ? mysqli_real_escape_string($con, $data['re_general_description']) : "";
     $re_who_i_am = array_key_exists('re_who_i_am', $data) ? $data['re_who_i_am'] : "";
     $re_aum = (array_key_exists('re_aum', $data)  && $data['re_aum'] != "")  ? $data['re_aum'] : "NULL";
     $re_construction_year = (array_key_exists('re_construction_year', $data) && $data['re_construction_year'] != "") ? $data['re_construction_year'] : "NULL";
@@ -44,7 +44,7 @@ if ($asset_type == "RE") {
     $npe_hq_city = array_key_exists('npe_hq_city', $data) ? mysqli_real_escape_string($con, $data['npe_hq_city']) : "";
     $npe_state = array_key_exists('npe_state', $data) ? $data['npe_state'] : "";
     $npe_post_code = array_key_exists('npe_post_code', $data) ? $data['npe_post_code'] : "";
-    $npe_description = array_key_exists('npe_description', $data) ? $data['npe_description'] : "";
+    $npe_description = array_key_exists('npe_description', $data) ? mysqli_real_escape_string($con, $data['npe_description']) : "";
     $npe_default_currency = array_key_exists('npe_default_currency', $data) ?  $data['npe_default_currency'] : "";
     $npe_original_amount = (array_key_exists('npe_original_amount', $data) && $data['npe_original_amount'] != "") ? $data['npe_original_amount'] : "NULL";
     $npe_asking_price = (array_key_exists('npe_asking_price', $data) && $data['npe_asking_price'] != "") ? $data['npe_asking_price'] : "NULL";
@@ -71,7 +71,7 @@ if ($asset_type == "RE") {
     $credit_hq_city = array_key_exists('credit_hq_city', $data) ? mysqli_real_escape_string($con, $data['credit_hq_city']) : "";
     $credit_state = array_key_exists('credit_state', $data) ? $data['credit_state'] : "";
     $credit_post_code = array_key_exists('credit_post_code', $data) ? $data['credit_post_code'] : "";
-    $credit_description = array_key_exists('credit_description', $data) ? $data['credit_description'] : "";
+    $credit_description = array_key_exists('credit_description', $data) ? mysqli_real_escape_string($con, $data['credit_description']) : "";
     $credit_default_currency = array_key_exists('credit_default_currency', $data) ?  $data['credit_default_currency'] : "";
     $credit_original_amount = (array_key_exists('credit_original_amount', $data) && $data['credit_original_amount'] != "") ? $data['credit_original_amount'] : "NULL";
     $credit_asking_price = (array_key_exists('credit_asking_price', $data) && $data['credit_asking_price'] != "") ? $data['credit_asking_price'] : "NULL";
@@ -147,7 +147,7 @@ if ($asset_type == "RE") {
     $who_i_am = array_key_exists('who_i_am', $data) ? $data['who_i_am'] : "";
     $looking_for = array_key_exists('looking_for', $data) ? $data['looking_for'] : "";
     $what_i_want = array_key_exists('what_i_want', $data) ? $data['what_i_want'] : "";
-    $description = array_key_exists('description', $data) ? $data['description'] : "";
+    $description = array_key_exists('description', $data) ? mysqli_real_escape_string($con, $data['description']) : "";
     $image = array_key_exists('image', $data) && $data['image'] != "" ? $data['image'] : getImage($asset_type, $sector);
 
     $sql = "UPDATE `business_company` SET `SUB_COMPANY_TYPE`='$startup_type',`COUNTRY`='$country',`CITY`='$city',`FOUNDATION_YEAR`=$foundation_year,`CURRENCY`='$default_currency',`COMPANY_VAL_TYPE`='$company_value_type',`COMPANY_VAL_MIN`=$company_value_min,`COMPANY_VAL_MAX`=$company_value_max,`INVESTMENT_TYPE`='$investment_required_value',`INVESTMENT_MIN`=$investment_required_min,`INVESTMENT_MAX`=$investment_required_max,`SECTOR`='$sector',`INDUSTRY`='$industry',`COMPANY_BUSINESS`='$company_business',`AREA_OF_ACTIVITY`='$area_of_activity',`SCALABILITY`='$scalability',`SCALABILITY_AREA`='$scalability_area',`MARKET_SHARE`=$market_share,`NUM_OF_EMPLOYEE_MIN`=$number_of_employees_min,`NUM_OF_EMPLOYEE_MAX`=$number_of_employees_max,`ACTUAL_REVENUE_TYPE`='$actual_revenue_type',`ACTUAL_REVENUE_MIN`=$actual_revenue_min,`ACTUAL_REVENUE_MAX`=$actual_revenue_max,`EBITDA_MARGIN_TYPE`='$ebitda_margin_type',`EBIDTA_MARGIN`=$editda_margin_min,`EBITDA_MARGIN_MAX`=$editda_margin_max,`FORECAST_REVENUE_Y1`='$for_rev_1',`FORECAST_REVENUE_Y2`='$for_rev_2',`FORECAST_REVENUE_Y3`='$for_rev_3',`FORECAST_EBITDA_Y1`='$for_ebd_1',`FORECAST_EBITDA_Y2`='$for_ebd_2',`FORECAST_EBITDA_Y3`='$for_ebd_3',`NUM_OF_INVESTMENT`=$number_of_investments,`INVESTMENT_SIZE`='$investment_size',`PREF_INVESTMENT_AMOUNT`='$investment_amount',`WHO_I_AM`='$who_i_am',`LOOKING_FOR`='$looking_for',`WANT_TO_DO`='$what_i_want',`AUM`=$aum,`DESCRIPTION`='$description',`KEY_ELEMENTS`='$key_elements',`IMAGE`='$image', `FORECAST_REVENUE_Y1_SEL`='$for_rev_1_sel',`FORECAST_REVENUE_Y2_SEL`='$for_rev_2_sel',`FORECAST_REVENUE_Y3_SEL`='$for_rev_3_sel',`FORECAST_EBITDA_Y1_SEL`='$for_ebd_1_sel',`FORECAST_EBITDA_Y2_SEL`='$for_ebd_2_sel',`FORECAST_EBITDA_Y3_SEL`='$for_ebd_3_sel' WHERE ID = '$id'";
