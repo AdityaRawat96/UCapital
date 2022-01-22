@@ -18,3 +18,7 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         server-dir: projects/UCapital/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
