@@ -18,6 +18,8 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         server-dir: projects/UCapital/
+        protocol: ftps
+        port: 21
         exclude: |
           **/.git*
           **/.git*/**
