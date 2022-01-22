@@ -20,7 +20,7 @@ function formatPipeValue($pipedValue){
   }
   if($values_array[sizeof($values_array) -1] == "1000000000" && sizeof($values_array) == 2){
     $output_string_1 = "";
-    $output_string_2 = "More than " . number_shorten($values_array[1]);
+    $output_string_2 = "More than " . number_shorten($values_array[0]);
   }
   return $output_string_1 . " " . $output_string_2;
 }
@@ -149,6 +149,8 @@ function generateSurfaceArea($min, $max){
   $output_string = "";
   if($min === $max){
     $output_string = $min . " sqm";
+  }else if($min == 0){
+    $output_string = "Less than " . $max . " sqm";
   }else{
     $output_string = "From " . $min . " To " . $max . " sqm";
   }
@@ -293,6 +295,152 @@ function shorten_number_range($type, $min, $max, $precision = 1, $divisors = nul
       $generatedString = "From " . $generatedString;
 
       return $generatedString;
+    }
+  }
+
+}
+
+
+function shorten_number_range_2($type, $value, $maxRange, $value_format, $precision = 1, $divisors = null){
+  if($type == "undisclosed"){
+    return "Undisclosed";
+  }else if($type == "fixed"){
+    // Setup default $divisors if not provided
+    if (!isset($divisors)) {
+      $divisors = array(
+        pow(1000, 0) => '', // 1000^0 == 1
+        pow(1000, 1) => 'k', // Thousand
+        pow(1000, 2) => 'M', // Million
+        pow(1000, 3) => 'B', // Billion
+        pow(1000, 4) => 'T', // Trillion
+        pow(1000, 5) => 'Qa', // Quadrillion
+        pow(1000, 6) => 'Qi', // Quintillion
+      );
+    }
+
+    // Loop through each $divisor and find the
+    // lowest amount that matches
+    foreach ($divisors as $divisor => $shorthand) {
+      if (abs($value) < ($divisor * 1000)) {
+        // We found a match!
+        break;
+      }
+    }
+
+    // We found our match, or there were no matches.
+    // Either way, use the last defined value for $divisor.
+    if($shorthand == 'k'){
+      return number_format($value, 0).$value_format;
+    }else{
+      return floatval(number_format($value / $divisor, $precision)) . $shorthand.$value_format;
+    }
+  }else if($type == "range"){
+    $values_array = explode(",", join(",", explode("|", $value)));
+    $min = $values_array[0];
+    $max = $values_array[1];
+    if($min == 0){
+      // Setup default $divisors if not provided
+      if (!isset($divisors)) {
+        $divisors = array(
+          pow(1000, 0) => '', // 1000^0 == 1
+          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 2) => 'M', // Million
+          pow(1000, 3) => 'B', // Billion
+          pow(1000, 4) => 'T', // Trillion
+          pow(1000, 5) => 'Qa', // Quadrillion
+          pow(1000, 6) => 'Qi', // Quintillion
+        );
+      }
+
+      // Loop through each $divisor and find the
+      // lowest amount that matches
+      foreach ($divisors as $divisor => $shorthand) {
+        if (abs($max) < ($divisor * 1000)) {
+          // We found a match!
+          break;
+        }
+      }
+
+      // We found our match, or there were no matches.
+      // Either way, use the last defined value for $divisor.
+      if($shorthand == 'k'){
+        return "Less than ".number_format($max, 0).$value_format;
+      }else{
+        return "Less than ".floatval(number_format($max / $divisor, $precision)) . $shorthand.$value_format;
+      }
+    }else if($max == $maxRange){
+      // Setup default $divisors if not provided
+      if (!isset($divisors)) {
+        $divisors = array(
+          pow(1000, 0) => '', // 1000^0 == 1
+          pow(1000, 1) => 'k', // Thousand
+          pow(1000, 2) => 'M', // Million
+          pow(1000, 3) => 'B', // Billion
+          pow(1000, 4) => 'T', // Trillion
+          pow(1000, 5) => 'Qa', // Quadrillion
+          pow(1000, 6) => 'Qi', // Quintillion
+        );
+      }
+
+      // Loop through each $divisor and find the
+      // lowest amount that matches
+      foreach ($divisors as $divisor => $shorthand) {
+        if (abs($min) < ($divisor * 1000)) {
+          // We found a match!
+          break;
+        }
+      }
+
+      // We found our match, or there were no matches.
+      // Either way, use the last defined value for $divisor.
+      if($shorthand == 'k'){
+        return "More than ".number_format($min, 0).$value_format;
+      }else{
+        return "More than ".floatval(number_format($min / $divisor, $precision)) . $shorthand.$value_format;
+      }
+    }else{
+      $generatedString = "";
+
+      $numbers[0] = $min;
+      $numbers[1] = $max;
+
+      foreach ($numbers as $number){
+        // Setup default $divisors if not provided
+        if (!isset($divisors)) {
+          $divisors = array(
+            pow(1000, 0) => '', // 1000^0 == 1
+            pow(1000, 1) => 'k', // Thousand
+            pow(1000, 2) => 'M', // Million
+            pow(1000, 3) => 'B', // Billion
+            pow(1000, 4) => 'T', // Trillion
+            pow(1000, 5) => 'Qa', // Quadrillion
+            pow(1000, 6) => 'Qi', // Quintillion
+          );
+        }
+
+        // Loop through each $divisor and find the
+        // lowest amount that matches
+        foreach ($divisors as $divisor => $shorthand) {
+          if (abs($number) < ($divisor * 1000)) {
+            // We found a match!
+            break;
+          }
+        }
+
+        // We found our match, or there were no matches.
+        // Either way, use the last defined value for $divisor.
+        if($shorthand == 'k'){
+          $generatedString .= number_format($number, 0)."  ";
+        }else{
+          $generatedString .= floatval(number_format($number / $divisor, $precision)) . $shorthand."  ";
+        }
+      }
+
+      $generatedString = trim($generatedString);
+      $generatedString = str_replace("  ", " To ", $generatedString);
+      $generatedString = "From " . $generatedString;
+
+      return $generatedString.$value_format;
     }
   }
 

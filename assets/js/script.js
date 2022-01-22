@@ -87,6 +87,8 @@ function generateSurfaceArea(min, max){
   var output_string = "";
   if(min == max){
     output_string = min + " sqm";
+  }else if(min == 0){
+    output_string = "Less than " + max + " sqm"
   }else{
     output_string = "From " + min + " To " + max + " sqm";
   }
@@ -146,7 +148,7 @@ function formatPipeValue(pipedValue){
   }
   if(values_array[values_array.length -1] == 1000000000 && values_array.length == 2){
     output_string_1 = "";
-    output_string_2 = "More than " + formatNumberValueString(values_array[1]);
+    output_string_2 = "More than " + formatNumberValueString(values_array[0]);
   }
   console.log("Values Array: "+ values_array);
   return output_string_1 + " " + output_string_2;

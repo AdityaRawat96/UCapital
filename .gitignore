@@ -1,4 +1,9 @@
+assets/profiles/*
+assets/uploads/Advisor/*
+assets/uploads/MergerAcquisition/*
+assets/php/connection.php
 
-*.zip
-*.jpg
-*.jpg
+# exception to the rule
+!assets/profiles/.gitkeep
+!assets/uploads/Advisor/.gitkeep
+!assets/uploads/MergerAcquisition/.gitkeep

@@ -71,6 +71,8 @@
                       }else if($row['ASSET_VAL_TYPE'] == "range"){
                         if($row['ASSET_VAL_MAX'] == 1000000000){
                           echo "Over ".number_shorten($row['ASSET_VAL_MIN'])." ".add_currency_symbol($row['CURRENCY']);
+                        }else if($row['ASSET_VAL_MIN'] == 0){
+                          echo "Less than ".number_shorten($row['ASSET_VAL_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }else{
                           echo "From ".number_shorten($row['ASSET_VAL_MIN'])." To ".number_shorten($row['ASSET_VAL_MAX'])." ".add_currency_symbol($row['CURRENCY']);
                         }

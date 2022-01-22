@@ -20,7 +20,7 @@ if ($asset_type == "RE") {
     $re_asset_value = array_key_exists('re_asset_value', $data) ? $data['re_asset_value'] : "";
     $re_asset_value_min = (array_key_exists('re_asset_value_min', $data) && $data['re_asset_value_min'] != "") ? $data['re_asset_value_min'] : "NULL";
     $re_asset_value_max = (array_key_exists('re_asset_value_max', $data) && $data['re_asset_value_max'] != "") ? $data['re_asset_value_max'] : "NULL";
-    $re_general_description = array_key_exists('re_general_description', $data) ? mysqli_real_escape_string($con, $data['re_general_description']) : "";
+    $re_general_description = array_key_exists('re_general_description', $data) ? mysqli_real_escape_string($con, trim($data['re_general_description'])) : "";
     $re_who_i_am = array_key_exists('re_who_i_am', $data) ? $data['re_who_i_am'] : "";
     $re_aum = (array_key_exists('re_aum', $data)  && $data['re_aum'] != "")  ? $data['re_aum'] : "NULL";
     $re_construction_year = (array_key_exists('re_construction_year', $data) && $data['re_construction_year'] != "") ? $data['re_construction_year'] : "NULL";
@@ -29,11 +29,11 @@ if ($asset_type == "RE") {
     $re_investment_value_min = (array_key_exists('re_investment_value_min', $data) && $data['re_investment_value_min'] != "") ? $data['re_investment_value_min'] : "NULL";
     $re_investment_value_max = (array_key_exists('re_investment_value_max', $data) && $data['re_investment_value_max'] != "") ? $data['re_investment_value_max'] : "NULL";
     $re_yearly_return = (array_key_exists('re_yearly_return', $data) && $data['re_yearly_return'] != "") ? $data['re_yearly_return'] : "NULL";
-    $re_key_elements = array_key_exists('re_key_elements', $data) ? $data['re_key_elements'] : "";
+    $re_key_elements = array_key_exists('re_key_elements', $data) ? mysqli_real_escape_string($con, trim($data['re_key_elements'])) : "";
     $re_image = array_key_exists('re_image', $data) && $data['re_image'] != "" ? $data['re_image'] : getImage($asset_type, $re_type);
     $number_of_investments = (array_key_exists('number_of_investments', $data) && $data['number_of_investments'] != "") ? $data['number_of_investments'] : "NULL";
     $investment_amount = (array_key_exists('investment_amount', $data) && $data['investment_amount'] != "") ? $data['investment_amount'] : "";
-    $re_looking_for = array_key_exists('re_looking_for', $data) ? $data['re_looking_for'] : "";
+    $re_looking_for = array_key_exists('re_looking_for', $data) ? mysqli_real_escape_string($con, trim($data['re_looking_for'])) : "";
 
     $sql = "UPDATE `real_estate` SET `REAL_ESTATE_TYP`='$re_type',`REAL_ESTATE_SUB_CAT_TYPE`='$re_type_category',`DEAL_SUBJECT`='$re_deal_subject',`ASSET_STATUS`='$re_asset_status',`ASSET_CONDITION`='$re_condition_status',`TOTAL_SURFACE`=$re_surface_area, `TOTAL_SURFACE_MAX`=$re_surface_area_max,`COUNTRY`='$re_hq_country',`CITY`='$re_hq_city',`CURRENCY`='$default_currency',`ASSET_VAL_TYPE`='$re_asset_value',`ASSET_VAL_MIN`=$re_asset_value_min,`ASSET_VAL_MAX`=$re_asset_value_max,`WHO_I_AM`='$re_who_i_am',`AUM`=$re_aum,`NUM_OF_INVESTMENT`=$number_of_investments,`PREF_INVESTMENT_AMOUNT`='$investment_amount',`DESCRIPTION`='$re_general_description',`LOOKING_FOR`='$re_looking_for',`YEAR_OF_CONSTRUCTION`=$re_construction_year,`VENDOR_TYPE`='$re_vendor_type',`INVESTMENT_TYPE`='$re_investment_type',`INVESTMENT_MIN`=$re_investment_value_min,`INVESTMENT_MAX`=$re_investment_value_max,`YEARLY_RETURN`=$re_yearly_return,`KEY_ELEMENTS`='$re_key_elements', `IMAGE`='$re_image' WHERE ID = '$id'";
 } else if ($asset_type == "NPE") {
@@ -44,7 +44,7 @@ if ($asset_type == "RE") {
     $npe_hq_city = array_key_exists('npe_hq_city', $data) ? mysqli_real_escape_string($con, $data['npe_hq_city']) : "";
     $npe_state = array_key_exists('npe_state', $data) ? $data['npe_state'] : "";
     $npe_post_code = array_key_exists('npe_post_code', $data) ? $data['npe_post_code'] : "";
-    $npe_description = array_key_exists('npe_description', $data) ? mysqli_real_escape_string($con, $data['npe_description']) : "";
+    $npe_description = array_key_exists('npe_description', $data) ? mysqli_real_escape_string($con, trim($data['npe_description'])) : "";
     $npe_default_currency = array_key_exists('npe_default_currency', $data) ?  $data['npe_default_currency'] : "";
     $npe_original_amount = (array_key_exists('npe_original_amount', $data) && $data['npe_original_amount'] != "") ? $data['npe_original_amount'] : "NULL";
     $npe_asking_price = (array_key_exists('npe_asking_price', $data) && $data['npe_asking_price'] != "") ? $data['npe_asking_price'] : "NULL";
@@ -71,14 +71,14 @@ if ($asset_type == "RE") {
     $credit_hq_city = array_key_exists('credit_hq_city', $data) ? mysqli_real_escape_string($con, $data['credit_hq_city']) : "";
     $credit_state = array_key_exists('credit_state', $data) ? $data['credit_state'] : "";
     $credit_post_code = array_key_exists('credit_post_code', $data) ? $data['credit_post_code'] : "";
-    $credit_description = array_key_exists('credit_description', $data) ? mysqli_real_escape_string($con, $data['credit_description']) : "";
+    $credit_description = array_key_exists('credit_description', $data) ? mysqli_real_escape_string($con, trim($data['credit_description'])) : "";
     $credit_default_currency = array_key_exists('credit_default_currency', $data) ?  $data['credit_default_currency'] : "";
     $credit_original_amount = (array_key_exists('credit_original_amount', $data) && $data['credit_original_amount'] != "") ? $data['credit_original_amount'] : "NULL";
     $credit_asking_price = (array_key_exists('credit_asking_price', $data) && $data['credit_asking_price'] != "") ? $data['credit_asking_price'] : "NULL";
     $credit_market_value = (array_key_exists('credit_market_value', $data) && $data['credit_market_value'] != "") ? $data['credit_market_value'] : "NULL";
     $credit_lien_position = array_key_exists('credit_lien_position', $data) ? $data['credit_lien_position'] : "";
     $credit_judicialized = array_key_exists('credit_judicialized', $data) ? $data['credit_judicialized'] : "";
-    $credit_borrower_details = array_key_exists('credit_borrower_details', $data)  ? $data['credit_borrower_details'] : "";
+    $credit_borrower_details = array_key_exists('credit_borrower_details', $data)  ? mysqli_real_escape_string($con, trim($data['credit_borrower_details'])) : "";
     $credit_borrower_type_category = array_key_exists('credit_borrower_type_category', $data)  ? $data['credit_borrower_type_category'] : "";
     $credit_typology = array_key_exists('credit_typology', $data)  ? $data['credit_typology'] : "";
     $credit_maturity_type = array_key_exists('credit_maturity_type', $data) ? $data['credit_maturity_type'] : "";
@@ -114,7 +114,7 @@ if ($asset_type == "RE") {
     $investment_required_max = (array_key_exists('investment_required_max', $data) && $data['investment_required_max'] != "") ? $data['investment_required_max'] : "NULL";
     $sector = array_key_exists('sector_sel', $data) ? $data['sector_sel'] : "";
     $industry = array_key_exists('industry_sel', $data) ? $data['industry_sel'] : "";
-    $company_business = array_key_exists('company_business', $data) ? $data['company_business'] : "";
+    $company_business = array_key_exists('company_business', $data) ? mysqli_real_escape_string($con, trim($data['company_business'])) : "";
     $area_of_activity = array_key_exists('area_of_activity', $data) ? $data['area_of_activity'] : "";
     $scalability = array_key_exists('scalability', $data) ? $data['scalability'] : "";
     $scalability_area = array_key_exists('scalability_area', $data) ? $data['scalability_area'] : "";
@@ -140,14 +140,14 @@ if ($asset_type == "RE") {
     $for_rev_3_sel = (array_key_exists('for_rev_3_sel', $data) && $data['for_rev_3_sel'] != "") ? $data['for_rev_3_sel'] : "";
     $for_ebd_3_sel = (array_key_exists('for_ebd_3_sel', $data) && $data['for_ebd_3_sel'] != "") ? $data['for_ebd_3_sel'] : "";
     $aum = (array_key_exists('aum', $data) && $data['aum'] != "") ? $data['aum'] : "NULL";
-    $key_elements = array_key_exists('key_elements', $data) ? $data['key_elements'] : "";
+    $key_elements = array_key_exists('key_elements', $data) ? mysqli_real_escape_string($con, trim($data['key_elements'])) : "";
     $number_of_investments = (array_key_exists('number_of_investments', $data) && $data['number_of_investments'] != "") ? $data['number_of_investments'] : "NULL";
     $investment_size = (array_key_exists('investment_size', $data) && $data['investment_size'] != "") ? $data['investment_size'] : "";
     $investment_amount = (array_key_exists('investment_amount', $data) && $data['investment_amount'] != "") ? $data['investment_amount'] : "";
     $who_i_am = array_key_exists('who_i_am', $data) ? $data['who_i_am'] : "";
-    $looking_for = array_key_exists('looking_for', $data) ? $data['looking_for'] : "";
+    $looking_for = array_key_exists('looking_for', $data) ? mysqli_real_escape_string($con, trim($data['looking_for'])) : "";
     $what_i_want = array_key_exists('what_i_want', $data) ? $data['what_i_want'] : "";
-    $description = array_key_exists('description', $data) ? mysqli_real_escape_string($con, $data['description']) : "";
+    $description = array_key_exists('description', $data) ? mysqli_real_escape_string($con, trim($data['description'])) : "";
     $image = array_key_exists('image', $data) && $data['image'] != "" ? $data['image'] : getImage($asset_type, $sector);
 
     $sql = "UPDATE `business_company` SET `SUB_COMPANY_TYPE`='$startup_type',`COUNTRY`='$country',`CITY`='$city',`FOUNDATION_YEAR`=$foundation_year,`CURRENCY`='$default_currency',`COMPANY_VAL_TYPE`='$company_value_type',`COMPANY_VAL_MIN`=$company_value_min,`COMPANY_VAL_MAX`=$company_value_max,`INVESTMENT_TYPE`='$investment_required_value',`INVESTMENT_MIN`=$investment_required_min,`INVESTMENT_MAX`=$investment_required_max,`SECTOR`='$sector',`INDUSTRY`='$industry',`COMPANY_BUSINESS`='$company_business',`AREA_OF_ACTIVITY`='$area_of_activity',`SCALABILITY`='$scalability',`SCALABILITY_AREA`='$scalability_area',`MARKET_SHARE`=$market_share,`NUM_OF_EMPLOYEE_MIN`=$number_of_employees_min,`NUM_OF_EMPLOYEE_MAX`=$number_of_employees_max,`ACTUAL_REVENUE_TYPE`='$actual_revenue_type',`ACTUAL_REVENUE_MIN`=$actual_revenue_min,`ACTUAL_REVENUE_MAX`=$actual_revenue_max,`EBITDA_MARGIN_TYPE`='$ebitda_margin_type',`EBIDTA_MARGIN`=$editda_margin_min,`EBITDA_MARGIN_MAX`=$editda_margin_max,`FORECAST_REVENUE_Y1`='$for_rev_1',`FORECAST_REVENUE_Y2`='$for_rev_2',`FORECAST_REVENUE_Y3`='$for_rev_3',`FORECAST_EBITDA_Y1`='$for_ebd_1',`FORECAST_EBITDA_Y2`='$for_ebd_2',`FORECAST_EBITDA_Y3`='$for_ebd_3',`NUM_OF_INVESTMENT`=$number_of_investments,`INVESTMENT_SIZE`='$investment_size',`PREF_INVESTMENT_AMOUNT`='$investment_amount',`WHO_I_AM`='$who_i_am',`LOOKING_FOR`='$looking_for',`WANT_TO_DO`='$what_i_want',`AUM`=$aum,`DESCRIPTION`='$description',`KEY_ELEMENTS`='$key_elements',`IMAGE`='$image', `FORECAST_REVENUE_Y1_SEL`='$for_rev_1_sel',`FORECAST_REVENUE_Y2_SEL`='$for_rev_2_sel',`FORECAST_REVENUE_Y3_SEL`='$for_rev_3_sel',`FORECAST_EBITDA_Y1_SEL`='$for_ebd_1_sel',`FORECAST_EBITDA_Y2_SEL`='$for_ebd_2_sel',`FORECAST_EBITDA_Y3_SEL`='$for_ebd_3_sel' WHERE ID = '$id'";
