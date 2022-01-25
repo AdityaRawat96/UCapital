@@ -197,39 +197,39 @@
               <div class="card-body">
                 <table class="table table-investor-pro6">
                   <tr class="profile-investor-heading">
-                    <td> Preferred Revenue Estimates (1 Year): </td>
+                    <td> Revenue Estimates (1 Year): </td>
                     <td>
                       <?=shorten_number_range_2($row['FORECAST_REVENUE_Y1_SEL'], $row['FORECAST_REVENUE_Y1'], 1000000000, " ".add_currency_symbol($row['CURRENCY'])); ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Margin Estimates (1 Year): </td>
+                    <td> Ebitda Margin Estimates (1 Year): </td>
                     <td>
                       <?=shorten_number_range_2($row['FORECAST_EBITDA_Y1_SEL'], $row['FORECAST_EBITDA_Y1'], 100, "%"); ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Revenue Estimates (2 Year): </td>
+                    <td> Revenue Estimates (2 Year): </td>
                     <td>
 
                       <?=shorten_number_range_2($row['FORECAST_REVENUE_Y2_SEL'], $row['FORECAST_REVENUE_Y2'], 1000000000, " ".add_currency_symbol($row['CURRENCY'])); ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Margin Estimates (2 Year): </td>
+                    <td> Ebitda Margin Estimates (2 Year): </td>
                     <td>
                       <?=shorten_number_range_2($row['FORECAST_EBITDA_Y2_SEL'], $row['FORECAST_EBITDA_Y2'], 100, "%"); ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Revenue Estimates (3 Year): </td>
+                    <td> Revenue Estimates (3 Year): </td>
                     <td>
 
                       <?=shorten_number_range_2($row['FORECAST_REVENUE_Y3_SEL'], $row['FORECAST_REVENUE_Y3'], 1000000000, " ".add_currency_symbol($row['CURRENCY'])); ?>
                     </td>
                   </tr>
                   <tr class="profile-investor-heading">
-                    <td> Preferred Ebitda Margin Estimates (3 Year): </td>
+                    <td> Ebitda Margin Estimates (3 Year): </td>
                     <td>
                       <?=shorten_number_range_2($row['FORECAST_EBITDA_Y2_SEL'], $row['FORECAST_EBITDA_Y2'], 100, "%"); ?>
                     </td>
