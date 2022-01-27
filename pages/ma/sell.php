@@ -46,7 +46,7 @@ if (isset($_SESSION['email'])) {
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-left">
                 <li class="breadcrumb-item"><a href="#" class="text-dark text-custom-1"> <img src="../../dist/img/new/m-a-breadcum.svg"> M & A </a></li>
-                <li class="breadcrumb-item active text-custom-2"> Sell </li>
+                <li class="breadcrumb-item active text-custom-2"> Selling </li>
               </ol>
             </div><!-- /.col -->
             <div class="col-sm-6">
